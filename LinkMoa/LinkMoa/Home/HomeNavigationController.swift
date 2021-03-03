@@ -66,7 +66,7 @@ final class HomeNavigationController: UINavigationController, BackgroundBlur {
         ])
     }
     
-    private func prepareBackGroundView() {
+    private func prepareBackgroundView() {
         view.addSubview(backgroundView)
         
         NSLayoutConstraint.activate([
@@ -86,7 +86,7 @@ final class HomeNavigationController: UINavigationController, BackgroundBlur {
     
     func animateBackgroundView() { // 백그라운드 뷰 어둡게
         removeBackgroundView()
-        prepareBackGroundView()
+        prepareBackgroundView()
         backgroundView.isHidden = false
         
         UIView.animate(withDuration: 0.4, animations: {

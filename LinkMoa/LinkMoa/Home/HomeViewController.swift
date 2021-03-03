@@ -38,17 +38,17 @@ final class HomeViewController: UIViewController {
     }
         
     private func preparePageViewController() {
-        guard let homeFolderVc = FolderViewController.storyboardInstance() else { fatalError() }
+        guard let homeFolderVC = FolderViewController.storyboardInstance() else { fatalError() }
         
-        guard let surfingVc = SurfingViewController.storyboardInstance() else { fatalError() }
+        guard let surfingVC = SurfingViewController.storyboardInstance() else { fatalError() }
         
-        homeFolderVc.homeNavigationController = navigationController as? HomeNavigationController
+        homeFolderVC.homeNavigationController = navigationController as? HomeNavigationController
         
-        pages = [homeFolderVc, surfingVc]
+        pages = [homeFolderVC, surfingVC]
         
         pageViewController.delegate = self
         pageViewController.dataSource = self
-        pageViewController.setViewControllers([homeFolderVc], direction: .forward, animated: true, completion: nil)
+        pageViewController.setViewControllers([homeFolderVC], direction: .forward, animated: true, completion: nil)
         
         addChild(pageViewController)
         pageViewController.willMove(toParent: self)
@@ -70,8 +70,8 @@ final class HomeViewController: UIViewController {
     }
     
     private func scrollSelectedTabView(scrollToIndexPath indexPath: IndexPath) {
-        let homeNavVc = navigationController as? HomeNavigationController
-        homeNavVc?.addButtonView.isHidden = (indexPath.item == 0) ? false : true
+        let homeNavVC = navigationController as? HomeNavigationController
+        homeNavVC?.addButtonView.isHidden = (indexPath.item == 0) ? false : true
         
         let prevIndexPath = IndexPath(item: indexPath.item == 0 ? 1 : 0, section: 0)
         
@@ -111,12 +111,12 @@ final class HomeViewController: UIViewController {
     }
     
     @IBAction private func searchButtonTapped() {
-        guard let searchFolderNavVc = SearchFolderNavigationViewController.storyboardInstance() else { return }
+        guard let searchFolderNavVC = SearchFolderNavigationViewController.storyboardInstance() else { return }
         
-        searchFolderNavVc.modalTransitionStyle = .crossDissolve
-        searchFolderNavVc.modalPresentationStyle = .fullScreen
+        searchFolderNavVC.modalTransitionStyle = .crossDissolve
+        searchFolderNavVC.modalPresentationStyle = .fullScreen
         
-        present(searchFolderNavVc, animated: true, completion: nil)
+        present(searchFolderNavVC, animated: true, completion: nil)
     }
 }
 
@@ -152,8 +152,8 @@ extension HomeViewController: UIPageViewControllerDataSource {
         
         if index == 1 {
             let prevIndex = index - 1
-            let navVc = navigationController as? HomeNavigationController
-            navVc?.addButtonView.isHidden = true
+            let navVC = navigationController as? HomeNavigationController
+            navVC?.addButtonView.isHidden = true
 
             return pages[prevIndex]
         }
@@ -166,8 +166,8 @@ extension HomeViewController: UIPageViewControllerDataSource {
         
         if index == 0 {
             let nextIndex = index + 1
-            let navVc = navigationController as? HomeNavigationController
-            navVc?.addButtonView.isHidden = false
+            let navVC = navigationController as? HomeNavigationController
+            navVC?.addButtonView.isHidden = false
             return pages[nextIndex]
         }
         
