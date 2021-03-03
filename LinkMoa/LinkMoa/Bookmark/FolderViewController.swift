@@ -16,8 +16,8 @@ final class FolderViewController: UIViewController, CustomAlert {
     private var folders: [Folder] = []
     
     private var folderHeaderView: FolderHeaderView?
-    private var blurVc: BackGroundBlur? {
-        return navigationController as? BackGroundBlur
+    private var blurVC: BackgroundBlur? {
+        return navigationController as? BackgroundBlur
     }
     weak var homeNavigationController: HomeNavigationController?
     
@@ -62,45 +62,45 @@ final class FolderViewController: UIViewController, CustomAlert {
     }
     
     private func presentAddFolder() { // 폴더 추가 페이지 - 플로팅 버튼
-        guard let addFolderVc = AddFolderViewController.storyboardInstance() else { fatalError() }
+        guard let addFolderVC = AddFolderViewController.storyboardInstance() else { fatalError() }
         
-        addFolderVc.modalPresentationStyle = .fullScreen
-        addFolderVc.alertSucceedViewHandler = { [weak self] in
+        addFolderVC.modalPresentationStyle = .fullScreen
+        addFolderVC.alertSucceedViewHandler = { [weak self] in
             guard let self = self else { return }
-            self.blurVc?.startBackGroundView()
-            self.alertSucceedView { self.blurVc?.stopBackGroundView() }
+            self.blurVC?.startBackgroundView()
+            self.alertSucceedView { self.blurVC?.stopBackgroundView() }
         }
         
-        present(addFolderVc, animated: true, completion: nil)
+        present(addFolderVC, animated: true, completion: nil)
     }
     
     private func presentAddLink() { // 링크 추가 페이지 - 플로팅 버튼
-        guard let addLinkVc = AddLinkViewController.storyboardInstance() else { return }
+        guard let addLinkVC = AddLinkViewController.storyboardInstance() else { return }
 
-        addLinkVc.alertSucceedViewHandler = { [weak self] in
+        addLinkVC.alertSucceedViewHandler = { [weak self] in
             guard let self = self else { return }
-            self.blurVc?.startBackGroundView()
-            self.alertSucceedView { self.blurVc?.stopBackGroundView() }
+            self.blurVC?.startBackgroundView()
+            self.alertSucceedView { self.blurVC?.stopBackgroundView() }
         }
         
-        let navVc = SelectNaviagitonViewController()
-        navVc.pushViewController(addLinkVc, animated: false)
-        navVc.modalPresentationStyle = .fullScreen
-        navVc.isNavigationBarHidden = true
+        let navVC = SelectNaviagitonViewController()
+        navVC.pushViewController(addLinkVC, animated: false)
+        navVC.modalPresentationStyle = .fullScreen
+        navVC.isNavigationBarHidden = true
         
-        present(navVc, animated: true, completion: nil)
+        present(navVC, animated: true, completion: nil)
     }
     
     @objc private func headerSortButtonTapped() {
         guard let _ = homeNavigationController?.topViewController as? HomeViewController else { return }
-        guard let editVc = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
+        guard let editVC = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
         
-        editVc.modalPresentationStyle = .overCurrentContext
-        editVc.modalTransitionStyle = .coverVertical
+        editVC.modalPresentationStyle = .overCurrentContext
+        editVC.modalTransitionStyle = .coverVertical
         
-        editVc.editTitle = "정렬하기"
-        editVc.actions = ["이름 순", "생성 순"]
-        editVc.handlers = [{ [weak self] _ in
+        editVC.editTitle = "정렬하기"
+        editVC.actions = ["이름 순", "생성 순"]
+        editVC.handlers = [{ [weak self] _ in
             guard let self = self else { return }
             self.folderViewModel.inputs.setFetchOption(option: .name)
             self.folderViewModel.fetchFolders()
@@ -109,36 +109,36 @@ final class FolderViewController: UIViewController, CustomAlert {
             self.folderViewModel.inputs.setFetchOption(option: .date)
             self.folderViewModel.fetchFolders()
         }]
-        editVc.completeHandler = { [weak self] in
+        editVC.completionHandler = { [weak self] in
             guard let self = self else { return }
-            self.blurVc?.stopBackGroundView()
+            self.blurVC?.stopBackgroundView()
         }
    
-        blurVc?.startBackGroundView()
-        present(editVc, animated: true)
+        blurVC?.startBackgroundView()
+        present(editVC, animated: true)
     }
     
     @objc private func addButtonTapped() { // 플로팅 버튼 클릭됬을 떄
         guard let _ = homeNavigationController?.topViewController as? HomeViewController else { return }
-        guard let editVc = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
+        guard let editVC = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
         
-        editVc.editTitle = "추가하기"
-        editVc.modalPresentationStyle = .overCurrentContext
-        editVc.modalTransitionStyle = .coverVertical
+        editVC.editTitle = "추가하기"
+        editVC.modalPresentationStyle = .overCurrentContext
+        editVC.modalTransitionStyle = .coverVertical
         
-        editVc.actions = ["폴더 추가", "링크 추가"]
-        editVc.handlers = [{ _ in
+        editVC.actions = ["폴더 추가", "링크 추가"]
+        editVC.handlers = [{ _ in
             self.presentAddFolder()
         }, { _ in
             self.presentAddLink()
         }]
-        editVc.completeHandler = { [weak self] in
+        editVC.completionHandler = { [weak self] in
             guard let self = self else { return }
-            self.blurVc?.stopBackGroundView()
+            self.blurVC?.stopBackgroundView()
         }
         
-        blurVc?.startBackGroundView()
-        present(editVc, animated: true)
+        blurVC?.startBackgroundView()
+        present(editVC, animated: true)
     }
     
     @objc private func cellEditButtonTapped(_ sender: UIGestureRecognizer) { // edit 버튼 클릭됬을 때
@@ -146,26 +146,26 @@ final class FolderViewController: UIViewController, CustomAlert {
         guard let folder = folders.filter({ $0.id == button.customTag }).first,
               let index = folders.firstIndex(of: folder) else { return }
                 
-        guard let editVc = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
+        guard let editVC = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
         
-        editVc.modalPresentationStyle = .overCurrentContext
-        editVc.modalTransitionStyle = .coverVertical
-        editVc.isIncludeRemoveButton = true
+        editVC.modalPresentationStyle = .overCurrentContext
+        editVC.modalTransitionStyle = .coverVertical
+        editVC.isIncludeRemoveButton = true
         
-        editVc.actions = ["폴더 수정", "URL 공유하기", "삭제하기"] // "URL 공유하기"
-        editVc.handlers = [{ [weak self] _ in // 폴더 수정 클릭
+        editVC.actions = ["폴더 수정", "URL 공유하기", "삭제하기"] // "URL 공유하기"
+        editVC.handlers = [{ [weak self] _ in // 폴더 수정 클릭
             guard let self = self else { return }
-            guard let editFolderVc = AddFolderViewController.storyboardInstance() else { return }
+            guard let editFolderVC = AddFolderViewController.storyboardInstance() else { return }
             
-            editFolderVc.folderPresentingType = .edit
-            editFolderVc.folder = folder
-            editFolderVc.modalPresentationStyle = .fullScreen
+            editFolderVC.folderPresentingType = .edit
+            editFolderVC.folder = folder
+            editFolderVC.modalPresentationStyle = .fullScreen
             
-            editFolderVc.alertSucceedViewHandler = {
-                self.blurVc?.startBackGroundView()
-                self.alertSucceedView(completeHandler: { self.blurVc?.stopBackGroundView() })
+            editFolderVC.alertSucceedViewHandler = {
+                self.blurVC?.startBackgroundView()
+                self.alertSucceedView(completeHandler: { self.blurVC?.stopBackgroundView() })
             }
-            self.present(editFolderVc, animated: true, completion: nil)
+            self.present(editFolderVC, animated: true, completion: nil)
         
         }, { [weak self] _ in
             guard let self = self else { return }
@@ -178,14 +178,14 @@ final class FolderViewController: UIViewController, CustomAlert {
             
         },{ [weak self] _ in // 삭제하기 클릭
             guard let self = self else { return }
-            self.blurVc?.startBackGroundView()
+            self.blurVC?.startBackgroundView()
             self.alertRemoveRequestView(folder: folder,
                                         completeHandler: {
-                                            self.blurVc?.stopBackGroundView()
+                                            self.blurVC?.stopBackgroundView()
                                         },
                                         removeHandler: {
-                                            self.blurVc?.startBackGroundView()
-                                            self.alertRemoveSucceedView(completeHandler: { self.blurVc?.stopBackGroundView() })
+                                            self.blurVC?.startBackgroundView()
+                                            self.alertRemoveSucceedView(completeHandler: { self.blurVC?.stopBackgroundView() })
                                             let indexPath = IndexPath(item: index, section: 0)
                                             self.folders.remove(at: index)
                                             self.folderCollectionView.deleteItems(at: [indexPath])
@@ -194,13 +194,13 @@ final class FolderViewController: UIViewController, CustomAlert {
                                         })
         }]
         
-        editVc.completeHandler = { [weak self] in // 동작 완료하면
+        editVC.completionHandler = { [weak self] in // 동작 완료하면
             guard let self = self else { return }
-            self.blurVc?.stopBackGroundView()
+            self.blurVC?.stopBackgroundView()
         }
         
-        blurVc?.startBackGroundView()
-        present(editVc, animated: true)
+        blurVC?.startBackgroundView()
+        present(editVC, animated: true)
     }
 }
 
@@ -245,20 +245,20 @@ extension FolderViewController: UICollectionViewDataSource {
 
 extension FolderViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let folderDetailVc = FolderDetailViewController.storyboardInstance() else { fatalError() }
+        guard let folderDetailVC = FolderDetailViewController.storyboardInstance() else { fatalError() }
         
         let folder = folders[indexPath.item]
-        folderDetailVc.folder = folder
-        folderDetailVc.homeNavigationController = homeNavigationController
+        folderDetailVC.folder = folder
+        folderDetailVC.homeNavigationController = homeNavigationController
         
-        folderDetailVc.folderRemovedHandler = { [weak self] in
+        folderDetailVC.folderRemoveHandler = { [weak self] in
             guard let self = self else { return }
             
-            self.blurVc?.startBackGroundView()
-            self.alertRemoveSucceedView(completeHandler: { self.blurVc?.stopBackGroundView() })
+            self.blurVC?.startBackgroundView()
+            self.alertRemoveSucceedView(completeHandler: { self.blurVC?.stopBackgroundView() })
         }
             
-        homeNavigationController?.pushViewController(folderDetailVc, animated: true)
+        homeNavigationController?.pushViewController(folderDetailVC, animated: true)
     }
 }
 

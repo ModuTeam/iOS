@@ -69,10 +69,10 @@ final class LoginViewController: UIViewController {
     }
     
     @objc private func startButtonTapped() {
-        guard let homeVc = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as? HomeNavigationController,
+        guard let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as? HomeNavigationController,
               let window = UIApplication.shared.windows.filter({$0.isKeyWindow}).first else { return }
 
-        window.rootViewController = homeVc
+        window.rootViewController = homeVC
         window.makeKeyAndVisible()
         UIView.transition(with: window,
                           duration: 0.3,

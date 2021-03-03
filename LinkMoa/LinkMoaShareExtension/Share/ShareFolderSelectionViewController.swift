@@ -15,8 +15,8 @@ class ShareFolderSelectionViewController: UIViewController, CustomAlert {
     private var folders: [Folder] = []
     var selectHandler: ((Folder) -> ())?
     
-    private var blurVc: BackGroundBlur? {
-        return navigationController as? BackGroundBlur
+    private var blurVC: BackgroundBlur? {
+        return navigationController as? BackgroundBlur
     }
     
     static func storyboardInstance() -> ShareFolderSelectionViewController? {
@@ -84,8 +84,8 @@ class ShareFolderSelectionViewController: UIViewController, CustomAlert {
         shareAddFolderVc.saveHandler = { [weak self] in
             guard let self = self else { return }
             
-            self.blurVc?.startBackGroundView()
-            self.alertSucceedView(completeHandler: { self.blurVc?.stopBackGroundView() })
+            self.blurVC?.startBackgroundView()
+            self.alertSucceedView(completeHandler: { self.blurVC?.stopBackgroundView() })
         }
         shareAddFolderVc.modalPresentationStyle = .overCurrentContext
         present(shareAddFolderVc, animated: true, completion: nil)

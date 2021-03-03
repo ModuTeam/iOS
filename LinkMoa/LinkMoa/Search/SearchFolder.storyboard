@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="46"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="내가 저장한 가리비를 찾아보세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ywE-Zb-DhZ">
-                                        <rect key="frame" x="58" y="10.5" width="294" height="25"/>
+                                        <rect key="frame" x="58" y="11" width="294" height="24"/>
                                         <color key="tintColor" red="0.35294117650000001" green="0.35294117650000001" blue="0.40784313729999999" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" red="0.18823529410000001" green="0.20000000000000001" blue="0.20784313730000001" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="16"/>
@@ -131,7 +131,7 @@
                     <connections>
                         <outlet property="containerView" destination="ujS-PB-P1P" id="D1a-VK-BKA"/>
                         <outlet property="searchTextField" destination="ywE-Zb-DhZ" id="DYp-Fe-Ts9"/>
-                        <outlet property="tabBarCollectionView" destination="2Kj-CE-SLG" id="QpL-9q-cCL"/>
+                        <outlet property="topMenuCollectionView" destination="2Kj-CE-SLG" id="QpL-9q-cCL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jWR-CS-JO8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

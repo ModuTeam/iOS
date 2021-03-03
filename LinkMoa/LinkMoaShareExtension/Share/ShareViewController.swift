@@ -26,8 +26,8 @@ class ShareViewController: UIViewController, CustomAlert {
     private let htmlParserService = HTMLParserService()
     private let shareViewModel = ShareViewModel()
     
-    private var blurVc: BackGroundBlur? {
-        return navigationController as? BackGroundBlur
+    private var blurVC: BackgroundBlur? {
+        return navigationController as? BackgroundBlur
     }
     
     private var urlString: String = "" {
@@ -219,9 +219,9 @@ class ShareViewController: UIViewController, CustomAlert {
                 
                 self.view.hideToastActivity()
                 
-                self.blurVc?.startBackGroundView()
+                self.blurVC?.startBackgroundView()
                 self.alertSucceedView(completeHandler: {
-                    self.blurVc?.stopBackGroundView()
+                    self.blurVC?.stopBackgroundView()
                     self.hideExtensionWithCompletionHandler(completionHandler: {
                         self.extensionContext!.completeRequest(returningItems: nil, completionHandler: nil)
                     })

@@ -15,7 +15,7 @@ extension CustomAlert where Self: UIViewController {
         
         saveSucceedBottomVc.modalPresentationStyle = .overCurrentContext
         saveSucceedBottomVc.modalTransitionStyle = .coverVertical
-        saveSucceedBottomVc.completeHandler = completeHandler
+        saveSucceedBottomVc.completionHandler = completeHandler
         
         self.present(saveSucceedBottomVc, animated: true, completion: nil)
     }
@@ -25,7 +25,7 @@ extension CustomAlert where Self: UIViewController {
         
         removeSucceedBottomVc.modalPresentationStyle = .overCurrentContext
         removeSucceedBottomVc.modalTransitionStyle = .coverVertical
-        removeSucceedBottomVc.completeHandler = completeHandler
+        removeSucceedBottomVc.completionHandler = completeHandler
 
         self.present(removeSucceedBottomVc, animated: true, completion: nil)
     }
@@ -35,7 +35,7 @@ extension CustomAlert where Self: UIViewController {
         
         removeRequestView.modalPresentationStyle = .overCurrentContext
         removeRequestView.modalTransitionStyle = .coverVertical
-        removeRequestView.completeHandler = completeHandler
+        removeRequestView.completionHandler = completeHandler
         removeRequestView.removeHandler = removeHandler
         removeRequestView.folder = folder
         

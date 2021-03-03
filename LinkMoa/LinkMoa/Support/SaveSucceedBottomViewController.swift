@@ -9,10 +9,10 @@ import UIKit
 
 final class SaveSucceedBottomViewController: UIViewController {
 
-    @IBOutlet private weak var backGroundView: UIView!
+    @IBOutlet private weak var backgroundView: UIView!
     @IBOutlet private weak var bottomView: UIView!
     
-    var completeHandler: (() -> ())?
+    var completionHandler: (() -> ())?
 
     static func storyboardInstance() -> SaveSucceedBottomViewController? {
         let storyboard = UIStoryboard(name: SaveSucceedBottomViewController.storyboardName(), bundle: nil)
@@ -22,32 +22,32 @@ final class SaveSucceedBottomViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        prepareBackGroundView()
+        prepareBackgroundView()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        preparebottomViewRoundConer()
+        preparebottomViewRoundCorner()
     }
     
-    private func prepareBackGroundView() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backGroundViewTapped))
-        backGroundView.addGestureRecognizer(tapGesture)
-        backGroundView.isUserInteractionEnabled = true
+    private func prepareBackgroundView() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundViewTapped))
+        backgroundView.addGestureRecognizer(tapGesture)
+        backgroundView.isUserInteractionEnabled = true
     }
     
-    private func preparebottomViewRoundConer() {
+    private func preparebottomViewRoundCorner() {
         bottomView.roundCorners(corners: [.topLeft, .topRight], radius: 10)
         bottomView.clipsToBounds = true
     }
     
-    @objc private func backGroundViewTapped() {
-        completeHandler?()
+    @objc private func backgroundViewTapped() {
+        completionHandler?()
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func dismissButtonTapped() {
-        completeHandler?()
+        completionHandler?()
         dismiss(animated: true, completion: nil)
     }
 }

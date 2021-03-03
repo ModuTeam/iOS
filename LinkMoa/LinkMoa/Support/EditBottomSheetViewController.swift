@@ -11,14 +11,14 @@ final class EditBottomSheetViewController: UIViewController {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var sheetView: UIView!
-    @IBOutlet private weak var backGroundView: UIView!
+    @IBOutlet private weak var backgroundView: UIView!
     @IBOutlet private weak var editTableView: UITableView!
     @IBOutlet private weak var editTableViewHeightConstraint: NSLayoutConstraint!
     
     var editTitle: String?
     var actions: [String] = []
     var handlers: [((Any?) -> ())?] = []
-    var completeHandler: (() -> ())?
+    var completionHandler: (() -> ())?
     
     var isIncludeRemoveButton: Bool = false
     
@@ -31,13 +31,13 @@ final class EditBottomSheetViewController: UIViewController {
         super.viewDidLoad()
         
         prepareTitleLabel()
-        prepareBackGroundView()
+        prepareBackgroundView()
         prepareEditTableView()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        prepareViewRoundConer()
+        prepareViewRoundCorner()
     }
     
     private func prepareTitleLabel() {
@@ -46,13 +46,13 @@ final class EditBottomSheetViewController: UIViewController {
         }
     }
     
-    private func prepareBackGroundView() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backGrounViewTapped))
-        backGroundView.isUserInteractionEnabled = true
-        backGroundView.addGestureRecognizer(tapGesture)
+    private func prepareBackgroundView() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgrounViewTapped))
+        backgroundView.isUserInteractionEnabled = true
+        backgroundView.addGestureRecognizer(tapGesture)
     }
     
-    private func prepareViewRoundConer() {
+    private func prepareViewRoundCorner() {
         sheetView.roundCorners(corners: [.topLeft, .topRight], radius: 10)
         sheetView.clipsToBounds = true
     }
@@ -64,13 +64,13 @@ final class EditBottomSheetViewController: UIViewController {
         editTableView.delegate = self
     }
     
-    @objc func backGrounViewTapped() {
-        completeHandler?()
+    @objc func backgrounViewTapped() {
+        completionHandler?()
         dismiss(animated: true, completion: nil)
     }
 
     @IBAction func dismissButtonTapped() {
-        completeHandler?()
+        completionHandler?()
         dismiss(animated: true, completion: nil)
     }
 }
@@ -96,7 +96,7 @@ extension EditBottomSheetViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let handler = handlers[indexPath.row] else { return }
         
-        self.completeHandler?()
+        self.completionHandler?()
         dismiss(animated: true, completion: {
             handler(nil)
         })

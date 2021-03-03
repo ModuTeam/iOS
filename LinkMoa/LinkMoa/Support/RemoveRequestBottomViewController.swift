@@ -1,5 +1,5 @@
 //
-//  RemoveRequestBottomViewViewController.swift
+//  RemoveRequestBottomViewController.swift
 //  LinkMoa
 //
 //  Created by won heo on 2021/02/20.
@@ -17,7 +17,7 @@ final class RemoveRequestBottomViewController: UIViewController {
     @IBOutlet private weak var bottomSpacingLayout: NSLayoutConstraint!
     
     var folder: Folder?
-    var completeHandler: (() -> ())?
+    var completionHandler: (() -> ())?
     var removeHandler: (() -> ())?
     
     static func storyboardInstance() -> RemoveRequestBottomViewController? {
@@ -89,7 +89,7 @@ final class RemoveRequestBottomViewController: UIViewController {
     }
     
     private func prepareBackGroundView() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backGroundViewTapped))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundViewTapped))
         backGroundView.addGestureRecognizer(tapGesture)
         backGroundView.isUserInteractionEnabled = true
     }
@@ -101,7 +101,7 @@ final class RemoveRequestBottomViewController: UIViewController {
             view.makeToast("올바른 폴더 이름을 입력해주세요.", position: .top)
             return
         } else {
-            self.completeHandler?()
+            self.completionHandler?()
             
             dismiss(animated: true, completion: {
                 self.removeHandler?()
@@ -109,8 +109,8 @@ final class RemoveRequestBottomViewController: UIViewController {
         }
     }
     
-    @objc private func backGroundViewTapped() {
-        completeHandler?()
+    @objc private func backgroundViewTapped() {
+        completionHandler?()
         dismiss(animated: true, completion: nil)
     }
     
@@ -139,7 +139,7 @@ final class RemoveRequestBottomViewController: UIViewController {
 
 
     @IBAction func dismissButtonTapped() {
-        completeHandler?()
+        completionHandler?()
         dismiss(animated: true, completion: nil)
     }
 

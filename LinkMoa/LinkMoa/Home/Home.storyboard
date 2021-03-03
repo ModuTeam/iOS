@@ -88,7 +88,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="containerView" destination="gqN-xL-nZe" id="Kj8-8A-ztR"/>
-                        <outlet property="tabBarCollectionView" destination="Wir-vJ-Bpn" id="1Hk-0j-yj0"/>
+                        <outlet property="topMenuCollectionView" destination="Wir-vJ-Bpn" id="1Hk-0j-yj0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XFn-BE-lnh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -1,5 +1,5 @@
 //
-//  UIColorExtension.swift
+//  UIColor+.swift
 //  LinkMoa
 //
 //  Created by won heo on 2021/02/07.

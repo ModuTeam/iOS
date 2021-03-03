@@ -9,20 +9,20 @@ import UIKit
 
 final class SearchFolderViewController: UIViewController {
 
-    @IBOutlet private weak var tabBarCollectionView: UICollectionView!
+    @IBOutlet private weak var topMenuCollectionView: UICollectionView!
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var searchTextField: UITextField!
     
-    private var tabBarSectionNames: [String] = ["폴더(6개)", "링크(2개)"]
+    private var topMenuSectionNames: [String] = ["폴더(6개)", "링크(2개)"]
     private let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     
     private var pages: [UIViewController] = []
     private var folderListViewController: FolderListViewController?
     private var linkListViewController: LinkListViewController?
     
-    private var selectedTabView: UIView = UIView()
-    private var isNotInitFirstTabCell: Bool = true
-    private var isNotInitSelectTab: Bool = true
+    private var selectedTopMenuView: UIView = UIView()
+    private var isTopMenuSelected: Bool = false
+    private var isNotInitSelectTab: Bool = false
 
     private let searchFolderViewModel: SearchFolderViewModel = SearchFolderViewModel()
     private var folders: [Folder] = [] {
@@ -39,12 +39,12 @@ final class SearchFolderViewController: UIViewController {
     
     private var filterFolders: [Folder] = [] {
         didSet {
-            self.tabBarSectionNames[0] = "폴더(\(filterFolders.count))개"
-            self.tabBarCollectionView.reloadData()
+            self.topMenuSectionNames[0] = "폴더(\(filterFolders.count))개"
+            self.topMenuCollectionView.reloadData()
             self.folderListViewController?.folders = filterFolders
             
-            if isNotInitSelectTab {
-                self.prepareSelectedTabView()
+            if !isNotInitSelectTab {
+                self.prepareSelectedTopMenuView()
                 self.isNotInitSelectTab.toggle()
             }
         }
@@ -64,12 +64,12 @@ final class SearchFolderViewController: UIViewController {
     
     private var filterLinks: [Link] = [] {
         didSet {
-            self.tabBarSectionNames[1] = "링크(\(filterLinks.count))개"
-            self.tabBarCollectionView.reloadData()
+            self.topMenuSectionNames[1] = "링크(\(filterLinks.count))개"
+            self.topMenuCollectionView.reloadData()
             self.linkListViewController?.links = filterLinks
             
             if isNotInitSelectTab {
-                self.prepareSelectedTabView()
+                self.prepareSelectedTopMenuView()
                 self.isNotInitSelectTab.toggle()
             }
         }
@@ -78,7 +78,7 @@ final class SearchFolderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        prepareTabBarCollectionView()
+        prepareTopMenuCollectionView()
         preparePageViewController()
         prepareSearchTextField()
         
@@ -142,39 +142,39 @@ final class SearchFolderViewController: UIViewController {
         ])
     }
     
-    private func prepareSelectedTabView() {
+    private func prepareSelectedTopMenuView() {
         let label = UILabel()
-        label.text = tabBarSectionNames[0]
+        label.text = topMenuSectionNames[0]
         label.font = UIFont(name: "NotoSansKR-Medium", size: 19)
         let size = label.intrinsicContentSize.width
         
-        selectedTabView.frame = CGRect(x: 0, y: 38, width: size, height: 3)
-        selectedTabView.backgroundColor = UIColor(rgb: 0x4B4B4B)
-        tabBarCollectionView.addSubview(selectedTabView)
+        selectedTopMenuView.frame = CGRect(x: 0, y: 38, width: size, height: 3)
+        selectedTopMenuView.backgroundColor = UIColor(rgb: 0x4B4B4B)
+        topMenuCollectionView.addSubview(selectedTopMenuView)
     }
     
-    private func prepareTabBarCollectionView() {
-        tabBarCollectionView.dataSource = self
-        tabBarCollectionView.delegate = self
-        tabBarCollectionView.register(UINib(nibName: TabBarTitleCell.cellIdentifier, bundle: nil), forCellWithReuseIdentifier: TabBarTitleCell.cellIdentifier)
+    private func prepareTopMenuCollectionView() {
+        topMenuCollectionView.dataSource = self
+        topMenuCollectionView.delegate = self
+        topMenuCollectionView.register(UINib(nibName: TopMenuCell.cellIdentifier, bundle: nil), forCellWithReuseIdentifier: TopMenuCell.cellIdentifier)
     }
     
-    private func scrollSelectedTabView(scrollToIndexPath indexPath: IndexPath) {
-        let homeNavVc = navigationController as? HomeNavigationController
-        homeNavVc?.addButtonView.isHidden = (indexPath.item == 0) ? false : true
+    private func scrollSelectedTopMenuView(scrollToIndexPath indexPath: IndexPath) {
+        let homeNavVC = navigationController as? HomeNavigationController
+        homeNavVC?.addButtonView.isHidden = (indexPath.item == 0) ? false : true
         
         let prevIndexPath = IndexPath(item: indexPath.item == 0 ? 1 : 0, section: 0)
         
         UIView.animate(withDuration: 0.15) {
-            if let destinationCell = self.tabBarCollectionView.cellForItem(at: indexPath) as? TabBarTitleCell {
-                self.selectedTabView.frame.size.width = destinationCell.frame.width
-                self.selectedTabView.frame.origin.x = destinationCell.frame.origin.x
+            if let destinationCell = self.topMenuCollectionView.cellForItem(at: indexPath) as? TopMenuCell {
+                self.selectedTopMenuView.frame.size.width = destinationCell.frame.width
+                self.selectedTopMenuView.frame.origin.x = destinationCell.frame.origin.x
                 
                 destinationCell.titleLabel.layer.opacity = 1
                 destinationCell.titleLabel.textColor = UIColor(rgb: 0x303335)
             }
             
-            if let startCell = self.tabBarCollectionView.cellForItem(at: prevIndexPath) as? TabBarTitleCell {
+            if let startCell = self.topMenuCollectionView.cellForItem(at: prevIndexPath) as? TopMenuCell {
                 startCell.titleLabel.layer.opacity = 0.3
                 startCell.titleLabel.textColor = UIColor(rgb: 0x4B4B4B)
             }
@@ -208,26 +208,26 @@ final class SearchFolderViewController: UIViewController {
 
 extension SearchFolderViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tabBarSectionNames.count
+        return topMenuSectionNames.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let titleCell = collectionView.dequeueReusableCell(withReuseIdentifier: TabBarTitleCell.cellIdentifier, for: indexPath) as? TabBarTitleCell else { return UICollectionViewCell() }
+        guard let titleCell = collectionView.dequeueReusableCell(withReuseIdentifier: TopMenuCell.cellIdentifier, for: indexPath) as? TopMenuCell else { return UICollectionViewCell() }
         
-        if indexPath.item == 0, isNotInitFirstTabCell { // first cell init
+        if indexPath.item == 0, !isTopMenuSelected { // first cell init
             titleCell.titleLabel.layer.opacity = 1
             titleCell.titleLabel.textColor = UIColor(rgb: 0x303335)
-            isNotInitFirstTabCell.toggle()
+            isTopMenuSelected.toggle()
         }
         
-        titleCell.titleLabel.text = tabBarSectionNames[indexPath.item]
+        titleCell.titleLabel.text = topMenuSectionNames[indexPath.item]
         return titleCell
     }
 }
 
 extension SearchFolderViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        scrollSelectedTabView(scrollToIndexPath: indexPath)
+        scrollSelectedTopMenuView(scrollToIndexPath: indexPath)
         setPageController(setToIndexPath: indexPath)
     }
 }
@@ -264,9 +264,9 @@ extension SearchFolderViewController: UIPageViewControllerDataSource {
 
 extension SearchFolderViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        guard let currentVc = pageViewController.viewControllers?.first else { return }
-        guard let index = pages.lastIndex(of: currentVc) else { return }
+        guard let currentVC = pageViewController.viewControllers?.first else { return }
+        guard let index = pages.lastIndex(of: currentVC) else { return }
 
-        scrollSelectedTabView(scrollToIndexPath: IndexPath(item: index, section: 0))
+        scrollSelectedTopMenuView(scrollToIndexPath: IndexPath(item: index, section: 0))
     }
 }

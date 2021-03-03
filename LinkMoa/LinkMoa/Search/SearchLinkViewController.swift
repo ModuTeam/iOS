@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SearchLinkViewController: UIViewController, BackGroundBlur {
+final class SearchLinkViewController: UIViewController, BackgroundBlur {
     
     @IBOutlet private weak var linkCollectionView: UICollectionView!
     @IBOutlet private weak var searchTextField: UITextField!
@@ -81,11 +81,11 @@ final class SearchLinkViewController: UIViewController, BackGroundBlur {
         
         saveSucceedBottomVc.modalPresentationStyle = .overCurrentContext
         saveSucceedBottomVc.modalTransitionStyle = .coverVertical
-        saveSucceedBottomVc.completeHandler = { [weak self] in
-            self?.stopBackGroundView()
+        saveSucceedBottomVc.completionHandler = { [weak self] in
+            self?.stopBackgroundView()
         }
         
-        startBackGroundView()
+        startBackgroundView()
         self.present(saveSucceedBottomVc, animated: true, completion: nil)
     }
     
@@ -129,37 +129,37 @@ final class SearchLinkViewController: UIViewController, BackGroundBlur {
         guard let link = filterLinks.filter({$0.id == button.customTag}).first else { return }
         guard let folder = folder else { return }
         
-        guard let editVc = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
+        guard let editVC = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
         
-        editVc.modalPresentationStyle = .overCurrentContext
-        editVc.modalTransitionStyle = .coverVertical
-        editVc.isIncludeRemoveButton = true
+        editVC.modalPresentationStyle = .overCurrentContext
+        editVC.modalTransitionStyle = .coverVertical
+        editVC.isIncludeRemoveButton = true
         
-        editVc.actions = ["링크 수정", "URL 공유하기", "삭제하기"] // "URL 공유하기"
-        editVc.handlers = [{ [weak self] _ in // 링크 수정
+        editVC.actions = ["링크 수정", "URL 공유하기", "삭제하기"] // "URL 공유하기"
+        editVC.handlers = [{ [weak self] _ in // 링크 수정
             guard let self = self else { return }
             
-            guard let addLinkVc = AddLinkViewController.storyboardInstance() else { return }
+            guard let addLinkVC = AddLinkViewController.storyboardInstance() else { return }
             
-            addLinkVc.linkPresetingStyle = .edit
-            addLinkVc.link = link
-            addLinkVc.folder = folder
-            addLinkVc.alertSucceedViewHandler = { [weak self] in
+            addLinkVC.linkPresetingStyle = .edit
+            addLinkVC.link = link
+            addLinkVC.folder = folder
+            addLinkVC.alertSucceedViewHandler = { [weak self] in
                 guard let self = self else { return }
                 self.alertSucceedView()
             }
-            addLinkVc.updateReloadHander = { [weak self] in
+            addLinkVC.updateReloadHander = { [weak self] in
                 guard let self = self else { return }
                 self.folderDetailViewController?.linkCollectionView.reloadData()
                 self.linkCollectionView.reloadData()
             }
 
-            let navVc = SelectNaviagitonViewController()
-            navVc.pushViewController(addLinkVc, animated: false)
-            navVc.modalPresentationStyle = .fullScreen
-            navVc.isNavigationBarHidden = true
+            let navVC = SelectNaviagitonViewController()
+            navVC.pushViewController(addLinkVC, animated: false)
+            navVC.modalPresentationStyle = .fullScreen
+            navVC.isNavigationBarHidden = true
             
-            self.present(navVc, animated: true, completion: nil)
+            self.present(navVC, animated: true, completion: nil)
             
         }, { [weak self] _ in // URL 공유하기
             guard let self = self else { return }
@@ -175,30 +175,30 @@ final class SearchLinkViewController: UIViewController, BackGroundBlur {
             self.searchLinkViewModel.remove(target: link)
         }]
         
-        editVc.completeHandler = { [weak self] in // 동작 완료하면
+        editVC.completionHandler = { [weak self] in // 동작 완료하면
             guard let self = self else { return }
-            self.stopBackGroundView()
+            self.stopBackgroundView()
         }
         
-        startBackGroundView()
-        present(editVc, animated: true)
+        startBackgroundView()
+        present(editVC, animated: true)
     }
     
     @IBAction func sortButtonTapped() {
-        guard let editVc = EditBottomSheetViewController.storyboardInstance() else { return }
+        guard let editVC = EditBottomSheetViewController.storyboardInstance() else { return }
         
-        editVc.modalPresentationStyle = .overCurrentContext
-        editVc.modalTransitionStyle = .coverVertical
+        editVC.modalPresentationStyle = .overCurrentContext
+        editVC.modalTransitionStyle = .coverVertical
         
-        editVc.editTitle = "정렬하기"
-        editVc.actions = ["이름 순", "생성 순"]
-        editVc.handlers = [nil, nil]
-        editVc.completeHandler = { [weak self] in
+        editVC.editTitle = "정렬하기"
+        editVC.actions = ["이름 순", "생성 순"]
+        editVC.handlers = [nil, nil]
+        editVC.completionHandler = { [weak self] in
             guard let self = self else { return }
-            self.stopBackGroundView()
+            self.stopBackgroundView()
         }
-        startBackGroundView()
-        present(editVc, animated: true, completion: nil)
+        startBackgroundView()
+        present(editVC, animated: true, completion: nil)
     }
     
     @IBAction func backButtonTapped() {

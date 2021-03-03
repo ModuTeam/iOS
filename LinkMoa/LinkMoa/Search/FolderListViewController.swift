@@ -64,18 +64,18 @@ extension FolderListViewController: UICollectionViewDataSource {
 
 extension FolderListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let folderDetailVc = FolderDetailViewController.storyboardInstance() else { fatalError() }
+        guard let folderDetailVC = FolderDetailViewController.storyboardInstance() else { fatalError() }
         
         let folder = folders[indexPath.item]
-        folderDetailVc.folder = folder
+        folderDetailVC.folder = folder
         // folderDetailVc.homeNavigationController = homeNavigationController
         // folderDetailVc.folderViewController = self
-        folderDetailVc.folderRemovedHandler = { [weak self] in
+        folderDetailVC.folderRemoveHandler = { [weak self] in
             guard let self = self else { return }
             // self.alertRemoveSucceedView()
         }
             
-        navigationController?.pushViewController(folderDetailVc, animated: true)
+        navigationController?.pushViewController(folderDetailVC, animated: true)
     }
 }
 

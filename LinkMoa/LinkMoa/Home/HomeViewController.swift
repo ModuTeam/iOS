@@ -9,22 +9,22 @@ import UIKit
 
 final class HomeViewController: UIViewController {
 
-    @IBOutlet private weak var tabBarCollectionView: UICollectionView!
+    @IBOutlet private weak var topMenuCollectionView: UICollectionView!
     @IBOutlet private weak var containerView: UIView!
     
-    private let tabBarSectionNames: [String] = ["나의 가리비", "서핑하기"]
+    private let topMenuSectionNames: [String] = ["나의 가리비", "서핑하기"]
     private let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     
     private var pages: [UIViewController] = []
-    private var selectedTabView: UIView = UIView()
-    private var isNotInitFirstTabCell: Bool = true
+    private var selectedTopMenuView: UIView = UIView()
+    private var isTopMenuSelected: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         preparePageViewController()
-        prepareTabBarCollectionView()
-        prepareSelectedTabView()
+        prepareTopMenuCollectionView()
+        prepareSelectedTopMenuView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -38,17 +38,17 @@ final class HomeViewController: UIViewController {
     }
         
     private func preparePageViewController() {
-        guard let homeFolderVc = FolderViewController.storyboardInstance() else { fatalError() }
+        guard let homeFolderVC = FolderViewController.storyboardInstance() else { fatalError() }
         
-        guard let surfingVc = SurfingViewController.storyboardInstance() else { fatalError() }
+        guard let surfingVC = SurfingViewController.storyboardInstance() else { fatalError() }
         
-        homeFolderVc.homeNavigationController = navigationController as? HomeNavigationController
+        homeFolderVC.homeNavigationController = navigationController as? HomeNavigationController
         
-        pages = [homeFolderVc, surfingVc]
+        pages = [homeFolderVC, surfingVC]
         
         pageViewController.delegate = self
         pageViewController.dataSource = self
-        pageViewController.setViewControllers([homeFolderVc], direction: .forward, animated: true, completion: nil)
+        pageViewController.setViewControllers([homeFolderVC], direction: .forward, animated: true, completion: nil)
         
         addChild(pageViewController)
         pageViewController.willMove(toParent: self)
@@ -56,34 +56,35 @@ final class HomeViewController: UIViewController {
         constaintPageViewControllerView()
     }
     
-    private func prepareTabBarCollectionView() {
-        tabBarCollectionView.dataSource = self
-        tabBarCollectionView.delegate = self
-        tabBarCollectionView.register(UINib(nibName: TabBarTitleCell.cellIdentifier, bundle: nil), forCellWithReuseIdentifier: TabBarTitleCell.cellIdentifier)
+    private func prepareTopMenuCollectionView() {
+        topMenuCollectionView.dataSource = self
+        topMenuCollectionView.delegate = self
+        topMenuCollectionView.register(UINib(nibName: TopMenuCell.cellIdentifier, bundle: nil), forCellWithReuseIdentifier: TopMenuCell.cellIdentifier)
     }
     
-    private func prepareSelectedTabView() {
-        selectedTabView.frame = CGRect(x: 18, y: 47, width: 97.6, height: 3)
-        selectedTabView.backgroundColor = UIColor(rgb: 0x4B4B4B)
-        tabBarCollectionView.addSubview(selectedTabView)
+    private func prepareSelectedTopMenuView() {
+        //MARK: - 97.6??
+        selectedTopMenuView.frame = CGRect(x: 18, y: 47, width: 97.6, height: 3)
+        selectedTopMenuView.backgroundColor = UIColor(rgb: 0x4B4B4B)
+        topMenuCollectionView.addSubview(selectedTopMenuView)
     }
     
     private func scrollSelectedTabView(scrollToIndexPath indexPath: IndexPath) {
-        let homeNavVc = navigationController as? HomeNavigationController
-        homeNavVc?.addButtonView.isHidden = (indexPath.item == 0) ? false : true
+        let homeNavVC = navigationController as? HomeNavigationController
+        homeNavVC?.addButtonView.isHidden = (indexPath.item == 0) ? false : true
         
         let prevIndexPath = IndexPath(item: indexPath.item == 0 ? 1 : 0, section: 0)
         
         UIView.animate(withDuration: 0.15) {
-            if let destinationCell = self.tabBarCollectionView.cellForItem(at: indexPath) as? TabBarTitleCell {
-                self.selectedTabView.frame.size.width = destinationCell.frame.width
-                self.selectedTabView.frame.origin.x = destinationCell.frame.origin.x
+            if let destinationCell = self.topMenuCollectionView.cellForItem(at: indexPath) as? TopMenuCell {
+                self.selectedTopMenuView.frame.size.width = destinationCell.frame.width
+                self.selectedTopMenuView.frame.origin.x = destinationCell.frame.origin.x
                 
                 destinationCell.titleLabel.layer.opacity = 1
                 destinationCell.titleLabel.textColor = UIColor(rgb: 0x303335)
             }
             
-            if let startCell = self.tabBarCollectionView.cellForItem(at: prevIndexPath) as? TabBarTitleCell {
+            if let startCell = self.topMenuCollectionView.cellForItem(at: prevIndexPath) as? TopMenuCell {
                 startCell.titleLabel.layer.opacity = 0.3
                 startCell.titleLabel.textColor = UIColor(rgb: 0x4B4B4B)
             }
@@ -110,30 +111,30 @@ final class HomeViewController: UIViewController {
     }
     
     @IBAction private func searchButtonTapped() {
-        guard let searchFolderNavVc = SearchFolderNavigationViewController.storyboardInstance() else { return }
+        guard let searchFolderNavVC = SearchFolderNavigationViewController.storyboardInstance() else { return }
         
-        searchFolderNavVc.modalTransitionStyle = .crossDissolve
-        searchFolderNavVc.modalPresentationStyle = .fullScreen
+        searchFolderNavVC.modalTransitionStyle = .crossDissolve
+        searchFolderNavVC.modalPresentationStyle = .fullScreen
         
-        present(searchFolderNavVc, animated: true, completion: nil)
+        present(searchFolderNavVC, animated: true, completion: nil)
     }
 }
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tabBarSectionNames.count
+        return topMenuSectionNames.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let titleCell = collectionView.dequeueReusableCell(withReuseIdentifier: TabBarTitleCell.cellIdentifier, for: indexPath) as? TabBarTitleCell else { return UICollectionViewCell() }
+        guard let titleCell = collectionView.dequeueReusableCell(withReuseIdentifier: TopMenuCell.cellIdentifier, for: indexPath) as? TopMenuCell else { return UICollectionViewCell() }
         
-        if indexPath.item == 0, isNotInitFirstTabCell { // first cell init
+        if indexPath.item == 0, !isTopMenuSelected { // first cell init
             titleCell.titleLabel.layer.opacity = 1
             titleCell.titleLabel.textColor = UIColor(rgb: 0x303335)
-            isNotInitFirstTabCell.toggle()
+            isTopMenuSelected.toggle()
         }
         
-        titleCell.titleLabel.text = tabBarSectionNames[indexPath.item]
+        titleCell.titleLabel.text = topMenuSectionNames[indexPath.item]
         return titleCell
     }
 }
@@ -151,8 +152,8 @@ extension HomeViewController: UIPageViewControllerDataSource {
         
         if index == 1 {
             let prevIndex = index - 1
-            let navVc = navigationController as? HomeNavigationController
-            navVc?.addButtonView.isHidden = true
+            let navVC = navigationController as? HomeNavigationController
+            navVC?.addButtonView.isHidden = true
 
             return pages[prevIndex]
         }
@@ -165,8 +166,8 @@ extension HomeViewController: UIPageViewControllerDataSource {
         
         if index == 0 {
             let nextIndex = index + 1
-            let navVc = navigationController as? HomeNavigationController
-            navVc?.addButtonView.isHidden = false
+            let navVC = navigationController as? HomeNavigationController
+            navVC?.addButtonView.isHidden = false
             return pages[nextIndex]
         }
         
