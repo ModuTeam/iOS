@@ -12,7 +12,7 @@ final class RemoveSucceedBottomViewController: UIViewController {
     @IBOutlet private var bottomView: UIView!
     @IBOutlet private var backGroundView: UIView!
     
-    var completeHandler: (() -> ())?
+    var completionHandler: (() -> ())?
     
     static func storyboardInstance() -> RemoveSucceedBottomViewController? {
         let storyboard = UIStoryboard(name: RemoveSucceedBottomViewController.storyboardName(), bundle: nil)
@@ -21,7 +21,7 @@ final class RemoveSucceedBottomViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        prepareBackGroundView()
+        prepareBackgroundView()
     }
     
     override func viewDidLayoutSubviews() {
@@ -34,19 +34,19 @@ final class RemoveSucceedBottomViewController: UIViewController {
         bottomView.clipsToBounds = true
     }
     
-    private func prepareBackGroundView() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backGroundViewTapped))
+    private func prepareBackgroundView() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundViewTapped))
         backGroundView.addGestureRecognizer(tapGesture)
         backGroundView.isUserInteractionEnabled = true
     }
     
-    @objc private func backGroundViewTapped() {
-        completeHandler?()
+    @objc private func backgroundViewTapped() {
+        completionHandler?()
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func dismissButtonTapped() {
-        completeHandler?()
+        completionHandler?()
         dismiss(animated: true, completion: nil)
     }
 }

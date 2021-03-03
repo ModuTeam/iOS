@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class HomeNavigationController: UINavigationController, BackGroundBlur {
+final class HomeNavigationController: UINavigationController, BackgroundBlur {
     
     let addButtonView: UIView = {
         let addButtonView = UIView()
@@ -25,13 +25,13 @@ final class HomeNavigationController: UINavigationController, BackGroundBlur {
         return plusImageView
     }()
     
-    let backGroundView: UIView = {
-        let backGroundView: UIView = UIView()
-        backGroundView.backgroundColor = UIColor.black
-        backGroundView.alpha = 0
-        backGroundView.isHidden = true
-        backGroundView.translatesAutoresizingMaskIntoConstraints = false
-        return backGroundView
+    let backgroundView: UIView = {
+        let backgroundView: UIView = UIView()
+        backgroundView.backgroundColor = UIColor.black
+        backgroundView.alpha = 0
+        backgroundView.isHidden = true
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        return backgroundView
     }()
 
     override func viewDidLoad() {
@@ -67,39 +67,39 @@ final class HomeNavigationController: UINavigationController, BackGroundBlur {
     }
     
     private func prepareBackGroundView() {
-        view.addSubview(backGroundView)
+        view.addSubview(backgroundView)
         
         NSLayoutConstraint.activate([
-            backGroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backGroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            backGroundView.topAnchor.constraint(equalTo: view.topAnchor),
-            backGroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
-    private func removeBackGroundView() {
-        backGroundView.subviews.forEach { $0.layer.removeAllAnimations() }
-        backGroundView.layer.removeAllAnimations()
-        backGroundView.removeFromSuperview()
-        backGroundView.alpha = 0
+    private func removeBackgroundView() {
+        backgroundView.subviews.forEach { $0.layer.removeAllAnimations() }
+        backgroundView.layer.removeAllAnimations()
+        backgroundView.removeFromSuperview()
+        backgroundView.alpha = 0
     }
     
-    func animateBackGroundView() { // 백그라운드 뷰 어둡게
-        removeBackGroundView()
+    func animateBackgroundView() { // 백그라운드 뷰 어둡게
+        removeBackgroundView()
         prepareBackGroundView()
-        backGroundView.isHidden = false
+        backgroundView.isHidden = false
         
         UIView.animate(withDuration: 0.4, animations: {
-            self.backGroundView.alpha = 0.3
+            self.backgroundView.alpha = 0.3
         })
     }
     
-    func dismissBackGroundView() { // 백그라운드 뷰 밝게
+    func dismissBackgroundView() { // 백그라운드 뷰 밝게
         UIView.animate(withDuration: 0.4, animations: {
-            self.backGroundView.alpha = 0
+            self.backgroundView.alpha = 0
         }, completion: { _ in
-            self.backGroundView.isHidden = true
-            self.removeBackGroundView()
+            self.backgroundView.isHidden = true
+            self.removeBackgroundView()
         })
     }
 }

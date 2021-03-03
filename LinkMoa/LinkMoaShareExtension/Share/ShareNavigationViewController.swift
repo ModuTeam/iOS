@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ShareNavigationViewController: UINavigationController, BackGroundBlur {
+class ShareNavigationViewController: UINavigationController, BackgroundBlur {
 
     override func viewDidLoad() {
         super.viewDidLoad()

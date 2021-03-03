@@ -1,5 +1,5 @@
 //
-//  ClassNameExtension.swift
+//  NSObject+StoryboardName.swift
 //  LinkMoa
 //
 //  Created by won heo on 2021/02/24.

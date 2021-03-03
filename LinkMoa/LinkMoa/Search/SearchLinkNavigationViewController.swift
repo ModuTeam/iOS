@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchFolderNavigationViewController: UINavigationController, BackGroundBlur {
+class SearchFolderNavigationViewController: UINavigationController, BackgroundBlur {
 
     static func storyboardInstance() -> SearchFolderNavigationViewController? {
         let storyboard = UIStoryboard(name: SearchFolderNavigationViewController.storyboardName(), bundle: nil)

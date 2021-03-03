@@ -1,5 +1,5 @@
 //
-//  UIViewConerExtension.swift
+//  UIView+RoundConer.swift
 //  LinkMoa
 //
 //  Created by won heo on 2021/02/17.

@@ -16,8 +16,8 @@ final class FolderViewController: UIViewController, CustomAlert {
     private var folders: [Folder] = []
     
     private var folderHeaderView: FolderHeaderView?
-    private var blurVc: BackGroundBlur? {
-        return navigationController as? BackGroundBlur
+    private var blurVC: BackgroundBlur? {
+        return navigationController as? BackgroundBlur
     }
     weak var homeNavigationController: HomeNavigationController?
     
@@ -67,8 +67,8 @@ final class FolderViewController: UIViewController, CustomAlert {
         addFolderVc.modalPresentationStyle = .fullScreen
         addFolderVc.alertSucceedViewHandler = { [weak self] in
             guard let self = self else { return }
-            self.blurVc?.startBackGroundView()
-            self.alertSucceedView { self.blurVc?.stopBackGroundView() }
+            self.blurVC?.startBackgroundView()
+            self.alertSucceedView { self.blurVC?.stopBackgroundView() }
         }
         
         present(addFolderVc, animated: true, completion: nil)
@@ -79,8 +79,8 @@ final class FolderViewController: UIViewController, CustomAlert {
 
         addLinkVc.alertSucceedViewHandler = { [weak self] in
             guard let self = self else { return }
-            self.blurVc?.startBackGroundView()
-            self.alertSucceedView { self.blurVc?.stopBackGroundView() }
+            self.blurVC?.startBackgroundView()
+            self.alertSucceedView { self.blurVC?.stopBackgroundView() }
         }
         
         let navVc = SelectNaviagitonViewController()
@@ -109,12 +109,12 @@ final class FolderViewController: UIViewController, CustomAlert {
             self.folderViewModel.inputs.setFetchOption(option: .date)
             self.folderViewModel.fetchFolders()
         }]
-        editVc.completeHandler = { [weak self] in
+        editVc.completionHandler = { [weak self] in
             guard let self = self else { return }
-            self.blurVc?.stopBackGroundView()
+            self.blurVC?.stopBackgroundView()
         }
    
-        blurVc?.startBackGroundView()
+        blurVC?.startBackgroundView()
         present(editVc, animated: true)
     }
     
@@ -132,12 +132,12 @@ final class FolderViewController: UIViewController, CustomAlert {
         }, { _ in
             self.presentAddLink()
         }]
-        editVc.completeHandler = { [weak self] in
+        editVc.completionHandler = { [weak self] in
             guard let self = self else { return }
-            self.blurVc?.stopBackGroundView()
+            self.blurVC?.stopBackgroundView()
         }
         
-        blurVc?.startBackGroundView()
+        blurVC?.startBackgroundView()
         present(editVc, animated: true)
     }
     
@@ -162,8 +162,8 @@ final class FolderViewController: UIViewController, CustomAlert {
             editFolderVc.modalPresentationStyle = .fullScreen
             
             editFolderVc.alertSucceedViewHandler = {
-                self.blurVc?.startBackGroundView()
-                self.alertSucceedView(completeHandler: { self.blurVc?.stopBackGroundView() })
+                self.blurVC?.startBackgroundView()
+                self.alertSucceedView(completeHandler: { self.blurVC?.stopBackgroundView() })
             }
             self.present(editFolderVc, animated: true, completion: nil)
         
@@ -178,14 +178,14 @@ final class FolderViewController: UIViewController, CustomAlert {
             
         },{ [weak self] _ in // 삭제하기 클릭
             guard let self = self else { return }
-            self.blurVc?.startBackGroundView()
+            self.blurVC?.startBackgroundView()
             self.alertRemoveRequestView(folder: folder,
                                         completeHandler: {
-                                            self.blurVc?.stopBackGroundView()
+                                            self.blurVC?.stopBackgroundView()
                                         },
                                         removeHandler: {
-                                            self.blurVc?.startBackGroundView()
-                                            self.alertRemoveSucceedView(completeHandler: { self.blurVc?.stopBackGroundView() })
+                                            self.blurVC?.startBackgroundView()
+                                            self.alertRemoveSucceedView(completeHandler: { self.blurVC?.stopBackgroundView() })
                                             let indexPath = IndexPath(item: index, section: 0)
                                             self.folders.remove(at: index)
                                             self.folderCollectionView.deleteItems(at: [indexPath])
@@ -194,12 +194,12 @@ final class FolderViewController: UIViewController, CustomAlert {
                                         })
         }]
         
-        editVc.completeHandler = { [weak self] in // 동작 완료하면
+        editVc.completionHandler = { [weak self] in // 동작 완료하면
             guard let self = self else { return }
-            self.blurVc?.stopBackGroundView()
+            self.blurVC?.stopBackgroundView()
         }
         
-        blurVc?.startBackGroundView()
+        blurVC?.startBackgroundView()
         present(editVc, animated: true)
     }
 }
@@ -251,11 +251,11 @@ extension FolderViewController: UICollectionViewDelegate {
         folderDetailVc.folder = folder
         folderDetailVc.homeNavigationController = homeNavigationController
         
-        folderDetailVc.folderRemovedHandler = { [weak self] in
+        folderDetailVc.folderRemoveHandler = { [weak self] in
             guard let self = self else { return }
             
-            self.blurVc?.startBackGroundView()
-            self.alertRemoveSucceedView(completeHandler: { self.blurVc?.stopBackGroundView() })
+            self.blurVC?.startBackgroundView()
+            self.alertRemoveSucceedView(completeHandler: { self.blurVC?.stopBackgroundView() })
         }
             
         homeNavigationController?.pushViewController(folderDetailVc, animated: true)
