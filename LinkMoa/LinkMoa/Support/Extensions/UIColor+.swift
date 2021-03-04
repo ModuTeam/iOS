@@ -23,4 +23,6 @@ public extension UIColor {
            blue: rgb & 0xFF
        )
    }
+    
+   // class var
 }
