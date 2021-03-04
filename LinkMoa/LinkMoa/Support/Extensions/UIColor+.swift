@@ -35,4 +35,12 @@ public extension UIColor {
     class var linkMoaDarkBlueColor: UIColor {
         return UIColor(rgb: 0x364788)
     }
+    
+    class var linkMoaOptionBackgroundColor: UIColor {
+        return UIColor(rgb: 0xeeeeee)
+    }
+    
+    class var linkMoaOptionTextColor: UIColor {
+        return UIColor(rgb: 0xc0c0c0)
+    }
 }

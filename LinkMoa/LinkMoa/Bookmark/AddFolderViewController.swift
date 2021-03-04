@@ -45,16 +45,16 @@ final class AddFolderViewController: UIViewController {
     private var isShared: Bool = false {
         didSet {
             if isShared == false { // private
-                privateOptionButtonView.backgroundColor = UIColor(rgb: 0x364788)
+                privateOptionButtonView.backgroundColor = .linkMoaDarkBlueColor
                 privateTitleLabel.textColor = UIColor.white
                 
-                publicOptionButtonView.backgroundColor = UIColor(rgb: 0xeeeeee)
-                publicTitleLabel.textColor = UIColor(rgb: 0x939393)
+                publicOptionButtonView.backgroundColor = .linkMoaOptionBackgroundColor
+                publicTitleLabel.textColor = .linkMoaOptionTextColor
             } else { // public
-                privateOptionButtonView.backgroundColor = UIColor(rgb: 0xeeeeee)
-                privateTitleLabel.textColor = UIColor(rgb: 0x939393)
+                privateOptionButtonView.backgroundColor = .linkMoaOptionBackgroundColor
+                privateTitleLabel.textColor = .linkMoaOptionTextColor
                 
-                publicOptionButtonView.backgroundColor = UIColor(rgb: 0x364788)
+                publicOptionButtonView.backgroundColor = .linkMoaDarkBlueColor
                 publicTitleLabel.textColor = UIColor.white
             }
         }
