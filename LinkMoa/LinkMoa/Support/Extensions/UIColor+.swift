@@ -51,4 +51,8 @@ public extension UIColor {
     class var linkMoaFolderSeletionBorderColor: UIColor {
         return UIColor(rgb: 0xbcbdbe)
     }
+    
+    class var linkMoaFolderCountGreyColor: UIColor {
+        return UIColor(rgb: 0x909090)
+    }
 }

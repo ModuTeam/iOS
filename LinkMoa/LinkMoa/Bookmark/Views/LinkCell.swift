@@ -21,7 +21,7 @@ final class LinkCell: UICollectionViewCell {
         
         layer.masksToBounds = false
         layer.cornerRadius = 10
-        layer.shadowColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 3)
         layer.shadowOpacity = 0.05
         layer.shadowRadius = 20

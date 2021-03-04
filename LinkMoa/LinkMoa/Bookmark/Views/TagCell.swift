@@ -18,7 +18,7 @@ final class TagCell: UICollectionViewCell {
         // Initialization code
         layer.masksToBounds = true
         layer.cornerRadius = 16
-        layer.borderColor = UIColor(rgb: 0x364788).cgColor
+        layer.borderColor = UIColor.linkMoaDarkBlueColor.cgColor
         layer.borderWidth = 1
     }
     
