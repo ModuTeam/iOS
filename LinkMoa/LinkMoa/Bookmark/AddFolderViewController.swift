@@ -141,7 +141,7 @@ final class AddFolderViewController: UIViewController {
         folderNameTextField.leftViewMode = .always
         
         folderNameTextField.attributedPlaceholder = NSAttributedString(string: "UXUI 스터디", attributes: [
-            .foregroundColor: UIColor(rgb: 0xbdbdbd),
+            .foregroundColor: UIColor.linkMoaPlaceholderColor,
             .font: UIFont(name: "NotoSansCJKkr-Regular", size: 16) ?? UIFont.boldSystemFont(ofSize: 16)
         ])
         
@@ -157,7 +157,7 @@ final class AddFolderViewController: UIViewController {
         tagNameTextField.leftViewMode = .always
         
         tagNameTextField.attributedPlaceholder = NSAttributedString(string: "해시 태그 입력", attributes: [
-            .foregroundColor: UIColor(rgb: 0xbdbdbd),
+            .foregroundColor: UIColor.linkMoaPlaceholderColor,
             .font: UIFont(name: "NotoSansCJKkr-Regular", size: 16) ?? UIFont.boldSystemFont(ofSize: 16)
         ])
         

@@ -43,4 +43,8 @@ public extension UIColor {
     class var linkMoaOptionTextColor: UIColor {
         return UIColor(rgb: 0xc0c0c0)
     }
+    
+    class var linkMoaPlaceholderColor: UIColor {
+        return UIColor(rgb: 0xbdbdbd)
+    }
 }
