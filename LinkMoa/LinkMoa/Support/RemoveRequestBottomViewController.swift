@@ -59,7 +59,7 @@ final class RemoveRequestBottomViewController: UIViewController {
         
         if let folder = folder {
             folderNameTextField.attributedPlaceholder = NSAttributedString(string: folder.name, attributes: [
-                .foregroundColor: UIColor(rgb: 0xbdbdbd),
+                .foregroundColor: UIColor.linkMoaPlaceholderColor,
                 .font: UIFont(name: "NotoSansCJKkr-Regular", size: 16) ?? UIFont.boldSystemFont(ofSize: 16)
             ])
         }
@@ -73,7 +73,7 @@ final class RemoveRequestBottomViewController: UIViewController {
         deleteButtonView.layer.masksToBounds = true
         deleteButtonView.layer.cornerRadius = 8
         deleteButtonView.layer.borderWidth = 1
-        deleteButtonView.layer.borderColor = UIColor(rgb: 0xef534b).cgColor
+        deleteButtonView.layer.borderColor = UIColor.linkMoaRedColor.cgColor
     }
     
     private func prepareBottomViewRoundConer() {

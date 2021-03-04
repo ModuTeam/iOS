@@ -24,7 +24,7 @@ final class FolderHeaderView: UICollectionReusableView {
         
         let folderString = "\(count)개의 폴더"
         let mutableString =  NSMutableAttributedString(string: folderString, attributes: [NSAttributedString.Key.font: font])
-        mutableString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(rgb: 0x909090), range: NSRange(location: folderString.count - 4, length: 4))
+        mutableString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.linkMoaFolderCountGreyColor, range: NSRange(location: folderString.count - 4, length: 4))
         
         countTitleLabel.attributedText = mutableString
     }

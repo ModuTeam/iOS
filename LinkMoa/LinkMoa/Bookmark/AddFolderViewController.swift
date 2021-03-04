@@ -45,16 +45,16 @@ final class AddFolderViewController: UIViewController {
     private var isShared: Bool = false {
         didSet {
             if isShared == false { // private
-                privateOptionButtonView.backgroundColor = UIColor(rgb: 0x364788)
+                privateOptionButtonView.backgroundColor = .linkMoaDarkBlueColor
                 privateTitleLabel.textColor = UIColor.white
                 
-                publicOptionButtonView.backgroundColor = UIColor(rgb: 0xeeeeee)
-                publicTitleLabel.textColor = UIColor(rgb: 0x939393)
+                publicOptionButtonView.backgroundColor = .linkMoaOptionBackgroundColor
+                publicTitleLabel.textColor = .linkMoaOptionTextColor
             } else { // public
-                privateOptionButtonView.backgroundColor = UIColor(rgb: 0xeeeeee)
-                privateTitleLabel.textColor = UIColor(rgb: 0x939393)
+                privateOptionButtonView.backgroundColor = .linkMoaOptionBackgroundColor
+                privateTitleLabel.textColor = .linkMoaOptionTextColor
                 
-                publicOptionButtonView.backgroundColor = UIColor(rgb: 0x364788)
+                publicOptionButtonView.backgroundColor = .linkMoaDarkBlueColor
                 publicTitleLabel.textColor = UIColor.white
             }
         }
@@ -141,7 +141,7 @@ final class AddFolderViewController: UIViewController {
         folderNameTextField.leftViewMode = .always
         
         folderNameTextField.attributedPlaceholder = NSAttributedString(string: "UXUI 스터디", attributes: [
-            .foregroundColor: UIColor(rgb: 0xbdbdbd),
+            .foregroundColor: UIColor.linkMoaPlaceholderColor,
             .font: UIFont(name: "NotoSansCJKkr-Regular", size: 16) ?? UIFont.boldSystemFont(ofSize: 16)
         ])
         
@@ -157,7 +157,7 @@ final class AddFolderViewController: UIViewController {
         tagNameTextField.leftViewMode = .always
         
         tagNameTextField.attributedPlaceholder = NSAttributedString(string: "해시 태그 입력", attributes: [
-            .foregroundColor: UIColor(rgb: 0xbdbdbd),
+            .foregroundColor: UIColor.linkMoaPlaceholderColor,
             .font: UIFont(name: "NotoSansCJKkr-Regular", size: 16) ?? UIFont.boldSystemFont(ofSize: 16)
         ])
         
