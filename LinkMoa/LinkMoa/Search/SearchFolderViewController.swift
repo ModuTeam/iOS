@@ -149,7 +149,7 @@ final class SearchFolderViewController: UIViewController {
         let size = label.intrinsicContentSize.width
         
         selectedTopMenuView.frame = CGRect(x: 0, y: 38, width: size, height: 3)
-        selectedTopMenuView.backgroundColor = UIColor(rgb: 0x4B4B4B)
+        selectedTopMenuView.backgroundColor = UIColor.linkMoaGreyColor
         topMenuCollectionView.addSubview(selectedTopMenuView)
     }
     
@@ -171,12 +171,12 @@ final class SearchFolderViewController: UIViewController {
                 self.selectedTopMenuView.frame.origin.x = destinationCell.frame.origin.x
                 
                 destinationCell.titleLabel.layer.opacity = 1
-                destinationCell.titleLabel.textColor = UIColor(rgb: 0x303335)
+                destinationCell.titleLabel.textColor = .linkMoaBlackColor
             }
             
             if let startCell = self.topMenuCollectionView.cellForItem(at: prevIndexPath) as? TopMenuCell {
                 startCell.titleLabel.layer.opacity = 0.3
-                startCell.titleLabel.textColor = UIColor(rgb: 0x4B4B4B)
+                startCell.titleLabel.textColor = .linkMoaGreyColor
             }
         }
     }
@@ -216,7 +216,7 @@ extension SearchFolderViewController: UICollectionViewDataSource {
         
         if indexPath.item == 0, !isTopMenuSelected { // first cell init
             titleCell.titleLabel.layer.opacity = 1
-            titleCell.titleLabel.textColor = UIColor(rgb: 0x303335)
+            titleCell.titleLabel.textColor = .linkMoaBlackColor
             isTopMenuSelected.toggle()
         }
         

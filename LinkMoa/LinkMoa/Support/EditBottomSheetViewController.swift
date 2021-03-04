@@ -84,7 +84,7 @@ extension EditBottomSheetViewController: UITableViewDataSource {
         guard let sheetCell = tableView.dequeueReusableCell(withIdentifier: EditBottomSheetCell.cellIdentifier, for: indexPath) as? EditBottomSheetCell else { return UITableViewCell() }
         
         if indexPath.row == actions.count - 1, isIncludeRemoveButton {
-            sheetCell.sheetNameLabel.textColor = UIColor(rgb: 0xe4746e)
+            sheetCell.sheetNameLabel.textColor = UIColor.linkMoaDarkRedColor
         }
         
         sheetCell.update(by: actions[indexPath.row])

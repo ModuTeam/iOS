@@ -36,6 +36,14 @@ public extension UIColor {
         return UIColor(rgb: 0x364788)
     }
     
+    class var linkMoaDarkRedColor: UIColor {
+        return UIColor(rgb: 0xe4746e)
+    }
+    
+    class var linkMoaRedColor: UIColor {
+        return UIColor(rgb: 0xef534b)
+    }
+    
     class var linkMoaOptionBackgroundColor: UIColor {
         return UIColor(rgb: 0xeeeeee)
     }
