@@ -81,7 +81,7 @@ final class AddLinkViewController: UIViewController {
         
         folderSelectionView.layer.masksToBounds = true
         folderSelectionView.layer.cornerRadius = 8
-        folderSelectionView.layer.borderColor = UIColor(rgb: 0xbcbdbe).cgColor
+        folderSelectionView.layer.borderColor = UIColor.linkMoaFolderSeletionBorderColor.cgColor
         folderSelectionView.layer.borderWidth = 1
     }
     
@@ -103,7 +103,7 @@ final class AddLinkViewController: UIViewController {
         linkTitleTextField.leftViewMode = .always
         
         linkTitleTextField.attributedPlaceholder = NSAttributedString(string: "네이버", attributes: [
-            .foregroundColor: UIColor(rgb: 0xbdbdbd),
+            .foregroundColor: UIColor.placeholderText,
             .font: UIFont(name: "NotoSansCJKkr-Regular", size: 16) ?? UIFont.boldSystemFont(ofSize: 16)
         ])
         
@@ -120,7 +120,7 @@ final class AddLinkViewController: UIViewController {
         linkURLTextField.leftViewMode = .always
         
         linkURLTextField.attributedPlaceholder = NSAttributedString(string: "https://www.naver.com", attributes: [
-            .foregroundColor: UIColor(rgb: 0xbdbdbd),
+            .foregroundColor: UIColor.placeholderText,
             .font: UIFont(name: "NotoSansCJKkr-Regular", size: 16) ?? UIFont.boldSystemFont(ofSize: 16)
         ])
         

@@ -47,4 +47,8 @@ public extension UIColor {
     class var linkMoaPlaceholderColor: UIColor {
         return UIColor(rgb: 0xbdbdbd)
     }
+    
+    class var linkMoaFolderSeletionBorderColor: UIColor {
+        return UIColor(rgb: 0xbcbdbe)
+    }
 }
