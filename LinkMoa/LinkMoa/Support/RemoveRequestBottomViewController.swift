@@ -137,12 +137,10 @@ final class RemoveRequestBottomViewController: UIViewController {
         })
     }
 
-
     @IBAction func dismissButtonTapped() {
         completionHandler?()
         dismiss(animated: true, completion: nil)
     }
-
 }
 
 extension RemoveRequestBottomViewController: UITextFieldDelegate {

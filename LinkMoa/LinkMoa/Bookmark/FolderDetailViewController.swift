@@ -20,7 +20,6 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
     private var links: [Link] = []
     
     weak var homeNavigationController: HomeNavigationController?
-    // weak var folderViewController: FolderViewController?
  
     private var blurVC: BackgroundBlur? {
         return navigationController as? BackgroundBlur
@@ -138,32 +137,32 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
     @objc private func folderEditButtonTapped() {
         guard let folder = folder else { return }
         
-        guard let editVc = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
-        guard let editFolderVc = AddFolderViewController.storyboardInstance() else { return }
+        guard let editVC = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
+        guard let editFolderVC = AddFolderViewController.storyboardInstance() else { return }
         
-        editVc.modalPresentationStyle = .overCurrentContext
-        editVc.modalTransitionStyle = .coverVertical
-        editVc.isIncludeRemoveButton = true // 마지막 label red
+        editVC.modalPresentationStyle = .overCurrentContext
+        editVC.modalTransitionStyle = .coverVertical
+        editVC.isIncludeRemoveButton = true // 마지막 label red
 
-        editVc.completionHandler = { [weak self] in
+        editVC.completionHandler = { [weak self] in
             self?.blurVC?.stopBackgroundView()
         }
         
-        editVc.actions = ["폴더 수정", "URL 공유하기", "삭제하기"]
-        editVc.handlers = [{ [weak self] _ in  // 폴더 수정
+        editVC.actions = ["폴더 수정", "URL 공유하기", "삭제하기"]
+        editVC.handlers = [{ [weak self] _ in  // 폴더 수정
             guard let self = self else { return }
         
-            editFolderVc.modalPresentationStyle = .fullScreen
-            editFolderVc.folderPresentingType = .edit
+            editFolderVC.modalPresentationStyle = .fullScreen
+            editFolderVC.folderPresentingType = .edit
             
-            editFolderVc.folder = self.folder
-            editFolderVc.alertSucceedViewHandler = { [weak self] in
+            editFolderVC.folder = self.folder
+            editFolderVC.alertSucceedViewHandler = { [weak self] in
                 guard let self = self else { return }
                 self.blurVC?.startBackgroundView()
                 self.alertSucceedView { self.blurVC?.stopBackgroundView() }
             }
             
-            self.present(editFolderVc, animated: true, completion: nil)
+            self.present(editFolderVC, animated: true, completion: nil)
         }, { [weak self] _ in
             guard let self = self else { return }
             
@@ -189,30 +188,28 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
                                             self.folderRemoveHandler?()
                                         })
         }]
-        
-        // homeNavigationController?.animateBackgroundView()
         blurVC?.startBackgroundView()
-        navigationController?.present(editVc, animated: true)
+        navigationController?.present(editVC, animated: true)
     }
     
     @objc private func addButtonTapped() {
         guard let _ = homeNavigationController?.topViewController as? FolderDetailViewController else { return }
-        guard let addLinkVc = AddLinkViewController.storyboardInstance() else { fatalError() }
+        guard let addLinkVC = AddLinkViewController.storyboardInstance() else { fatalError() }
         
-        let navVc = SelectNaviagitonViewController()
-        navVc.pushViewController(addLinkVc, animated: false)
-        navVc.modalPresentationStyle = .fullScreen
-        navVc.isNavigationBarHidden = true
+        let selectNC = SelectNaviagitonController()
+        selectNC.pushViewController(addLinkVC, animated: false)
+        selectNC.modalPresentationStyle = .fullScreen
+        selectNC.isNavigationBarHidden = true
         
-        addLinkVc.folder = folder
-        addLinkVc.alertSucceedViewHandler = { [weak self] in
+        addLinkVC.folder = folder
+        addLinkVC.alertSucceedViewHandler = { [weak self] in
             guard let self = self else { return }
             
             self.blurVC?.startBackgroundView()
             self.alertSucceedView(completeHandler: { self.blurVC?.stopBackgroundView() })
         }
         
-        present(navVc, animated: true, completion: nil)
+        present(selectNC, animated: true, completion: nil)
     }
     
     @objc private func cellEditButtonTapped(_ sender: UIGestureRecognizer) { // edit 버튼 클릭됬을 때
@@ -221,38 +218,38 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
         guard let index = links.firstIndex(of: link) else { return }
         guard let folder = folder else { return }
         
-        guard let editVc = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
+        guard let editVC = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
         
-        editVc.modalPresentationStyle = .overCurrentContext
-        editVc.modalTransitionStyle = .coverVertical
-        editVc.isIncludeRemoveButton = true
+        editVC.modalPresentationStyle = .overCurrentContext
+        editVC.modalTransitionStyle = .coverVertical
+        editVC.isIncludeRemoveButton = true
         
-        editVc.actions = ["링크 수정", "URL 공유하기", "삭제하기"] // "URL 공유하기"
-        editVc.handlers = [{ [weak self] _ in // 링크 수정
+        editVC.actions = ["링크 수정", "URL 공유하기", "삭제하기"] // "URL 공유하기"
+        editVC.handlers = [{ [weak self] _ in // 링크 수정
             guard let self = self else { return }
             
-            guard let addLinkVc = AddLinkViewController.storyboardInstance() else { return }
+            guard let addLinkVC = AddLinkViewController.storyboardInstance() else { return }
             
-            addLinkVc.linkPresetingStyle = .edit
-            addLinkVc.link = link
-            addLinkVc.folder = folder
-            addLinkVc.alertSucceedViewHandler = { [weak self] in
+            addLinkVC.linkPresetingStyle = .edit
+            addLinkVC.link = link
+            addLinkVC.folder = folder
+            addLinkVC.alertSucceedViewHandler = { [weak self] in
                 guard let self = self else { return }
                 
                 self.blurVC?.startBackgroundView()
                 self.alertSucceedView(completeHandler: { self.blurVC?.stopBackgroundView() })
             }
-            addLinkVc.updateReloadHander = { [weak self] in
+            addLinkVC.updateReloadHander = { [weak self] in
                 guard let self = self else { return }
                 self.linkCollectionView.reloadData()
             }
 
-            let navVc = SelectNaviagitonViewController()
-            navVc.pushViewController(addLinkVc, animated: false)
-            navVc.modalPresentationStyle = .fullScreen
-            navVc.isNavigationBarHidden = true
+            let selectNC = SelectNaviagitonController()
+            selectNC.pushViewController(addLinkVC, animated: false)
+            selectNC.modalPresentationStyle = .fullScreen
+            selectNC.isNavigationBarHidden = true
             
-            self.present(navVc, animated: true, completion: nil)
+            self.present(selectNC, animated: true, completion: nil)
             
         }, { [weak self] _ in // URL 공유하기
             guard let self = self else { return }
@@ -273,32 +270,23 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
             self.alertRemoveSucceedView(completeHandler: { self.blurVC?.stopBackgroundView() })
         }]
         
-        editVc.completionHandler = { [weak self] in // 동작 완료하면
-            // guard let self = self else { return }
-            // self.homeNavigationController?.dismissBackGroundView()
+        editVC.completionHandler = { [weak self] in // 동작 완료하면
             self?.blurVC?.stopBackgroundView()
         }
         
-        // homeNavigationController?.animateBackGroundView()
         blurVC?.startBackgroundView()
-        present(editVc, animated: true)
+        present(editVC, animated: true)
     }
     
     @objc private func searchButtonTapped() {
-        guard let searchLinkVc = SearchLinkViewController.storyboardInstance() else { return }
+        guard let searchLinkVC = SearchLinkViewController.storyboardInstance() else { return }
         
-        searchLinkVc.modalTransitionStyle = .crossDissolve
-        searchLinkVc.modalPresentationStyle = .overCurrentContext
+        searchLinkVC.modalTransitionStyle = .crossDissolve
+        searchLinkVC.modalPresentationStyle = .overCurrentContext
         
-        searchLinkVc.folder = folder
-//        searchLinkVc.removeBackgroundHandler = { [weak self] in
-//            // guard let self = self else { return }
-//            // self.homeNavigationController?.dismissBackGroundView()
-//
-//        }
-        // searchLinkVc.homeNavigationController = homeNavigationController
-        searchLinkVc.folderDetailViewController = self
-        homeNavigationController?.present(searchLinkVc, animated: true, completion: nil)
+        searchLinkVC.folder = folder
+        searchLinkVC.folderDetailViewController = self
+        homeNavigationController?.present(searchLinkVC, animated: true, completion: nil)
     }
 }
 

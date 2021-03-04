@@ -91,11 +91,4 @@ extension FolderSelectViewController: UICollectionViewDelegateFlowLayout {
         
         return CGSize(width: width, height: height)
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        let width: CGFloat = view.frame.width
-//        let height: CGFloat = 50
-//        
-//        return CGSize(width: width, height: height)
-//    }
 }

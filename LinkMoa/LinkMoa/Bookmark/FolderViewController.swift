@@ -83,12 +83,12 @@ final class FolderViewController: UIViewController, CustomAlert {
             self.alertSucceedView { self.blurVC?.stopBackgroundView() }
         }
         
-        let navVC = SelectNaviagitonViewController()
-        navVC.pushViewController(addLinkVC, animated: false)
-        navVC.modalPresentationStyle = .fullScreen
-        navVC.isNavigationBarHidden = true
+        let selectNC = SelectNaviagitonController()
+        selectNC.pushViewController(addLinkVC, animated: false)
+        selectNC.modalPresentationStyle = .fullScreen
+        selectNC.isNavigationBarHidden = true
         
-        present(navVC, animated: true, completion: nil)
+        present(selectNC, animated: true, completion: nil)
     }
     
     @objc private func headerSortButtonTapped() {

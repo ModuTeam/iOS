@@ -77,16 +77,16 @@ final class SearchLinkViewController: UIViewController, BackgroundBlur {
     }
     
     private func alertSucceedView() {
-        guard let saveSucceedBottomVc = SaveSucceedBottomViewController.storyboardInstance() else { return }
+        guard let saveSucceedBottomVC = SaveSucceedBottomViewController.storyboardInstance() else { return }
         
-        saveSucceedBottomVc.modalPresentationStyle = .overCurrentContext
-        saveSucceedBottomVc.modalTransitionStyle = .coverVertical
-        saveSucceedBottomVc.completionHandler = { [weak self] in
+        saveSucceedBottomVC.modalPresentationStyle = .overCurrentContext
+        saveSucceedBottomVC.modalTransitionStyle = .coverVertical
+        saveSucceedBottomVC.completionHandler = { [weak self] in
             self?.stopBackgroundView()
         }
         
         startBackgroundView()
-        self.present(saveSucceedBottomVc, animated: true, completion: nil)
+        self.present(saveSucceedBottomVC, animated: true, completion: nil)
     }
     
     private func prepareSubTitleLabel() {
@@ -154,12 +154,12 @@ final class SearchLinkViewController: UIViewController, BackgroundBlur {
                 self.linkCollectionView.reloadData()
             }
 
-            let navVC = SelectNaviagitonViewController()
-            navVC.pushViewController(addLinkVC, animated: false)
-            navVC.modalPresentationStyle = .fullScreen
-            navVC.isNavigationBarHidden = true
+            let selectNC = SelectNaviagitonController()
+            selectNC.pushViewController(addLinkVC, animated: false)
+            selectNC.modalPresentationStyle = .fullScreen
+            selectNC.isNavigationBarHidden = true
             
-            self.present(navVC, animated: true, completion: nil)
+            self.present(selectNC, animated: true, completion: nil)
             
         }, { [weak self] _ in // URL 공유하기
             guard let self = self else { return }

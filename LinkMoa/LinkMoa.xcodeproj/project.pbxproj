@@ -50,7 +50,7 @@
 		3C4BC7E425DCF1F700C06929 /* LinkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C4BC7E225DCF1F700C06929 /* LinkCell.xib */; };
 		3C4E979025DE4A0A001A5BC9 /* FolderSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4E978F25DE4A0A001A5BC9 /* FolderSelectViewController.swift */; };
 		3C4E979625DE4A1A001A5BC9 /* FolderSelect.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E979525DE4A1A001A5BC9 /* FolderSelect.storyboard */; };
-		3C4E979C25DE5075001A5BC9 /* SelectNaviagitonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4E979B25DE5075001A5BC9 /* SelectNaviagitonViewController.swift */; };
+		3C4E979C25DE5075001A5BC9 /* SelectNaviagitonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4E979B25DE5075001A5BC9 /* SelectNaviagitonController.swift */; };
 		3C540E7B25CEDBBB0013427E /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C540E7A25CEDBBB0013427E /* Observable.swift */; };
 		3C540E8025CEDCAD0013427E /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C540E7F25CEDCAD0013427E /* RealmService.swift */; };
 		3C540E8625CEDE280013427E /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C540E8525CEDE280013427E /* Folder.swift */; };
@@ -187,7 +187,7 @@
 		3C4BC7E225DCF1F700C06929 /* LinkCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinkCell.xib; sourceTree = "<group>"; };
 		3C4E978F25DE4A0A001A5BC9 /* FolderSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderSelectViewController.swift; sourceTree = "<group>"; };
 		3C4E979525DE4A1A001A5BC9 /* FolderSelect.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FolderSelect.storyboard; sourceTree = "<group>"; };
-		3C4E979B25DE5075001A5BC9 /* SelectNaviagitonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectNaviagitonViewController.swift; sourceTree = "<group>"; };
+		3C4E979B25DE5075001A5BC9 /* SelectNaviagitonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectNaviagitonController.swift; sourceTree = "<group>"; };
 		3C540E7A25CEDBBB0013427E /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		3C540E7F25CEDCAD0013427E /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		3C540E8525CEDE280013427E /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
@@ -454,7 +454,7 @@
 				3CAEC18D25C696E7009248D6 /* FolderViewController.swift */,
 				3C540E9825CF9DD70013427E /* FolderDetail.storyboard */,
 				3C540E9425CF9DCA0013427E /* FolderDetailViewController.swift */,
-				3C4E979B25DE5075001A5BC9 /* SelectNaviagitonViewController.swift */,
+				3C4E979B25DE5075001A5BC9 /* SelectNaviagitonController.swift */,
 				3C4E979525DE4A1A001A5BC9 /* FolderSelect.storyboard */,
 				3C4E978F25DE4A0A001A5BC9 /* FolderSelectViewController.swift */,
 				3CDCFCF225CAF52200B0F6E0 /* AddFolder.storyboard */,
@@ -846,7 +846,7 @@
 				3C540EA625CFB8850013427E /* UIColor+.swift in Sources */,
 				3C540E9D25CFA0100013427E /* HomeNavigationController.swift in Sources */,
 				3C44E13725CAA27E005386F4 /* FolderHeaderView.swift in Sources */,
-				3C4E979C25DE5075001A5BC9 /* SelectNaviagitonViewController.swift in Sources */,
+				3C4E979C25DE5075001A5BC9 /* SelectNaviagitonController.swift in Sources */,
 				3CE0853425CA36A80094A07B /* SurfingViewController.swift in Sources */,
 				3C540EB125CFCAED0013427E /* EditBottomSheetViewController.swift in Sources */,
 				3C4E979025DE4A0A001A5BC9 /* FolderSelectViewController.swift in Sources */,
