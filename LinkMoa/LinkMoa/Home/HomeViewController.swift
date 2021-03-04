@@ -65,7 +65,7 @@ final class HomeViewController: UIViewController {
     private func prepareSelectedTopMenuView() {
         //MARK: - 97.6??
         selectedTopMenuView.frame = CGRect(x: 18, y: 47, width: 97.6, height: 3)
-        selectedTopMenuView.backgroundColor = .linkMoaBlackTextColor
+        selectedTopMenuView.backgroundColor = .linkMoaBlackColor
         topMenuCollectionView.addSubview(selectedTopMenuView)
     }
     
@@ -81,12 +81,12 @@ final class HomeViewController: UIViewController {
                 self.selectedTopMenuView.frame.origin.x = destinationCell.frame.origin.x
                 
                 destinationCell.titleLabel.layer.opacity = 1
-                destinationCell.titleLabel.textColor = .linkMoaBlackTextColor
+                destinationCell.titleLabel.textColor = .linkMoaBlackColor
             }
             
             if let startCell = self.topMenuCollectionView.cellForItem(at: prevIndexPath) as? TopMenuCell {
                 startCell.titleLabel.layer.opacity = 0.3
-                startCell.titleLabel.textColor = .linkMoaGreyTextColor
+                startCell.titleLabel.textColor = .linkMoaGreyColor
             }
         }
     }

@@ -12,7 +12,7 @@ final class HomeNavigationController: UINavigationController, BackgroundBlur {
     let addButtonView: UIView = {
         let addButtonView = UIView()
         addButtonView.translatesAutoresizingMaskIntoConstraints = false
-        addButtonView.backgroundColor = UIColor.init(rgb: 0x364788)
+        addButtonView.backgroundColor = .linkMoaDarkBlueColor
         addButtonView.layer.masksToBounds = true
         addButtonView.layer.cornerRadius = 63 / 2
         return addButtonView

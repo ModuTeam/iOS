@@ -24,11 +24,15 @@ public extension UIColor {
         )
     }
     
-    class var linkMoaBlackTextColor: UIColor {
+    class var linkMoaBlackColor: UIColor {
         return UIColor(rgb: 0x485153)
     }
     
-    class var linkMoaGreyTextColor: UIColor {
+    class var linkMoaGreyColor: UIColor {
         return UIColor(rgb: 0x4B4B4B)
+    }
+    
+    class var linkMoaDarkBlueColor: UIColor {
+        return UIColor(rgb: 0x364788)
     }
 }
