@@ -11,34 +11,34 @@ protocol CustomAlert {}
 
 extension CustomAlert where Self: UIViewController {
     func alertSucceedView(completeHandler: (() -> ())?) {
-        guard let saveSucceedBottomVc = SaveSucceedBottomViewController.storyboardInstance() else { return }
+        guard let saveSucceedBottomVC = SaveSucceedBottomViewController.storyboardInstance() else { return }
         
-        saveSucceedBottomVc.modalPresentationStyle = .overCurrentContext
-        saveSucceedBottomVc.modalTransitionStyle = .coverVertical
-        saveSucceedBottomVc.completionHandler = completeHandler
+        saveSucceedBottomVC.modalPresentationStyle = .overCurrentContext
+        saveSucceedBottomVC.modalTransitionStyle = .coverVertical
+        saveSucceedBottomVC.completionHandler = completeHandler
         
-        self.present(saveSucceedBottomVc, animated: true, completion: nil)
+        self.present(saveSucceedBottomVC, animated: true, completion: nil)
     }
     
     func alertRemoveSucceedView(completeHandler: (() -> ())?) {
-        guard let removeSucceedBottomVc = RemoveSucceedBottomViewController.storyboardInstance() else { return }
+        guard let removeSucceedBottomVC = RemoveSucceedBottomViewController.storyboardInstance() else { return }
         
-        removeSucceedBottomVc.modalPresentationStyle = .overCurrentContext
-        removeSucceedBottomVc.modalTransitionStyle = .coverVertical
-        removeSucceedBottomVc.completionHandler = completeHandler
+        removeSucceedBottomVC.modalPresentationStyle = .overCurrentContext
+        removeSucceedBottomVC.modalTransitionStyle = .coverVertical
+        removeSucceedBottomVC.completionHandler = completeHandler
 
-        self.present(removeSucceedBottomVc, animated: true, completion: nil)
+        self.present(removeSucceedBottomVC, animated: true, completion: nil)
     }
     
     func alertRemoveRequestView(folder: Folder, completeHandler: (() -> ())?, removeHandler: (() -> ())?) {
-        guard let removeRequestView = RemoveRequestBottomViewController.storyboardInstance() else { return }
+        guard let removeRequestVC = RemoveRequestBottomViewController.storyboardInstance() else { return }
         
-        removeRequestView.modalPresentationStyle = .overCurrentContext
-        removeRequestView.modalTransitionStyle = .coverVertical
-        removeRequestView.completionHandler = completeHandler
-        removeRequestView.removeHandler = removeHandler
-        removeRequestView.folder = folder
+        removeRequestVC.modalPresentationStyle = .overCurrentContext
+        removeRequestVC.modalTransitionStyle = .coverVertical
+        removeRequestVC.completionHandler = completeHandler
+        removeRequestVC.removeHandler = removeHandler
+        removeRequestVC.folder = folder
         
-        self.present(removeRequestView, animated: true, completion: nil)
+        self.present(removeRequestVC, animated: true, completion: nil)
     }
 }

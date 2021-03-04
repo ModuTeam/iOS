@@ -140,14 +140,14 @@ final class AddLinkViewController: UIViewController {
     }
     
     @objc private func folderSelectionViewTapped() {
-        guard let folderSelectVc = FolderSelectViewController.storyboardInstance() else { return }
+        guard let folderSelectVC = FolderSelectViewController.storyboardInstance() else { return }
         
-        folderSelectVc.selectHandler = { [weak self] folder in
+        folderSelectVC.selectHandler = { [weak self] folder in
             guard let self = self else { return }
             self.destinationFolder = folder
             self.update()
         }
-        navigationController?.pushViewController(folderSelectVc, animated: true)
+        navigationController?.pushViewController(folderSelectVC, animated: true)
     }
     
     @objc private func saveButtonTapped() {

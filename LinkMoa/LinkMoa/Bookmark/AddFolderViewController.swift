@@ -210,9 +210,9 @@ final class AddFolderViewController: UIViewController {
                 folder.tags.append(objectsIn: self.tags.map { Tag(name: $0) })
             }
             
-            if let navVc = presentingViewController as? HomeNavigationController,
-               let folderDetailVc = navVc.topViewController as? FolderDetailViewController {
-                folderDetailVc.folder = folder
+            if let HomeNC = presentingViewController as? HomeNavigationController,
+               let folderDetailVC = HomeNC.topViewController as? FolderDetailViewController {
+                folderDetailVC.folder = folder
             }
             
             dismiss(animated: true, completion: {

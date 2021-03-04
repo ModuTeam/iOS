@@ -22,7 +22,7 @@ final class SearchFolderViewController: UIViewController {
     
     private var selectedTopMenuView: UIView = UIView()
     private var isTopMenuSelected: Bool = false
-    private var isNotInitSelectTab: Bool = false
+    private var isTopMenuViewPresented: Bool = false
 
     private let searchFolderViewModel: SearchFolderViewModel = SearchFolderViewModel()
     private var folders: [Folder] = [] {
@@ -43,9 +43,9 @@ final class SearchFolderViewController: UIViewController {
             self.topMenuCollectionView.reloadData()
             self.folderListViewController?.folders = filterFolders
             
-            if !isNotInitSelectTab {
+            if !isTopMenuViewPresented {
                 self.prepareSelectedTopMenuView()
-                self.isNotInitSelectTab.toggle()
+                self.isTopMenuViewPresented.toggle()
             }
         }
     }
@@ -68,9 +68,9 @@ final class SearchFolderViewController: UIViewController {
             self.topMenuCollectionView.reloadData()
             self.linkListViewController?.links = filterLinks
             
-            if isNotInitSelectTab {
+            if isTopMenuViewPresented {
                 self.prepareSelectedTopMenuView()
-                self.isNotInitSelectTab.toggle()
+                self.isTopMenuViewPresented.toggle()
             }
         }
     }
@@ -110,18 +110,18 @@ final class SearchFolderViewController: UIViewController {
     }
     
     private func preparePageViewController() {
-        guard let folderListVc = FolderListViewController.storyboardInstance() else { fatalError() }
-        guard let linkListVc = LinkListViewController.storyboardInstance() else { fatalError() }
+        guard let folderListVC = FolderListViewController.storyboardInstance() else { fatalError() }
+        guard let linkListVC = LinkListViewController.storyboardInstance() else { fatalError() }
         
-        folderListViewController = folderListVc
-        linkListViewController = linkListVc
+        folderListViewController = folderListVC
+        linkListViewController = linkListVC
         // homeFolderVc.homeNavigationController = navigationController as? HomeNavigationController
         
-        pages = [folderListVc, linkListVc]
+        pages = [folderListVC, linkListVC]
         
         pageViewController.delegate = self
         pageViewController.dataSource = self
-        pageViewController.setViewControllers([folderListVc], direction: .forward, animated: true, completion: nil)
+        pageViewController.setViewControllers([folderListVC], direction: .forward, animated: true, completion: nil)
         
         addChild(pageViewController)
         pageViewController.willMove(toParent: self)
@@ -160,8 +160,8 @@ final class SearchFolderViewController: UIViewController {
     }
     
     private func scrollSelectedTopMenuView(scrollToIndexPath indexPath: IndexPath) {
-        let homeNavVC = navigationController as? HomeNavigationController
-        homeNavVC?.addButtonView.isHidden = (indexPath.item == 0) ? false : true
+        let homeNC = navigationController as? HomeNavigationController
+        homeNC?.addButtonView.isHidden = (indexPath.item == 0) ? false : true
         
         let prevIndexPath = IndexPath(item: indexPath.item == 0 ? 1 : 0, section: 0)
         
@@ -238,10 +238,7 @@ extension SearchFolderViewController: UIPageViewControllerDataSource {
         
         if index == 1 {
             let prevIndex = index - 1
-            // currentPage = prevIndex
-            // let navVc = navigationController as? HomeNavigationController
-            // navVc?.addButtonView.isHidden = true
-
+            
             return pages[prevIndex]
         }
         
@@ -253,8 +250,7 @@ extension SearchFolderViewController: UIPageViewControllerDataSource {
 
         if index == 0 {
             let nextIndex = index + 1
-            // currentPage = nextIndex
-            // let navVc = navigationController as? HomeNavigationController
+
             return pages[nextIndex]
         }
         
