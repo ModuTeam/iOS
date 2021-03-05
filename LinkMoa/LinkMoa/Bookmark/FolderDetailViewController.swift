@@ -145,7 +145,7 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
         editVC.isIncludeRemoveButton = true // 마지막 label red
 
         editVC.completionHandler = { [weak self] in
-            self?.blurVC?.stopBackgroundView()
+            self?.blurVC?.fadeOutBackgroundViewAnimation()
         }
         
         editVC.actions = ["폴더 수정", "URL 공유하기", "삭제하기"]
@@ -158,8 +158,8 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
             editFolderVC.folder = self.folder
             editFolderVC.alertSucceedViewHandler = { [weak self] in
                 guard let self = self else { return }
-                self.blurVC?.startBackgroundView()
-                self.alertSucceedView { self.blurVC?.stopBackgroundView() }
+                self.blurVC?.fadeInBackgroundViewAnimation()
+                self.alertSucceedView { self.blurVC?.fadeOutBackgroundViewAnimation() }
             }
             
             self.present(editFolderVC, animated: true, completion: nil)
@@ -175,20 +175,20 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
             guard let self = self else { return }
             guard let folder = self.folder else { return }
             
-            self.blurVC?.startBackgroundView()
+            self.blurVC?.fadeInBackgroundViewAnimation()
             self.alertRemoveRequestView(folder: folder,
                                         completeHandler: {
-                                            self.blurVC?.stopBackgroundView()
+                                            self.blurVC?.fadeOutBackgroundViewAnimation()
                                         },
                                         removeHandler: {
                                             self.linkViewModel.inputs.removeFolder(target: folder)
-                                            self.blurVC?.stopBackgroundView()
+                                            self.blurVC?.fadeOutBackgroundViewAnimation()
                                             
                                             self.navigationController?.popToRootViewController(animated: true)
                                             self.folderRemoveHandler?()
                                         })
         }]
-        blurVC?.startBackgroundView()
+        blurVC?.fadeInBackgroundViewAnimation()
         navigationController?.present(editVC, animated: true)
     }
     
@@ -205,8 +205,8 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
         addLinkVC.alertSucceedViewHandler = { [weak self] in
             guard let self = self else { return }
             
-            self.blurVC?.startBackgroundView()
-            self.alertSucceedView(completeHandler: { self.blurVC?.stopBackgroundView() })
+            self.blurVC?.fadeInBackgroundViewAnimation()
+            self.alertSucceedView(completeHandler: { self.blurVC?.fadeOutBackgroundViewAnimation() })
         }
         
         present(selectNC, animated: true, completion: nil)
@@ -236,8 +236,8 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
             addLinkVC.alertSucceedViewHandler = { [weak self] in
                 guard let self = self else { return }
                 
-                self.blurVC?.startBackgroundView()
-                self.alertSucceedView(completeHandler: { self.blurVC?.stopBackgroundView() })
+                self.blurVC?.fadeInBackgroundViewAnimation()
+                self.alertSucceedView(completeHandler: { self.blurVC?.fadeOutBackgroundViewAnimation()})
             }
             addLinkVC.updateReloadHander = { [weak self] in
                 guard let self = self else { return }
@@ -266,15 +266,15 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
             self.links.remove(at: index)
             self.linkCollectionView.deleteItems(at: [indexPath])
             
-            self.blurVC?.startBackgroundView()
-            self.alertRemoveSucceedView(completeHandler: { self.blurVC?.stopBackgroundView() })
+            self.blurVC?.fadeInBackgroundViewAnimation()
+            self.alertRemoveSucceedView(completeHandler: { self.blurVC?.fadeOutBackgroundViewAnimation() })
         }]
         
         editVC.completionHandler = { [weak self] in // 동작 완료하면
-            self?.blurVC?.stopBackgroundView()
+            self?.blurVC?.fadeOutBackgroundViewAnimation()
         }
         
-        blurVC?.startBackgroundView()
+        blurVC?.fadeInBackgroundViewAnimation()
         present(editVC, animated: true)
     }
     

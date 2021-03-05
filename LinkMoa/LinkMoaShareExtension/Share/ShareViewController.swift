@@ -219,9 +219,9 @@ class ShareViewController: UIViewController, CustomAlert {
                 
                 self.view.hideToastActivity()
                 
-                self.blurVC?.startBackgroundView()
+                self.blurVC?.fadeInBackgroundViewAnimation()
                 self.alertSucceedView(completeHandler: {
-                    self.blurVC?.stopBackgroundView()
+                    self.blurVC?.fadeOutBackgroundViewAnimation()
                     self.hideExtensionWithCompletionHandler(completionHandler: {
                         self.extensionContext!.completeRequest(returningItems: nil, completionHandler: nil)
                     })

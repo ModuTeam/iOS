@@ -84,8 +84,8 @@ class ShareFolderSelectionViewController: UIViewController, CustomAlert {
         shareAddFolderVc.saveHandler = { [weak self] in
             guard let self = self else { return }
             
-            self.blurVC?.startBackgroundView()
-            self.alertSucceedView(completeHandler: { self.blurVC?.stopBackgroundView() })
+            self.blurVC?.fadeInBackgroundViewAnimation()
+            self.alertSucceedView(completeHandler: { self.blurVC?.fadeOutBackgroundViewAnimation() })
         }
         shareAddFolderVc.modalPresentationStyle = .overCurrentContext
         present(shareAddFolderVc, animated: true, completion: nil)

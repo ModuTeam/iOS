@@ -82,10 +82,10 @@ final class SearchLinkViewController: UIViewController, BackgroundBlur {
         saveSucceedBottomVC.modalPresentationStyle = .overCurrentContext
         saveSucceedBottomVC.modalTransitionStyle = .coverVertical
         saveSucceedBottomVC.completionHandler = { [weak self] in
-            self?.stopBackgroundView()
+            self?.fadeOutBackgroundViewAnimation()
         }
         
-        startBackgroundView()
+        fadeInBackgroundViewAnimation()
         self.present(saveSucceedBottomVC, animated: true, completion: nil)
     }
     
@@ -177,10 +177,10 @@ final class SearchLinkViewController: UIViewController, BackgroundBlur {
         
         editVC.completionHandler = { [weak self] in // 동작 완료하면
             guard let self = self else { return }
-            self.stopBackgroundView()
+            self.fadeOutBackgroundViewAnimation()
         }
         
-        startBackgroundView()
+        fadeInBackgroundViewAnimation()
         present(editVC, animated: true)
     }
     
@@ -195,9 +195,10 @@ final class SearchLinkViewController: UIViewController, BackgroundBlur {
         editVC.handlers = [nil, nil]
         editVC.completionHandler = { [weak self] in
             guard let self = self else { return }
-            self.stopBackgroundView()
+            self.fadeOutBackgroundViewAnimation()
         }
-        startBackgroundView()
+        
+        fadeInBackgroundViewAnimation()
         present(editVC, animated: true, completion: nil)
     }
     

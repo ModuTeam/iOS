@@ -24,15 +24,6 @@ final class HomeNavigationController: UINavigationController, BackgroundBlur {
         plusImageView.translatesAutoresizingMaskIntoConstraints = false
         return plusImageView
     }()
-    
-    let backgroundView: UIView = {
-        let backgroundView: UIView = UIView()
-        backgroundView.backgroundColor = UIColor.black
-        backgroundView.alpha = 0
-        backgroundView.isHidden = true
-        backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        return backgroundView
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,43 +55,6 @@ final class HomeNavigationController: UINavigationController, BackgroundBlur {
             addButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -39),
             addButtonView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -39)
         ])
-    }
-    
-    private func prepareBackgroundView() {
-        view.addSubview(backgroundView)
-        
-        NSLayoutConstraint.activate([
-            backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
-            backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-    }
-    
-    private func removeBackgroundView() {
-        backgroundView.subviews.forEach { $0.layer.removeAllAnimations() }
-        backgroundView.layer.removeAllAnimations()
-        backgroundView.removeFromSuperview()
-        backgroundView.alpha = 0
-    }
-    
-    func animateBackgroundView() { // 백그라운드 뷰 어둡게
-        removeBackgroundView()
-        prepareBackgroundView()
-        backgroundView.isHidden = false
-        
-        UIView.animate(withDuration: 0.4, animations: {
-            self.backgroundView.alpha = 0.3
-        })
-    }
-    
-    func dismissBackgroundView() { // 백그라운드 뷰 밝게
-        UIView.animate(withDuration: 0.4, animations: {
-            self.backgroundView.alpha = 0
-        }, completion: { _ in
-            self.backgroundView.isHidden = true
-            self.removeBackgroundView()
-        })
     }
 }
 

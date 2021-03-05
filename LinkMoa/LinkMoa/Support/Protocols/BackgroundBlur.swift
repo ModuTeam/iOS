@@ -11,7 +11,7 @@ protocol BackgroundBlur: UIViewController {}
 
 extension BackgroundBlur where Self: UIViewController {
     
-    private func makeBackGroundView() -> UIView {
+    private func makeBackgroundView() -> UIView {
         let backgroundView: UIView = UIView()
         backgroundView.tag = 20
         backgroundView.backgroundColor = UIColor.black
@@ -21,8 +21,8 @@ extension BackgroundBlur where Self: UIViewController {
         return backgroundView
     }
     
-    func startBackgroundView() {
-        let backgroundView = makeBackGroundView()
+    func fadeInBackgroundViewAnimation() {
+        let backgroundView = makeBackgroundView()
         view.addSubview(backgroundView)
         
         NSLayoutConstraint.activate([
@@ -37,7 +37,7 @@ extension BackgroundBlur where Self: UIViewController {
         })
     }
     
-    func stopBackgroundView() {
+    func fadeOutBackgroundViewAnimation() {
         guard let backgroundView = view.subviews.filter({$0.tag == 20}).first else { return }
         UIView.animate(withDuration: 0.4, animations: {
             backgroundView.alpha = 0
