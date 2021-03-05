@@ -10,9 +10,6 @@ import Social
 import MobileCoreServices
 import Toast_Swift
 
-//import RealmSwift
-//import Realm
-
 class ShareViewController: UIViewController, CustomAlert {
 
     @IBOutlet private weak var linkTitleTextField: UITextField! // tag 1
@@ -23,7 +20,6 @@ class ShareViewController: UIViewController, CustomAlert {
     @IBOutlet private weak var saveButtonView: UIView!
 
     private let linkPresentaionService = LinkPresentaionService()
-    private let htmlParserService = HTMLParserService()
     private let shareViewModel = ShareViewModel()
     
     private var blurVC: BackgroundBlur? {
@@ -33,12 +29,6 @@ class ShareViewController: UIViewController, CustomAlert {
     private var urlString: String = "" {
         didSet {
             self.linkURLTextField.text = urlString
-            
-//            htmlParserService.fetchTitle(urlString: urlString, completionhHandler: { title in
-//                DispatchQueue.main.async {
-//                    self.linkTitleTextField.text = title
-//                }
-//            })
             
             linkPresentaionService.fetchTitle(urlString: urlString, completionHandler: { title in
                 DispatchQueue.main.async {

@@ -9,16 +9,14 @@ import UIKit
 import LinkPresentation
 
 public struct LinkPresentaionService {
-    init() {
-        self.provider = LPMetadataProvider()
-        self.provider.timeout = 5
-    }
-    
-    private let provider: LPMetadataProvider
+
     private let googleFaviconURLString: String = "https://www.google.com/s2/favicons?sz=64&domain_url="
     
     func fetchLinkMetaData(urlString: String, completionHandler: @escaping (UIImage?, UIImage?) -> ()) {
         guard let url = URL(string: urlString) else { return }
+        
+        let provider: LPMetadataProvider = LPMetadataProvider()
+        provider.timeout = 5
         
         let metaDataGroup = DispatchGroup()
         let dispatchGroup = DispatchQueue.global()
@@ -81,6 +79,9 @@ public struct LinkPresentaionService {
             completionHandler(nil)
             return
         }
+        
+        let provider: LPMetadataProvider = LPMetadataProvider()
+        provider.timeout = 5
         
         provider.startFetchingMetadata(for: url, completionHandler: { metadata, error in
             if let error = error {

@@ -19,8 +19,6 @@
 		3C10CB4225E8B7F10083E93A /* UIImage+Grey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD6665225E210D20075DFE6 /* UIImage+Grey.swift */; };
 		3C10CB4325E8B7F10083E93A /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C540EA525CFB8850013427E /* UIColor+.swift */; };
 		3C10CB4425E8B7F10083E93A /* NSObject+StoryboardName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C04656825E5F0C6007B61E3 /* NSObject+StoryboardName.swift */; };
-		3C10CB5A25E8C4140083E93A /* HTMLParserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C10CB5925E8C4140083E93A /* HTMLParserService.swift */; };
-		3C10CB5B25E8C4140083E93A /* HTMLParserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C10CB5925E8C4140083E93A /* HTMLParserService.swift */; };
 		3C10CB7225E8DD690083E93A /* ShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C10CB7125E8DD690083E93A /* ShareViewModel.swift */; };
 		3C10CB7925E8E6370083E93A /* ShareFolderSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C10CB7825E8E6370083E93A /* ShareFolderSelectionViewController.swift */; };
 		3C10CB7D25E8E6450083E93A /* ShareFolderSelection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C10CB7C25E8E6450083E93A /* ShareFolderSelection.storyboard */; };
@@ -168,7 +166,6 @@
 		3C04656825E5F0C6007B61E3 /* NSObject+StoryboardName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+StoryboardName.swift"; sourceTree = "<group>"; };
 		3C0C235A25DD2722009ED09E /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
 		3C0C235D25DD2745009ED09E /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		3C10CB5925E8C4140083E93A /* HTMLParserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLParserService.swift; sourceTree = "<group>"; };
 		3C10CB7125E8DD690083E93A /* ShareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewModel.swift; sourceTree = "<group>"; };
 		3C10CB7825E8E6370083E93A /* ShareFolderSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareFolderSelectionViewController.swift; sourceTree = "<group>"; };
 		3C10CB7C25E8E6450083E93A /* ShareFolderSelection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShareFolderSelection.storyboard; sourceTree = "<group>"; };
@@ -332,7 +329,6 @@
 				3C540E7A25CEDBBB0013427E /* Observable.swift */,
 				3C540E7F25CEDCAD0013427E /* RealmService.swift */,
 				3CCA602125DFA3FA00DD1F50 /* LinkPresentaionService.swift */,
-				3C10CB5925E8C4140083E93A /* HTMLParserService.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -815,7 +811,6 @@
 				3C9A066F25E8977700100966 /* Observable.swift in Sources */,
 				3C10CB7225E8DD690083E93A /* ShareViewModel.swift in Sources */,
 				3C6D175425EA389B00A7E7CA /* BackgroundBlur.swift in Sources */,
-				3C10CB5B25E8C4140083E93A /* HTMLParserService.swift in Sources */,
 				3C10CB8F25E8EE6C0083E93A /* TagCell.swift in Sources */,
 				3C8AD45425D3A3AB00197B21 /* ShareViewController.swift in Sources */,
 				3C10CB4225E8B7F10083E93A /* UIImage+Grey.swift in Sources */,
@@ -856,7 +851,6 @@
 				3C4BC7CF25DCE0C400C06929 /* AddLinkViewController.swift in Sources */,
 				3CCA602225DFA3FA00DD1F50 /* LinkPresentaionService.swift in Sources */,
 				3CAEC18E25C696E7009248D6 /* FolderViewController.swift in Sources */,
-				3C10CB5A25E8C4140083E93A /* HTMLParserService.swift in Sources */,
 				3C0C235E25DD2745009ED09E /* TestViewController.swift in Sources */,
 				3C540E8D25CF8B430013427E /* FolderViewModel.swift in Sources */,
 				3C9A066225E88D3F00100966 /* SearchLinkNavigationViewController.swift in Sources */,
