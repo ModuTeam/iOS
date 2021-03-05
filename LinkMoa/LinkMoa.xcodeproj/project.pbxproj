@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25144D0025F25CE400EC9F46 /* SurfingCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25144CFE25F25CE400EC9F46 /* SurfingCategoryCell.swift */; };
+		25144D0125F25CE400EC9F46 /* SurfingCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25144CFF25F25CE400EC9F46 /* SurfingCategoryCell.xib */; };
+		2542746A25F11E2100A88F18 /* TopTenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2542746825F11E2100A88F18 /* TopTenCell.swift */; };
+		2542746B25F11E2100A88F18 /* TopTenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2542746925F11E2100A88F18 /* TopTenCell.xib */; };
+		2542747025F136B400A88F18 /* SurfingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2542746E25F136B400A88F18 /* SurfingHeaderView.swift */; };
+		2542747125F136B400A88F18 /* SurfingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2542746F25F136B400A88F18 /* SurfingHeaderView.xib */; };
+		254274A725F1DC2800A88F18 /* Surfing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 254274A625F1DC2800A88F18 /* Surfing.storyboard */; };
+		254274AD25F1DC4E00A88F18 /* SurfingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254274AC25F1DC4E00A88F18 /* SurfingViewController.swift */; };
 		3686E7E46878949420F0F97C /* Pods_LinkMoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B68EB404A432BD2D2E57EA7D /* Pods_LinkMoa.framework */; };
 		3C04654D25E3DCCF007B61E3 /* edit_garibi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3C04654C25E3DCCF007B61E3 /* edit_garibi.json */; };
 		3C04655F25E4A287007B61E3 /* SearchLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C04655E25E4A287007B61E3 /* SearchLinkViewController.swift */; };
@@ -121,8 +129,6 @@
 		3CD9205E25E7D83B006B8CC6 /* SearchFolderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD9205D25E7D83B006B8CC6 /* SearchFolderViewModel.swift */; };
 		3CDCFCF025CAF51A00B0F6E0 /* AddFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDCFCEF25CAF51A00B0F6E0 /* AddFolderViewController.swift */; };
 		3CDCFCF325CAF52200B0F6E0 /* AddFolder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CDCFCF225CAF52200B0F6E0 /* AddFolder.storyboard */; };
-		3CE0853425CA36A80094A07B /* SurfingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE0853325CA36A80094A07B /* SurfingViewController.swift */; };
-		3CE0853825CA36B10094A07B /* Surfing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CE0853725CA36B10094A07B /* Surfing.storyboard */; };
 		3CEA39FA25D15A43006B0579 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CEA39F925D15A43006B0579 /* Login.storyboard */; };
 		3CEA39FE25D1667B006B0579 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEA39FD25D1667B006B0579 /* LoginViewController.swift */; };
 		3CF5ADE225C2891B00F1E45E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF5ADE125C2891B00F1E45E /* AppDelegate.swift */; };
@@ -160,6 +166,14 @@
 
 /* Begin PBXFileReference section */
 		24047C72D6202B37B908B41C /* Pods-LinkMoa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkMoa.release.xcconfig"; path = "Target Support Files/Pods-LinkMoa/Pods-LinkMoa.release.xcconfig"; sourceTree = "<group>"; };
+		25144CFE25F25CE400EC9F46 /* SurfingCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfingCategoryCell.swift; sourceTree = "<group>"; };
+		25144CFF25F25CE400EC9F46 /* SurfingCategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SurfingCategoryCell.xib; sourceTree = "<group>"; };
+		2542746825F11E2100A88F18 /* TopTenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTenCell.swift; sourceTree = "<group>"; };
+		2542746925F11E2100A88F18 /* TopTenCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopTenCell.xib; sourceTree = "<group>"; };
+		2542746E25F136B400A88F18 /* SurfingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfingHeaderView.swift; sourceTree = "<group>"; };
+		2542746F25F136B400A88F18 /* SurfingHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SurfingHeaderView.xib; sourceTree = "<group>"; };
+		254274A625F1DC2800A88F18 /* Surfing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Surfing.storyboard; sourceTree = "<group>"; };
+		254274AC25F1DC4E00A88F18 /* SurfingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfingViewController.swift; sourceTree = "<group>"; };
 		3C04654C25E3DCCF007B61E3 /* edit_garibi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = edit_garibi.json; sourceTree = "<group>"; };
 		3C04655E25E4A287007B61E3 /* SearchLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLinkViewController.swift; sourceTree = "<group>"; };
 		3C04656225E4A29B007B61E3 /* SearchLink.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchLink.storyboard; sourceTree = "<group>"; };
@@ -243,8 +257,6 @@
 		3CD9205D25E7D83B006B8CC6 /* SearchFolderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFolderViewModel.swift; sourceTree = "<group>"; };
 		3CDCFCEF25CAF51A00B0F6E0 /* AddFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderViewController.swift; sourceTree = "<group>"; };
 		3CDCFCF225CAF52200B0F6E0 /* AddFolder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddFolder.storyboard; sourceTree = "<group>"; };
-		3CE0853325CA36A80094A07B /* SurfingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfingViewController.swift; sourceTree = "<group>"; };
-		3CE0853725CA36B10094A07B /* Surfing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Surfing.storyboard; sourceTree = "<group>"; };
 		3CEA39F925D15A43006B0579 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		3CEA39FD25D1667B006B0579 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3CF5ADDE25C2891B00F1E45E /* LinkMoa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkMoa.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -313,13 +325,6 @@
 				3C6D172725E8EFB700A7E7CA /* ShareFolderSelectionViewModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		3C44E0F125CA529E005386F4 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		3C540E7925CEDBA10013427E /* Core */ = {
@@ -507,9 +512,14 @@
 		3CE0853225CA36880094A07B /* Surfing */ = {
 			isa = PBXGroup;
 			children = (
-				3CE0853725CA36B10094A07B /* Surfing.storyboard */,
-				3CE0853325CA36A80094A07B /* SurfingViewController.swift */,
-				3C44E0F125CA529E005386F4 /* View */,
+				254274AC25F1DC4E00A88F18 /* SurfingViewController.swift */,
+				254274A625F1DC2800A88F18 /* Surfing.storyboard */,
+				2542746825F11E2100A88F18 /* TopTenCell.swift */,
+				2542746925F11E2100A88F18 /* TopTenCell.xib */,
+				2542746E25F136B400A88F18 /* SurfingHeaderView.swift */,
+				2542746F25F136B400A88F18 /* SurfingHeaderView.xib */,
+				25144CFE25F25CE400EC9F46 /* SurfingCategoryCell.swift */,
+				25144CFF25F25CE400EC9F46 /* SurfingCategoryCell.xib */,
 			);
 			path = Surfing;
 			sourceTree = "<group>";
@@ -685,16 +695,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2542746B25F11E2100A88F18 /* TopTenCell.xib in Resources */,
 				3CC67C7D25C9A7AA004F914E /* BookmarkFolderCell.xib in Resources */,
 				3C44E13825CAA27E005386F4 /* FolderHeaderView.xib in Resources */,
 				3C04654D25E3DCCF007B61E3 /* edit_garibi.json in Resources */,
+				2542747125F136B400A88F18 /* SurfingHeaderView.xib in Resources */,
 				3CAEC1A225C699B2009248D6 /* NotoSansKR-Light.otf in Resources */,
 				3CD9204C25E7CBFC006B8CC6 /* FolderList.storyboard in Resources */,
 				3C4BC7E425DCF1F700C06929 /* LinkCell.xib in Resources */,
 				3CDCFCF325CAF52200B0F6E0 /* AddFolder.storyboard in Resources */,
 				3CF5ADEE25C2891D00F1E45E /* LaunchScreen.storyboard in Resources */,
-				3CE0853825CA36B10094A07B /* Surfing.storyboard in Resources */,
 				3C04656325E4A29B007B61E3 /* SearchLink.storyboard in Resources */,
+				254274A725F1DC2800A88F18 /* Surfing.storyboard in Resources */,
 				3CAEC1A425C699B2009248D6 /* NotoSansKR-Bold.otf in Resources */,
 				3CD6663625E11A960075DFE6 /* RemoveRequestBottom.storyboard in Resources */,
 				3C4BC7D225DCE0D000C06929 /* AddLink.storyboard in Resources */,
@@ -714,6 +726,7 @@
 				3C128BE125ECDB85001B6A7B /* EditBottomSheetCell.xib in Resources */,
 				3C4E979625DE4A1A001A5BC9 /* FolderSelect.storyboard in Resources */,
 				3C4BC7C225DCAC5F00C06929 /* TagCell.xib in Resources */,
+				25144D0125F25CE400EC9F46 /* SurfingCategoryCell.xib in Resources */,
 				3CAEC1A725C699B2009248D6 /* NotoSansKR-Thin.otf in Resources */,
 				3CC67C7325C99B06004F914E /* TopMenuCell.xib in Resources */,
 				3C0C235B25DD2722009ED09E /* Test.storyboard in Resources */,
@@ -833,6 +846,7 @@
 				3CEA39FE25D1667B006B0579 /* LoginViewController.swift in Sources */,
 				3C6D174D25EA30A600A7E7CA /* CustomAlert.swift in Sources */,
 				3CC67C7225C99B06004F914E /* TopMenuCell.swift in Sources */,
+				2542746A25F11E2100A88F18 /* TopTenCell.swift in Sources */,
 				3C540E7B25CEDBBB0013427E /* Observable.swift in Sources */,
 				3CD9205E25E7D83B006B8CC6 /* SearchFolderViewModel.swift in Sources */,
 				3CF5ADE625C2891B00F1E45E /* ViewController.swift in Sources */,
@@ -842,18 +856,19 @@
 				3C540E9D25CFA0100013427E /* HomeNavigationController.swift in Sources */,
 				3C44E13725CAA27E005386F4 /* FolderHeaderView.swift in Sources */,
 				3C4E979C25DE5075001A5BC9 /* SelectNaviagitonController.swift in Sources */,
-				3CE0853425CA36A80094A07B /* SurfingViewController.swift in Sources */,
 				3C540EB125CFCAED0013427E /* EditBottomSheetViewController.swift in Sources */,
 				3C4E979025DE4A0A001A5BC9 /* FolderSelectViewController.swift in Sources */,
 				3C04656925E5F0C6007B61E3 /* NSObject+StoryboardName.swift in Sources */,
 				3CDCFCF025CAF51A00B0F6E0 /* AddFolderViewController.swift in Sources */,
 				3C4BC7DB25DCEAAA00C06929 /* LinkViewModel.swift in Sources */,
+				2542747025F136B400A88F18 /* SurfingHeaderView.swift in Sources */,
 				3C4BC7CF25DCE0C400C06929 /* AddLinkViewController.swift in Sources */,
 				3CCA602225DFA3FA00DD1F50 /* LinkPresentaionService.swift in Sources */,
 				3CAEC18E25C696E7009248D6 /* FolderViewController.swift in Sources */,
 				3C0C235E25DD2745009ED09E /* TestViewController.swift in Sources */,
 				3C540E8D25CF8B430013427E /* FolderViewModel.swift in Sources */,
 				3C9A066225E88D3F00100966 /* SearchLinkNavigationViewController.swift in Sources */,
+				254274AD25F1DC4E00A88F18 /* SurfingViewController.swift in Sources */,
 				3C8AD44A25D2CE9800197B21 /* UICustomTagButton.swift in Sources */,
 				3CF5ADE425C2891B00F1E45E /* SceneDelegate.swift in Sources */,
 				3CCA601E25DF9EAA00DD1F50 /* String+Regex.swift in Sources */,
@@ -873,6 +888,7 @@
 				3C540E8625CEDE280013427E /* Folder.swift in Sources */,
 				3C540E9525CF9DCA0013427E /* FolderDetailViewController.swift in Sources */,
 				3C128BE025ECDB85001B6A7B /* EditBottomSheetCell.swift in Sources */,
+				25144D0025F25CE400EC9F46 /* SurfingCategoryCell.swift in Sources */,
 				3CD6661E25E0E1710075DFE6 /* SaveSucceedBottomViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

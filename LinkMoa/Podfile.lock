@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.4.1)
   - lottie-ios (3.2.0)
   - Realm (10.1.4):
     - Realm/Headers (= 10.1.4)
@@ -8,23 +9,26 @@ PODS:
   - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
+  - Alamofire (~> 5.2)
   - lottie-ios
   - RealmSwift (= 10.1.4)
   - Toast-Swift (~> 5.0.1)
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - lottie-ios
     - Realm
     - RealmSwift
     - Toast-Swift
 
 SPEC CHECKSUMS:
+  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   lottie-ios: b6b911246246a90a1d25e7388afe6d9ef003d293
   Realm: 80f4fb2971ccb9adc27a47d0955ae8e533a7030b
   RealmSwift: 0e566ca714edb377bba8ea0811eafcea0b93734e
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 3deda12a2fc9c822d2cce861875d6677f2d07060
+PODFILE CHECKSUM: 8facd4c14abb12303498cf39e78665a8057e6387
 
 COCOAPODS: 1.10.1
