@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class BookmarkFolderCell: UICollectionViewCell {
+final class FolderCell: UICollectionViewCell {
 
-    static let cellIdentifier: String = "BookmarkFolderCell"
+    static let cellIdentifier: String = "FolderCell"
     
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var countLabel: UILabel!

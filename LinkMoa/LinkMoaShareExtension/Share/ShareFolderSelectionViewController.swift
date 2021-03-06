@@ -71,7 +71,7 @@ class ShareFolderSelectionViewController: UIViewController, CustomAlert {
     
     private func preparefolderSelectCollectionView() {
         folderSelectCollectionView.contentInset = UIEdgeInsets(top: 15, left: 15, bottom: 50, right: 15)
-        folderSelectCollectionView.register(UINib(nibName: BookmarkFolderCell.cellIdentifier, bundle: nil), forCellWithReuseIdentifier: BookmarkFolderCell.cellIdentifier)
+        folderSelectCollectionView.register(UINib(nibName: FolderCell.cellIdentifier, bundle: nil), forCellWithReuseIdentifier: FolderCell.cellIdentifier)
     
         folderSelectCollectionView.dataSource = self
         folderSelectCollectionView.delegate = self
@@ -98,7 +98,7 @@ extension ShareFolderSelectionViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let folderCell = collectionView.dequeueReusableCell(withReuseIdentifier: BookmarkFolderCell.cellIdentifier, for: indexPath) as? BookmarkFolderCell else { return UICollectionViewCell() }
+        guard let folderCell = collectionView.dequeueReusableCell(withReuseIdentifier: FolderCell.cellIdentifier, for: indexPath) as? FolderCell else { return UICollectionViewCell() }
         
         let folder = folders[indexPath.item]
         folderCell.update(by: folder)

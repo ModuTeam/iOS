@@ -50,7 +50,7 @@
     </scenes>
     <resources>
         <namedColor name="BackGrey">
-            <color red="0.97627919910000005" green="0.97627657649999999" blue="0.97626823190000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.97600001096725464" green="0.97600001096725464" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

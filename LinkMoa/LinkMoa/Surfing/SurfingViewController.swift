@@ -29,10 +29,10 @@ final class SurfingViewController: UIViewController {
     private func prepareCollectionView() {
         surfingCollectionView.collectionViewLayout = createSectionLayout()
     
-        let nib1 = UINib(nibName: BookmarkFolderCell.cellIdentifier, bundle: nil)
+        let nib1 = UINib(nibName: FolderCell.cellIdentifier, bundle: nil)
         let nib2 = UINib(nibName: SurfingCategoryCell.cellIdentifier, bundle: nil)
         let nib3 = UINib(nibName: SurfingHeaderView.reuseableViewIndetifier, bundle: nil)
-        surfingCollectionView.register(nib1, forCellWithReuseIdentifier: BookmarkFolderCell.cellIdentifier)
+        surfingCollectionView.register(nib1, forCellWithReuseIdentifier: FolderCell.cellIdentifier)
         surfingCollectionView.register(nib2, forCellWithReuseIdentifier: SurfingCategoryCell.cellIdentifier)
         surfingCollectionView.register(nib3, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SurfingHeaderView.reuseableViewIndetifier)
 
@@ -121,7 +121,7 @@ extension SurfingViewController: UICollectionViewDataSource {
       
             return surfingCategoryCell
         default:
-            guard let folderCell = collectionView.dequeueReusableCell(withReuseIdentifier: BookmarkFolderCell.cellIdentifier, for: indexPath) as? BookmarkFolderCell else { fatalError() }
+            guard let folderCell = collectionView.dequeueReusableCell(withReuseIdentifier: FolderCell.cellIdentifier, for: indexPath) as? FolderCell else { fatalError() }
       
             return folderCell
         }

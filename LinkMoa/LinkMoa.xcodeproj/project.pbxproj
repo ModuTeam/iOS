@@ -32,12 +32,12 @@
 		3C10CB7D25E8E6450083E93A /* ShareFolderSelection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C10CB7C25E8E6450083E93A /* ShareFolderSelection.storyboard */; };
 		3C10CB8325E8EDE20083E93A /* ShareNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C10CB8225E8EDE20083E93A /* ShareNavigationViewController.swift */; };
 		3C10CB8A25E8EE6C0083E93A /* LinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BC7E125DCF1F700C06929 /* LinkCell.swift */; };
-		3C10CB8B25E8EE6C0083E93A /* BookmarkFolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC67C7A25C9A7AA004F914E /* BookmarkFolderCell.swift */; };
+		3C10CB8B25E8EE6C0083E93A /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC67C7A25C9A7AA004F914E /* FolderCell.swift */; };
 		3C10CB8C25E8EE6C0083E93A /* FolderHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C44E13525CAA27E005386F4 /* FolderHeaderView.swift */; };
 		3C10CB8D25E8EE6C0083E93A /* LinkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C4BC7E225DCF1F700C06929 /* LinkCell.xib */; };
 		3C10CB8E25E8EE6C0083E93A /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C4BC7C025DCAC5F00C06929 /* TagCell.xib */; };
 		3C10CB8F25E8EE6C0083E93A /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BC7BF25DCAC5F00C06929 /* TagCell.swift */; };
-		3C10CB9025E8EE6C0083E93A /* BookmarkFolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC67C7B25C9A7AA004F914E /* BookmarkFolderCell.xib */; };
+		3C10CB9025E8EE6C0083E93A /* FolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC67C7B25C9A7AA004F914E /* FolderCell.xib */; };
 		3C10CB9125E8EE6C0083E93A /* FolderHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C44E13625CAA27E005386F4 /* FolderHeaderView.xib */; };
 		3C128BE025ECDB85001B6A7B /* EditBottomSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C128BDE25ECDB85001B6A7B /* EditBottomSheetCell.swift */; };
 		3C128BE125ECDB85001B6A7B /* EditBottomSheetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C128BDF25ECDB85001B6A7B /* EditBottomSheetCell.xib */; };
@@ -106,8 +106,8 @@
 		3CAEC1A725C699B2009248D6 /* NotoSansKR-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3CAEC1A125C699B2009248D6 /* NotoSansKR-Thin.otf */; };
 		3CC67C7225C99B06004F914E /* TopMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC67C7025C99B06004F914E /* TopMenuCell.swift */; };
 		3CC67C7325C99B06004F914E /* TopMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC67C7125C99B06004F914E /* TopMenuCell.xib */; };
-		3CC67C7C25C9A7AA004F914E /* BookmarkFolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC67C7A25C9A7AA004F914E /* BookmarkFolderCell.swift */; };
-		3CC67C7D25C9A7AA004F914E /* BookmarkFolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC67C7B25C9A7AA004F914E /* BookmarkFolderCell.xib */; };
+		3CC67C7C25C9A7AA004F914E /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC67C7A25C9A7AA004F914E /* FolderCell.swift */; };
+		3CC67C7D25C9A7AA004F914E /* FolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC67C7B25C9A7AA004F914E /* FolderCell.xib */; };
 		3CCA601E25DF9EAA00DD1F50 /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA601D25DF9EAA00DD1F50 /* String+Regex.swift */; };
 		3CCA602225DFA3FA00DD1F50 /* LinkPresentaionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA602125DFA3FA00DD1F50 /* LinkPresentaionService.swift */; };
 		3CD6661625E0E1480075DFE6 /* SaveSucceedBottom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CD6661525E0E1480075DFE6 /* SaveSucceedBottom.storyboard */; };
@@ -234,8 +234,8 @@
 		3CAEC1A125C699B2009248D6 /* NotoSansKR-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Thin.otf"; sourceTree = "<group>"; };
 		3CC67C7025C99B06004F914E /* TopMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenuCell.swift; sourceTree = "<group>"; };
 		3CC67C7125C99B06004F914E /* TopMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopMenuCell.xib; sourceTree = "<group>"; };
-		3CC67C7A25C9A7AA004F914E /* BookmarkFolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkFolderCell.swift; sourceTree = "<group>"; };
-		3CC67C7B25C9A7AA004F914E /* BookmarkFolderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkFolderCell.xib; sourceTree = "<group>"; };
+		3CC67C7A25C9A7AA004F914E /* FolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCell.swift; sourceTree = "<group>"; };
+		3CC67C7B25C9A7AA004F914E /* FolderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FolderCell.xib; sourceTree = "<group>"; };
 		3CCA601D25DF9EAA00DD1F50 /* String+Regex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Regex.swift"; sourceTree = "<group>"; };
 		3CCA602125DFA3FA00DD1F50 /* LinkPresentaionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPresentaionService.swift; sourceTree = "<group>"; };
 		3CD6661525E0E1480075DFE6 /* SaveSucceedBottom.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SaveSucceedBottom.storyboard; sourceTree = "<group>"; };
@@ -435,7 +435,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		3CAEC19B25C6999E009248D6 /* font */ = {
+		3CAEC19B25C6999E009248D6 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
 				3C7DFE2725DC00DA000880B3 /* Poppins-Light.ttf */,
@@ -445,10 +445,10 @@
 				3CAEC19D25C699B1009248D6 /* NotoSansKR-Regular.otf */,
 				3CAEC1A125C699B2009248D6 /* NotoSansKR-Thin.otf */,
 			);
-			path = font;
+			path = fonts;
 			sourceTree = "<group>";
 		};
-		3CC67C7F25C9A867004F914E /* Bookmark */ = {
+		3CC67C7F25C9A867004F914E /* Folder */ = {
 			isa = PBXGroup;
 			children = (
 				3CAEC18925C696D8009248D6 /* Folder.storyboard */,
@@ -465,14 +465,14 @@
 				3CC67C8025C9A886004F914E /* Views */,
 				3C540E8325CEDDF30013427E /* ViewModels */,
 			);
-			path = Bookmark;
+			path = Folder;
 			sourceTree = "<group>";
 		};
 		3CC67C8025C9A886004F914E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3CC67C7B25C9A7AA004F914E /* BookmarkFolderCell.xib */,
-				3CC67C7A25C9A7AA004F914E /* BookmarkFolderCell.swift */,
+				3CC67C7B25C9A7AA004F914E /* FolderCell.xib */,
+				3CC67C7A25C9A7AA004F914E /* FolderCell.swift */,
 				3C44E13625CAA27E005386F4 /* FolderHeaderView.xib */,
 				3C44E13525CAA27E005386F4 /* FolderHeaderView.swift */,
 				3C4BC7C025DCAC5F00C06929 /* TagCell.xib */,
@@ -566,13 +566,13 @@
 				3C04654C25E3DCCF007B61E3 /* edit_garibi.json */,
 				3CEA39F825D15A33006B0579 /* Login */,
 				3CAEC18125C69263009248D6 /* Home */,
-				3CC67C7F25C9A867004F914E /* Bookmark */,
+				3CC67C7F25C9A867004F914E /* Folder */,
 				3CD9203E25E79A3C006B8CC6 /* Search */,
 				3CE0853225CA36880094A07B /* Surfing */,
 				3C540E7925CEDBA10013427E /* Core */,
 				3C540EA025CFB8540013427E /* Support */,
 				3CF5ADEA25C2891D00F1E45E /* Assets.xcassets */,
-				3CAEC19B25C6999E009248D6 /* font */,
+				3CAEC19B25C6999E009248D6 /* fonts */,
 				3CF5ADEF25C2891D00F1E45E /* Info.plist */,
 				3C0C235A25DD2722009ED09E /* Test.storyboard */,
 				3C0C235D25DD2745009ED09E /* TestViewController.swift */,
@@ -675,7 +675,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C10CB8E25E8EE6C0083E93A /* TagCell.xib in Resources */,
-				3C10CB9025E8EE6C0083E93A /* BookmarkFolderCell.xib in Resources */,
+				3C10CB9025E8EE6C0083E93A /* FolderCell.xib in Resources */,
 				3C8AD45725D3A3AB00197B21 /* MainInterface.storyboard in Resources */,
 				3C10CB3D25E8B5D30083E93A /* Assets.xcassets in Resources */,
 				3C128BE525ECDC47001B6A7B /* EditBottomSheetCell.xib in Resources */,
@@ -696,7 +696,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2542746B25F11E2100A88F18 /* TopTenCell.xib in Resources */,
-				3CC67C7D25C9A7AA004F914E /* BookmarkFolderCell.xib in Resources */,
+				3CC67C7D25C9A7AA004F914E /* FolderCell.xib in Resources */,
 				3C44E13825CAA27E005386F4 /* FolderHeaderView.xib in Resources */,
 				3C04654D25E3DCCF007B61E3 /* edit_garibi.json in Resources */,
 				2542747125F136B400A88F18 /* SurfingHeaderView.xib in Resources */,
@@ -814,7 +814,7 @@
 				3C10CB8C25E8EE6C0083E93A /* FolderHeaderView.swift in Sources */,
 				3C10CB8A25E8EE6C0083E93A /* LinkCell.swift in Sources */,
 				3C4BC7CB25DCD8AD00C06929 /* UIView+RoundConer.swift in Sources */,
-				3C10CB8B25E8EE6C0083E93A /* BookmarkFolderCell.swift in Sources */,
+				3C10CB8B25E8EE6C0083E93A /* FolderCell.swift in Sources */,
 				3C128BE425ECDC47001B6A7B /* EditBottomSheetCell.swift in Sources */,
 				3C9A067225E8977B00100966 /* RealmService.swift in Sources */,
 				3C6D172C25E91A6300A7E7CA /* ShareAddFolderViewController.swift in Sources */,
@@ -882,7 +882,7 @@
 				3CD9203425E63962006B8CC6 /* BackgroundBlur.swift in Sources */,
 				3CD9204625E79B7D006B8CC6 /* SearchFolderViewController.swift in Sources */,
 				3C540E8025CEDCAD0013427E /* RealmService.swift in Sources */,
-				3CC67C7C25C9A7AA004F914E /* BookmarkFolderCell.swift in Sources */,
+				3CC67C7C25C9A7AA004F914E /* FolderCell.swift in Sources */,
 				3CD6662425E0F1820075DFE6 /* RemoveSucceedBottomViewController.swift in Sources */,
 				3CAEC18425C692DD009248D6 /* HomeViewController.swift in Sources */,
 				3C540E8625CEDE280013427E /* Folder.swift in Sources */,
