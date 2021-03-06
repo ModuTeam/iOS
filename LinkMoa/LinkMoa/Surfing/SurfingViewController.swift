@@ -10,15 +10,17 @@ import UIKit
 final class SurfingViewController: UIViewController {
     
     @IBOutlet weak var surfingCollectionView: UICollectionView!
-    static func storyboardInstance() -> SurfingViewController? {
-        let storyboard = UIStoryboard(name: SurfingViewController.storyboardName(), bundle: nil)
-        return storyboard.instantiateInitialViewController()
-    }
     
+    weak var homeNavigationController: HomeNavigationController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareCollectionView()
+    }
+    
+    static func storyboardInstance() -> SurfingViewController? {
+        let storyboard = UIStoryboard(name: SurfingViewController.storyboardName(), bundle: nil)
+        return storyboard.instantiateInitialViewController()
     }
     
     private func bind() {
@@ -131,7 +133,21 @@ extension SurfingViewController: UICollectionViewDataSource {
 
 extension SurfingViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-  
+        switch indexPath.section {
+        case 0, 2:
+            guard let surfingFolderDetailVC = SurfingFolderDetailViewController.storyboardInstance() else { fatalError() }
+            surfingFolderDetailVC.homeNavigationController = homeNavigationController
+            homeNavigationController?.pushViewController(surfingFolderDetailVC, animated: true)
+        case 1:
+            guard let categoryDetailVC = CategoryDetailViewController.storyboardInstance() else { fatalError() }
+            categoryDetailVC.homeNavigationController = homeNavigationController
+            homeNavigationController?.pushViewController(categoryDetailVC, animated: true)
+            
+        default:
+            print("default")
+        }
+        
+        
     }
     
     
@@ -143,6 +159,12 @@ extension SurfingViewController: UICollectionViewDelegateFlowLayout {
         case UICollectionView.elementKindSectionHeader:
             guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SurfingHeaderView.reuseableViewIndetifier, for: indexPath) as? SurfingHeaderView else { fatalError() }
 
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(headerViewTapped(_:)))
+            tapGesture.delegate = self
+            headerView.tag = indexPath.section
+            headerView.gestureRecognizers?.forEach {headerView.removeGestureRecognizer($0)}
+            headerView.addGestureRecognizer(tapGesture)
+            
             return headerView
         default:
             fatalError()
@@ -151,4 +173,22 @@ extension SurfingViewController: UICollectionViewDelegateFlowLayout {
 
     }
 
+    @objc private func headerViewTapped(_ sender: UIGestureRecognizer) {
+        switch sender.view?.tag {
+        case 2:
+            print("2")
+            guard let savedFolderVC = SavedFolderViewController.storyboardInstance() else { fatalError() }
+            savedFolderVC.homeNavigationController = homeNavigationController
+            homeNavigationController?.pushViewController(savedFolderVC, animated: true)
+        default:
+            print(sender.view?.tag ?? "?" )
+        }
+      
+    }
+}
+
+extension SurfingViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 }

@@ -43,6 +43,7 @@ final class HomeViewController: UIViewController {
         guard let surfingVC = SurfingViewController.storyboardInstance() else { fatalError() }
         
         homeFolderVC.homeNavigationController = navigationController as? HomeNavigationController
+        surfingVC.homeNavigationController = navigationController as? HomeNavigationController
         
         pages = [homeFolderVC, surfingVC]
         
@@ -70,8 +71,8 @@ final class HomeViewController: UIViewController {
     }
     
     private func scrollSelectedTabView(scrollToIndexPath indexPath: IndexPath) {
-        let homeNavVC = navigationController as? HomeNavigationController
-        homeNavVC?.addButtonView.isHidden = (indexPath.item == 0) ? false : true
+        let homeNC = navigationController as? HomeNavigationController
+        homeNC?.addButtonView.isHidden = (indexPath.item == 0) ? false : true
         
         let prevIndexPath = IndexPath(item: indexPath.item == 0 ? 1 : 0, section: 0)
         
@@ -111,12 +112,12 @@ final class HomeViewController: UIViewController {
     }
     
     @IBAction private func searchButtonTapped() {
-        guard let searchFolderNavVC = SearchFolderNavigationViewController.storyboardInstance() else { return }
+        guard let searchFolderNC = SearchFolderNavigationViewController.storyboardInstance() else { return }
         
-        searchFolderNavVC.modalTransitionStyle = .crossDissolve
-        searchFolderNavVC.modalPresentationStyle = .fullScreen
+        searchFolderNC.modalTransitionStyle = .crossDissolve
+        searchFolderNC.modalPresentationStyle = .fullScreen
         
-        present(searchFolderNavVC, animated: true, completion: nil)
+        present(searchFolderNC, animated: true, completion: nil)
     }
 }
 
@@ -152,8 +153,8 @@ extension HomeViewController: UIPageViewControllerDataSource {
         
         if index == 1 {
             let prevIndex = index - 1
-            let navVC = navigationController as? HomeNavigationController
-            navVC?.addButtonView.isHidden = true
+            let nc = navigationController as? HomeNavigationController
+            nc?.addButtonView.isHidden = true
 
             return pages[prevIndex]
         }
@@ -166,8 +167,8 @@ extension HomeViewController: UIPageViewControllerDataSource {
         
         if index == 0 {
             let nextIndex = index + 1
-            let navVC = navigationController as? HomeNavigationController
-            navVC?.addButtonView.isHidden = false
+            let nc = navigationController as? HomeNavigationController
+            nc?.addButtonView.isHidden = false
             return pages[nextIndex]
         }
         
