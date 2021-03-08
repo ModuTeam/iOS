@@ -11,20 +11,20 @@ import Moya
 protocol SurfingNetworkable {
     var provider: MoyaProvider<SurfingAPI> { get }
 
-    func folderDetail(index: Int, completion: @escaping (Result<FolderDetail.Response, Error>) -> ())
+    func fetchFolderDetail(folder index: Int, completion: @escaping (Result<FolderDetail, Error>) -> ())
     
-    func likedFolder(completion: @escaping (Result<LikedFolder.Response, Error>) -> ())
+    func fetchLikedFolder(completion: @escaping (Result<LikedFolder, Error>) -> ())
     
 }
 
 struct SurfingManager: SurfingNetworkable {
     var provider: MoyaProvider<SurfingAPI> = MoyaProvider<SurfingAPI>(plugins: [NetworkLoggerPlugin()])
     
-    func folderDetail(index: Int, completion: @escaping (Result<FolderDetail.Response, Error>) -> ()) {
+    func fetchFolderDetail(folder index: Int, completion: @escaping (Result<FolderDetail, Error>) -> ()) {
         request(target: .folderDetail(index: index), completion: completion)
     }
     
-    func likedFolder(completion: @escaping (Result<LikedFolder.Response, Error>) -> ()) {
+    func fetchLikedFolder(completion: @escaping (Result<LikedFolder, Error>) -> ()) {
         request(target: .likedFolder, completion: completion)
     }
 }

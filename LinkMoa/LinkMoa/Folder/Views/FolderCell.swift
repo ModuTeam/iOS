@@ -8,8 +8,15 @@
 import UIKit
 
 final class FolderCell: UICollectionViewCell {
-
+    
     static let cellIdentifier: String = "FolderCell"
+    
+    lazy var gradientLayer: CAGradientLayer = {
+        let layer = CAGradientLayer()
+        layer.frame = webPreviewImageView.bounds
+        return layer
+    }()
+
     
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var countLabel: UILabel!
@@ -21,6 +28,8 @@ final class FolderCell: UICollectionViewCell {
         super.awakeFromNib()
         layer.masksToBounds = true
         layer.cornerRadius = 10
+        addGradientLayer()
+        
     }
     
     override func prepareForReuse() {
@@ -53,6 +62,25 @@ final class FolderCell: UICollectionViewCell {
         } else {
             webPreviewImageView.image = nil
         }
+    }
+
+
+
+    func addGradientLayer() {
+        let shapeLayer: CAShapeLayer = CAShapeLayer()
+        let screenSize: CGFloat = UIScreen.main.bounds.width
+        
+        webPreviewImageView.frame.size.width = (screenSize - 16 * 3) / 2
+
+        gradientLayer.frame = webPreviewImageView.bounds
+        gradientLayer.mask = shapeLayer
+        gradientLayer.colors = [UIColor.init(rgb: 0x303030).withAlphaComponent(0.4).cgColor, UIColor.white.withAlphaComponent(0.4).cgColor]
+        
+        let path = UIBezierPath(roundedRect: webPreviewImageView.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 10, height: 10))
+        shapeLayer.path = path.cgPath
+        
+        webPreviewImageView.layer.insertSublayer(gradientLayer, at: 0)
+        gradientLayer.isHidden = true
     }
 }
 

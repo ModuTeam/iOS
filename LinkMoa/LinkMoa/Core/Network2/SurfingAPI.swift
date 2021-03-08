@@ -32,9 +32,9 @@ extension SurfingAPI: TargetType {
     
     var method: Method {
         switch self {
-        case .folderDetail(_), .likedFolder:
+        case .folderDetail, .likedFolder:
             return .get
-        case .like(_):
+        case .like:
             return .post
         }
     }
@@ -45,14 +45,14 @@ extension SurfingAPI: TargetType {
     
     var task: Task {
         switch self {
-        case .folderDetail(_), .like(_), .likedFolder:
+        case .folderDetail, .like, .likedFolder:
             return .requestPlain
         }
     }
     
     var headers: [String : String]? {
         return ["Content-Type" : "application/json",
-                "x-access-token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpYXQiOjE2MTQ5Njg3NDQsImV4cCI6MTY0NjUwNDc0NCwic3ViIjoidXNlckluZm8ifQ.sWA9929i2jgUUa8HxtM-m-kw3zWTP371FNo5RExJeSk"]
+                "x-access-token" : testToken]
     }
 }
 

@@ -7,13 +7,12 @@
 
 import Foundation
 
+//좋아요한 폴더 조회(리스트)
 struct LikedFolder: Codable {
-    struct Response: Codable {
-        let isSuccess: Bool
-        let code: Int
-        let message: String
-        let result: [Result]?
-    }
+    let isSuccess: Bool
+    let code: Int
+    let message: String
+    let result: [Result]?
     
     struct Result: Codable {
         let userIndex, categoryIndex: Int
@@ -29,5 +28,4 @@ struct LikedFolder: Codable {
             case categoryName, folderName, folderType, status
         }
     }
-    
 }

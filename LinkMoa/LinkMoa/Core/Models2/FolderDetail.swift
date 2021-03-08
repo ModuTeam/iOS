@@ -7,21 +7,19 @@
 
 import Foundation
 
+///폴더상세조회
 struct FolderDetail: Codable {
- 
-    struct Response: Codable {
-        let isSuccess: Bool
-        let code: Int
-        let message: String
-        let result: Result?
-    }
+    let isSuccess: Bool
+    let code: Int
+    let message: String
+    let result: Result?
     
     struct Result: Codable {
         let userIndex: Int
         let name, type: String
         let linkCount: Int
-        let hashTagList: [HashTagList]
-        let linkList: [LinkList]
+        let hashTagList: [HashTag]
+        let linkList: [Link]
         
         enum CodingKeys: String, CodingKey {
             case userIndex = "userIdx"
@@ -33,7 +31,7 @@ struct FolderDetail: Codable {
         }
     }
     
-    struct HashTagList: Codable {
+    struct HashTag: Codable {
         let name: String
         
         enum CodingKeys: String, CodingKey {
@@ -41,7 +39,7 @@ struct FolderDetail: Codable {
         }
     }
     
-    struct LinkList: Codable {
+    struct Link: Codable {
         let index: Int
         let name: String
         let url: String
