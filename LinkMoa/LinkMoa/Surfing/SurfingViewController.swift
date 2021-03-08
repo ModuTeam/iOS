@@ -13,9 +13,12 @@ final class SurfingViewController: UIViewController {
     
     weak var homeNavigationController: HomeNavigationController?
     
+    let surfingManager =  SurfingManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareCollectionView()
+        test()
     }
     
     static func storyboardInstance() -> SurfingViewController? {
@@ -27,43 +30,52 @@ final class SurfingViewController: UIViewController {
         
     }
     
+    func test() {
+        surfingManager.folderDetail(index: 2) { result in
+            print("🥺test", result)
+        }
+        
+        surfingManager.likedFolder { result in
+            print("🥺test", result)
+        }
+    }
     
     private func prepareCollectionView() {
         surfingCollectionView.collectionViewLayout = createSectionLayout()
-    
+        
         let nib1 = UINib(nibName: FolderCell.cellIdentifier, bundle: nil)
         let nib2 = UINib(nibName: SurfingCategoryCell.cellIdentifier, bundle: nil)
         let nib3 = UINib(nibName: SurfingHeaderView.reuseableViewIndetifier, bundle: nil)
         surfingCollectionView.register(nib1, forCellWithReuseIdentifier: FolderCell.cellIdentifier)
         surfingCollectionView.register(nib2, forCellWithReuseIdentifier: SurfingCategoryCell.cellIdentifier)
         surfingCollectionView.register(nib3, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SurfingHeaderView.reuseableViewIndetifier)
-
+        
         surfingCollectionView.dataSource = self
         surfingCollectionView.delegate = self
     }
-   
-   /// Layout
-
+    
+    /// Layout
+    
     func createSectionLayout() -> UICollectionViewCompositionalLayout {
         let compositionalLayout = UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex, environment) -> NSCollectionLayoutSection? in
             ///인셋이 좌우상하로 들어가기 때문에 원래 의도한 16의 1/2값을 사용함
             let inset: CGFloat = 8
-//            var rows: Int = 2
+            //            var rows: Int = 2
             var itemsPerRow: Int = 2
             /// height 는 214 고정값이고 item inset을 적용하면 셀 안쪽으로 작아지기 때문에 인셋추가
             var height: CGFloat = 214 + inset * 2
             
             /// 가운데 섹션만 레이아웃이 달라 sectionIndex로 구분
             if sectionIndex == 1 {
-//                rows = 5
+                //                rows = 5
                 itemsPerRow = 1
                 height = 67 + inset * 2
             }
-          
+            
             let fraction: CGFloat = 1 / CGFloat(itemsPerRow)
             
             ///item
-           var itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(fraction), heightDimension: .absolute(height))
+            var itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(fraction), heightDimension: .absolute(height))
             
             if sectionIndex == 1 {
                 itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(fraction), heightDimension: .absolute(height))
@@ -71,10 +83,10 @@ final class SurfingViewController: UIViewController {
             
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             item.contentInsets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: inset, trailing: inset)
-     
+            
             /// Group
             var groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(height))
-  
+            
             if sectionIndex == 1 {
                 groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(height))
             }
@@ -96,8 +108,8 @@ final class SurfingViewController: UIViewController {
         return compositionalLayout
     }
     
-
- 
+    
+    
 }
 
 extension SurfingViewController: UICollectionViewDataSource {
@@ -120,11 +132,11 @@ extension SurfingViewController: UICollectionViewDataSource {
         switch indexPath.section {
         case 1:
             guard let surfingCategoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: SurfingCategoryCell.cellIdentifier, for: indexPath) as? SurfingCategoryCell else { fatalError() }
-      
+            
             return surfingCategoryCell
         default:
             guard let folderCell = collectionView.dequeueReusableCell(withReuseIdentifier: FolderCell.cellIdentifier, for: indexPath) as? FolderCell else { fatalError() }
-      
+            
             return folderCell
         }
         
@@ -158,7 +170,7 @@ extension SurfingViewController: UICollectionViewDelegateFlowLayout {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SurfingHeaderView.reuseableViewIndetifier, for: indexPath) as? SurfingHeaderView else { fatalError() }
-
+            
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(headerViewTapped(_:)))
             tapGesture.delegate = self
             headerView.tag = indexPath.section
@@ -170,9 +182,9 @@ extension SurfingViewController: UICollectionViewDelegateFlowLayout {
             fatalError()
             break
         }
-
+        
     }
-
+    
     @objc private func headerViewTapped(_ sender: UIGestureRecognizer) {
         switch sender.view?.tag {
         case 2:
@@ -183,7 +195,7 @@ extension SurfingViewController: UICollectionViewDelegateFlowLayout {
         default:
             print(sender.view?.tag ?? "?" )
         }
-      
+        
     }
 }
 

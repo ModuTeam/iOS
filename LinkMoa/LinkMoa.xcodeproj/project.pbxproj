@@ -21,6 +21,11 @@
 		25D0049525F39B1E002743C3 /* SavedFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D0049425F39B1E002743C3 /* SavedFolderViewController.swift */; };
 		25D0049E25F39DCE002743C3 /* SurfingFolderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D0049D25F39DCE002743C3 /* SurfingFolderDetailViewController.swift */; };
 		25D004A225F39DDC002743C3 /* SurfingFolderDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25D004A125F39DDC002743C3 /* SurfingFolderDetail.storyboard */; };
+		25D004CA25F5DFE0002743C3 /* SurfingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D004C925F5DFE0002743C3 /* SurfingAPI.swift */; };
+		25D004CE25F5E26D002743C3 /* SurfingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D004CD25F5E26D002743C3 /* SurfingManager.swift */; };
+		25D004D325F5E335002743C3 /* FolderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D004D225F5E335002743C3 /* FolderDetail.swift */; };
+		25D004DB25F5FF96002743C3 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D004DA25F5FF96002743C3 /* Like.swift */; };
+		25D004E125F60026002743C3 /* LikedFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D004E025F60026002743C3 /* LikedFolder.swift */; };
 		3686E7E46878949420F0F97C /* Pods_LinkMoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B68EB404A432BD2D2E57EA7D /* Pods_LinkMoa.framework */; };
 		3C04654D25E3DCCF007B61E3 /* edit_garibi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3C04654C25E3DCCF007B61E3 /* edit_garibi.json */; };
 		3C04655F25E4A287007B61E3 /* SearchLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C04655E25E4A287007B61E3 /* SearchLinkViewController.swift */; };
@@ -189,6 +194,11 @@
 		25D0049425F39B1E002743C3 /* SavedFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedFolderViewController.swift; sourceTree = "<group>"; };
 		25D0049D25F39DCE002743C3 /* SurfingFolderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfingFolderDetailViewController.swift; sourceTree = "<group>"; };
 		25D004A125F39DDC002743C3 /* SurfingFolderDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SurfingFolderDetail.storyboard; sourceTree = "<group>"; };
+		25D004C925F5DFE0002743C3 /* SurfingAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfingAPI.swift; sourceTree = "<group>"; };
+		25D004CD25F5E26D002743C3 /* SurfingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfingManager.swift; sourceTree = "<group>"; };
+		25D004D225F5E335002743C3 /* FolderDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetail.swift; sourceTree = "<group>"; };
+		25D004DA25F5FF96002743C3 /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
+		25D004E025F60026002743C3 /* LikedFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedFolder.swift; sourceTree = "<group>"; };
 		3C04654C25E3DCCF007B61E3 /* edit_garibi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = edit_garibi.json; sourceTree = "<group>"; };
 		3C04655E25E4A287007B61E3 /* SearchLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLinkViewController.swift; sourceTree = "<group>"; };
 		3C04656225E4A29B007B61E3 /* SearchLink.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchLink.storyboard; sourceTree = "<group>"; };
@@ -348,6 +358,25 @@
 			path = SurfingFolderDetail;
 			sourceTree = "<group>";
 		};
+		25D004C825F5DF85002743C3 /* Network2 */ = {
+			isa = PBXGroup;
+			children = (
+				25D004C925F5DFE0002743C3 /* SurfingAPI.swift */,
+				25D004CD25F5E26D002743C3 /* SurfingManager.swift */,
+			);
+			path = Network2;
+			sourceTree = "<group>";
+		};
+		25D004D125F5E31B002743C3 /* Models2 */ = {
+			isa = PBXGroup;
+			children = (
+				25D004D225F5E335002743C3 /* FolderDetail.swift */,
+				25D004DA25F5FF96002743C3 /* Like.swift */,
+				25D004E025F60026002743C3 /* LikedFolder.swift */,
+			);
+			path = Models2;
+			sourceTree = "<group>";
+		};
 		3C10CB6E25E8DD320083E93A /* Share */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +404,8 @@
 		3C540E7925CEDBA10013427E /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				25D004C825F5DF85002743C3 /* Network2 */,
+				25D004D125F5E31B002743C3 /* Models2 */,
 				3C68934925F5CDDF001F229D /* Network */,
 				3C540E8425CEDE020013427E /* Models */,
 				3C540E7A25CEDBBB0013427E /* Observable.swift */,
@@ -922,12 +953,14 @@
 				3CD9205E25E7D83B006B8CC6 /* SearchFolderViewModel.swift in Sources */,
 				3C68933A25F5C7F7001F229D /* LoginApi.swift in Sources */,
 				3CF5ADE625C2891B00F1E45E /* ViewController.swift in Sources */,
+				25D004CA25F5DFE0002743C3 /* SurfingAPI.swift in Sources */,
 				3CD6665325E210D20075DFE6 /* UIImage+Grey.swift in Sources */,
 				3CF5ADE225C2891B00F1E45E /* AppDelegate.swift in Sources */,
 				3C68934F25F5CFAC001F229D /* LoginViewModel.swift in Sources */,
 				3C540EA625CFB8850013427E /* UIColor+.swift in Sources */,
 				3C540E9D25CFA0100013427E /* HomeNavigationController.swift in Sources */,
 				3C44E13725CAA27E005386F4 /* FolderHeaderView.swift in Sources */,
+				25D004DB25F5FF96002743C3 /* Like.swift in Sources */,
 				3C4E979C25DE5075001A5BC9 /* SelectNaviagitonController.swift in Sources */,
 				3C540EB125CFCAED0013427E /* EditBottomSheetViewController.swift in Sources */,
 				3C4E979025DE4A0A001A5BC9 /* FolderSelectViewController.swift in Sources */,
@@ -938,6 +971,7 @@
 				3C4BC7CF25DCE0C400C06929 /* AddLinkViewController.swift in Sources */,
 				3CCA602225DFA3FA00DD1F50 /* LinkPresentaionService.swift in Sources */,
 				3CAEC18E25C696E7009248D6 /* FolderViewController.swift in Sources */,
+				25D004E125F60026002743C3 /* LikedFolder.swift in Sources */,
 				3C0C235E25DD2745009ED09E /* TestViewController.swift in Sources */,
 				3C540E8D25CF8B430013427E /* FolderViewModel.swift in Sources */,
 				3C9A066225E88D3F00100966 /* SearchLinkNavigationViewController.swift in Sources */,
@@ -946,7 +980,9 @@
 				3CF5ADE425C2891B00F1E45E /* SceneDelegate.swift in Sources */,
 				3CCA601E25DF9EAA00DD1F50 /* String+Regex.swift in Sources */,
 				3CD9205425E7D3E6006B8CC6 /* LinkListViewController.swift in Sources */,
+				25D004CE25F5E26D002743C3 /* SurfingManager.swift in Sources */,
 				3CD9205025E7CC08006B8CC6 /* FolderListViewController.swift in Sources */,
+				25D004D325F5E335002743C3 /* FolderDetail.swift in Sources */,
 				3CD6663025E11A820075DFE6 /* RemoveRequestBottomViewController.swift in Sources */,
 				3C4BC7CA25DCD8AD00C06929 /* UIView+RoundConer.swift in Sources */,
 				25D0049525F39B1E002743C3 /* SavedFolderViewController.swift in Sources */,
