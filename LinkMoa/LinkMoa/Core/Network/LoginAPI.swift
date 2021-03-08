@@ -7,11 +7,12 @@
 
 import Moya
 
-enum LoginApi {
+enum LoginAPI {
     case appleLogin(authCode: String)
+    case googleLogin(accessToken: String)
 }
 
-extension LoginApi: TargetType {
+extension LoginAPI: TargetType {
     var baseURL: URL {
         guard let url = URL(string: "https://dev.linkmoa.shop") else { fatalError() }
         return url
@@ -21,12 +22,16 @@ extension LoginApi: TargetType {
         switch self {
         case .appleLogin(_):
             return "/apple-login"
+        case .googleLogin(accessToken: _):
+            return "/google-login"
         }
     }
     
     var method: Method {
         switch self {
         case .appleLogin(_):
+            return .post
+        case .googleLogin(_):
             return .post
         }
     }
@@ -39,6 +44,8 @@ extension LoginApi: TargetType {
         switch self {
         case .appleLogin(let authCode):
             return .requestParameters(parameters: ["code" : authCode], encoding: JSONEncoding.default)
+        case .googleLogin(let accessToken):
+            return .requestParameters(parameters: ["access_token" : accessToken], encoding: JSONEncoding.default)
         }
     }
     

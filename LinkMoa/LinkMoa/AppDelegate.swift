@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import RealmSwift
+import GoogleSignIn
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,8 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        print("--->", Realm.Configuration.defaultConfiguration.fileURL)
-        Thread.sleep(forTimeInterval: 3)
+        GIDSignIn.sharedInstance().clientID = "384172656037-5k9tbriu0ki2gmiav2c9h049g1dicrcs.apps.googleusercontent.com"
+        
+        Thread.sleep(forTimeInterval: 2)
         return true
     }
 

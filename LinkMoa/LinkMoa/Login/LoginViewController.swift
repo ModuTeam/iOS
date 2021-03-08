@@ -8,10 +8,11 @@
 import UIKit
 import Lottie
 import AuthenticationServices
+import GoogleSignIn
 
 final class LoginViewController: UIViewController {
 
-    @IBOutlet private weak var startButtonView: UIView!
+    @IBOutlet private weak var googleLoginButtonView: UIView!
     @IBOutlet private weak var appleLoginStackView: UIStackView!
     @IBOutlet private weak var animationBaseView: UIView!
     @IBOutlet private weak var privateRuleLabel: UILabel!
@@ -25,7 +26,8 @@ final class LoginViewController: UIViewController {
     }()
     
     private let loginViewModel = LoginViewModel()
-    
+    private var tokenManager = TokenManager()
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -34,8 +36,8 @@ final class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         prepareAppleLoginStackView()
+        prepareGoogleLoginView()
         prepareRuleLabels()
-        prepareStartButtonView()
         prepareAnimationView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(restartAnimation), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -49,7 +51,6 @@ final class LoginViewController: UIViewController {
     private func prepareAppleLoginStackView() {
         let button = ASAuthorizationAppleIDButton(authorizationButtonType: .signIn, authorizationButtonStyle: .white)
         appleLoginStackView.addArrangedSubview(button)
-        
         appleLoginStackView.layer.masksToBounds = true
         appleLoginStackView.layer.cornerRadius = 8
         
@@ -57,7 +58,7 @@ final class LoginViewController: UIViewController {
         appleLoginStackView.addGestureRecognizer(tapGesture)
         appleLoginStackView.isUserInteractionEnabled = true
     }
-    
+
     private func prepareRuleLabels() {
         let privateUnderlineAttribute = [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue]
         let privateUnderlineAttributedString = NSAttributedString(string: "개인정보처리방침", attributes: privateUnderlineAttribute)
@@ -72,13 +73,16 @@ final class LoginViewController: UIViewController {
         animationBaseView.addSubview(animationView)
     }
     
-    private func prepareStartButtonView() {
+    private func prepareGoogleLoginView() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(startButtonTapped))
-        startButtonView.addGestureRecognizer(tapGesture)
-        startButtonView.isUserInteractionEnabled = true
+        googleLoginButtonView.addGestureRecognizer(tapGesture)
+        googleLoginButtonView.isUserInteractionEnabled = true
         
-        startButtonView.layer.masksToBounds = true
-        startButtonView.layer.cornerRadius = 8
+        googleLoginButtonView.layer.masksToBounds = true
+        googleLoginButtonView.layer.cornerRadius = 8
+        
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance().delegate = self
     }
     
     @objc private func restartAnimation() {
@@ -86,6 +90,10 @@ final class LoginViewController: UIViewController {
     }
     
     @objc private func startButtonTapped() {
+        GIDSignIn.sharedInstance().signIn()
+    }
+    
+    @IBAction func moveHomeVC() {
         guard let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController() as? HomeNavigationController,
               let window = UIApplication.shared.windows.filter({$0.isKeyWindow}).first else { return }
 
@@ -130,6 +138,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 
                 switch result {
                 case .success(let response):
+                    if let result = response.result {
+                        self.tokenManager.jwtToken = result.jwt
+                    }
                     print(response)
                 case .failure(let error):
                     print(error)
@@ -138,3 +149,42 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         }
     }
 }
+
+extension LoginViewController: GIDSignInDelegate {
+    // 연동을 시도 했을때 불러오는 메소드
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
+                print("The user has not signed in before or they have since signed out.")
+            } else {
+                print("\(error.localizedDescription)")
+            }
+            return
+        }
+        
+        guard let accessToken = user.authentication.accessToken else {
+            print("user token is nil")
+            return
+        }
+        
+        loginViewModel.inputs.googleLogin(accessToken: accessToken, handler: { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let response):
+                if let result = response.result {
+                    self.tokenManager.jwtToken = result.jwt
+                }
+                print(response)
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
+    
+    // 구글 로그인 연동 해제했을때 불러오는 메소드
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        print("Disconnect")
+    }
+}
+

@@ -9,22 +9,26 @@ import Foundation
 import Moya
 
 protocol LoginNetworkable {
-    var provider: MoyaProvider<LoginApi> { get }
+    var provider: MoyaProvider<LoginAPI> { get }
 
     func appleLogin(authCode code: String, completion: @escaping (Result<AppleLogin.Response, Error>) -> ())
+    func googleLogin(accessToken token: String, completion: @escaping (Result<GoogleLogin.Response, Error>) -> ())
 }
 
 struct LoginManager: LoginNetworkable {
-    
-    var provider: MoyaProvider<LoginApi> = MoyaProvider<LoginApi>(plugins: [NetworkLoggerPlugin()])
+    var provider: MoyaProvider<LoginAPI> = MoyaProvider<LoginAPI>(plugins: [NetworkLoggerPlugin()])
     
     func appleLogin(authCode code: String, completion: @escaping (Result<AppleLogin.Response, Error>) -> ()) {
         request(target: .appleLogin(authCode: code), completion: completion)
     }
+    
+    func googleLogin(accessToken token: String, completion: @escaping (Result<GoogleLogin.Response, Error>) -> ()) {
+        request(target: .googleLogin(accessToken: token), completion: completion)
+    }
 }
 
 private extension LoginManager {
-    private func request<T: Decodable>(target: LoginApi, completion: @escaping (Result<T, Error>) -> ()) {
+    private func request<T: Decodable>(target: LoginAPI, completion: @escaping (Result<T, Error>) -> ()) {
         provider.request(target) { result in
             switch result {
             case let .success(response):
@@ -41,22 +45,5 @@ private extension LoginManager {
                 completion(.failure(error))
             }
         }
-    }
-}
-
-struct AppleLogin: Codable {
-    struct Requests: Codable {}
-    
-    struct Response: Codable {
-        let isSuccess: Bool
-        let code: Int
-        let message: String
-        let result: Result?
-    }
-    
-    struct Result: Codable {
-        let jwt: String
-        let userIdx: Int
-        let member: String
     }
 }

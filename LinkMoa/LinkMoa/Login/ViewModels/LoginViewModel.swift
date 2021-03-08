@@ -11,6 +11,7 @@ protocol LoginViewModelOutputs {}
 
 protocol LoginViewModelInputs {
     func appleLogin(authCode code: String, handler completionHandler: @escaping (Result<AppleLogin.Response, Error>) -> ())
+    func googleLogin(accessToken token: String, handler completionHandler: @escaping (Result<GoogleLogin.Response, Error>) -> ())
 }
 
 protocol LoginViewModelType {
@@ -19,7 +20,7 @@ protocol LoginViewModelType {
 }
 
 final class LoginViewModel: LoginViewModelOutputs, LoginViewModelInputs, LoginViewModelType {
-
+    
     init() {
         self.loginManager = LoginManager()
     }
@@ -31,6 +32,12 @@ final class LoginViewModel: LoginViewModelOutputs, LoginViewModelInputs, LoginVi
     
     func appleLogin(authCode code: String, handler completionHandler: @escaping (Result<AppleLogin.Response, Error>) -> ()) {
         loginManager.appleLogin(authCode: code, completion: { result in
+            completionHandler(result)
+        })
+    }
+    
+    func googleLogin(accessToken token: String, handler completionHandler: @escaping (Result<GoogleLogin.Response, Error>) -> ()) {
+        loginManager.googleLogin(accessToken: token, completion: { result in
             completionHandler(result)
         })
     }

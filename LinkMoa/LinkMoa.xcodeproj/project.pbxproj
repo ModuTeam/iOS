@@ -31,6 +31,8 @@
 		3C04655F25E4A287007B61E3 /* SearchLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C04655E25E4A287007B61E3 /* SearchLinkViewController.swift */; };
 		3C04656325E4A29B007B61E3 /* SearchLink.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C04656225E4A29B007B61E3 /* SearchLink.storyboard */; };
 		3C04656925E5F0C6007B61E3 /* NSObject+StoryboardName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C04656825E5F0C6007B61E3 /* NSObject+StoryboardName.swift */; };
+		3C0C16E525F6401500D8A632 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C16E425F6401500D8A632 /* TokenManager.swift */; };
+		3C0C16E625F6401500D8A632 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C16E425F6401500D8A632 /* TokenManager.swift */; };
 		3C0C235B25DD2722009ED09E /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C0C235A25DD2722009ED09E /* Test.storyboard */; };
 		3C0C235E25DD2745009ED09E /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C235D25DD2745009ED09E /* TestViewController.swift */; };
 		3C10CB3D25E8B5D30083E93A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CF5ADEA25C2891D00F1E45E /* Assets.xcassets */; };
@@ -79,9 +81,12 @@
 		3C540EA625CFB8850013427E /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C540EA525CFB8850013427E /* UIColor+.swift */; };
 		3C540EB125CFCAED0013427E /* EditBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C540EB025CFCAED0013427E /* EditBottomSheetViewController.swift */; };
 		3C540EB425CFCAF40013427E /* EditBottomSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C540EB325CFCAF40013427E /* EditBottomSheet.storyboard */; };
-		3C68933A25F5C7F7001F229D /* LoginApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68933925F5C7F7001F229D /* LoginApi.swift */; };
+		3C68933A25F5C7F7001F229D /* LoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68933925F5C7F7001F229D /* LoginAPI.swift */; };
 		3C68934B25F5CDEF001F229D /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68934A25F5CDEF001F229D /* LoginManager.swift */; };
 		3C68934F25F5CFAC001F229D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68934E25F5CFAC001F229D /* LoginViewModel.swift */; };
+		3C68936A25F608E6001F229D /* AppleLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68936925F608E6001F229D /* AppleLogin.swift */; };
+		3C68938325F61638001F229D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C68938225F61638001F229D /* GoogleService-Info.plist */; };
+		3C68938425F61638001F229D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C68938225F61638001F229D /* GoogleService-Info.plist */; };
 		3C6D172425E8EF1100A7E7CA /* UICustomTagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8AD44925D2CE9800197B21 /* UICustomTagButton.swift */; };
 		3C6D172825E8EFB700A7E7CA /* ShareFolderSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D172725E8EFB700A7E7CA /* ShareFolderSelectionViewModel.swift */; };
 		3C6D172C25E91A6300A7E7CA /* ShareAddFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D172B25E91A6300A7E7CA /* ShareAddFolderViewController.swift */; };
@@ -151,7 +156,11 @@
 		3CF5ADE925C2891B00F1E45E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CF5ADE725C2891B00F1E45E /* Main.storyboard */; };
 		3CF5ADEB25C2891D00F1E45E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CF5ADEA25C2891D00F1E45E /* Assets.xcassets */; };
 		3CF5ADEE25C2891D00F1E45E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CF5ADEC25C2891D00F1E45E /* LaunchScreen.storyboard */; };
-		E9716502EA46664C64F56A05 /* Pods_LinkMoaShareExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F2771E65C4772960AB5566E /* Pods_LinkMoaShareExtension.framework */; };
+		3CFFFCB725F61928002B935A /* Pods_LinkMoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B68EB404A432BD2D2E57EA7D /* Pods_LinkMoa.framework */; };
+		3CFFFCB825F61928002B935A /* Pods_LinkMoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B68EB404A432BD2D2E57EA7D /* Pods_LinkMoa.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3CFFFCBB25F6192C002B935A /* Pods_LinkMoaShareExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F2771E65C4772960AB5566E /* Pods_LinkMoaShareExtension.framework */; };
+		3CFFFCBC25F6192C002B935A /* Pods_LinkMoaShareExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9F2771E65C4772960AB5566E /* Pods_LinkMoaShareExtension.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3CFFFCD725F62045002B935A /* GoogleLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFFFCD625F62045002B935A /* GoogleLogin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,6 +183,28 @@
 				3C8AD45B25D3A3AB00197B21 /* LinkMoaShareExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CFFFCB925F61929002B935A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3CFFFCB825F61928002B935A /* Pods_LinkMoa.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CFFFCBD25F6192C002B935A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3CFFFCBC25F6192C002B935A /* Pods_LinkMoaShareExtension.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -203,6 +234,7 @@
 		3C04655E25E4A287007B61E3 /* SearchLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLinkViewController.swift; sourceTree = "<group>"; };
 		3C04656225E4A29B007B61E3 /* SearchLink.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchLink.storyboard; sourceTree = "<group>"; };
 		3C04656825E5F0C6007B61E3 /* NSObject+StoryboardName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+StoryboardName.swift"; sourceTree = "<group>"; };
+		3C0C16E425F6401500D8A632 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		3C0C235A25DD2722009ED09E /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
 		3C0C235D25DD2745009ED09E /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		3C10CB7125E8DD690083E93A /* ShareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewModel.swift; sourceTree = "<group>"; };
@@ -235,9 +267,11 @@
 		3C540EA525CFB8850013427E /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		3C540EB025CFCAED0013427E /* EditBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBottomSheetViewController.swift; sourceTree = "<group>"; };
 		3C540EB325CFCAF40013427E /* EditBottomSheet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditBottomSheet.storyboard; sourceTree = "<group>"; };
-		3C68933925F5C7F7001F229D /* LoginApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginApi.swift; sourceTree = "<group>"; };
+		3C68933925F5C7F7001F229D /* LoginAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
 		3C68934A25F5CDEF001F229D /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		3C68934E25F5CFAC001F229D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		3C68936925F608E6001F229D /* AppleLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLogin.swift; sourceTree = "<group>"; };
+		3C68938225F61638001F229D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3C6D172725E8EFB700A7E7CA /* ShareFolderSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareFolderSelectionViewModel.swift; sourceTree = "<group>"; };
 		3C6D172B25E91A6300A7E7CA /* ShareAddFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAddFolderViewController.swift; sourceTree = "<group>"; };
 		3C6D173925E91E8800A7E7CA /* ShareAddFolder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShareAddFolder.storyboard; sourceTree = "<group>"; };
@@ -295,6 +329,7 @@
 		3CF5ADEA25C2891D00F1E45E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3CF5ADED25C2891D00F1E45E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3CF5ADEF25C2891D00F1E45E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CFFFCD625F62045002B935A /* GoogleLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLogin.swift; sourceTree = "<group>"; };
 		59B69FFDBBF6CFF93BEE0317 /* Pods-LinkMoaShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkMoaShareExtension.release.xcconfig"; path = "Target Support Files/Pods-LinkMoaShareExtension/Pods-LinkMoaShareExtension.release.xcconfig"; sourceTree = "<group>"; };
 		72A0AEBFAD692796EB5581F8 /* Pods-LinkMoaShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkMoaShareExtension.debug.xcconfig"; path = "Target Support Files/Pods-LinkMoaShareExtension/Pods-LinkMoaShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		8E99DA877496A800BA08D555 /* Pods-LinkMoa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkMoa.debug.xcconfig"; path = "Target Support Files/Pods-LinkMoa/Pods-LinkMoa.debug.xcconfig"; sourceTree = "<group>"; };
@@ -307,7 +342,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9716502EA46664C64F56A05 /* Pods_LinkMoaShareExtension.framework in Frameworks */,
+				3CFFFCBB25F6192C002B935A /* Pods_LinkMoaShareExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +350,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3686E7E46878949420F0F97C /* Pods_LinkMoa.framework in Frameworks */,
+				3CFFFCB725F61928002B935A /* Pods_LinkMoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +446,7 @@
 				3C540E7A25CEDBBB0013427E /* Observable.swift */,
 				3C540E7F25CEDCAD0013427E /* RealmService.swift */,
 				3CCA602125DFA3FA00DD1F50 /* LinkPresentaionService.swift */,
+				3C0C16E425F6401500D8A632 /* TokenManager.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -427,6 +463,8 @@
 		3C540E8425CEDE020013427E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3C68936925F608E6001F229D /* AppleLogin.swift */,
+				3CFFFCD625F62045002B935A /* GoogleLogin.swift */,
 				3C540E8525CEDE280013427E /* Folder.swift */,
 				3C540E8925CEDE3F0013427E /* Link.swift */,
 			);
@@ -476,7 +514,7 @@
 		3C68934925F5CDDF001F229D /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				3C68933925F5C7F7001F229D /* LoginApi.swift */,
+				3C68933925F5C7F7001F229D /* LoginAPI.swift */,
 				3C68934A25F5CDEF001F229D /* LoginManager.swift */,
 			);
 			path = Network;
@@ -652,6 +690,7 @@
 			isa = PBXGroup;
 			children = (
 				3C8AD46225D3A3D000197B21 /* LinkMoa.entitlements */,
+				3C68938225F61638001F229D /* GoogleService-Info.plist */,
 				3CF5ADE125C2891B00F1E45E /* AppDelegate.swift */,
 				3CF5ADE325C2891B00F1E45E /* SceneDelegate.swift */,
 				3CF5ADE525C2891B00F1E45E /* ViewController.swift */,
@@ -700,6 +739,7 @@
 				3C8AD44D25D3A3AB00197B21 /* Sources */,
 				3C8AD44E25D3A3AB00197B21 /* Frameworks */,
 				3C8AD44F25D3A3AB00197B21 /* Resources */,
+				3CFFFCBD25F6192C002B935A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -720,6 +760,8 @@
 				3CF5ADDC25C2891B00F1E45E /* Resources */,
 				300A244CD597F0C33FDD7C3E /* [CP] Embed Pods Frameworks */,
 				3C8AD45C25D3A3AB00197B21 /* Embed App Extensions */,
+				1A21041DE34A6700E7502F64 /* [CP] Copy Pods Resources */,
+				3CFFFCB925F61929002B935A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -774,6 +816,7 @@
 			files = (
 				3C10CB8E25E8EE6C0083E93A /* TagCell.xib in Resources */,
 				3C10CB9025E8EE6C0083E93A /* FolderCell.xib in Resources */,
+				3C68938425F61638001F229D /* GoogleService-Info.plist in Resources */,
 				3C8AD45725D3A3AB00197B21 /* MainInterface.storyboard in Resources */,
 				3C10CB3D25E8B5D30083E93A /* Assets.xcassets in Resources */,
 				3C128BE525ECDC47001B6A7B /* EditBottomSheetCell.xib in Resources */,
@@ -832,6 +875,7 @@
 				3CC67C7325C99B06004F914E /* TopMenuCell.xib in Resources */,
 				3C0C235B25DD2722009ED09E /* Test.storyboard in Resources */,
 				3CAEC1A325C699B2009248D6 /* NotoSansKR-Regular.otf in Resources */,
+				3C68938325F61638001F229D /* GoogleService-Info.plist in Resources */,
 				3CD6661625E0E1480075DFE6 /* SaveSucceedBottom.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -839,6 +883,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1A21041DE34A6700E7502F64 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LinkMoa/Pods-LinkMoa-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LinkMoa/Pods-LinkMoa-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LinkMoa/Pods-LinkMoa-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		300A244CD597F0C33FDD7C3E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -916,6 +977,7 @@
 				3C10CB8A25E8EE6C0083E93A /* LinkCell.swift in Sources */,
 				3C4BC7CB25DCD8AD00C06929 /* UIView+RoundConer.swift in Sources */,
 				3C10CB8B25E8EE6C0083E93A /* FolderCell.swift in Sources */,
+				3C0C16E625F6401500D8A632 /* TokenManager.swift in Sources */,
 				3C128BE425ECDC47001B6A7B /* EditBottomSheetCell.swift in Sources */,
 				3C9A067225E8977B00100966 /* RealmService.swift in Sources */,
 				3C6D172C25E91A6300A7E7CA /* ShareAddFolderViewController.swift in Sources */,
@@ -948,14 +1010,17 @@
 				3C6D174D25EA30A600A7E7CA /* CustomAlert.swift in Sources */,
 				3CC67C7225C99B06004F914E /* TopMenuCell.swift in Sources */,
 				3C68934B25F5CDEF001F229D /* LoginManager.swift in Sources */,
+				3C68936A25F608E6001F229D /* AppleLogin.swift in Sources */,
 				2542746A25F11E2100A88F18 /* TopTenCell.swift in Sources */,
 				3C540E7B25CEDBBB0013427E /* Observable.swift in Sources */,
+				3C0C16E525F6401500D8A632 /* TokenManager.swift in Sources */,
 				3CD9205E25E7D83B006B8CC6 /* SearchFolderViewModel.swift in Sources */,
-				3C68933A25F5C7F7001F229D /* LoginApi.swift in Sources */,
+				3C68933A25F5C7F7001F229D /* LoginAPI.swift in Sources */,
 				3CF5ADE625C2891B00F1E45E /* ViewController.swift in Sources */,
 				25D004CA25F5DFE0002743C3 /* SurfingAPI.swift in Sources */,
 				3CD6665325E210D20075DFE6 /* UIImage+Grey.swift in Sources */,
 				3CF5ADE225C2891B00F1E45E /* AppDelegate.swift in Sources */,
+				3CFFFCD725F62045002B935A /* GoogleLogin.swift in Sources */,
 				3C68934F25F5CFAC001F229D /* LoginViewModel.swift in Sources */,
 				3C540EA625CFB8850013427E /* UIColor+.swift in Sources */,
 				3C540E9D25CFA0100013427E /* HomeNavigationController.swift in Sources */,
