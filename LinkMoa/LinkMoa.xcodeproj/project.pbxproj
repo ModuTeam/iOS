@@ -74,6 +74,9 @@
 		3C540EA625CFB8850013427E /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C540EA525CFB8850013427E /* UIColor+.swift */; };
 		3C540EB125CFCAED0013427E /* EditBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C540EB025CFCAED0013427E /* EditBottomSheetViewController.swift */; };
 		3C540EB425CFCAF40013427E /* EditBottomSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C540EB325CFCAF40013427E /* EditBottomSheet.storyboard */; };
+		3C68933A25F5C7F7001F229D /* LoginApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68933925F5C7F7001F229D /* LoginApi.swift */; };
+		3C68934B25F5CDEF001F229D /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68934A25F5CDEF001F229D /* LoginManager.swift */; };
+		3C68934F25F5CFAC001F229D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68934E25F5CFAC001F229D /* LoginViewModel.swift */; };
 		3C6D172425E8EF1100A7E7CA /* UICustomTagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8AD44925D2CE9800197B21 /* UICustomTagButton.swift */; };
 		3C6D172825E8EFB700A7E7CA /* ShareFolderSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D172725E8EFB700A7E7CA /* ShareFolderSelectionViewModel.swift */; };
 		3C6D172C25E91A6300A7E7CA /* ShareAddFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D172B25E91A6300A7E7CA /* ShareAddFolderViewController.swift */; };
@@ -222,6 +225,9 @@
 		3C540EA525CFB8850013427E /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		3C540EB025CFCAED0013427E /* EditBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBottomSheetViewController.swift; sourceTree = "<group>"; };
 		3C540EB325CFCAF40013427E /* EditBottomSheet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditBottomSheet.storyboard; sourceTree = "<group>"; };
+		3C68933925F5C7F7001F229D /* LoginApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginApi.swift; sourceTree = "<group>"; };
+		3C68934A25F5CDEF001F229D /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		3C68934E25F5CFAC001F229D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		3C6D172725E8EFB700A7E7CA /* ShareFolderSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareFolderSelectionViewModel.swift; sourceTree = "<group>"; };
 		3C6D172B25E91A6300A7E7CA /* ShareAddFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAddFolderViewController.swift; sourceTree = "<group>"; };
 		3C6D173925E91E8800A7E7CA /* ShareAddFolder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShareAddFolder.storyboard; sourceTree = "<group>"; };
@@ -369,6 +375,7 @@
 		3C540E7925CEDBA10013427E /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				3C68934925F5CDDF001F229D /* Network */,
 				3C540E8425CEDE020013427E /* Models */,
 				3C540E7A25CEDBBB0013427E /* Observable.swift */,
 				3C540E7F25CEDCAD0013427E /* RealmService.swift */,
@@ -433,6 +440,23 @@
 				3C128BDF25ECDB85001B6A7B /* EditBottomSheetCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		3C68934925F5CDDF001F229D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				3C68933925F5C7F7001F229D /* LoginApi.swift */,
+				3C68934A25F5CDEF001F229D /* LoginManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		3C68935225F5D0C3001F229D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				3C68934E25F5CFAC001F229D /* LoginViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		3C6D174925EA302300A7E7CA /* Protocols */ = {
@@ -568,6 +592,7 @@
 			children = (
 				3CEA39F925D15A43006B0579 /* Login.storyboard */,
 				3CEA39FD25D1667B006B0579 /* LoginViewController.swift */,
+				3C68935225F5D0C3001F229D /* ViewModels */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -891,12 +916,15 @@
 				3CEA39FE25D1667B006B0579 /* LoginViewController.swift in Sources */,
 				3C6D174D25EA30A600A7E7CA /* CustomAlert.swift in Sources */,
 				3CC67C7225C99B06004F914E /* TopMenuCell.swift in Sources */,
+				3C68934B25F5CDEF001F229D /* LoginManager.swift in Sources */,
 				2542746A25F11E2100A88F18 /* TopTenCell.swift in Sources */,
 				3C540E7B25CEDBBB0013427E /* Observable.swift in Sources */,
 				3CD9205E25E7D83B006B8CC6 /* SearchFolderViewModel.swift in Sources */,
+				3C68933A25F5C7F7001F229D /* LoginApi.swift in Sources */,
 				3CF5ADE625C2891B00F1E45E /* ViewController.swift in Sources */,
 				3CD6665325E210D20075DFE6 /* UIImage+Grey.swift in Sources */,
 				3CF5ADE225C2891B00F1E45E /* AppDelegate.swift in Sources */,
+				3C68934F25F5CFAC001F229D /* LoginViewModel.swift in Sources */,
 				3C540EA625CFB8850013427E /* UIColor+.swift in Sources */,
 				3C540E9D25CFA0100013427E /* HomeNavigationController.swift in Sources */,
 				3C44E13725CAA27E005386F4 /* FolderHeaderView.swift in Sources */,

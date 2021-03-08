@@ -1,6 +1,10 @@
 PODS:
   - Alamofire (5.4.1)
   - lottie-ios (3.2.0)
+  - Moya (14.0.0):
+    - Moya/Core (= 14.0.0)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
   - Realm (10.1.4):
     - Realm/Headers (= 10.1.4)
   - Realm/Headers (10.1.4)
@@ -9,8 +13,8 @@ PODS:
   - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
-  - Alamofire (~> 5.2)
   - lottie-ios
+  - Moya (~> 14.0)
   - RealmSwift (= 10.1.4)
   - Toast-Swift (~> 5.0.1)
 
@@ -18,6 +22,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - lottie-ios
+    - Moya
     - Realm
     - RealmSwift
     - Toast-Swift
@@ -25,10 +30,11 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   lottie-ios: b6b911246246a90a1d25e7388afe6d9ef003d293
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Realm: 80f4fb2971ccb9adc27a47d0955ae8e533a7030b
   RealmSwift: 0e566ca714edb377bba8ea0811eafcea0b93734e
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 8facd4c14abb12303498cf39e78665a8057e6387
+PODFILE CHECKSUM: 37527a000423b4dc9a64f052a81cf44dbb9b261b
 
 COCOAPODS: 1.10.1

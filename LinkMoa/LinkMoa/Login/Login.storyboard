@@ -53,13 +53,20 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="dlq-lU-lHb">
-                                <rect key="frame" x="22" y="697" width="370" height="56"/>
+                                <rect key="frame" x="22" y="629" width="370" height="124"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6t4-xb-NLl">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MeY-Rx-M50" userLabel="AppleLoginStackView">
                                         <rect key="frame" x="0.0" y="0.0" width="370" height="56"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="VT8-CS-TPg"/>
+                                        </constraints>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pwy-Tk-cwM">
+                                        <rect key="frame" x="0.0" y="68" width="370" height="56"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVA-oZ-9OP">
-                                                <rect key="frame" x="153.5" y="15.5" width="63" height="25"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작하기 ( 구글 로그인 할 예정 )" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZr-Gz-tgx">
+                                                <rect key="frame" x="72" y="15.5" width="226" height="25"/>
                                                 <fontDescription key="fontDescription" name="NotoSansKR-Medium" family="Noto Sans KR" pointSize="17"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -67,9 +74,9 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="oVA-oZ-9OP" firstAttribute="centerY" secondItem="6t4-xb-NLl" secondAttribute="centerY" id="b4U-2b-Qnf"/>
-                                            <constraint firstAttribute="height" constant="56" id="bNK-XO-6tm"/>
-                                            <constraint firstItem="oVA-oZ-9OP" firstAttribute="centerX" secondItem="6t4-xb-NLl" secondAttribute="centerX" id="wlV-8n-vZQ"/>
+                                            <constraint firstAttribute="height" constant="56" id="1kx-d0-fzN"/>
+                                            <constraint firstItem="gZr-Gz-tgx" firstAttribute="centerX" secondItem="Pwy-Tk-cwM" secondAttribute="centerX" id="d2P-kN-ApV"/>
+                                            <constraint firstItem="gZr-Gz-tgx" firstAttribute="centerY" secondItem="Pwy-Tk-cwM" secondAttribute="centerY" id="w3W-tJ-130"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -125,8 +132,9 @@
                     </view>
                     <connections>
                         <outlet property="animationBaseView" destination="XH5-qJ-3R3" id="D9p-zt-DTI"/>
+                        <outlet property="appleLoginStackView" destination="MeY-Rx-M50" id="Yg1-lD-nBy"/>
                         <outlet property="privateRuleLabel" destination="C2Y-3L-Pv6" id="Qw4-tc-wib"/>
-                        <outlet property="startButtonView" destination="6t4-xb-NLl" id="ZUL-uk-imm"/>
+                        <outlet property="startButtonView" destination="Pwy-Tk-cwM" id="F1p-D8-xwc"/>
                         <outlet property="useRuleLabel" destination="umS-1L-DFF" id="VqT-4i-y0K"/>
                     </connections>
                 </viewController>

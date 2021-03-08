@@ -7,7 +7,7 @@ target 'LinkMoa' do
   pod 'RealmSwift', '=10.1.4'
   pod 'Toast-Swift', '~> 5.0.1'
   pod 'lottie-ios'
-  pod 'Alamofire', '~> 5.2'
+  pod 'Moya', '~> 14.0'
   # Pods for LinkMoa
 end
 
