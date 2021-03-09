@@ -30,7 +30,7 @@ extension CustomAlert where Self: UIViewController {
         self.present(removeSucceedBottomVC, animated: true, completion: nil)
     }
     
-    func alertRemoveRequestView(folder: Folder, completeHandler: (() -> ())?, removeHandler: (() -> ())?) {
+    func alertRemoveRequestView(folder: FolderList.Result, completeHandler: (() -> ())?, removeHandler: (() -> ())?) {
         guard let removeRequestVC = RemoveRequestBottomViewController.storyboardInstance() else { return }
         
         removeRequestVC.modalPresentationStyle = .overCurrentContext

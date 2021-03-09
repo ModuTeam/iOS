@@ -15,11 +15,8 @@ protocol FolderViewModelOutputs {
 
 protocol FolderViewModelInputs {
     func fetchFolders()
-    func remove(target object: Object)
-    func remove<T: Object>(target list: List<T>)
-    func save(target folder: Folder)
-    func update(handler updateHandler: @escaping () -> ())
     func setFetchOption(option fetchOption: FolderFetchOption)
+    func removeFolder(folderIndex index: Int, completionHandler: @escaping ((Result<FolderResponse, Error>) -> ()))
     var fetchOption: FolderFetchOption { get }
 }
 
@@ -56,25 +53,11 @@ final class FolderViewModel: FolderViewModelInputs, FolderViewModelOutputs, Fold
         })
     }
 
+    func removeFolder(folderIndex index: Int, completionHandler: @escaping ((Result<FolderResponse, Error>) -> ())) {
+        myScallopManager.deleteFolder(folder: index, completion: completionHandler)
+    }
+    
     func setFetchOption(option fetchOption: FolderFetchOption) {
         self.fetchOption = fetchOption
-    }
-    
-    func remove(target object: Object) {
-        // realmService.delete(object)
-    }
-    
-    func remove<T: Object>(target list: List<T>) {
-        // realmService.delete(list)
-    }
-    
-    func save(target folder: Folder) {
-        // realmService.add(folder)
-    }
-    
-    func update(handler updateHandler: @escaping () -> ()) {
-//        realmService.update {
-//            updateHandler()
-//        }
     }
 }

@@ -176,17 +176,17 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
             guard let folder = self.folder else { return }
             
             self.blurVC?.fadeInBackgroundViewAnimation()
-            self.alertRemoveRequestView(folder: folder,
-                                        completeHandler: {
-                                            self.blurVC?.fadeOutBackgroundViewAnimation()
-                                        },
-                                        removeHandler: {
-                                            self.linkViewModel.inputs.removeFolder(target: folder)
-                                            self.blurVC?.fadeOutBackgroundViewAnimation()
-                                            
-                                            self.navigationController?.popToRootViewController(animated: true)
-                                            self.folderRemoveHandler?()
-                                        })
+//            self.alertRemoveRequestView(folder: folder,
+//                                        completeHandler: {
+//                                            self.blurVC?.fadeOutBackgroundViewAnimation()
+//                                        },
+//                                        removeHandler: {
+//                                            self.linkViewModel.inputs.removeFolder(target: folder)
+//                                            self.blurVC?.fadeOutBackgroundViewAnimation()
+//                                            
+//                                            self.navigationController?.popToRootViewController(animated: true)
+//                                            self.folderRemoveHandler?()
+//                                        })
         }]
         blurVC?.fadeInBackgroundViewAnimation()
         navigationController?.present(editVC, animated: true)

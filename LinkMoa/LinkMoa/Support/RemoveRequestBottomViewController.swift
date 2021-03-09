@@ -16,7 +16,7 @@ final class RemoveRequestBottomViewController: UIViewController {
     @IBOutlet private weak var deleteButtonView: UIView!
     @IBOutlet private weak var bottomSpacingLayout: NSLayoutConstraint!
     
-    var folder: Folder?
+    var folder: FolderList.Result?
     var completionHandler: (() -> ())?
     var removeHandler: (() -> ())?
     

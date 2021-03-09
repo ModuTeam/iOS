@@ -173,9 +173,9 @@ final class FolderViewController: UIViewController, CustomAlert {
         
         }, { [weak self] _ in
             guard let self = self else { return }
-            
-            // let shareItem = folder.shareItem
-            // let activityController = UIActivityViewController(activityItems: [shareItem], applicationActivities: nil)
+            // 여기 링크 정보가 없음
+//            let shareItem = folder.
+//            let activityController = UIActivityViewController(activityItems: [shareItem], applicationActivities: nil)
 //            activityController.excludedActivityTypes = [.saveToCameraRoll, .print, .assignToContact, .addToReadingList]
 //
 //            self.present(activityController, animated: true, completion: nil)
@@ -183,19 +183,30 @@ final class FolderViewController: UIViewController, CustomAlert {
         },{ [weak self] _ in // 삭제하기 클릭
             guard let self = self else { return }
             self.blurVC?.fadeInBackgroundViewAnimation()
-//            self.alertRemoveRequestView(folder: folder,
-//                                        completeHandler: {
-//                                            self.blurVC?.fadeOutBackgroundViewAnimation()
-//                                        },
-//                                        removeHandler: {
-//                                            self.blurVC?.fadeInBackgroundViewAnimation()
-//                                            self.alertRemoveSucceedView(completeHandler: { self.blurVC?.fadeOutBackgroundViewAnimation() })
-//                                            let indexPath = IndexPath(item: index, section: 0)
-//                                            self.folders.remove(at: index)
-//                                            self.folderCollectionView.deleteItems(at: [indexPath])
-//                                            self.folderCollectionView.collectionViewLayout.invalidateLayout()
-//                                            self.folderViewModel.inputs.remove(target: folder)
-//                                        })
+            self.alertRemoveRequestView(folder: folder,
+                                        completeHandler: {
+                                            self.blurVC?.fadeOutBackgroundViewAnimation()
+                                        },
+                                        removeHandler: {
+                                            self.folderViewModel.removeFolder(folderIndex: folder.index, completionHandler: { result in
+                                                switch result {
+                                                case .success(let response):
+                                                    if response.isSuccess {
+                                                        self.blurVC?.fadeInBackgroundViewAnimation()
+                                                        self.alertRemoveSucceedView(completeHandler: { self.blurVC?.fadeOutBackgroundViewAnimation() })
+                                                        
+                                                        let indexPath = IndexPath(item: index, section: 0)
+                                                        self.folders.remove(at: index)
+                                                        self.folderCollectionView.deleteItems(at: [indexPath])
+                                                        self.folderCollectionView.collectionViewLayout.invalidateLayout()
+                                                    }
+                                                case .failure(let error):
+                                                    self.blurVC?.fadeInBackgroundViewAnimation()
+                                                    print(error)
+                                                }
+                                                
+                                            })
+                                        })
         }]
         
         editVC.completionHandler = { [weak self] in // 동작 완료하면
