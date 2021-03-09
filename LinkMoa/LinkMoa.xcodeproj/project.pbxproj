@@ -83,6 +83,10 @@
 		3C540EA625CFB8850013427E /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C540EA525CFB8850013427E /* UIColor+.swift */; };
 		3C540EB125CFCAED0013427E /* EditBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C540EB025CFCAED0013427E /* EditBottomSheetViewController.swift */; };
 		3C540EB425CFCAF40013427E /* EditBottomSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C540EB325CFCAF40013427E /* EditBottomSheet.storyboard */; };
+		3C623F0E25F716FB00FD7B5D /* FolderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447F325F64EE9003E0A04 /* FolderResponse.swift */; };
+		3C623F0F25F716FB00FD7B5D /* LinkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447E725F649D6003E0A04 /* LinkResponse.swift */; };
+		3C623F1025F716FB00FD7B5D /* NewFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447F725F64F3E003E0A04 /* NewFolder.swift */; };
+		3C623F1125F716FB00FD7B5D /* FolderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447EB25F64A1C003E0A04 /* FolderList.swift */; };
 		3C68933A25F5C7F7001F229D /* LoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68933925F5C7F7001F229D /* LoginAPI.swift */; };
 		3C68934B25F5CDEF001F229D /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68934A25F5CDEF001F229D /* LoginManager.swift */; };
 		3C68934F25F5CFAC001F229D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68934E25F5CFAC001F229D /* LoginViewModel.swift */; };
@@ -161,9 +165,9 @@
 		3CF5ADEB25C2891D00F1E45E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CF5ADEA25C2891D00F1E45E /* Assets.xcassets */; };
 		3CF5ADEE25C2891D00F1E45E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CF5ADEC25C2891D00F1E45E /* LaunchScreen.storyboard */; };
 		3CFFFCB725F61928002B935A /* Pods_LinkMoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B68EB404A432BD2D2E57EA7D /* Pods_LinkMoa.framework */; };
-		3CFFFCB825F61928002B935A /* Pods_LinkMoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B68EB404A432BD2D2E57EA7D /* Pods_LinkMoa.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3CFFFCB825F61928002B935A /* Pods_LinkMoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B68EB404A432BD2D2E57EA7D /* Pods_LinkMoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3CFFFCBB25F6192C002B935A /* Pods_LinkMoaShareExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F2771E65C4772960AB5566E /* Pods_LinkMoaShareExtension.framework */; };
-		3CFFFCBC25F6192C002B935A /* Pods_LinkMoaShareExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9F2771E65C4772960AB5566E /* Pods_LinkMoaShareExtension.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3CFFFCBC25F6192C002B935A /* Pods_LinkMoaShareExtension.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9F2771E65C4772960AB5566E /* Pods_LinkMoaShareExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3CFFFCD725F62045002B935A /* GoogleLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFFFCD625F62045002B935A /* GoogleLogin.swift */; };
 /* End PBXBuildFile section */
 
@@ -1018,12 +1022,16 @@
 				3C6D174225EA009200A7E7CA /* SaveSucceedBottomViewController.swift in Sources */,
 				3C6D175325EA389B00A7E7CA /* CustomAlert.swift in Sources */,
 				3C6D174625EA009200A7E7CA /* EditBottomSheetViewController.swift in Sources */,
+				3C623F1025F716FB00FD7B5D /* NewFolder.swift in Sources */,
 				3C9A066F25E8977700100966 /* Observable.swift in Sources */,
 				3C10CB7225E8DD690083E93A /* ShareViewModel.swift in Sources */,
 				3C6D175425EA389B00A7E7CA /* BackgroundBlur.swift in Sources */,
 				3C10CB8F25E8EE6C0083E93A /* TagCell.swift in Sources */,
 				3C8AD45425D3A3AB00197B21 /* ShareViewController.swift in Sources */,
 				3C10CB4225E8B7F10083E93A /* UIImage+Grey.swift in Sources */,
+				3C623F0E25F716FB00FD7B5D /* FolderResponse.swift in Sources */,
+				3C623F1125F716FB00FD7B5D /* FolderList.swift in Sources */,
+				3C623F0F25F716FB00FD7B5D /* LinkResponse.swift in Sources */,
 				3C10CB4425E8B7F10083E93A /* NSObject+StoryboardName.swift in Sources */,
 				3C9A066925E8977100100966 /* Folder.swift in Sources */,
 				3C6D172425E8EF1100A7E7CA /* UICustomTagButton.swift in Sources */,

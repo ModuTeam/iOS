@@ -41,7 +41,7 @@ final class FolderSelectViewController: UIViewController {
     private func bind() {
         folderViewModel.outputs.folders.bind { [weak self] results in
             guard let self = self else { return }
-            self.folders = results
+            // self.folders = results
             self.folderSelectCollectionView.reloadData()
         }
     }
@@ -69,7 +69,7 @@ extension FolderSelectViewController: UICollectionViewDataSource {
         guard let folderCell = collectionView.dequeueReusableCell(withReuseIdentifier: FolderCell.cellIdentifier, for: indexPath) as? FolderCell else { return UICollectionViewCell() }
         
         let folder = folders[indexPath.item]
-        folderCell.update(by: folder)
+        // folderCell.update(by: folder)
         
         return folderCell
     }

@@ -11,7 +11,7 @@ import Moya
 protocol MyScallopNetworkable {
     var provider: MoyaProvider<MyScallopAPI> { get }
 
-    func fetchMyFolderList(user index: Int, completion: @escaping (Result<FolderList, Error>) -> ())
+    func fetchMyFolderList(completion: @escaping (Result<FolderList, Error>) -> ()) // user index: Int,
     
     func addNewFolder(params: [String: Any], completion: @escaping (Result<NewFolder, Error>) -> ())
     
@@ -51,8 +51,10 @@ struct MyScallopManager: MyScallopNetworkable {
         request(target: .addFolder(params: params), completion: completion)
     }
 
-    func fetchMyFolderList(user index: Int, completion: @escaping (Result<FolderList, Error>) -> ()) {
-        request(target: .myFolderList(index: index), completion: completion)
+    func fetchMyFolderList(completion: @escaping (Result<FolderList, Error>) -> ()) { // user index: Int,
+        guard let userIndex = TokenManager().userIndex else { fatalError() }
+        
+        request(target: .myFolderList(index: userIndex), completion: completion)
     }
     
     var provider: MoyaProvider<MyScallopAPI> = MoyaProvider<MyScallopAPI>(plugins: [NetworkLoggerPlugin()])

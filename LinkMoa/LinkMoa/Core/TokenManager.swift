@@ -10,6 +10,7 @@ import Foundation
 
 public enum TokenType {
     case jwt
+    case userIndex
 }
 
 extension TokenType {
@@ -17,6 +18,8 @@ extension TokenType {
         switch self {
         case .jwt:
             return "jwtToken"
+        case .userIndex:
+            return "userIndex"
         }
     }
 }
@@ -36,6 +39,15 @@ public struct TokenManager {
         }
         set {
             userDefault.setValue(newValue, forKey: TokenType.jwt.name)
+        }
+    }
+    
+    var userIndex: Int? {
+        get {
+            return Int(userDefault.integer(forKey: TokenType.userIndex.name))
+        }
+        set {
+            userDefault.setValue(newValue, forKey: TokenType.userIndex.name)
         }
     }
 }

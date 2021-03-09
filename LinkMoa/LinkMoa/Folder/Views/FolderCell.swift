@@ -41,27 +41,27 @@ final class FolderCell: UICollectionViewCell {
         lockImageView.isHidden = true
     }
     
-    func update(by folder: Folder) {
+    func update(by folder: FolderList.Result) {
         titleLabel.text = folder.name
-        countLabel.text = String(folder.count)
+        countLabel.text = String(folder.linkCount)
         
-        if folder.isShared {
-            lockImageView.isHidden = true
-        } else {
-            lockImageView.isHidden = false
-        }
+//        if folder.isShared {
+//            lockImageView.isHidden = true
+//        } else {
+//            lockImageView.isHidden = false
+//        }
         
-        if let previewData = Array(folder.links).compactMap({ $0.webPreview }).last,
-           let previewImage = UIImage(data: previewData) {
-            
-            if folder.isShared {
-                webPreviewImageView.image = previewImage
-            } else {
-                webPreviewImageView.image = previewImage.greyScale
-            }
-        } else {
-            webPreviewImageView.image = nil
-        }
+//        if let previewData = Array(folder.links).compactMap({ $0.webPreview }).last,
+//           let previewImage = UIImage(data: previewData) {
+//            
+//            if folder.isShared {
+//                webPreviewImageView.image = previewImage
+//            } else {
+//                webPreviewImageView.image = previewImage.greyScale
+//            }
+//        } else {
+//            webPreviewImageView.image = nil
+//        }
     }
 
 

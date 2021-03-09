@@ -148,6 +148,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                     if let result = response.result {
                         self.tokenManager.jwtToken = result.jwt
                     }
+                    if let userIndex = response.result?.userIndex {
+                        self.tokenManager.userIndex = userIndex
+                    }
                     print(response)
                 case .failure(let error):
                     print(error)

@@ -10,7 +10,7 @@ import RealmSwift
 import Realm
 
 protocol FolderViewModelOutputs {
-    var folders: Observable<[Folder]> { get }
+    var folders: Observable<[FolderList.Result]> { get }
 }
 
 protocol FolderViewModelInputs {
@@ -30,40 +30,30 @@ protocol FolderViewModelType {
 
 final class FolderViewModel: FolderViewModelInputs, FolderViewModelOutputs, FolderViewModelType {
     
-    init() {
-        // self.realmService = RealmService()
-    }
-    
-    deinit {
-        foldersToken?.invalidate()
-    }
-    
-    // private let realmService: RealmService
+    private let myScallopManager = MyScallopManager()
     private(set) var fetchOption: FolderFetchOption = .date
 
-    let folders: Observable<[Folder]> = Observable([])
+    var folders: Observable<[FolderList.Result]> = Observable([])
     
     var inputs: FolderViewModelInputs { return self }
     var outputs: FolderViewModelOutputs { return self }
     
-    var foldersToken: NotificationToken?
+    // var foldersToken: NotificationToken?
     
     func fetchFolders() {
-//        realmService.fetch(Folder.self, fetchOption: self.fetchOption, completeHandler: { results in
-//            self.foldersToken = results.observe({ [unowned self] changes in
-//                switch changes {
-//                case .initial(let folders):
-//                    self.folders.value = folders.map { $0 }
-//                    print("FolderViewModel - init")
-//                case .update(let folders, _, _, _):
-//                    self.folders.value = folders.map { $0 }
-//                    print("FolderViewModel - update")
-//                case .error(let error):
-//                    print(error)
-//                    fatalError()
-//                }
-//            })
-//        })
+        myScallopManager.fetchMyFolderList(completion: { result in
+            switch result {
+            case .success(let value):
+                if let folders = value.result {
+                    self.folders.value = folders
+                }
+            case .success(let error):
+                print(error)
+            default:
+                break
+            }
+            
+        })
     }
 
     func setFetchOption(option fetchOption: FolderFetchOption) {

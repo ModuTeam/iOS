@@ -101,7 +101,7 @@ extension ShareFolderSelectionViewController: UICollectionViewDataSource {
         guard let folderCell = collectionView.dequeueReusableCell(withReuseIdentifier: FolderCell.cellIdentifier, for: indexPath) as? FolderCell else { return UICollectionViewCell() }
         
         let folder = folders[indexPath.item]
-        folderCell.update(by: folder)
+        // folderCell.update(by: folder)
         
         return folderCell
     }
