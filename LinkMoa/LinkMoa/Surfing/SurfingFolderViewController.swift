@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SavedFolderViewController: UIViewController {
+class SurfingFolderViewController: UIViewController {
     
     @IBOutlet weak var folderCollectionView: UICollectionView!
     weak var homeNavigationController: HomeNavigationController?
@@ -18,8 +18,8 @@ class SavedFolderViewController: UIViewController {
         prepareFolderCollectionView()
     }
     
-    static func storyboardInstance() -> SavedFolderViewController? {
-        let storyboard = UIStoryboard(name: SavedFolderViewController.storyboardName(), bundle: nil)
+    static func storyboardInstance() -> SurfingFolderViewController? {
+        let storyboard = UIStoryboard(name: SurfingFolderViewController.storyboardName(), bundle: nil)
         return storyboard.instantiateInitialViewController()
     }
     
@@ -43,7 +43,7 @@ class SavedFolderViewController: UIViewController {
 }
 
 
-extension SavedFolderViewController: UICollectionViewDataSource {
+extension SurfingFolderViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
@@ -57,7 +57,7 @@ extension SavedFolderViewController: UICollectionViewDataSource {
     
 }
 
-extension SavedFolderViewController: UICollectionViewDelegate {
+extension SurfingFolderViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let folderDetailVC = FolderDetailViewController.storyboardInstance() else { fatalError() }
         
@@ -69,7 +69,7 @@ extension SavedFolderViewController: UICollectionViewDelegate {
     }
 }
 
-extension SavedFolderViewController: UICollectionViewDelegateFlowLayout {
+extension SurfingFolderViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = (view.frame.width - 47) / 2
         let height: CGFloat = 214

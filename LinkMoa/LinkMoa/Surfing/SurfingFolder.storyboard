@@ -18,10 +18,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Saved Folder View Controller-->
+        <!--Surfing Folder View Controller-->
         <scene sceneID="6sq-Xb-xUC">
             <objects>
-                <viewController id="Qhe-RM-aTK" customClass="SavedFolderViewController" customModule="LinkMoa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Qhe-RM-aTK" customClass="SurfingFolderViewController" customModule="LinkMoa" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XcX-Cv-Ke9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

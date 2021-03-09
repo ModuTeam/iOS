@@ -13,13 +13,16 @@ final class SurfingViewController: UIViewController {
     
     weak var homeNavigationController: HomeNavigationController?
     
+    private let viewModel: SurfingViewModel = SurfingViewModel()
     let surfingManager =  SurfingManager()
     let myScallopManager =  MyScallopManager()
-    
+    var likedFolders: [LikedFolder.Result] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareCollectionView()
         test()
+        viewModel.inputs.fetchLikedFolders()
+        bind()
     }
     
     static func storyboardInstance() -> SurfingViewController? {
@@ -28,10 +31,15 @@ final class SurfingViewController: UIViewController {
     }
     
     private func bind() {
-        
+        viewModel.outputs.likedFolders.bind { [weak self] results  in
+            guard let self = self else { return }
+            self.likedFolders = results
+            self.surfingCollectionView.reloadData()
+        }
     }
     
     func test() {
+        
         //MARK:- 폴더상세조회
         //        surfingManager.fetchFolderDetail(folder: 2) { result in
         //            print("🥺test", result)
@@ -177,7 +185,7 @@ extension SurfingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0, 2:
-            return 4
+            return min(4, likedFolders.count)
         case 1:
             return 5
         default:
@@ -187,14 +195,21 @@ extension SurfingViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
+        case 0:
+            guard let folderCell = collectionView.dequeueReusableCell(withReuseIdentifier: FolderCell.cellIdentifier, for: indexPath) as? FolderCell else { fatalError() }
+            folderCell.gradientLayer.isHidden = false
+            return folderCell
         case 1:
             guard let surfingCategoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: SurfingCategoryCell.cellIdentifier, for: indexPath) as? SurfingCategoryCell else { fatalError() }
             
             return surfingCategoryCell
-        default:
+        case 2:
             guard let folderCell = collectionView.dequeueReusableCell(withReuseIdentifier: FolderCell.cellIdentifier, for: indexPath) as? FolderCell else { fatalError() }
             folderCell.gradientLayer.isHidden = false
+            
             return folderCell
+        default:
+            return UICollectionViewCell()
         }
         
     }
@@ -246,7 +261,7 @@ extension SurfingViewController: UICollectionViewDelegateFlowLayout {
         switch sender.view?.tag {
         case 2:
             print("2")
-            guard let savedFolderVC = SavedFolderViewController.storyboardInstance() else { fatalError() }
+            guard let savedFolderVC = SurfingFolderViewController.storyboardInstance() else { fatalError() }
             savedFolderVC.homeNavigationController = homeNavigationController
             homeNavigationController?.pushViewController(savedFolderVC, animated: true)
         default:
