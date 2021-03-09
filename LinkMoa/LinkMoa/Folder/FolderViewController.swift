@@ -147,8 +147,8 @@ final class FolderViewController: UIViewController, CustomAlert {
     
     @objc private func cellEditButtonTapped(_ sender: UIGestureRecognizer) { // edit 버튼 클릭됬을 때
         guard let button = sender.view as? UICustomTagButton else { return }
-        //guard let folder = folders.filter({ $0.index == button.customTag }).first,
-        // let index = folders.firstIndex(of: folder) else { return }
+        guard let folder = folders.filter({$0.index == button.customTag}).first else { return }
+        guard let index = folders.firstIndex(of: folder) else { return }
         
         guard let editVC = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
         
@@ -220,8 +220,8 @@ extension FolderViewController: UICollectionViewDataSource {
         let folder = folders[indexPath.item]
         
         folderCell.update(by: folder)
-        // folderCell.editButton.addGestureRecognizer(tapGesture)
-        // folderCell.editButton.customTag = folder.id
+        folderCell.editButton.addGestureRecognizer(tapGesture)
+        folderCell.editButton.customTag = folder.index
         
         return folderCell
     }

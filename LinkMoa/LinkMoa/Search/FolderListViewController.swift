@@ -54,7 +54,7 @@ extension FolderListViewController: UICollectionViewDataSource {
         
         // folderCell.update(by: folder)
 // folderCell.editButton.addGestureRecognizer(tapGesture)
-        folderCell.editButton.customTag = folder.id
+        // folderCell.editButton.customTag = folder.id
         
         return folderCell
     }

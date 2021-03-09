@@ -60,7 +60,7 @@ extension LinkListViewController: UICollectionViewDataSource {
         
         linkCell.update(by: link)
         // linkCell.editButton.addGestureRecognizer(tapGesture)
-        linkCell.editButton.customTag = link.id
+        // linkCell.editButton.customTag = link.id
         
         return linkCell
     }

@@ -126,9 +126,9 @@ final class SearchLinkViewController: UIViewController, BackgroundBlur {
     
     @objc private func cellEditButtonTapped(_ sender: UIGestureRecognizer) { // edit 버튼 클릭됬을 때
         guard let button = sender.view as? UICustomTagButton else { return }
-        guard let link = filterLinks.filter({$0.id == button.customTag}).first else { return }
+        // guard let link = filterLinks.filter({$0.id == button.customTag}).first else { return }
         guard let folder = folder else { return }
-        
+        guard let link = filterLinks.first else { return } // for error handler
         guard let editVC = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
         
         editVC.modalPresentationStyle = .overCurrentContext
@@ -227,7 +227,7 @@ extension SearchLinkViewController: UICollectionViewDataSource {
         
         linkCell.update(by: link)
          linkCell.editButton.addGestureRecognizer(tapGesture)
-         linkCell.editButton.customTag = link.id
+        // linkCell.editButton.customTag = link.id
         
         return linkCell
     }

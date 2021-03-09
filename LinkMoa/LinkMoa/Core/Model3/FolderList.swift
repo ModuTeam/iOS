@@ -14,11 +14,15 @@ struct FolderList: Codable {
     let message: String
     let result: [Result]?
     
-    struct Result: Codable {
+    struct Result: Codable, Equatable {
         let index: Int
         let name: String
         let linkCount: Int
         let folderType: String
+        
+        static func == (lhs: Result, rhs: Result) -> Bool {
+            return lhs.index == rhs.index
+        }
         
         enum CodingKeys: String, CodingKey {
             case index = "folderIdx"
