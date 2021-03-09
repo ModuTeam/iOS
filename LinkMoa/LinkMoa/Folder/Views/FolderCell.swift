@@ -45,11 +45,13 @@ final class FolderCell: UICollectionViewCell {
         titleLabel.text = folder.name
         countLabel.text = String(folder.linkCount)
         
-//        if folder.isShared {
-//            lockImageView.isHidden = true
-//        } else {
-//            lockImageView.isHidden = false
-//        }
+        let isShared = folder.folderType == "private" ? false : true
+        
+        if isShared {
+            lockImageView.isHidden = true
+        } else {
+            lockImageView.isHidden = false
+        }
         
 //        if let previewData = Array(folder.links).compactMap({ $0.webPreview }).last,
 //           let previewImage = UIImage(data: previewData) {

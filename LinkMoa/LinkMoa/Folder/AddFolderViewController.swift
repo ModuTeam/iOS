@@ -29,7 +29,9 @@ final class AddFolderViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var tagNotificationView: UIView!
     
-    private let folderViewModel: FolderViewModel = FolderViewModel()
+    // private let folderViewModel: FolderViewModel = FolderViewModel()
+    private let addFolderViewModel: AddFolderViewModel = AddFolderViewModel()
+    
     private var tags: [String] = [] {
         didSet {
             if tags.count == 0 {
@@ -193,22 +195,54 @@ final class AddFolderViewController: UIViewController {
         
         switch folderPresentingType {
         case .add:
-            let folder = Folder(name: name, isShared: isShared, tags: tags.map { Tag(name: $0) })
-            folderViewModel.inputs.save(target: folder)
             
-            dismiss(animated: true, completion: {
-                self.alertSucceedViewHandler?()
+            
+            //MARK:- 폴더생성
+            //        let params: [String: Any] = ["folderName": "test",
+            //                                     "hashTagList": ["test1","test2"],
+            //                                     "categoryIdx": 1,
+            //                                     "folderType": "private"
+            //        ]
+            //
+            //        myScallopManager.addNewFolder(params: params) { result in
+            //            print("🥺test", result)
+            //        }
+            
+            // let folder = Folder(name: name, isShared: isShared, tags: tags.map { Tag(name: $0) })
+            // folderViewModel.inputs.save(target: folder)
+            
+            let param: [String : Any] = ["folderName" : name,
+                                         "hashTagList" : tags,
+                                         "categoryIdx" : 1,
+                                         "folderType" : isShared == true ? "public" : "private"
+            ]
+            
+            
+            addFolderViewModel.addFolder(folderParam: param, completionHandler: { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let value):
+                    if value.isSuccess {
+                        self.dismiss(animated: true, completion: {
+                            self.alertSucceedViewHandler?()
+                        })
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+                
             })
         case .edit:
             guard let folder = folder else { return }
             
-            folderViewModel.remove(target: folder.tags)
+            // folderViewModel.remove(target: folder.tags)
             
-            folderViewModel.inputs.update {
-                folder.name = name
-                folder.isShared = self.isShared
-                folder.tags.append(objectsIn: self.tags.map { Tag(name: $0) })
-            }
+//            folderViewModel.inputs.update {
+//                folder.name = name
+//                folder.isShared = self.isShared
+//                folder.tags.append(objectsIn: self.tags.map { Tag(name: $0) })
+//            }
             
             if let HomeNC = presentingViewController as? HomeNavigationController,
                let folderDetailVC = HomeNC.topViewController as? FolderDetailViewController {

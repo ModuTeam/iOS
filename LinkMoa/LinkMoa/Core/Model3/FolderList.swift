@@ -18,11 +18,13 @@ struct FolderList: Codable {
         let index: Int
         let name: String
         let linkCount: Int
+        let folderType: String
         
         enum CodingKeys: String, CodingKey {
             case index = "folderIdx"
             case name = "folderName"
             case linkCount = "folderLinkCount"
+            case folderType
         }
     }
 }

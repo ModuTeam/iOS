@@ -13,12 +13,9 @@ enum MyScallopAPI {
     case addFolder(params: [String: Any])
     case editFolder(index: Int, params: [String: Any])
     case deleteFolder(index: Int)
-    
     case addLink(index: Int, params: [String: Any])
     case editLink(index: Int, params: [String: Any])
     case deleteLink(index: Int)
-    
-    
 }
 
 extension MyScallopAPI: TargetType {
