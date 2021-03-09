@@ -8,7 +8,10 @@
 import UIKit
 import Lottie
 import AuthenticationServices
+
+#if !FAT_FRAMEWORK_NOT_AVAILABLE
 import GoogleSignIn
+#endif
 
 final class LoginViewController: UIViewController {
 
@@ -81,8 +84,10 @@ final class LoginViewController: UIViewController {
         googleLoginButtonView.layer.masksToBounds = true
         googleLoginButtonView.layer.cornerRadius = 8
         
+        #if !FAT_FRAMEWORK_NOT_AVAILABLE
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance().delegate = self
+        #endif
     }
     
     @objc private func restartAnimation() {
@@ -90,7 +95,9 @@ final class LoginViewController: UIViewController {
     }
     
     @objc private func startButtonTapped() {
+        #if !FAT_FRAMEWORK_NOT_AVAILABLE
         GIDSignIn.sharedInstance().signIn()
+        #endif
     }
     
     @IBAction func moveHomeVC() {
@@ -150,6 +157,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     }
 }
 
+#if !FAT_FRAMEWORK_NOT_AVAILABLE
 extension LoginViewController: GIDSignInDelegate {
     // 연동을 시도 했을때 불러오는 메소드
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -187,4 +195,4 @@ extension LoginViewController: GIDSignInDelegate {
         print("Disconnect")
     }
 }
-
+#endif

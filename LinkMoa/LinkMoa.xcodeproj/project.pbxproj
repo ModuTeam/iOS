@@ -17,10 +17,8 @@
 		254274AD25F1DC4E00A88F18 /* SurfingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254274AC25F1DC4E00A88F18 /* SurfingViewController.swift */; };
 		258447CD25F642D9003E0A04 /* MyScallopAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447CC25F642D9003E0A04 /* MyScallopAPI.swift */; };
 		258447D125F642EA003E0A04 /* MyScallopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447D025F642EA003E0A04 /* MyScallopManager.swift */; };
-		258447E825F649D6003E0A04 /* LinkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447E725F649D6003E0A04 /* LinkResponse.swift */; };
 		258447EC25F64A1C003E0A04 /* FolderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447EB25F64A1C003E0A04 /* FolderList.swift */; };
 		258447F425F64EE9003E0A04 /* FolderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447F325F64EE9003E0A04 /* FolderResponse.swift */; };
-		258447F825F64F3E003E0A04 /* NewFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447F725F64F3E003E0A04 /* NewFolder.swift */; };
 		25D0047F25F397F6002743C3 /* CategoryDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25D0047E25F397F6002743C3 /* CategoryDetail.storyboard */; };
 		25D0048325F3980D002743C3 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D0048225F3980D002743C3 /* CategoryDetailViewController.swift */; };
 		25D0049125F39B0D002743C3 /* SavedFolder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25D0049025F39B0D002743C3 /* SavedFolder.storyboard */; };
@@ -31,7 +29,6 @@
 		25D004CE25F5E26D002743C3 /* SurfingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D004CD25F5E26D002743C3 /* SurfingManager.swift */; };
 		25D004D325F5E335002743C3 /* FolderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D004D225F5E335002743C3 /* FolderDetail.swift */; };
 		25D004E125F60026002743C3 /* LikedFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D004E025F60026002743C3 /* LikedFolder.swift */; };
-		3686E7E46878949420F0F97C /* Pods_LinkMoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B68EB404A432BD2D2E57EA7D /* Pods_LinkMoa.framework */; };
 		3C04654D25E3DCCF007B61E3 /* edit_garibi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3C04654C25E3DCCF007B61E3 /* edit_garibi.json */; };
 		3C04655F25E4A287007B61E3 /* SearchLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C04655E25E4A287007B61E3 /* SearchLinkViewController.swift */; };
 		3C04656325E4A29B007B61E3 /* SearchLink.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C04656225E4A29B007B61E3 /* SearchLink.storyboard */; };
@@ -128,6 +125,8 @@
 		3CAEC1A425C699B2009248D6 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3CAEC19E25C699B1009248D6 /* NotoSansKR-Bold.otf */; };
 		3CAEC1A525C699B2009248D6 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3CAEC19F25C699B1009248D6 /* NotoSansKR-Medium.otf */; };
 		3CAEC1A725C699B2009248D6 /* NotoSansKR-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3CAEC1A125C699B2009248D6 /* NotoSansKR-Thin.otf */; };
+		3CB4598425F6F7B30016351B /* NewFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447F725F64F3E003E0A04 /* NewFolder.swift */; };
+		3CB4598525F6F7BD0016351B /* LinkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447E725F649D6003E0A04 /* LinkResponse.swift */; };
 		3CC67C7225C99B06004F914E /* TopMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC67C7025C99B06004F914E /* TopMenuCell.swift */; };
 		3CC67C7325C99B06004F914E /* TopMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC67C7125C99B06004F914E /* TopMenuCell.xib */; };
 		3CC67C7C25C9A7AA004F914E /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC67C7A25C9A7AA004F914E /* FolderCell.swift */; };
@@ -340,7 +339,9 @@
 		3CF5ADED25C2891D00F1E45E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3CF5ADEF25C2891D00F1E45E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CFFFCD625F62045002B935A /* GoogleLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLogin.swift; sourceTree = "<group>"; };
+		423BF33D62F51E4E7A6A3936 /* Pods-LinkMoaShareExtension.debug-m1.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkMoaShareExtension.debug-m1.xcconfig"; path = "Target Support Files/Pods-LinkMoaShareExtension/Pods-LinkMoaShareExtension.debug-m1.xcconfig"; sourceTree = "<group>"; };
 		59B69FFDBBF6CFF93BEE0317 /* Pods-LinkMoaShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkMoaShareExtension.release.xcconfig"; path = "Target Support Files/Pods-LinkMoaShareExtension/Pods-LinkMoaShareExtension.release.xcconfig"; sourceTree = "<group>"; };
+		6EE99D192D99B7C1201D8FF0 /* Pods-LinkMoa.debug-m1.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkMoa.debug-m1.xcconfig"; path = "Target Support Files/Pods-LinkMoa/Pods-LinkMoa.debug-m1.xcconfig"; sourceTree = "<group>"; };
 		72A0AEBFAD692796EB5581F8 /* Pods-LinkMoaShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkMoaShareExtension.debug.xcconfig"; path = "Target Support Files/Pods-LinkMoaShareExtension/Pods-LinkMoaShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		8E99DA877496A800BA08D555 /* Pods-LinkMoa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkMoa.debug.xcconfig"; path = "Target Support Files/Pods-LinkMoa/Pods-LinkMoa.debug.xcconfig"; sourceTree = "<group>"; };
 		9F2771E65C4772960AB5566E /* Pods_LinkMoaShareExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinkMoaShareExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -755,6 +756,8 @@
 				24047C72D6202B37B908B41C /* Pods-LinkMoa.release.xcconfig */,
 				72A0AEBFAD692796EB5581F8 /* Pods-LinkMoaShareExtension.debug.xcconfig */,
 				59B69FFDBBF6CFF93BEE0317 /* Pods-LinkMoaShareExtension.release.xcconfig */,
+				6EE99D192D99B7C1201D8FF0 /* Pods-LinkMoa.debug-m1.xcconfig */,
+				423BF33D62F51E4E7A6A3936 /* Pods-LinkMoaShareExtension.debug-m1.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1047,16 +1050,12 @@
 				3C540E7B25CEDBBB0013427E /* Observable.swift in Sources */,
 				3C0C16E525F6401500D8A632 /* TokenManager.swift in Sources */,
 				3CD9205E25E7D83B006B8CC6 /* SearchFolderViewModel.swift in Sources */,
-
 				3C68933A25F5C7F7001F229D /* LoginAPI.swift in Sources */,
-
 				3CF5ADE625C2891B00F1E45E /* ViewController.swift in Sources */,
 				25D004CA25F5DFE0002743C3 /* SurfingAPI.swift in Sources */,
 				3CD6665325E210D20075DFE6 /* UIImage+Grey.swift in Sources */,
 				3CF5ADE225C2891B00F1E45E /* AppDelegate.swift in Sources */,
-
 				3CFFFCD725F62045002B935A /* GoogleLogin.swift in Sources */,
-
 				3C68934F25F5CFAC001F229D /* LoginViewModel.swift in Sources */,
 				3C540EA625CFB8850013427E /* UIColor+.swift in Sources */,
 				258447CD25F642D9003E0A04 /* MyScallopAPI.swift in Sources */,
@@ -1065,6 +1064,7 @@
 				3C4E979C25DE5075001A5BC9 /* SelectNaviagitonController.swift in Sources */,
 				3C540EB125CFCAED0013427E /* EditBottomSheetViewController.swift in Sources */,
 				3C4E979025DE4A0A001A5BC9 /* FolderSelectViewController.swift in Sources */,
+				3CB4598425F6F7B30016351B /* NewFolder.swift in Sources */,
 				3C04656925E5F0C6007B61E3 /* NSObject+StoryboardName.swift in Sources */,
 				3CDCFCF025CAF51A00B0F6E0 /* AddFolderViewController.swift in Sources */,
 				258447EC25F64A1C003E0A04 /* FolderList.swift in Sources */,
@@ -1072,6 +1072,7 @@
 				2542747025F136B400A88F18 /* SurfingHeaderView.swift in Sources */,
 				3C4BC7CF25DCE0C400C06929 /* AddLinkViewController.swift in Sources */,
 				3CCA602225DFA3FA00DD1F50 /* LinkPresentaionService.swift in Sources */,
+				3CB4598525F6F7BD0016351B /* LinkResponse.swift in Sources */,
 				258447F425F64EE9003E0A04 /* FolderResponse.swift in Sources */,
 				3CAEC18E25C696E7009248D6 /* FolderViewController.swift in Sources */,
 				25D004E125F60026002743C3 /* LikedFolder.swift in Sources */,
@@ -1189,6 +1190,114 @@
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
+		};
+		3CB4598125F6F71C0016351B /* Debug-M1 */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = "Debug-M1";
+		};
+		3CB4598225F6F71C0016351B /* Debug-M1 */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EE99D192D99B7C1201D8FF0 /* Pods-LinkMoa.debug-m1.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LinkMoa/LinkMoa.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2.4;
+				DEVELOPMENT_TEAM = HK54HM2TC6;
+				INFOPLIST_FILE = LinkMoa/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D FAT_FRAMEWORK_NOT_AVAILABLE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.modu.LinkMoa;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "Debug-M1";
+		};
+		3CB4598325F6F71C0016351B /* Debug-M1 */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 423BF33D62F51E4E7A6A3936 /* Pods-LinkMoaShareExtension.debug-m1.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = LinkMoaShareExtension/LinkMoaShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2.4;
+				DEVELOPMENT_TEAM = HK54HM2TC6;
+				INFOPLIST_FILE = LinkMoaShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.modu.LinkMoa.LinkMoaShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "Debug-M1";
 		};
 		3CF5ADF025C2891D00F1E45E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1361,6 +1470,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3C8AD45D25D3A3AB00197B21 /* Debug */,
+				3CB4598325F6F71C0016351B /* Debug-M1 */,
 				3C8AD45E25D3A3AB00197B21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1370,6 +1480,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3CF5ADF025C2891D00F1E45E /* Debug */,
+				3CB4598125F6F71C0016351B /* Debug-M1 */,
 				3CF5ADF125C2891D00F1E45E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1379,6 +1490,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3CF5ADF325C2891D00F1E45E /* Debug */,
+				3CB4598225F6F71C0016351B /* Debug-M1 */,
 				3CF5ADF425C2891D00F1E45E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

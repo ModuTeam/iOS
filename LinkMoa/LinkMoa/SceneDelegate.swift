@@ -6,7 +6,10 @@
 //
 
 import UIKit
+
+#if !FAT_FRAMEWORK_NOT_AVAILABLE
 import GoogleSignIn
+#endif
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -24,7 +27,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scheme = URLContexts.first?.url.scheme else { return }
         
         if scheme.contains("com.googleusercontent.apps") {
+            #if !FAT_FRAMEWORK_NOT_AVAILABLE
             GIDSignIn.sharedInstance().handle(URLContexts.first?.url)
+            #endif
         }
     }
 

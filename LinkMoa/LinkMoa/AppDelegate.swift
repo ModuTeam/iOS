@@ -6,7 +6,10 @@
 //
 
 import UIKit
+
+#if !FAT_FRAMEWORK_NOT_AVAILABLE
 import GoogleSignIn
+#endif
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,8 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        GIDSignIn.sharedInstance().clientID = "384172656037-5k9tbriu0ki2gmiav2c9h049g1dicrcs.apps.googleusercontent.com"
         
+        #if !FAT_FRAMEWORK_NOT_AVAILABLE
+        GIDSignIn.sharedInstance().clientID = "384172656037-5k9tbriu0ki2gmiav2c9h049g1dicrcs.apps.googleusercontent.com"
+        #endif
+
         Thread.sleep(forTimeInterval: 2)
         return true
     }

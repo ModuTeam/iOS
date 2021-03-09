@@ -7,8 +7,9 @@ target 'LinkMoa' do
   pod 'RealmSwift', '=10.1.4'
   pod 'Toast-Swift', '~> 5.0.1'
   pod 'lottie-ios'
-  pod 'GoogleSignIn'
   pod 'Moya', '~> 14.0'
+  # Include all other configurations except `Debug-M1`
+  pod 'GoogleSignIn', :configurations => ['Debug', 'Release']
   # Pods for LinkMoa
 end
 
