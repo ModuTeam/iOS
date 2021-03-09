@@ -34,7 +34,7 @@ protocol SearchFolderViewModelViewModelType {
 final class SearchFolderViewModel: SearchFolderViewModelOutputs, SearchFolderViewModelInputs, SearchFolderViewModelViewModelType {
     
     init() {
-        self.realmService = RealmService()
+        // self.realmService = RealmService()
     }
     
     deinit {
@@ -42,7 +42,7 @@ final class SearchFolderViewModel: SearchFolderViewModelOutputs, SearchFolderVie
         linksToken?.invalidate()
     }
     
-    private let realmService: RealmService
+    // private let realmService: RealmService
     
     let links: Observable<[Link]> = Observable([])
     let folders: Observable<[Folder]> = Observable([])
@@ -54,40 +54,40 @@ final class SearchFolderViewModel: SearchFolderViewModelOutputs, SearchFolderVie
     var outputs: SearchFolderViewModelOutputs { return self }
     
     func fetchFolders() {
-        realmService.fetch(Folder.self, fetchOption: .date, completeHandler: { results in
-            // self.folders.value = results.map { $0 }
-
-            self.foldersToken = results.observe({ [unowned self] changes in
-                switch changes {
-                case .initial(let folders):
-                    self.folders.value = folders.map { $0 }
-                    print("SearchFolderViewModel - init")
-                case .update(let folders, _, _, _):
-                    self.folders.value = folders.map { $0 }
-                    print("SearchFolderViewModel - update")
-                case .error(let error):
-                    print(error)
-                    fatalError()
-                }
-            })
-        })
+//        realmService.fetch(Folder.self, fetchOption: .date, completeHandler: { results in
+//            // self.folders.value = results.map { $0 }
+//
+//            self.foldersToken = results.observe({ [unowned self] changes in
+//                switch changes {
+//                case .initial(let folders):
+//                    self.folders.value = folders.map { $0 }
+//                    print("SearchFolderViewModel - init")
+//                case .update(let folders, _, _, _):
+//                    self.folders.value = folders.map { $0 }
+//                    print("SearchFolderViewModel - update")
+//                case .error(let error):
+//                    print(error)
+//                    fatalError()
+//                }
+//            })
+//        })
     }
     
     func fetchLinks() {
-        realmService.fetch(Link.self, completeHandler: { results in
-            self.linksToken = results.observe({ [unowned self] changes in
-                switch changes {
-                case .initial(let links):
-                    self.links.value = links.map { $0 }
-                // print("FolderViewModel - init")
-                case .update(let links, _, _, _):
-                    self.links.value = links.map { $0 }
-                /// print("FolderViewModel - update")
-                case .error(let error):
-                    print(error)
-                    fatalError()
-                }
-            })
-        })
+//        realmService.fetch(Link.self, completeHandler: { results in
+//            self.linksToken = results.observe({ [unowned self] changes in
+//                switch changes {
+//                case .initial(let links):
+//                    self.links.value = links.map { $0 }
+//                // print("FolderViewModel - init")
+//                case .update(let links, _, _, _):
+//                    self.links.value = links.map { $0 }
+//                /// print("FolderViewModel - update")
+//                case .error(let error):
+//                    print(error)
+//                    fatalError()
+//                }
+//            })
+//        })
     }
 }

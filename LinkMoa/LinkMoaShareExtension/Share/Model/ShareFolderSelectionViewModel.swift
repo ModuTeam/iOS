@@ -26,14 +26,14 @@ protocol ShareFolderSelectionViewModelType {
 final class ShareFolderSelectionViewModel: ShareFolderSelectionViewModelInputs, ShareFolderSelectionViewModelOutputs, ShareFolderSelectionViewModelType {
 
     init() {
-        self.realmService = RealmService()
+        // self.realmService = RealmService()
     }
     
     deinit {
         foldersToken?.invalidate()
     }
     
-    private let realmService: RealmService
+    // private let realmService: RealmService
 
     let folders: Observable<[Folder]> = Observable([])
     
@@ -43,24 +43,24 @@ final class ShareFolderSelectionViewModel: ShareFolderSelectionViewModelInputs, 
     var foldersToken: NotificationToken?
     
     func fetchFolders() {
-        realmService.fetch(Folder.self, fetchOption: .date, completeHandler: { results in
-            self.foldersToken = results.observe({ [unowned self] changes in
-                switch changes {
-                case .initial(let folders):
-                    self.folders.value = folders.map { $0 }
-                    print("FolderViewModel - init")
-                case .update(let folders, _, _, _):
-                    self.folders.value = folders.map { $0 }
-                    print("FolderViewModel - update")
-                case .error(let error):
-                    print(error)
-                    fatalError()
-                }
-            })
-        })
+//        realmService.fetch(Folder.self, fetchOption: .date, completeHandler: { results in
+//            self.foldersToken = results.observe({ [unowned self] changes in
+//                switch changes {
+//                case .initial(let folders):
+//                    self.folders.value = folders.map { $0 }
+//                    print("FolderViewModel - init")
+//                case .update(let folders, _, _, _):
+//                    self.folders.value = folders.map { $0 }
+//                    print("FolderViewModel - update")
+//                case .error(let error):
+//                    print(error)
+//                    fatalError()
+//                }
+//            })
+//        })
     }
     
     func save(target folder: Folder) {
-        realmService.add(folder)
+        // realmService.add(folder)
     }
 }
