@@ -64,7 +64,9 @@ final class AddFolderViewController: UIViewController {
     
     var folderPresentingType: FolderPresentingType = .add
     var folder: Folder?
-    var alertSucceedViewHandler: (() -> ())?
+    
+    var editCompletionHandler: (() -> ())? // FolderVC 리로드 할 때
+    var alertSucceedViewHandler: (() -> ())? // PresetingVC 성공 Alert 보여줄 때
     
     static func storyboardInstance() -> AddFolderViewController? {
         let storyboard = UIStoryboard(name: AddFolderViewController.storyboardName(), bundle: nil)
@@ -217,13 +219,13 @@ final class AddFolderViewController: UIViewController {
                                          "folderType" : isShared == true ? "public" : "private"
             ]
             
-            
             addFolderViewModel.addFolder(folderParam: param, completionHandler: { [weak self] result in
                 guard let self = self else { return }
                 
                 switch result {
                 case .success(let value):
                     if value.isSuccess {
+                        self.editCompletionHandler?()
                         self.dismiss(animated: true, completion: {
                             self.alertSucceedViewHandler?()
                         })

@@ -65,6 +65,10 @@ final class FolderViewController: UIViewController, CustomAlert {
         guard let addFolderVC = AddFolderViewController.storyboardInstance() else { fatalError() }
         
         addFolderVC.modalPresentationStyle = .fullScreen
+        addFolderVC.editCompletionHandler = { [weak self] in
+            guard let self = self else { return }
+            self.folderViewModel.inputs.fetchFolders()
+        }
         addFolderVC.alertSucceedViewHandler = { [weak self] in
             guard let self = self else { return }
             self.blurVC?.fadeInBackgroundViewAnimation()
