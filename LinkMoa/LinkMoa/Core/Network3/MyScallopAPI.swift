@@ -13,12 +13,9 @@ enum MyScallopAPI {
     case addFolder(params: [String: Any])
     case editFolder(index: Int, params: [String: Any])
     case deleteFolder(index: Int)
-    
     case addLink(index: Int, params: [String: Any])
     case editLink(index: Int, params: [String: Any])
     case deleteLink(index: Int)
-    
-    
 }
 
 extension MyScallopAPI: TargetType {
@@ -75,8 +72,10 @@ extension MyScallopAPI: TargetType {
     }
     
     var headers: [String : String]? {
+        guard let jwtToken = TokenManager().jwtToken else { fatalError() }
+
         return ["Content-Type" : "application/json",
-                "x-access-token" : testToken]
+                "x-access-token" : jwtToken]
     }
 }
 

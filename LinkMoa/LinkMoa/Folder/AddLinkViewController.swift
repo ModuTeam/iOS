@@ -184,9 +184,9 @@ final class AddLinkViewController: UIViewController {
                 let addLink = Link(name: name, url: url, webPreview: web?.pngData() ?? nil, favicon: favicon?.pngData() ?? nil)
                 
                 DispatchQueue.main.async {
-                    self.folderViewModel.update {
-                        destinationFolder.links.append(addLink)
-                    }
+//                    self.folderViewModel.update {
+//                        destinationFolder.links.append(addLink)
+//                    }
                     
                     self.view.hideAllToasts()
                     self.dismiss(animated: true, completion: {
@@ -210,10 +210,10 @@ final class AddLinkViewController: UIViewController {
                         let addLink = Link(name: name, url: url, webPreview: web?.pngData() ?? nil, favicon: favicon?.pngData() ?? nil)
                         
                         DispatchQueue.main.async {
-                            self.folderViewModel.remove(target: link)
-                            self.folderViewModel.update {
-                                destinationFolder.links.append(addLink)
-                            }
+//                            self.folderViewModel.remove(target: link)
+//                            self.folderViewModel.update {
+//                                destinationFolder.links.append(addLink)
+//                            }
                             
                             self.view.hideAllToasts()
                             self.dismiss(animated: true, completion: {
@@ -224,10 +224,10 @@ final class AddLinkViewController: UIViewController {
                 } else { // default move
                     let addLink = Link(name: link.name, url: link.url, webPreview: link.webPreview, favicon: link.favicon)
                     
-                    folderViewModel.remove(target: link)
-                    folderViewModel.update {
-                        destinationFolder.links.append(addLink)
-                    }
+//                    folderViewModel.remove(target: link)
+//                    folderViewModel.update {
+//                        destinationFolder.links.append(addLink)
+//                    }
                     
                     dismiss(animated: true, completion: {
                         self.alertSucceedViewHandler?()
@@ -244,12 +244,12 @@ final class AddLinkViewController: UIViewController {
                         guard let self = self else { return }
                         
                         DispatchQueue.main.async {
-                            self.folderViewModel.update {
-                                link.name = name
-                                link.url = url
-                                link.webPreview = web?.pngData()
-                                link.favicon = favicon?.pngData()
-                            }
+//                            self.folderViewModel.update {
+//                                link.name = name
+//                                link.url = url
+//                                link.webPreview = web?.pngData()
+//                                link.favicon = favicon?.pngData()
+//                            }
                             
                             self.view.hideAllToasts()
                             self.updateReloadHander?() // use only update
@@ -259,10 +259,10 @@ final class AddLinkViewController: UIViewController {
                         }
                     })
                 } else { // default update
-                    folderViewModel.update {
-                        link.name = name
-                        link.url = url
-                    }
+//                    folderViewModel.update {
+//                        link.name = name
+//                        link.url = url
+//                    }
                     
                     self.updateReloadHander?() // use only update
                     dismiss(animated: true, completion: {

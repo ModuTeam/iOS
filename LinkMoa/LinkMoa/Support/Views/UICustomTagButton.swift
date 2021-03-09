@@ -8,5 +8,5 @@
 import UIKit
 
 final class UICustomTagButton: UIButton {
-    var customTag: String = ""
+    var customTag: Int = 0
 }

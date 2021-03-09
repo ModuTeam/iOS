@@ -20,22 +20,22 @@ protocol ShareViewModelType {
 
 final class ShareViewModel: ShareViewModelOutputs, ShareViewModelInputs, ShareViewModelType {
     
-    init() {
-        self.realmService = RealmService()
-    }
+//    init() {
+//        self.realmService = RealmService()
+//    }
     
-    private let realmService: RealmService
+    // private let realmService: RealmService
     
     var inputs: ShareViewModelInputs { return self }
     var outputs: ShareViewModelOutputs { return self }
     
     func save(target folder: Folder) {
-        realmService.add(folder)
+        // realmService.add(folder)
     }
     
     func update(handler updateHandler: @escaping () -> ()) {
-        realmService.update {
-            updateHandler()
-        }
+//        realmService.update {
+//            updateHandler()
+//        }
     }
 }

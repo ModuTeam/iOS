@@ -10,16 +10,13 @@ import RealmSwift
 import Realm
 
 protocol FolderViewModelOutputs {
-    var folders: Observable<[Folder]> { get }
+    var folders: Observable<[FolderList.Result]> { get }
 }
 
 protocol FolderViewModelInputs {
     func fetchFolders()
-    func remove(target object: Object)
-    func remove<T: Object>(target list: List<T>)
-    func save(target folder: Folder)
-    func update(handler updateHandler: @escaping () -> ())
     func setFetchOption(option fetchOption: FolderFetchOption)
+    func removeFolder(folderIndex index: Int, completionHandler: @escaping ((Result<FolderResponse, Error>) -> ()))
     var fetchOption: FolderFetchOption { get }
 }
 
@@ -30,61 +27,37 @@ protocol FolderViewModelType {
 
 final class FolderViewModel: FolderViewModelInputs, FolderViewModelOutputs, FolderViewModelType {
     
-    init() {
-        self.realmService = RealmService()
-    }
-    
-    deinit {
-        foldersToken?.invalidate()
-    }
-    
-    private let realmService: RealmService
+    private let myScallopManager = MyScallopManager()
     private(set) var fetchOption: FolderFetchOption = .date
 
-    let folders: Observable<[Folder]> = Observable([])
+    var folders: Observable<[FolderList.Result]> = Observable([])
     
     var inputs: FolderViewModelInputs { return self }
     var outputs: FolderViewModelOutputs { return self }
     
-    var foldersToken: NotificationToken?
+    // var foldersToken: NotificationToken?
     
     func fetchFolders() {
-        realmService.fetch(Folder.self, fetchOption: self.fetchOption, completeHandler: { results in
-            self.foldersToken = results.observe({ [unowned self] changes in
-                switch changes {
-                case .initial(let folders):
-                    self.folders.value = folders.map { $0 }
-                    print("FolderViewModel - init")
-                case .update(let folders, _, _, _):
-                    self.folders.value = folders.map { $0 }
-                    print("FolderViewModel - update")
-                case .error(let error):
-                    print(error)
-                    fatalError()
+        myScallopManager.fetchMyFolderList(completion: { result in
+            switch result {
+            case .success(let value):
+                if let folders = value.result {
+                    self.folders.value = folders
                 }
-            })
+            case .success(let error):
+                print(error)
+            default:
+                break
+            }
+            
         })
     }
 
+    func removeFolder(folderIndex index: Int, completionHandler: @escaping ((Result<FolderResponse, Error>) -> ())) {
+        myScallopManager.deleteFolder(folder: index, completion: completionHandler)
+    }
+    
     func setFetchOption(option fetchOption: FolderFetchOption) {
         self.fetchOption = fetchOption
-    }
-    
-    func remove(target object: Object) {
-        realmService.delete(object)
-    }
-    
-    func remove<T: Object>(target list: List<T>) {
-        realmService.delete(list)
-    }
-    
-    func save(target folder: Folder) {
-        realmService.add(folder)
-    }
-    
-    func update(handler updateHandler: @escaping () -> ()) {
-        realmService.update {
-            updateHandler()
-        }
     }
 }

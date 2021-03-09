@@ -129,7 +129,7 @@ extension SurfingFolderDetailViewController: UICollectionViewDataSource {
         let link = links[indexPath.item]
         
         linkCell.update(by: link)
-        linkCell.editButton.customTag = link.id
+        // linkCell.editButton.customTag = link.id
         
         return linkCell
     }

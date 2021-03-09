@@ -31,7 +31,7 @@ protocol LinkViewModelType {
 final class LinkViewModel: LinkViewModelInputs, LinkViewModelOutputs, LinkViewModelType {
 
     init() {
-        self.realmService = RealmService()
+        // self.realmService = RealmService()
     }
     
     deinit {
@@ -39,7 +39,7 @@ final class LinkViewModel: LinkViewModelInputs, LinkViewModelOutputs, LinkViewMo
         print("links deinit")
     }
     
-    private let realmService: RealmService
+    // private let realmService: RealmService
     private var folderToken: NotificationToken?
     var folderSource: Folder?
 
@@ -88,16 +88,16 @@ final class LinkViewModel: LinkViewModelInputs, LinkViewModelOutputs, LinkViewMo
     }
     
     func removeFolder(target folder: Folder) {
-        realmService.delete(folder)
+        // realmService.delete(folder)
     }
     
     func removeLink(target link: Link) {
-        realmService.delete(link)
+        // realmService.delete(link)
     }
     
     func update(handler updateHandler: @escaping () -> ()) {
-        realmService.update {
-            updateHandler()
-        }
+//        realmService.update {
+//            updateHandler()
+//        }
     }
 }

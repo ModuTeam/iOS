@@ -31,10 +31,10 @@ protocol SearchLinkViewModelType {
 class SearchLinkViewModel: SearchLinkViewModelInputs, SearchLinkViewModelOutputs, SearchLinkViewModelType {
     
     init() {
-        self.realmService = RealmService()
+        // self.realmService = RealmService()
     }
     
-    private let realmService: RealmService
+    // private let realmService: RealmService
     private var folderToken: NotificationToken?
     
     var fetchOption: SearchLinkFetchOption = .date
@@ -46,29 +46,29 @@ class SearchLinkViewModel: SearchLinkViewModelInputs, SearchLinkViewModelOutputs
     var outputs: SearchLinkViewModelOutputs { return self }
     
     func attachObserver() {
-        folderToken = folderSource?.observe { changes in 
-            switch changes {
-            case .change(_, let properties):
-                for property in properties {
-                    switch property.name {
-                    case "links":
-                        if let links = property.newValue as? List<Link> {
-                            self.links.value = links.sorted(byKeyPath: self.fetchOption.rawValue).map { $0 }
-                        }
-                    default:
-                        break
-                    }
-                }
-            case .deleted:
-                print("searchLinkViewModel - deleted")
-            case .error(let error):
-                print(error)
-                fatalError()
-            }
-        }
+//        folderToken = folderSource?.observe { changes in 
+//            switch changes {
+//            case .change(_, let properties):
+//                for property in properties {
+//                    switch property.name {
+//                    case "links":
+//                        if let links = property.newValue as? List<Link> {
+//                            self.links.value = links.sorted(byKeyPath: self.fetchOption.rawValue).map { $0 }
+//                        }
+//                    default:
+//                        break
+//                    }
+//                }
+//            case .deleted:
+//                print("searchLinkViewModel - deleted")
+//            case .error(let error):
+//                print(error)
+//                fatalError()
+//            }
+//        }
     }
     
     func remove(target link: Link) {
-        realmService.delete(link)
+        // realmService.delete(link)
     }
 }

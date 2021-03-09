@@ -176,17 +176,17 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
             guard let folder = self.folder else { return }
             
             self.blurVC?.fadeInBackgroundViewAnimation()
-            self.alertRemoveRequestView(folder: folder,
-                                        completeHandler: {
-                                            self.blurVC?.fadeOutBackgroundViewAnimation()
-                                        },
-                                        removeHandler: {
-                                            self.linkViewModel.inputs.removeFolder(target: folder)
-                                            self.blurVC?.fadeOutBackgroundViewAnimation()
-                                            
-                                            self.navigationController?.popToRootViewController(animated: true)
-                                            self.folderRemoveHandler?()
-                                        })
+//            self.alertRemoveRequestView(folder: folder,
+//                                        completeHandler: {
+//                                            self.blurVC?.fadeOutBackgroundViewAnimation()
+//                                        },
+//                                        removeHandler: {
+//                                            self.linkViewModel.inputs.removeFolder(target: folder)
+//                                            self.blurVC?.fadeOutBackgroundViewAnimation()
+//                                            
+//                                            self.navigationController?.popToRootViewController(animated: true)
+//                                            self.folderRemoveHandler?()
+//                                        })
         }]
         blurVC?.fadeInBackgroundViewAnimation()
         navigationController?.present(editVC, animated: true)
@@ -213,69 +213,69 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
     }
     
     @objc private func cellEditButtonTapped(_ sender: UIGestureRecognizer) { // edit 버튼 클릭됬을 때
-        guard let button = sender.view as? UICustomTagButton else { return }
-        guard let link = links.filter({$0.id == button.customTag}).first else { return }
-        guard let index = links.firstIndex(of: link) else { return }
-        guard let folder = folder else { return }
-        
-        guard let editVC = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
-        
-        editVC.modalPresentationStyle = .overCurrentContext
-        editVC.modalTransitionStyle = .coverVertical
-        editVC.isIncludeRemoveButton = true
-        
-        editVC.actions = ["링크 수정", "URL 공유하기", "삭제하기"] // "URL 공유하기"
-        editVC.handlers = [{ [weak self] _ in // 링크 수정
-            guard let self = self else { return }
-            
-            guard let addLinkVC = AddLinkViewController.storyboardInstance() else { return }
-            
-            addLinkVC.linkPresetingStyle = .edit
-            addLinkVC.link = link
-            addLinkVC.folder = folder
-            addLinkVC.alertSucceedViewHandler = { [weak self] in
-                guard let self = self else { return }
-                
-                self.blurVC?.fadeInBackgroundViewAnimation()
-                self.alertSucceedView(completeHandler: { self.blurVC?.fadeOutBackgroundViewAnimation()})
-            }
-            addLinkVC.updateReloadHander = { [weak self] in
-                guard let self = self else { return }
-                self.linkCollectionView.reloadData()
-            }
-
-            let selectNC = SelectNaviagitonController()
-            selectNC.pushViewController(addLinkVC, animated: false)
-            selectNC.modalPresentationStyle = .fullScreen
-            selectNC.isNavigationBarHidden = true
-            
-            self.present(selectNC, animated: true, completion: nil)
-            
-        }, { [weak self] _ in // URL 공유하기
-            guard let self = self else { return }
-            
-            let activityController = UIActivityViewController(activityItems: ["\(link.name)\n\(link.url)"], applicationActivities: nil)
-            activityController.excludedActivityTypes = [.saveToCameraRoll, .print, .assignToContact, .addToReadingList]
-            self.present(activityController, animated: true, completion: nil)
-            
-        }, { [weak self] _ in // 삭제하기
-            guard let self = self else { return }
-            let indexPath = IndexPath(item: index, section: 0)
-            
-            self.linkViewModel.removeLink(target: link)
-            self.links.remove(at: index)
-            self.linkCollectionView.deleteItems(at: [indexPath])
-            
-            self.blurVC?.fadeInBackgroundViewAnimation()
-            self.alertRemoveSucceedView(completeHandler: { self.blurVC?.fadeOutBackgroundViewAnimation() })
-        }]
-        
-        editVC.completionHandler = { [weak self] in // 동작 완료하면
-            self?.blurVC?.fadeOutBackgroundViewAnimation()
-        }
-        
-        blurVC?.fadeInBackgroundViewAnimation()
-        present(editVC, animated: true)
+//        guard let button = sender.view as? UICustomTagButton else { return }
+//        // guard let link = links.filter({$0.id == button.customTag}).first else { return }
+//        guard let index = links.firstIndex(of: link) else { return }
+//        guard let folder = folder else { return }
+//        
+//        guard let editVC = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
+//        
+//        editVC.modalPresentationStyle = .overCurrentContext
+//        editVC.modalTransitionStyle = .coverVertical
+//        editVC.isIncludeRemoveButton = true
+//        
+//        editVC.actions = ["링크 수정", "URL 공유하기", "삭제하기"] // "URL 공유하기"
+//        editVC.handlers = [{ [weak self] _ in // 링크 수정
+//            guard let self = self else { return }
+//            
+//            guard let addLinkVC = AddLinkViewController.storyboardInstance() else { return }
+//            
+//            addLinkVC.linkPresetingStyle = .edit
+//            addLinkVC.link = link
+//            addLinkVC.folder = folder
+//            addLinkVC.alertSucceedViewHandler = { [weak self] in
+//                guard let self = self else { return }
+//                
+//                self.blurVC?.fadeInBackgroundViewAnimation()
+//                self.alertSucceedView(completeHandler: { self.blurVC?.fadeOutBackgroundViewAnimation()})
+//            }
+//            addLinkVC.updateReloadHander = { [weak self] in
+//                guard let self = self else { return }
+//                self.linkCollectionView.reloadData()
+//            }
+//
+//            let selectNC = SelectNaviagitonController()
+//            selectNC.pushViewController(addLinkVC, animated: false)
+//            selectNC.modalPresentationStyle = .fullScreen
+//            selectNC.isNavigationBarHidden = true
+//            
+//            self.present(selectNC, animated: true, completion: nil)
+//            
+//        }, { [weak self] _ in // URL 공유하기
+//            guard let self = self else { return }
+//            
+//            let activityController = UIActivityViewController(activityItems: ["\(link.name)\n\(link.url)"], applicationActivities: nil)
+//            activityController.excludedActivityTypes = [.saveToCameraRoll, .print, .assignToContact, .addToReadingList]
+//            self.present(activityController, animated: true, completion: nil)
+//            
+//        }, { [weak self] _ in // 삭제하기
+//            guard let self = self else { return }
+//            let indexPath = IndexPath(item: index, section: 0)
+//            
+//            self.linkViewModel.removeLink(target: link)
+//            self.links.remove(at: index)
+//            self.linkCollectionView.deleteItems(at: [indexPath])
+//            
+//            self.blurVC?.fadeInBackgroundViewAnimation()
+//            self.alertRemoveSucceedView(completeHandler: { self.blurVC?.fadeOutBackgroundViewAnimation() })
+//        }]
+//        
+//        editVC.completionHandler = { [weak self] in // 동작 완료하면
+//            self?.blurVC?.fadeOutBackgroundViewAnimation()
+//        }
+//        
+//        blurVC?.fadeInBackgroundViewAnimation()
+//        present(editVC, animated: true)
     }
     
     @objc private func searchButtonTapped() {
@@ -309,7 +309,7 @@ extension FolderDetailViewController: UICollectionViewDataSource {
         
         linkCell.update(by: link)
         linkCell.editButton.addGestureRecognizer(tapGesture)
-        linkCell.editButton.customTag = link.id
+        // linkCell.editButton.customTag = link.id
         
         return linkCell
     }

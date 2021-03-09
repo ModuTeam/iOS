@@ -13,7 +13,7 @@ final class FolderViewController: UIViewController, CustomAlert {
     @IBOutlet private weak var notificationStackView: UIStackView!
     
     private let folderViewModel: FolderViewModel = FolderViewModel()
-    private var folders: [Folder] = []
+    private var folders: [FolderList.Result] = []
     
     private var folderHeaderView: FolderHeaderView?
     private var blurVC: BackgroundBlur? {
@@ -65,6 +65,10 @@ final class FolderViewController: UIViewController, CustomAlert {
         guard let addFolderVC = AddFolderViewController.storyboardInstance() else { fatalError() }
         
         addFolderVC.modalPresentationStyle = .fullScreen
+        addFolderVC.editCompletionHandler = { [weak self] in
+            guard let self = self else { return }
+            self.folderViewModel.inputs.fetchFolders()
+        }
         addFolderVC.alertSucceedViewHandler = { [weak self] in
             guard let self = self else { return }
             self.blurVC?.fadeInBackgroundViewAnimation()
@@ -143,9 +147,9 @@ final class FolderViewController: UIViewController, CustomAlert {
     
     @objc private func cellEditButtonTapped(_ sender: UIGestureRecognizer) { // edit 버튼 클릭됬을 때
         guard let button = sender.view as? UICustomTagButton else { return }
-        guard let folder = folders.filter({ $0.id == button.customTag }).first,
-              let index = folders.firstIndex(of: folder) else { return }
-                
+        guard let folder = folders.filter({$0.index == button.customTag}).first else { return }
+        guard let index = folders.firstIndex(of: folder) else { return }
+        
         guard let editVC = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
         
         editVC.modalPresentationStyle = .overCurrentContext
@@ -158,7 +162,7 @@ final class FolderViewController: UIViewController, CustomAlert {
             guard let editFolderVC = AddFolderViewController.storyboardInstance() else { return }
             
             editFolderVC.folderPresentingType = .edit
-            editFolderVC.folder = folder
+            // editFolderVC.folder = folder
             editFolderVC.modalPresentationStyle = .fullScreen
             
             editFolderVC.alertSucceedViewHandler = {
@@ -169,12 +173,12 @@ final class FolderViewController: UIViewController, CustomAlert {
         
         }, { [weak self] _ in
             guard let self = self else { return }
-            
-            let shareItem = folder.shareItem
-            let activityController = UIActivityViewController(activityItems: [shareItem], applicationActivities: nil)
-            activityController.excludedActivityTypes = [.saveToCameraRoll, .print, .assignToContact, .addToReadingList]
-            
-            self.present(activityController, animated: true, completion: nil)
+            // 여기 링크 정보가 없음
+//            let shareItem = folder.
+//            let activityController = UIActivityViewController(activityItems: [shareItem], applicationActivities: nil)
+//            activityController.excludedActivityTypes = [.saveToCameraRoll, .print, .assignToContact, .addToReadingList]
+//
+//            self.present(activityController, animated: true, completion: nil)
             
         },{ [weak self] _ in // 삭제하기 클릭
             guard let self = self else { return }
@@ -184,13 +188,24 @@ final class FolderViewController: UIViewController, CustomAlert {
                                             self.blurVC?.fadeOutBackgroundViewAnimation()
                                         },
                                         removeHandler: {
-                                            self.blurVC?.fadeInBackgroundViewAnimation()
-                                            self.alertRemoveSucceedView(completeHandler: { self.blurVC?.fadeOutBackgroundViewAnimation() })
-                                            let indexPath = IndexPath(item: index, section: 0)
-                                            self.folders.remove(at: index)
-                                            self.folderCollectionView.deleteItems(at: [indexPath])
-                                            self.folderCollectionView.collectionViewLayout.invalidateLayout()
-                                            self.folderViewModel.inputs.remove(target: folder)
+                                            self.folderViewModel.removeFolder(folderIndex: folder.index, completionHandler: { result in
+                                                switch result {
+                                                case .success(let response):
+                                                    if response.isSuccess {
+                                                        self.blurVC?.fadeInBackgroundViewAnimation()
+                                                        self.alertRemoveSucceedView(completeHandler: { self.blurVC?.fadeOutBackgroundViewAnimation() })
+                                                        
+                                                        let indexPath = IndexPath(item: index, section: 0)
+                                                        self.folders.remove(at: index)
+                                                        self.folderCollectionView.deleteItems(at: [indexPath])
+                                                        self.folderCollectionView.collectionViewLayout.invalidateLayout()
+                                                    }
+                                                case .failure(let error):
+                                                    self.blurVC?.fadeInBackgroundViewAnimation()
+                                                    print(error)
+                                                }
+                                                
+                                            })
                                         })
         }]
         
@@ -217,7 +232,7 @@ extension FolderViewController: UICollectionViewDataSource {
         
         folderCell.update(by: folder)
         folderCell.editButton.addGestureRecognizer(tapGesture)
-        folderCell.editButton.customTag = folder.id
+        folderCell.editButton.customTag = folder.index
         
         return folderCell
     }
@@ -248,7 +263,7 @@ extension FolderViewController: UICollectionViewDelegate {
         guard let folderDetailVC = FolderDetailViewController.storyboardInstance() else { fatalError() }
         
         let folder = folders[indexPath.item]
-        folderDetailVC.folder = folder
+        // folderDetailVC.folder = folder
         folderDetailVC.homeNavigationController = homeNavigationController
         
         folderDetailVC.folderRemoveHandler = { [weak self] in

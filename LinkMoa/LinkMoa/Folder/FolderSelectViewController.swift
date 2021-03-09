@@ -11,7 +11,7 @@ final class FolderSelectViewController: UIViewController {
 
     @IBOutlet private weak var folderSelectCollectionView: UICollectionView!
     
-    private let folderViewModel: FolderViewModel = FolderViewModel()
+    // private let folderViewModel: FolderViewModel = FolderViewModel()
     private var folders: [Folder] = []
     
     var selectHandler: ((Folder) -> ())?
@@ -27,7 +27,7 @@ final class FolderSelectViewController: UIViewController {
         prepareNavigationBar()
         preparefolderSelectCollectionView()
         bind()
-        folderViewModel.inputs.fetchFolders()
+        // folderViewModel.inputs.fetchFolders()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,11 +39,11 @@ final class FolderSelectViewController: UIViewController {
     }
 
     private func bind() {
-        folderViewModel.outputs.folders.bind { [weak self] results in
-            guard let self = self else { return }
-            self.folders = results
-            self.folderSelectCollectionView.reloadData()
-        }
+//        folderViewModel.outputs.folders.bind { [weak self] results in
+//            guard let self = self else { return }
+//            // self.folders = results
+//            self.folderSelectCollectionView.reloadData()
+//        }
     }
     
     private func prepareNavigationBar() {
@@ -69,7 +69,7 @@ extension FolderSelectViewController: UICollectionViewDataSource {
         guard let folderCell = collectionView.dequeueReusableCell(withReuseIdentifier: FolderCell.cellIdentifier, for: indexPath) as? FolderCell else { return UICollectionViewCell() }
         
         let folder = folders[indexPath.item]
-        folderCell.update(by: folder)
+        // folderCell.update(by: folder)
         
         return folderCell
     }
