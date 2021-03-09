@@ -16,6 +16,7 @@ class CategoryDetailViewController: UIViewController {
         super.viewDidLoad()
         
         prepareNavigationBar()
+        prepareNavigationItem()
         prepareFolderCollectionView()
     }
     
@@ -29,6 +30,31 @@ class CategoryDetailViewController: UIViewController {
         navigationController?.navigationBar.barStyle = .default
     }
 
+    private func prepareNavigationItem() {
+        let shareBarButtonItem = UIBarButtonItem(image: UIImage(named: "editDot"), style: .plain, target: self, action: #selector(folderShareButtonTapped))
+        shareBarButtonItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
+        shareBarButtonItem.tintColor = .white
+        
+        let searchBarButtonItem = UIBarButtonItem(image: UIImage(named: "search"), style: .plain, target: self, action: #selector(searchButtonTapped))
+        searchBarButtonItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
+        searchBarButtonItem.tintColor = .white
+        
+        navigationItem.rightBarButtonItems = [shareBarButtonItem, searchBarButtonItem]
+    }
+
+    @objc private func folderShareButtonTapped() {
+        
+    }
+    
+    @objc private func searchButtonTapped() {
+        guard let searchLinkVC = SearchLinkViewController.storyboardInstance() else { return }
+        
+        searchLinkVC.modalTransitionStyle = .crossDissolve
+        searchLinkVC.modalPresentationStyle = .overCurrentContext
+        
+        homeNavigationController?.present(searchLinkVC, animated: true, completion: nil)
+    }
+    
     private func prepareFolderCollectionView() {
         folderCollectionView.contentInset = UIEdgeInsets(top: 15, left: 15, bottom: 50, right: 15)
         folderCollectionView.register(UINib(nibName: FolderCell.cellIdentifier, bundle: nil), forCellWithReuseIdentifier: FolderCell.cellIdentifier)
@@ -74,10 +100,5 @@ extension CategoryDetailViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: width, height: height)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let width: CGFloat = view.frame.width
-        let height: CGFloat = 50
-        
-        return CGSize(width: width, height: height)
-    }
+
 }

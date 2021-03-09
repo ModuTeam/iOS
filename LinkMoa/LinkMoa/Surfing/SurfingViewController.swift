@@ -23,6 +23,8 @@ final class SurfingViewController: UIViewController {
         test()
         viewModel.inputs.fetchLikedFolders()
         bind()
+        
+        print("🥺test", 100.toAbbreviationString, 1011.toAbbreviationString, 1100.toAbbreviationString, 10100.toAbbreviationString, 11111.toAbbreviationString, 12345678.toAbbreviationString, 123456789.toAbbreviationString)
     }
     
     static func storyboardInstance() -> SurfingViewController? {
@@ -184,10 +186,12 @@ extension SurfingViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 0, 2:
-            return min(4, likedFolders.count)
+        case 0:
+            return 4
         case 1:
             return 5
+        case 2:
+            return min(4, likedFolders.count)
         default:
             return 0
         }

@@ -18,6 +18,7 @@
 		258447EC25F64A1C003E0A04 /* FolderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447EB25F64A1C003E0A04 /* FolderList.swift */; };
 		258447F425F64EE9003E0A04 /* FolderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447F325F64EE9003E0A04 /* FolderResponse.swift */; };
 		259E18A025F7059600D8FF9A /* SurfingViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E189F25F7059600D8FF9A /* SurfingViewModels.swift */; };
+		259E18A325F74D4400D8FF9A /* Int+Abbreviations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E18A225F74D4400D8FF9A /* Int+Abbreviations.swift */; };
 		25D0047F25F397F6002743C3 /* CategoryDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25D0047E25F397F6002743C3 /* CategoryDetail.storyboard */; };
 		25D0048325F3980D002743C3 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D0048225F3980D002743C3 /* CategoryDetailViewController.swift */; };
 		25D0049125F39B0D002743C3 /* SurfingFolder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25D0049025F39B0D002743C3 /* SurfingFolder.storyboard */; };
@@ -232,6 +233,7 @@
 		258447F325F64EE9003E0A04 /* FolderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResponse.swift; sourceTree = "<group>"; };
 		258447F725F64F3E003E0A04 /* NewFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFolder.swift; sourceTree = "<group>"; };
 		259E189F25F7059600D8FF9A /* SurfingViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfingViewModels.swift; sourceTree = "<group>"; };
+		259E18A225F74D4400D8FF9A /* Int+Abbreviations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Abbreviations.swift"; sourceTree = "<group>"; };
 		25D0047E25F397F6002743C3 /* CategoryDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CategoryDetail.storyboard; sourceTree = "<group>"; };
 		25D0048225F3980D002743C3 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		25D0049025F39B0D002743C3 /* SurfingFolder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SurfingFolder.storyboard; sourceTree = "<group>"; };
@@ -526,6 +528,7 @@
 				3C540EA525CFB8850013427E /* UIColor+.swift */,
 				3CD6665225E210D20075DFE6 /* UIImage+Grey.swift */,
 				3C4BC7C925DCD8AD00C06929 /* UIView+RoundConer.swift */,
+				259E18A225F74D4400D8FF9A /* Int+Abbreviations.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -675,10 +678,10 @@
 			children = (
 				254274AC25F1DC4E00A88F18 /* SurfingViewController.swift */,
 				254274A625F1DC2800A88F18 /* Surfing.storyboard */,
-				25D0049425F39B1E002743C3 /* SurfingFolderViewController.swift */,
-				25D0049025F39B0D002743C3 /* SurfingFolder.storyboard */,
 				25D0048225F3980D002743C3 /* CategoryDetailViewController.swift */,
 				25D0047E25F397F6002743C3 /* CategoryDetail.storyboard */,
+				25D0049425F39B1E002743C3 /* SurfingFolderViewController.swift */,
+				25D0049025F39B0D002743C3 /* SurfingFolder.storyboard */,
 				25D0049D25F39DCE002743C3 /* SurfingFolderDetailViewController.swift */,
 				25D004A125F39DDC002743C3 /* SurfingFolderDetail.storyboard */,
 				259E18A125F72E0500D8FF9A /* Views */,
@@ -1103,6 +1106,7 @@
 				3CD6662425E0F1820075DFE6 /* RemoveSucceedBottomViewController.swift in Sources */,
 				3CAEC18425C692DD009248D6 /* HomeViewController.swift in Sources */,
 				3C540E8625CEDE280013427E /* Folder.swift in Sources */,
+				259E18A325F74D4400D8FF9A /* Int+Abbreviations.swift in Sources */,
 				3C540E9525CF9DCA0013427E /* FolderDetailViewController.swift in Sources */,
 				3C128BE025ECDB85001B6A7B /* EditBottomSheetCell.swift in Sources */,
 				25144D0025F25CE400EC9F46 /* SurfingCategoryCell.swift in Sources */,

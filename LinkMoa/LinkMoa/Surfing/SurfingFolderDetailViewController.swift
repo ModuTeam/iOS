@@ -25,20 +25,16 @@ class SurfingFolderDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         prepareLinkCollectionView()
-        
-        
-        prepareNavigationItem()
-        prepareNavigationBar()
-        
         bind()
-        
-        
         update() // data update by presenting VC
     }
     
-    
- 
+    override func viewWillAppear(_ animated: Bool) {
+        prepareNavigationBar()
+        prepareNavigationItem()
+    }
     
     static func storyboardInstance() -> SurfingFolderDetailViewController? {
         let storyboard = UIStoryboard(name: SurfingFolderDetailViewController.storyboardName(), bundle: nil)
@@ -90,12 +86,7 @@ class SurfingFolderDetailViewController: UIViewController {
         
         navigationItem.rightBarButtonItems = [shareBarButtonItem, searchBarButtonItem]
     }
-    
-    private func prepareSubHeaderView() {
-//        subHeaderView.layer.masksToBounds = true
-//        subHeaderView.layer.cornerRadius = 10
-    }
-    
+
     @objc private func folderShareButtonTapped() {
         
     }

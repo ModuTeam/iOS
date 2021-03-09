@@ -14,10 +14,14 @@ class SurfingFolderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        prepareNavigationBar()
         prepareFolderCollectionView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        prepareNavigationBar()
+        prepareNavigationItem()
+    }
+        
     static func storyboardInstance() -> SurfingFolderViewController? {
         let storyboard = UIStoryboard(name: SurfingFolderViewController.storyboardName(), bundle: nil)
         return storyboard.instantiateInitialViewController()
@@ -28,8 +32,30 @@ class SurfingFolderViewController: UIViewController {
         navigationController?.navigationBar.barStyle = .default
     }
     
+    private func prepareNavigationItem() {
+        let shareBarButtonItem = UIBarButtonItem(image: UIImage(named: "editDot"), style: .plain, target: self, action: #selector(folderShareButtonTapped))
+        shareBarButtonItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
+        shareBarButtonItem.tintColor = .black
+        
+        let searchBarButtonItem = UIBarButtonItem(image: UIImage(named: "search"), style: .plain, target: self, action: #selector(searchButtonTapped))
+        searchBarButtonItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
+        searchBarButtonItem.tintColor = .black
+        
+        navigationItem.rightBarButtonItems = [shareBarButtonItem, searchBarButtonItem]
+    }
+
+    @objc private func folderShareButtonTapped() {
+        
+    }
     
-    
+    @objc private func searchButtonTapped() {
+        guard let searchLinkVC = SearchLinkViewController.storyboardInstance() else { return }
+        
+        searchLinkVC.modalTransitionStyle = .crossDissolve
+        searchLinkVC.modalPresentationStyle = .overCurrentContext
+        
+        homeNavigationController?.present(searchLinkVC, animated: true, completion: nil)
+    }
     
     private func prepareFolderCollectionView() {
         folderCollectionView.contentInset = UIEdgeInsets(top: 15, left: 15, bottom: 50, right: 15)
@@ -59,7 +85,7 @@ extension SurfingFolderViewController: UICollectionViewDataSource {
 
 extension SurfingFolderViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let folderDetailVC = FolderDetailViewController.storyboardInstance() else { fatalError() }
+        guard let folderDetailVC = SurfingFolderDetailViewController.storyboardInstance() else { fatalError() }
         
         
         folderDetailVC.homeNavigationController = homeNavigationController
@@ -76,11 +102,5 @@ extension SurfingFolderViewController: UICollectionViewDelegateFlowLayout {
         
         return CGSize(width: width, height: height)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let width: CGFloat = view.frame.width
-        let height: CGFloat = 50
-        
-        return CGSize(width: width, height: height)
-    }
+   
 }
