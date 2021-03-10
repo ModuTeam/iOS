@@ -11,6 +11,7 @@ class SurfingHeaderView: UICollectionReusableView {
 
     static let reuseableViewIndetifier: String = "SurfingHeaderView"
     
+    @IBOutlet weak var titleLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

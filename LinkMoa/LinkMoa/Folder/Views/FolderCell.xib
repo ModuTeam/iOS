@@ -50,7 +50,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UXUI 스터디" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UT0-ib-EVs">
-                        <rect key="frame" x="13" y="149" width="90" height="25"/>
+                        <rect key="frame" x="13" y="149" width="138" height="25"/>
                         <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="17"/>
                         <color key="textColor" red="0.29411764705882354" green="0.29411764705882354" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -86,6 +86,7 @@
             </view>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="UT0-ib-EVs" secondAttribute="trailing" constant="13" id="65N-fH-tZb"/>
                 <constraint firstAttribute="trailing" secondItem="BOf-Ij-QOk" secondAttribute="trailing" id="H4w-On-2GA"/>
                 <constraint firstAttribute="trailing" secondItem="LJg-5A-9vl" secondAttribute="trailing" id="L6a-Mb-3CO"/>
                 <constraint firstItem="ztO-kD-FOo" firstAttribute="centerY" secondItem="Ssb-da-ACJ" secondAttribute="centerY" id="QEp-D7-WJi"/>

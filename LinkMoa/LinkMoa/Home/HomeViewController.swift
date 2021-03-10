@@ -18,6 +18,7 @@ final class HomeViewController: UIViewController {
     private var pages: [UIViewController] = []
     private var selectedTopMenuView: UIView = UIView()
     private var isTopMenuSelected: Bool = false
+    private var searchTarget: SearchTarget = .my
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +97,13 @@ final class HomeViewController: UIViewController {
         let direction: UIPageViewController.NavigationDirection = indexPath.item == 0 ? .reverse : .forward
         
         pageViewController.setViewControllers([pages[indexPath.item]], direction: direction, animated: true, completion: nil)
+        
+        if indexPath.item == 0 {
+            searchTarget = .my
+        } else {
+            searchTarget = .surf
+        }
+        
     }
     
     private func constaintPageViewControllerView() {
@@ -112,11 +120,11 @@ final class HomeViewController: UIViewController {
     }
     
     @IBAction private func searchButtonTapped() {
-        guard let searchFolderNC = SearchFolderNavigationViewController.storyboardInstance() else { return }
+        guard let searchFolderNC = SearchMainNavigationController.storyboardInstance() else { return }
         
         searchFolderNC.modalTransitionStyle = .crossDissolve
         searchFolderNC.modalPresentationStyle = .fullScreen
-        
+        searchFolderNC.searchTarget = searchTarget
         present(searchFolderNC, animated: true, completion: nil)
     }
 }

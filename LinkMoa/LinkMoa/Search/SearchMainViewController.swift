@@ -1,5 +1,5 @@
 //
-//  FolderSearchViewController.swift
+//  SearchMainViewController.swift
 //  LinkMoa
 //
 //  Created by won heo on 2021/02/25.
@@ -7,7 +7,12 @@
 
 import UIKit
 
-final class SearchFolderViewController: UIViewController {
+enum SearchTarget {
+    case my
+    case surf
+}
+
+final class SearchMainViewController: UIViewController {
 
     @IBOutlet private weak var topMenuCollectionView: UICollectionView!
     @IBOutlet private weak var containerView: UIView!
@@ -17,14 +22,18 @@ final class SearchFolderViewController: UIViewController {
     private let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     
     private var pages: [UIViewController] = []
-    private var folderListViewController: FolderListViewController?
-    private var linkListViewController: LinkListViewController?
+    private var folderListViewController: SearchFolderResultViewController?
+    private var linkListViewController: SearchLinkResultViewController?
     
     private var selectedTopMenuView: UIView = UIView()
     private var isTopMenuSelected: Bool = false
     private var isTopMenuViewPresented: Bool = false
-
+    
+    var searchTarget: SearchTarget = .my
+    
+    
     private let searchFolderViewModel: SearchFolderViewModel = SearchFolderViewModel()
+    
     private var folders: [Folder] = [] {
         didSet {
             guard let keyword = self.searchTextField.text else { return }
@@ -89,6 +98,8 @@ final class SearchFolderViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        guard let nav = navigationController as? SearchMainNavigationController else { fatalError() }
+        searchTarget = nav.searchTarget
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
@@ -110,8 +121,8 @@ final class SearchFolderViewController: UIViewController {
     }
     
     private func preparePageViewController() {
-        guard let folderListVC = FolderListViewController.storyboardInstance() else { fatalError() }
-        guard let linkListVC = LinkListViewController.storyboardInstance() else { fatalError() }
+        guard let folderListVC = SearchFolderResultViewController.storyboardInstance() else { fatalError() }
+        guard let linkListVC = SearchLinkResultViewController.storyboardInstance() else { fatalError() }
         
         folderListViewController = folderListVC
         linkListViewController = linkListVC
@@ -206,7 +217,7 @@ final class SearchFolderViewController: UIViewController {
     }
 }
 
-extension SearchFolderViewController: UICollectionViewDataSource {
+extension SearchMainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return topMenuSectionNames.count
     }
@@ -225,14 +236,14 @@ extension SearchFolderViewController: UICollectionViewDataSource {
     }
 }
 
-extension SearchFolderViewController: UICollectionViewDelegateFlowLayout {
+extension SearchMainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         scrollSelectedTopMenuView(scrollToIndexPath: indexPath)
         setPageController(setToIndexPath: indexPath)
     }
 }
 
-extension SearchFolderViewController: UIPageViewControllerDataSource {
+extension SearchMainViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let index = pages.firstIndex(of: viewController) else { return nil }
         
@@ -258,7 +269,7 @@ extension SearchFolderViewController: UIPageViewControllerDataSource {
     }
 }
 
-extension SearchFolderViewController: UIPageViewControllerDelegate {
+extension SearchMainViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         guard let currentVC = pageViewController.viewControllers?.first else { return }
         guard let index = pages.lastIndex(of: currentVC) else { return }

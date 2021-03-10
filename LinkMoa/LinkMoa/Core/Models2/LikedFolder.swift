@@ -17,15 +17,25 @@ struct LikedFolder: Codable {
     struct Result: Codable {
         let userIndex, categoryIndex: Int
         let categoryName: String
-        let folderIndex: Int
+        let detailCategoryIndex: Int
+        let detailCategoryName: String
+        let folderIndex, folderLinkCount: Int
         let folderName, folderType: String
-        let status: Int
+        let likeFolderCount: Int
+        let linkImageURL: String
+        let likeStatus: Int
+        let updatedAt: String
         
         enum CodingKeys: String, CodingKey {
             case userIndex = "userIdx"
             case categoryIndex = "categoryIdx"
+            case categoryName
+            case detailCategoryIndex = "detailCategoryIdx"
+            case detailCategoryName
             case folderIndex = "folderIdx"
-            case categoryName, folderName, folderType, status
+            case folderLinkCount, folderName, folderType, likeFolderCount
+            case linkImageURL = "linkImageUrl"
+            case likeStatus,updatedAt
         }
     }
 }

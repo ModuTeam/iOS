@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SearchLinkViewController: UIViewController, BackgroundBlur {
+final class SearchInFolderViewController: UIViewController, BackgroundBlur {
     
     @IBOutlet private weak var linkCollectionView: UICollectionView!
     @IBOutlet private weak var searchTextField: UITextField!
@@ -35,8 +35,8 @@ final class SearchLinkViewController: UIViewController, BackgroundBlur {
     
     var folder: Folder?
 
-    static func storyboardInstance() -> SearchLinkViewController? {
-        let storyboard = UIStoryboard(name: SearchLinkViewController.storyboardName(), bundle: nil)
+    static func storyboardInstance() -> SearchInFolderViewController? {
+        let storyboard = UIStoryboard(name: SearchInFolderViewController.storyboardName(), bundle: nil)
         return storyboard.instantiateInitialViewController()
     }
     
@@ -214,7 +214,7 @@ final class SearchLinkViewController: UIViewController, BackgroundBlur {
     }
 }
 
-extension SearchLinkViewController: UICollectionViewDataSource {
+extension SearchInFolderViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filterLinks.count
     }
@@ -233,7 +233,7 @@ extension SearchLinkViewController: UICollectionViewDataSource {
     }
 }
 
-extension SearchLinkViewController: UICollectionViewDelegateFlowLayout {
+extension SearchInFolderViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = collectionView.frame.width - (18 * 2)
         let height: CGFloat = 83
@@ -241,7 +241,7 @@ extension SearchLinkViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension SearchLinkViewController: UICollectionViewDelegate {
+extension SearchInFolderViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let link = filterLinks[indexPath.item]
         

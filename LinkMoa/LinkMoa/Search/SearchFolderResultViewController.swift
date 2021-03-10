@@ -1,5 +1,5 @@
 //
-//  FolderListViewController.swift
+//  SearchFolderResultViewController.swift
 //  LinkMoa
 //
 //  Created by won heo on 2021/02/25.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class FolderListViewController: UIViewController {
+final class SearchFolderResultViewController: UIViewController {
 
     @IBOutlet private var folderCollectionView: UICollectionView!
     
@@ -19,8 +19,8 @@ final class FolderListViewController: UIViewController {
     }
     
     
-    static func storyboardInstance() -> FolderListViewController? {
-        let storyboard = UIStoryboard(name: FolderListViewController.storyboardName(), bundle: nil)
+    static func storyboardInstance() -> SearchFolderResultViewController? {
+        let storyboard = UIStoryboard(name: SearchFolderResultViewController.storyboardName(), bundle: nil)
         return storyboard.instantiateInitialViewController()
     }
 
@@ -41,7 +41,7 @@ final class FolderListViewController: UIViewController {
 
 }
 
-extension FolderListViewController: UICollectionViewDataSource {
+extension SearchFolderResultViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return folders.count
     }
@@ -62,7 +62,7 @@ extension FolderListViewController: UICollectionViewDataSource {
 
 
 
-extension FolderListViewController: UICollectionViewDelegate {
+extension SearchFolderResultViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let folderDetailVC = FolderDetailViewController.storyboardInstance() else { fatalError() }
         
@@ -79,7 +79,7 @@ extension FolderListViewController: UICollectionViewDelegate {
     }
 }
 
-extension FolderListViewController: UICollectionViewDelegateFlowLayout {
+extension SearchFolderResultViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = (view.frame.width - 47) / 2
         let height: CGFloat = 214

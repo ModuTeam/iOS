@@ -23,6 +23,7 @@
 		259E18A625F864AA00D8FF9A /* TopTenFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E18A425F8583100D8FF9A /* TopTenFolder.swift */; };
 		259E18B325F8750800D8FF9A /* LikedFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D004E025F60026002743C3 /* LikedFolder.swift */; };
 		259E18B425F8766500D8FF9A /* Int+Abbreviations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E18A225F74D4400D8FF9A /* Int+Abbreviations.swift */; };
+		259E18B625F8A9BB00D8FF9A /* SearchFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E18B525F8A9BB00D8FF9A /* SearchFolder.swift */; };
 		25D0047F25F397F6002743C3 /* CategoryDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25D0047E25F397F6002743C3 /* CategoryDetail.storyboard */; };
 		25D0048325F3980D002743C3 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D0048225F3980D002743C3 /* CategoryDetailViewController.swift */; };
 		25D0049125F39B0D002743C3 /* SurfingFolder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25D0049025F39B0D002743C3 /* SurfingFolder.storyboard */; };
@@ -34,8 +35,8 @@
 		25D004D325F5E335002743C3 /* FolderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D004D225F5E335002743C3 /* FolderDetail.swift */; };
 		25D004E125F60026002743C3 /* LikedFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D004E025F60026002743C3 /* LikedFolder.swift */; };
 		3C04654D25E3DCCF007B61E3 /* edit_garibi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3C04654C25E3DCCF007B61E3 /* edit_garibi.json */; };
-		3C04655F25E4A287007B61E3 /* SearchLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C04655E25E4A287007B61E3 /* SearchLinkViewController.swift */; };
-		3C04656325E4A29B007B61E3 /* SearchLink.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C04656225E4A29B007B61E3 /* SearchLink.storyboard */; };
+		3C04655F25E4A287007B61E3 /* SearchInFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C04655E25E4A287007B61E3 /* SearchInFolderViewController.swift */; };
+		3C04656325E4A29B007B61E3 /* SearchInFolder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C04656225E4A29B007B61E3 /* SearchInFolder.storyboard */; };
 		3C04656925E5F0C6007B61E3 /* NSObject+StoryboardName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C04656825E5F0C6007B61E3 /* NSObject+StoryboardName.swift */; };
 		3C0C16E525F6401500D8A632 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C16E425F6401500D8A632 /* TokenManager.swift */; };
 		3C0C16E625F6401500D8A632 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C16E425F6401500D8A632 /* TokenManager.swift */; };
@@ -129,7 +130,7 @@
 		3C8AD45425D3A3AB00197B21 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8AD45325D3A3AB00197B21 /* ShareViewController.swift */; };
 		3C8AD45725D3A3AB00197B21 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C8AD45525D3A3AB00197B21 /* MainInterface.storyboard */; };
 		3C8AD45B25D3A3AB00197B21 /* LinkMoaShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3C8AD45125D3A3AB00197B21 /* LinkMoaShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		3C9A066225E88D3F00100966 /* SearchLinkNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9A066125E88D3F00100966 /* SearchLinkNavigationViewController.swift */; };
+		3C9A066225E88D3F00100966 /* SearchMainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9A066125E88D3F00100966 /* SearchMainNavigationController.swift */; };
 		3C9A066925E8977100100966 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C540E8525CEDE280013427E /* Folder.swift */; };
 		3C9A066C25E8977400100966 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C540E8925CEDE3F0013427E /* Link.swift */; };
 		3C9A066F25E8977700100966 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C540E7A25CEDBBB0013427E /* Observable.swift */; };
@@ -162,12 +163,12 @@
 		3CD6666325E274EF0075DFE6 /* garibi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CD6666225E274EF0075DFE6 /* garibi.json */; };
 		3CD9202925E61C0A006B8CC6 /* SearchLinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD9202825E61C0A006B8CC6 /* SearchLinkViewModel.swift */; };
 		3CD9203425E63962006B8CC6 /* BackgroundBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD9203325E63962006B8CC6 /* BackgroundBlur.swift */; };
-		3CD9204225E79B72006B8CC6 /* SearchFolder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CD9204125E79B72006B8CC6 /* SearchFolder.storyboard */; };
-		3CD9204625E79B7D006B8CC6 /* SearchFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD9204525E79B7D006B8CC6 /* SearchFolderViewController.swift */; };
-		3CD9204C25E7CBFC006B8CC6 /* FolderList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CD9204B25E7CBFC006B8CC6 /* FolderList.storyboard */; };
-		3CD9205025E7CC08006B8CC6 /* FolderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD9204F25E7CC08006B8CC6 /* FolderListViewController.swift */; };
-		3CD9205425E7D3E6006B8CC6 /* LinkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD9205325E7D3E6006B8CC6 /* LinkListViewController.swift */; };
-		3CD9205825E7D3ED006B8CC6 /* LinkList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CD9205725E7D3ED006B8CC6 /* LinkList.storyboard */; };
+		3CD9204225E79B72006B8CC6 /* SearchMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CD9204125E79B72006B8CC6 /* SearchMain.storyboard */; };
+		3CD9204625E79B7D006B8CC6 /* SearchMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD9204525E79B7D006B8CC6 /* SearchMainViewController.swift */; };
+		3CD9204C25E7CBFC006B8CC6 /* SearchFolderResult.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CD9204B25E7CBFC006B8CC6 /* SearchFolderResult.storyboard */; };
+		3CD9205025E7CC08006B8CC6 /* SearchFolderResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD9204F25E7CC08006B8CC6 /* SearchFolderResultViewController.swift */; };
+		3CD9205425E7D3E6006B8CC6 /* SearchLinkResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD9205325E7D3E6006B8CC6 /* SearchLinkResultViewController.swift */; };
+		3CD9205825E7D3ED006B8CC6 /* SearchLinkResult.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CD9205725E7D3ED006B8CC6 /* SearchLinkResult.storyboard */; };
 		3CD9205E25E7D83B006B8CC6 /* SearchFolderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD9205D25E7D83B006B8CC6 /* SearchFolderViewModel.swift */; };
 		3CDCFCF025CAF51A00B0F6E0 /* AddFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDCFCEF25CAF51A00B0F6E0 /* AddFolderViewController.swift */; };
 		3CDCFCF325CAF52200B0F6E0 /* AddFolder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CDCFCF225CAF52200B0F6E0 /* AddFolder.storyboard */; };
@@ -249,6 +250,7 @@
 		259E189F25F7059600D8FF9A /* SurfingViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfingViewModels.swift; sourceTree = "<group>"; };
 		259E18A225F74D4400D8FF9A /* Int+Abbreviations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Abbreviations.swift"; sourceTree = "<group>"; };
 		259E18A425F8583100D8FF9A /* TopTenFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTenFolder.swift; sourceTree = "<group>"; };
+		259E18B525F8A9BB00D8FF9A /* SearchFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFolder.swift; sourceTree = "<group>"; };
 		25D0047E25F397F6002743C3 /* CategoryDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CategoryDetail.storyboard; sourceTree = "<group>"; };
 		25D0048225F3980D002743C3 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		25D0049025F39B0D002743C3 /* SurfingFolder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SurfingFolder.storyboard; sourceTree = "<group>"; };
@@ -260,8 +262,8 @@
 		25D004D225F5E335002743C3 /* FolderDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetail.swift; sourceTree = "<group>"; };
 		25D004E025F60026002743C3 /* LikedFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedFolder.swift; sourceTree = "<group>"; };
 		3C04654C25E3DCCF007B61E3 /* edit_garibi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = edit_garibi.json; sourceTree = "<group>"; };
-		3C04655E25E4A287007B61E3 /* SearchLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLinkViewController.swift; sourceTree = "<group>"; };
-		3C04656225E4A29B007B61E3 /* SearchLink.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchLink.storyboard; sourceTree = "<group>"; };
+		3C04655E25E4A287007B61E3 /* SearchInFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInFolderViewController.swift; sourceTree = "<group>"; };
+		3C04656225E4A29B007B61E3 /* SearchInFolder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchInFolder.storyboard; sourceTree = "<group>"; };
 		3C04656825E5F0C6007B61E3 /* NSObject+StoryboardName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+StoryboardName.swift"; sourceTree = "<group>"; };
 		3C0C16E425F6401500D8A632 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		3C0C235A25DD2722009ED09E /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
@@ -316,7 +318,7 @@
 		3C8AD45625D3A3AB00197B21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		3C8AD45825D3A3AB00197B21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C8AD46225D3A3D000197B21 /* LinkMoa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LinkMoa.entitlements; sourceTree = "<group>"; };
-		3C9A066125E88D3F00100966 /* SearchLinkNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLinkNavigationViewController.swift; sourceTree = "<group>"; };
+		3C9A066125E88D3F00100966 /* SearchMainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainNavigationController.swift; sourceTree = "<group>"; };
 		3C9A068025E89B2B00100966 /* LinkMoaShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LinkMoaShareExtension.entitlements; sourceTree = "<group>"; };
 		3CAEC18325C692DD009248D6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3CAEC18625C692E6009248D6 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -343,12 +345,12 @@
 		3CD6666225E274EF0075DFE6 /* garibi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = garibi.json; sourceTree = "<group>"; };
 		3CD9202825E61C0A006B8CC6 /* SearchLinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLinkViewModel.swift; sourceTree = "<group>"; };
 		3CD9203325E63962006B8CC6 /* BackgroundBlur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundBlur.swift; sourceTree = "<group>"; };
-		3CD9204125E79B72006B8CC6 /* SearchFolder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchFolder.storyboard; sourceTree = "<group>"; };
-		3CD9204525E79B7D006B8CC6 /* SearchFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFolderViewController.swift; sourceTree = "<group>"; };
-		3CD9204B25E7CBFC006B8CC6 /* FolderList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FolderList.storyboard; sourceTree = "<group>"; };
-		3CD9204F25E7CC08006B8CC6 /* FolderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewController.swift; sourceTree = "<group>"; };
-		3CD9205325E7D3E6006B8CC6 /* LinkListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkListViewController.swift; sourceTree = "<group>"; };
-		3CD9205725E7D3ED006B8CC6 /* LinkList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LinkList.storyboard; sourceTree = "<group>"; };
+		3CD9204125E79B72006B8CC6 /* SearchMain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchMain.storyboard; sourceTree = "<group>"; };
+		3CD9204525E79B7D006B8CC6 /* SearchMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainViewController.swift; sourceTree = "<group>"; };
+		3CD9204B25E7CBFC006B8CC6 /* SearchFolderResult.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchFolderResult.storyboard; sourceTree = "<group>"; };
+		3CD9204F25E7CC08006B8CC6 /* SearchFolderResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFolderResultViewController.swift; sourceTree = "<group>"; };
+		3CD9205325E7D3E6006B8CC6 /* SearchLinkResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLinkResultViewController.swift; sourceTree = "<group>"; };
+		3CD9205725E7D3ED006B8CC6 /* SearchLinkResult.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchLinkResult.storyboard; sourceTree = "<group>"; };
 		3CD9205D25E7D83B006B8CC6 /* SearchFolderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFolderViewModel.swift; sourceTree = "<group>"; };
 		3CDCFCEF25CAF51A00B0F6E0 /* AddFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderViewController.swift; sourceTree = "<group>"; };
 		3CDCFCF225CAF52200B0F6E0 /* AddFolder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddFolder.storyboard; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 				259E18A425F8583100D8FF9A /* TopTenFolder.swift */,
 				25D004D225F5E335002743C3 /* FolderDetail.swift */,
 				25D004E025F60026002743C3 /* LikedFolder.swift */,
+				259E18B525F8A9BB00D8FF9A /* SearchFolder.swift */,
 			);
 			path = Models2;
 			sourceTree = "<group>";
@@ -672,15 +675,15 @@
 		3CD9203E25E79A3C006B8CC6 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				3C04656225E4A29B007B61E3 /* SearchLink.storyboard */,
-				3C04655E25E4A287007B61E3 /* SearchLinkViewController.swift */,
-				3C9A066125E88D3F00100966 /* SearchLinkNavigationViewController.swift */,
-				3CD9204125E79B72006B8CC6 /* SearchFolder.storyboard */,
-				3CD9204525E79B7D006B8CC6 /* SearchFolderViewController.swift */,
-				3CD9204B25E7CBFC006B8CC6 /* FolderList.storyboard */,
-				3CD9204F25E7CC08006B8CC6 /* FolderListViewController.swift */,
-				3CD9205725E7D3ED006B8CC6 /* LinkList.storyboard */,
-				3CD9205325E7D3E6006B8CC6 /* LinkListViewController.swift */,
+				3C9A066125E88D3F00100966 /* SearchMainNavigationController.swift */,
+				3CD9204525E79B7D006B8CC6 /* SearchMainViewController.swift */,
+				3CD9204125E79B72006B8CC6 /* SearchMain.storyboard */,
+				3CD9204F25E7CC08006B8CC6 /* SearchFolderResultViewController.swift */,
+				3CD9204B25E7CBFC006B8CC6 /* SearchFolderResult.storyboard */,
+				3CD9205325E7D3E6006B8CC6 /* SearchLinkResultViewController.swift */,
+				3CD9205725E7D3ED006B8CC6 /* SearchLinkResult.storyboard */,
+				3C04655E25E4A287007B61E3 /* SearchInFolderViewController.swift */,
+				3C04656225E4A29B007B61E3 /* SearchInFolder.storyboard */,
 				3CD9206125E7D8FE006B8CC6 /* ViewModels */,
 			);
 			path = Search;
@@ -896,11 +899,11 @@
 				3C04654D25E3DCCF007B61E3 /* edit_garibi.json in Resources */,
 				2542747125F136B400A88F18 /* SurfingHeaderView.xib in Resources */,
 				3CAEC1A225C699B2009248D6 /* NotoSansKR-Light.otf in Resources */,
-				3CD9204C25E7CBFC006B8CC6 /* FolderList.storyboard in Resources */,
+				3CD9204C25E7CBFC006B8CC6 /* SearchFolderResult.storyboard in Resources */,
 				3C4BC7E425DCF1F700C06929 /* LinkCell.xib in Resources */,
 				3CDCFCF325CAF52200B0F6E0 /* AddFolder.storyboard in Resources */,
 				3CF5ADEE25C2891D00F1E45E /* LaunchScreen.storyboard in Resources */,
-				3C04656325E4A29B007B61E3 /* SearchLink.storyboard in Resources */,
+				3C04656325E4A29B007B61E3 /* SearchInFolder.storyboard in Resources */,
 				254274A725F1DC2800A88F18 /* Surfing.storyboard in Resources */,
 				3CAEC1A425C699B2009248D6 /* NotoSansKR-Bold.otf in Resources */,
 				25D0047F25F397F6002743C3 /* CategoryDetail.storyboard in Resources */,
@@ -912,10 +915,10 @@
 				3CF5ADEB25C2891D00F1E45E /* Assets.xcassets in Resources */,
 				3C7DFE2825DC00DA000880B3 /* Poppins-Light.ttf in Resources */,
 				3C540EB425CFCAF40013427E /* EditBottomSheet.storyboard in Resources */,
-				3CD9205825E7D3ED006B8CC6 /* LinkList.storyboard in Resources */,
+				3CD9205825E7D3ED006B8CC6 /* SearchLinkResult.storyboard in Resources */,
 				3CD6666325E274EF0075DFE6 /* garibi.json in Resources */,
 				3CD6662A25E0F1900075DFE6 /* RemoveSucceedBottom.storyboard in Resources */,
-				3CD9204225E79B72006B8CC6 /* SearchFolder.storyboard in Resources */,
+				3CD9204225E79B72006B8CC6 /* SearchMain.storyboard in Resources */,
 				25D0049125F39B0D002743C3 /* SurfingFolder.storyboard in Resources */,
 				3C540E9925CF9DD70013427E /* FolderDetail.storyboard in Resources */,
 				3CAEC18A25C696D8009248D6 /* Folder.storyboard in Resources */,
@@ -1078,6 +1081,7 @@
 				258447D125F642EA003E0A04 /* MyScallopManager.swift in Sources */,
 				3CC67C7225C99B06004F914E /* TopMenuCell.swift in Sources */,
 				3C68934B25F5CDEF001F229D /* LoginManager.swift in Sources */,
+				259E18B625F8A9BB00D8FF9A /* SearchFolder.swift in Sources */,
 				3C68936A25F608E6001F229D /* AppleLogin.swift in Sources */,
 				3C623F1325F71C5B00FD7B5D /* AddFolderViewModel.swift in Sources */,
 				3C540E7B25CEDBBB0013427E /* Observable.swift in Sources */,
@@ -1114,14 +1118,15 @@
 				3C0C235E25DD2745009ED09E /* TestViewController.swift in Sources */,
 				3C540E8D25CF8B430013427E /* FolderViewModel.swift in Sources */,
 				259E18A525F8583100D8FF9A /* TopTenFolder.swift in Sources */,
+				3C9A066225E88D3F00100966 /* SearchMainNavigationController.swift in Sources */,
 				3C9A066225E88D3F00100966 /* SearchLinkNavigationViewController.swift in Sources */,
 				254274AD25F1DC4E00A88F18 /* SurfingViewController.swift in Sources */,
 				3C8AD44A25D2CE9800197B21 /* UICustomTagButton.swift in Sources */,
 				3CF5ADE425C2891B00F1E45E /* SceneDelegate.swift in Sources */,
 				3CCA601E25DF9EAA00DD1F50 /* String+Regex.swift in Sources */,
-				3CD9205425E7D3E6006B8CC6 /* LinkListViewController.swift in Sources */,
+				3CD9205425E7D3E6006B8CC6 /* SearchLinkResultViewController.swift in Sources */,
 				25D004CE25F5E26D002743C3 /* SurfingManager.swift in Sources */,
-				3CD9205025E7CC08006B8CC6 /* FolderListViewController.swift in Sources */,
+				3CD9205025E7CC08006B8CC6 /* SearchFolderResultViewController.swift in Sources */,
 				25D004D325F5E335002743C3 /* FolderDetail.swift in Sources */,
 				3CD6663025E11A820075DFE6 /* RemoveRequestBottomViewController.swift in Sources */,
 				3C4FB9B025F86C3F0046605B /* AddLinkViewModel.swift in Sources */,
@@ -1130,10 +1135,10 @@
 				3CD9202925E61C0A006B8CC6 /* SearchLinkViewModel.swift in Sources */,
 				3C540E8A25CEDE3F0013427E /* Link.swift in Sources */,
 				25D0049E25F39DCE002743C3 /* SurfingFolderDetailViewController.swift in Sources */,
-				3C04655F25E4A287007B61E3 /* SearchLinkViewController.swift in Sources */,
+				3C04655F25E4A287007B61E3 /* SearchInFolderViewController.swift in Sources */,
 				3CD9203425E63962006B8CC6 /* BackgroundBlur.swift in Sources */,
 				25D0048325F3980D002743C3 /* CategoryDetailViewController.swift in Sources */,
-				3CD9204625E79B7D006B8CC6 /* SearchFolderViewController.swift in Sources */,
+				3CD9204625E79B7D006B8CC6 /* SearchMainViewController.swift in Sources */,
 				3C540E8025CEDCAD0013427E /* RealmService.swift in Sources */,
 				3CC67C7C25C9A7AA004F914E /* FolderCell.swift in Sources */,
 				3CD6662425E0F1820075DFE6 /* RemoveSucceedBottomViewController.swift in Sources */,

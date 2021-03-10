@@ -14,10 +14,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Search Folder View Controller-->
+        <!--Search Main View Controller-->
         <scene sceneID="E8g-ul-Gnj">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="jLB-av-5bV" customClass="SearchFolderViewController" customModule="LinkMoa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="jLB-av-5bV" customClass="SearchMainViewController" customModule="LinkMoa" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KZJ-0j-wXV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -138,10 +138,10 @@
             </objects>
             <point key="canvasLocation" x="657.97101449275362" y="79.6875"/>
         </scene>
-        <!--Search Folder Navigation View Controller-->
+        <!--Search Main Navigation Controller-->
         <scene sceneID="JwM-mr-lCq">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jge-M7-Vaq" customClass="SearchFolderNavigationViewController" customModule="LinkMoa" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jge-M7-Vaq" customClass="SearchMainNavigationController" customModule="LinkMoa" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fn5-tj-TFp">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

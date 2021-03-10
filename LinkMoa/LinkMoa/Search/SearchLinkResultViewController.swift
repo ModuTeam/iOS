@@ -7,12 +7,12 @@
 
 import UIKit
 
-final class LinkListViewController: UIViewController {
+final class SearchLinkResultViewController: UIViewController {
 
     @IBOutlet private weak var linkCollectionView: UICollectionView!
     
-    static func storyboardInstance() -> LinkListViewController? {
-        let storyboard = UIStoryboard(name: LinkListViewController.storyboardName(), bundle: nil)
+    static func storyboardInstance() -> SearchLinkResultViewController? {
+        let storyboard = UIStoryboard(name: SearchLinkResultViewController.storyboardName(), bundle: nil)
         return storyboard.instantiateInitialViewController()
     }
     
@@ -47,7 +47,7 @@ final class LinkListViewController: UIViewController {
 
 }
 
-extension LinkListViewController: UICollectionViewDataSource {
+extension SearchLinkResultViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return links.count
     }
@@ -68,7 +68,7 @@ extension LinkListViewController: UICollectionViewDataSource {
     
 }
 
-extension LinkListViewController: UICollectionViewDelegateFlowLayout {
+extension SearchLinkResultViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = collectionView.frame.width - (18 * 2)
         let height: CGFloat = 83

@@ -17,10 +17,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Search Link View Controller-->
+        <!--Search In Folder View Controller-->
         <scene sceneID="znX-G1-QUv">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="nS2-Dg-MYd" customClass="SearchLinkViewController" customModule="LinkMoa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="nS2-Dg-MYd" customClass="SearchInFolderViewController" customModule="LinkMoa" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W4t-zM-eTl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,7 +29,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="46"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="내가 저장한 가리비를 찾아보세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h3A-jG-4iu">
-                                        <rect key="frame" x="58" y="10.5" width="294" height="25"/>
+                                        <rect key="frame" x="58" y="11" width="294" height="24"/>
                                         <color key="tintColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.40784313725490196" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.20784313725490194" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="16"/>

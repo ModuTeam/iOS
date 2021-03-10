@@ -92,7 +92,7 @@ class SurfingFolderDetailViewController: UIViewController {
     }
     
     @objc private func searchButtonTapped() {
-        guard let searchLinkVC = SearchLinkViewController.storyboardInstance() else { return }
+        guard let searchLinkVC = SearchInFolderViewController.storyboardInstance() else { return }
         
         searchLinkVC.modalTransitionStyle = .crossDissolve
         searchLinkVC.modalPresentationStyle = .overCurrentContext

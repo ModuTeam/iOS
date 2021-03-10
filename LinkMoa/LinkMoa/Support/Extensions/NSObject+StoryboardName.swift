@@ -9,6 +9,6 @@ import Foundation
 
 public extension NSObject {
     static func storyboardName() -> String {
-        return String(describing: self).replacingOccurrences(of: "ViewController", with: "").replacingOccurrences(of: "Navigation", with: "")
+        return String(describing: self).replacingOccurrences(of: "ViewController", with: "").replacingOccurrences(of: "NavigationController", with: "")
     }
 }
