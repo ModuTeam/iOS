@@ -16,12 +16,17 @@ final class SurfingViewController: UIViewController {
     private let viewModel: SurfingViewModel = SurfingViewModel()
     let surfingManager =  SurfingManager()
     let myScallopManager =  MyScallopManager()
-    var likedFolders: [LikedFolder.Result] = []
+    
+    var topTenFolders: Observable<[TopTenFolder.Result]> = Observable([])
+    var likedFolders: Observable<[LikedFolder.Result]> = Observable([])
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareCollectionView()
         test()
+        viewModel.inputs.fetchTopTenFolder()
         viewModel.inputs.fetchLikedFolders()
+        
         bind()
         
         print("🥺test", 100.toAbbreviationString, 1011.toAbbreviationString, 1100.toAbbreviationString, 10100.toAbbreviationString, 11111.toAbbreviationString, 12345678.toAbbreviationString, 123456789.toAbbreviationString)
@@ -33,9 +38,17 @@ final class SurfingViewController: UIViewController {
     }
     
     private func bind() {
+        viewModel.outputs.topTenFolders.bind { [weak self] results  in
+            guard let self = self else { return }
+            print("topTenFolders", results)
+            self.topTenFolders.value = results
+            self.surfingCollectionView.reloadData()
+        }
+        
         viewModel.outputs.likedFolders.bind { [weak self] results  in
             guard let self = self else { return }
-            self.likedFolders = results
+            print("likedFolders", results)
+            self.likedFolders.value = results
             self.surfingCollectionView.reloadData()
         }
     }
@@ -104,6 +117,11 @@ final class SurfingViewController: UIViewController {
 //        myScallopManager.deleteLInk(link: 1) { result in
 //            print("🥺test", result)
 //        }
+        //MARK:- topten
+//        surfingManager.fetchTopTenFolder { result in
+//            print("🥺test", result)
+//        }
+        
         
     }
     
@@ -187,11 +205,11 @@ extension SurfingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 4
+            return min(4, topTenFolders.value.count)
         case 1:
             return 5
         case 2:
-            return min(4, likedFolders.count)
+            return min(4, likedFolders.value.count)
         default:
             return 0
         }
@@ -202,6 +220,7 @@ extension SurfingViewController: UICollectionViewDataSource {
         case 0:
             guard let folderCell = collectionView.dequeueReusableCell(withReuseIdentifier: FolderCell.cellIdentifier, for: indexPath) as? FolderCell else { fatalError() }
             folderCell.gradientLayer.isHidden = false
+            folderCell.update(by: topTenFolders.value[indexPath.row])
             return folderCell
         case 1:
             guard let surfingCategoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: SurfingCategoryCell.cellIdentifier, for: indexPath) as? SurfingCategoryCell else { fatalError() }
@@ -210,7 +229,7 @@ extension SurfingViewController: UICollectionViewDataSource {
         case 2:
             guard let folderCell = collectionView.dequeueReusableCell(withReuseIdentifier: FolderCell.cellIdentifier, for: indexPath) as? FolderCell else { fatalError() }
             folderCell.gradientLayer.isHidden = false
-            
+            folderCell.update(by: likedFolders.value[indexPath.row])
             return folderCell
         default:
             return UICollectionViewCell()
@@ -243,6 +262,7 @@ extension SurfingViewController: UICollectionViewDelegate {
 
 extension SurfingViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let headerTitle = ["TOP10 가리비", "카테고리", "찜한 가리비"]
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SurfingHeaderView.reuseableViewIndetifier, for: indexPath) as? SurfingHeaderView else { fatalError() }
@@ -252,7 +272,7 @@ extension SurfingViewController: UICollectionViewDelegateFlowLayout {
             headerView.tag = indexPath.section
             headerView.gestureRecognizers?.forEach {headerView.removeGestureRecognizer($0)}
             headerView.addGestureRecognizer(tapGesture)
-            
+            headerView.titleLabel.text = headerTitle[indexPath.section]
             return headerView
         default:
             fatalError()

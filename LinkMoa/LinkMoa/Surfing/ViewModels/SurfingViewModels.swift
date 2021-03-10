@@ -9,9 +9,11 @@ import Foundation
 
 protocol SurfingViewModelOutputs {
     var likedFolders: Observable<[LikedFolder.Result]> { get }
+    var topTenFolders: Observable<[TopTenFolder.Result]> { get }
 }
 
 protocol SurfingViewModelInputs {
+    func fetchTopTenFolder()
     func fetchLikedFolders()
     
 }
@@ -32,7 +34,22 @@ final class SurfingViewModel: SurfingViewModelOutputs, SurfingViewModelInputs, S
     var inputs: SurfingViewModelInputs { return self }
     var outputs: SurfingViewModelOutputs { return self }
     
+    var topTenFolders: Observable<[TopTenFolder.Result]> = Observable([])
     var likedFolders: Observable<[LikedFolder.Result]> = Observable([])
+    
+    func fetchTopTenFolder() {
+        surfingManager.fetchTopTenFolder { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let response):
+                let data = response.result
+                self.topTenFolders.value = data
+                
+            }
+        }
+    }
     
     func fetchLikedFolders() {
         surfingManager.fetchLikedFolders { [weak self] result in
@@ -42,7 +59,7 @@ final class SurfingViewModel: SurfingViewModelOutputs, SurfingViewModelInputs, S
                 print(error)
             case .success(let response):
                 if let data = response.result {
-                    self.likedFolders = Observable(data)
+                    self.likedFolders.value = data
                 }
             }
         }

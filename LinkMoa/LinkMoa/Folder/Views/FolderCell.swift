@@ -66,6 +66,17 @@ final class FolderCell: UICollectionViewCell {
 //        }
     }
 
+    func update(by folder: TopTenFolder.Result) {
+        titleLabel.text = folder.folderName
+        countLabel.text = folder.folderLinkCount.toAbbreviationString
+        lockImageView.isHidden = true
+    }
+    
+    func update(by folder: LikedFolder.Result) {
+        titleLabel.text = folder.folderName
+//        countLabel.text = folder.
+        lockImageView.isHidden = true
+    }
 
 
     func addGradientLayer() {
