@@ -22,9 +22,8 @@ final class AddLinkViewController: UIViewController {
     @IBOutlet private weak var folderSelectionLabel: UILabel!
     @IBOutlet private weak var saveButtonView: UIView!
     
-    private let linkViewModel = LinkViewModel()
-    private let folderViewModel = FolderViewModel()
-    private let linkPresentaionService = LinkPresentaionService()
+    private let addLinkViewModel: AddLinkViewModel = AddLinkViewModel()
+    private let linkPresentaionService: LinkPresentaionService = LinkPresentaionService()
     
     public var isLinkUpdated: Bool = false
     var linkPresetingStyle: EditPresetingStyle = .add
@@ -32,8 +31,11 @@ final class AddLinkViewController: UIViewController {
     var link: Link? // for edit
     
     private var destinationFolder: Folder?
+    private var destinationFolderName: String? // for api
+    private var destinationFolderIndex: Int?
+    
     var folder: Folder?
-    var updateReloadHander: (() -> ())?
+    var updateReloadHander: (() -> ())? // 추가하고 홈 폴더 리로드 할 때
     var alertSucceedViewHandler: (() -> ())? // test
     
     private var isButtonClicked: Bool = false
@@ -45,7 +47,7 @@ final class AddLinkViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         destinationFolder = folder
         update()
         prepareFolderSelectionView() // 메인에서 클릭했을 떄에만
@@ -56,22 +58,11 @@ final class AddLinkViewController: UIViewController {
     }
     
     private func update() {
-        guard let destinationFolder = destinationFolder else { return }
+        guard let destinationFolderName = destinationFolderName else { return }
         
-        folderSelectionLabel.text = destinationFolder.name
+        folderSelectionLabel.text = destinationFolderName
         folderSelectionLabel.isHidden = false
         folderPlaceHolderLabel.isHidden = true
-        
-        switch linkPresetingStyle {
-        case .edit:
-            guard let link = link, !isLinkUpdated else { return }
-            
-            linkTitleTextField.text = link.name
-            linkURLTextField.text = link.url
-            isLinkUpdated.toggle()
-        default:
-            break
-        }
     }
     
     private func prepareFolderSelectionView() {
@@ -142,11 +133,13 @@ final class AddLinkViewController: UIViewController {
     @objc private func folderSelectionViewTapped() {
         guard let folderSelectVC = FolderSelectViewController.storyboardInstance() else { return }
         
-        folderSelectVC.selectHandler = { [weak self] folder in
+        folderSelectVC.selectHandler = { [weak self] folderName, folderIndex in
             guard let self = self else { return }
-            self.destinationFolder = folder
+            self.destinationFolderName = folderName
+            self.destinationFolderIndex = folderIndex
             self.update()
         }
+        
         navigationController?.pushViewController(folderSelectVC, animated: true)
     }
     
@@ -168,7 +161,7 @@ final class AddLinkViewController: UIViewController {
             return
         }
         
-        guard let destinationFolder = destinationFolder else {
+        guard let _ = destinationFolderName, let folderIndex = destinationFolderIndex else {
             view.makeToast("저장할 폴더를 선택해주세요.", position: .top)
             return
         }
@@ -176,102 +169,47 @@ final class AddLinkViewController: UIViewController {
         switch linkPresetingStyle {
         case .add:
             isButtonClicked.toggle()
-            
             view.makeToastActivity(ToastPosition.center)
-            linkPresentaionService.fetchLinkMetaData(urlString: url, completionHandler: { [weak self] web, favicon in
+            
+            
+            linkPresentaionService.fetchMetaDataURL(targetURLString: url, completionHandler: { [weak self] webMetaData in
                 guard let self = self else { return }
-                
-                let addLink = Link(name: name, url: url, webPreview: web?.pngData() ?? nil, favicon: favicon?.pngData() ?? nil)
-                
-                DispatchQueue.main.async {
-//                    self.folderViewModel.update {
-//                        destinationFolder.links.append(addLink)
-//                    }
-                    
-                    self.view.hideAllToasts()
-                    self.dismiss(animated: true, completion: {
-                        self.alertSucceedViewHandler?()
-                    })
+                guard let webMetaData = webMetaData else {
+                    print("서버 에러")
+                    return
                 }
+                
+                var params: [String : Any] = ["linkName" : name,
+                                              "linkUrl" : url,
+                ]
+                
+                if let favicon = webMetaData.faviconURLString {
+                    params["linkFaviconUrl"] = favicon
+                }
+                
+                if let image = webMetaData.webPreviewURLString {
+                    params["linkImageUrl"] = image
+                }
+                
+                self.addLinkViewModel.inputs.addLink(folder: folderIndex, params: params, completionHandler: { result in
+                    switch result {
+                    case .success(let linkResponse):
+                        if linkResponse.isSuccess {
+                            self.updateReloadHander?()
+                            self.dismiss(animated: true, completion: {
+                                self.alertSucceedViewHandler?()
+                            })
+                        } else {
+                            print("서버 에러")
+                        }
+                    case .failure(let error):
+                        print(error)
+                    }
+                    
+                })
             })
-            
         case .edit:
-            guard let folder = folder, let link = link else { return }
-            
-            if folder.id != destinationFolder.id { // move
-                
-                if link.url != url { // move & edit url
-                    isButtonClicked.toggle()
-                    
-                    view.makeToastActivity(ToastPosition.center)
-                    linkPresentaionService.fetchLinkMetaData(urlString: url, completionHandler: { [weak self] web, favicon in
-                        guard let self = self else { return }
-                        
-                        let addLink = Link(name: name, url: url, webPreview: web?.pngData() ?? nil, favicon: favicon?.pngData() ?? nil)
-                        
-                        DispatchQueue.main.async {
-//                            self.folderViewModel.remove(target: link)
-//                            self.folderViewModel.update {
-//                                destinationFolder.links.append(addLink)
-//                            }
-                            
-                            self.view.hideAllToasts()
-                            self.dismiss(animated: true, completion: {
-                                self.alertSucceedViewHandler?()
-                            })
-                        }
-                    })
-                } else { // default move
-                    let addLink = Link(name: link.name, url: link.url, webPreview: link.webPreview, favicon: link.favicon)
-                    
-//                    folderViewModel.remove(target: link)
-//                    folderViewModel.update {
-//                        destinationFolder.links.append(addLink)
-//                    }
-                    
-                    dismiss(animated: true, completion: {
-                        self.alertSucceedViewHandler?()
-                    })
-                    
-                    return
-                }
-            } else { // update
-                if link.url != url { // update & edit url
-                    isButtonClicked.toggle()
-                    
-                    view.makeToastActivity(ToastPosition.center)
-                    linkPresentaionService.fetchLinkMetaData(urlString: url, completionHandler: { [weak self] web, favicon in
-                        guard let self = self else { return }
-                        
-                        DispatchQueue.main.async {
-//                            self.folderViewModel.update {
-//                                link.name = name
-//                                link.url = url
-//                                link.webPreview = web?.pngData()
-//                                link.favicon = favicon?.pngData()
-//                            }
-                            
-                            self.view.hideAllToasts()
-                            self.updateReloadHander?() // use only update
-                            self.dismiss(animated: true, completion: {
-                                self.alertSucceedViewHandler?()
-                            })
-                        }
-                    })
-                } else { // default update
-//                    folderViewModel.update {
-//                        link.name = name
-//                        link.url = url
-//                    }
-                    
-                    self.updateReloadHander?() // use only update
-                    dismiss(animated: true, completion: {
-                        self.alertSucceedViewHandler?()
-                    })
-                    
-                    return
-                }
-            }
+            print("edit")
         }
     }
     

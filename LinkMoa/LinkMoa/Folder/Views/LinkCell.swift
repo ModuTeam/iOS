@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class LinkCell: UICollectionViewCell {
 
@@ -35,6 +36,15 @@ final class LinkCell: UICollectionViewCell {
             faviconImageView.image = faviconImage
         } else {
             faviconImageView.image = UIImage(named: "seashell")
+        }
+    }
+    
+    func update(by link: FolderDetail.Link) {
+        nameLabel.text = link.name
+        urlLabel.text = link.url
+        
+        if let url = URL(string: link.faviconURL) {
+            faviconImageView.kf.setImage(with: url, placeholder: UIImage(named: "seashell"))
         }
     }
 }

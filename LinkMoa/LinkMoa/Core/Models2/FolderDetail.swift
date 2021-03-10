@@ -43,11 +43,15 @@ struct FolderDetail: Codable {
         let index: Int
         let name: String
         let url: String
+        let faviconURL: String
+        let updateDate: String
         
         enum CodingKeys: String, CodingKey {
             case index = "linkIdx"
             case name = "linkName"
             case url = "linkUrl"
+            case faviconURL = "linkFaviconUrl"
+            case updateDate = "linkUpdatedAt"
         }
     }
     

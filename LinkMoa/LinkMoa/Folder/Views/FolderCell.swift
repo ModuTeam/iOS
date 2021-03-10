@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class FolderCell: UICollectionViewCell {
     
@@ -53,17 +54,9 @@ final class FolderCell: UICollectionViewCell {
             lockImageView.isHidden = false
         }
         
-//        if let previewData = Array(folder.links).compactMap({ $0.webPreview }).last,
-//           let previewImage = UIImage(data: previewData) {
-//            
-//            if folder.isShared {
-//                webPreviewImageView.image = previewImage
-//            } else {
-//                webPreviewImageView.image = previewImage.greyScale
-//            }
-//        } else {
-//            webPreviewImageView.image = nil
-//        }
+        if let url = URL(string: folder.imageURL) {
+            webPreviewImageView.kf.setImage(with: url)
+        }
     }
 
     func update(by folder: TopTenFolder.Result) {

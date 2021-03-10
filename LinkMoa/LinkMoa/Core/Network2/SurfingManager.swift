@@ -57,4 +57,3 @@ private extension SurfingManager {
         }
     }
 }
-

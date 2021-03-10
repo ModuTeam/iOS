@@ -19,6 +19,8 @@ struct FolderList: Codable {
         let name: String
         let linkCount: Int
         let folderType: String
+        let imageURL: String
+        let updateDate: String
         
         static func == (lhs: Result, rhs: Result) -> Bool {
             return lhs.index == rhs.index
@@ -28,6 +30,8 @@ struct FolderList: Codable {
             case index = "folderIdx"
             case name = "folderName"
             case linkCount = "folderLinkCount"
+            case imageURL = "linkImageUrl"
+            case updateDate = "updatedAt"
             case folderType
         }
     }

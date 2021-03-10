@@ -87,6 +87,11 @@ final class FolderViewController: UIViewController, CustomAlert {
             self.alertSucceedView { self.blurVC?.fadeOutBackgroundViewAnimation() }
         }
         
+        addLinkVC.updateReloadHander = { [weak self] in
+            guard let self = self else { return }
+            self.folderViewModel.inputs.fetchFolders()
+        }
+        
         let selectNC = SelectNaviagitonController()
         selectNC.pushViewController(addLinkVC, animated: false)
         selectNC.modalPresentationStyle = .fullScreen
@@ -161,16 +166,27 @@ final class FolderViewController: UIViewController, CustomAlert {
             guard let self = self else { return }
             guard let editFolderVC = AddFolderViewController.storyboardInstance() else { return }
             
-            editFolderVC.folderPresentingType = .edit
-            // editFolderVC.folder = folder
-            editFolderVC.modalPresentationStyle = .fullScreen
-            
-            editFolderVC.alertSucceedViewHandler = {
-                self.blurVC?.fadeInBackgroundViewAnimation()
-                self.alertSucceedView(completeHandler: { self.blurVC?.fadeOutBackgroundViewAnimation() })
-            }
-            self.present(editFolderVC, animated: true, completion: nil)
-        
+            self.folderViewModel.inputs.fetchFolderDetail(folderIndex: folder.index, completionHandler: { result in
+                switch result {
+                case .success(let folderDetail):
+                    if let result = folderDetail.result, folderDetail.isSuccess {
+                        editFolderVC.folderPresentingType = .edit
+                        editFolderVC.modalPresentationStyle = .fullScreen
+                        
+                        editFolderVC.folder = result
+                        editFolderVC.alertSucceedViewHandler = {
+                            self.blurVC?.fadeInBackgroundViewAnimation()
+                            self.alertSucceedView(completeHandler: { self.blurVC?.fadeOutBackgroundViewAnimation() })
+                        }
+                        self.present(editFolderVC, animated: true, completion: nil)
+                    } else {
+                        print("서버 에러 발생")
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+                
+            })
         }, { [weak self] _ in
             guard let self = self else { return }
             // 여기 링크 정보가 없음
@@ -263,17 +279,29 @@ extension FolderViewController: UICollectionViewDelegate {
         guard let folderDetailVC = FolderDetailViewController.storyboardInstance() else { fatalError() }
         
         let folder = folders[indexPath.item]
-        // folderDetailVC.folder = folder
         folderDetailVC.homeNavigationController = homeNavigationController
-        
         folderDetailVC.folderRemoveHandler = { [weak self] in
             guard let self = self else { return }
             
             self.blurVC?.fadeInBackgroundViewAnimation()
             self.alertRemoveSucceedView(completeHandler: { self.blurVC?.fadeOutBackgroundViewAnimation() })
         }
+        
+        folderViewModel.inputs.fetchFolderDetail(folderIndex: folder.index, completionHandler: { [weak self] result in
+            guard let self = self else { return }
             
-        homeNavigationController?.pushViewController(folderDetailVC, animated: true)
+            switch result {
+            case .success(let folderDetail):
+                if folderDetail.isSuccess {
+                    folderDetailVC.folderDetail = folderDetail.result
+                    self.homeNavigationController?.pushViewController(folderDetailVC, animated: true)
+                } else {
+                    print("서버 에러")
+                }
+            case .failure(let error):
+                print(error)
+            }
+        })
     }
 }
 

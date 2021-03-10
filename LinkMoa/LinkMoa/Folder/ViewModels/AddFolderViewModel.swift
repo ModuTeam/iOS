@@ -10,7 +10,7 @@ import Foundation
 protocol AddFolderViewModelOutputs {}
 
 protocol AddFolderViewModelInputs {
-
+    func addFolder(folderParam param: [String : Any], completionHandler: @escaping ((Result<NewFolder, Error>) -> ()))
 }
 
 protocol AddFolderViewModelType {

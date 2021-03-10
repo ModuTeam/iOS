@@ -67,7 +67,7 @@ extension FolderListViewController: UICollectionViewDelegate {
         guard let folderDetailVC = FolderDetailViewController.storyboardInstance() else { fatalError() }
         
         let folder = folders[indexPath.item]
-        folderDetailVC.folder = folder
+        // folderDetailVC.folder = folder
         // folderDetailVc.homeNavigationController = homeNavigationController
         // folderDetailVc.folderViewController = self
         folderDetailVC.folderRemoveHandler = { [weak self] in

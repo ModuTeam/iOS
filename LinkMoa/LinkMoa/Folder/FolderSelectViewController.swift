@@ -6,15 +6,16 @@
 //
 
 import UIKit
+import Toast_Swift
 
 final class FolderSelectViewController: UIViewController {
 
     @IBOutlet private weak var folderSelectCollectionView: UICollectionView!
     
-    // private let folderViewModel: FolderViewModel = FolderViewModel()
-    private var folders: [Folder] = []
+    private let folderSelectViewModel: FolderSelectViewModel = FolderSelectViewModel()
+    private var folders: [FolderList.Result] = []
     
-    var selectHandler: ((Folder) -> ())?
+    var selectHandler: ((String, Int) -> ())? // 폴더 이름, 폴더 인덱스
     
     static func storyboardInstance() -> FolderSelectViewController? {
         let storyboard = UIStoryboard(name: FolderSelectViewController.storyboardName(), bundle: nil)
@@ -27,7 +28,9 @@ final class FolderSelectViewController: UIViewController {
         prepareNavigationBar()
         preparefolderSelectCollectionView()
         bind()
-        // folderViewModel.inputs.fetchFolders()
+        
+        view.makeToastActivity(ToastPosition.center)
+        folderSelectViewModel.inputs.fetchFolders()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,13 +40,14 @@ final class FolderSelectViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-
+    
     private func bind() {
-//        folderViewModel.outputs.folders.bind { [weak self] results in
-//            guard let self = self else { return }
-//            // self.folders = results
-//            self.folderSelectCollectionView.reloadData()
-//        }
+        folderSelectViewModel.outputs.folders.bind { [weak self] results in
+            guard let self = self else { return }
+            self.folders = results
+            self.view.hideToastActivity()
+            self.folderSelectCollectionView.reloadData()
+        }
     }
     
     private func prepareNavigationBar() {
@@ -69,7 +73,7 @@ extension FolderSelectViewController: UICollectionViewDataSource {
         guard let folderCell = collectionView.dequeueReusableCell(withReuseIdentifier: FolderCell.cellIdentifier, for: indexPath) as? FolderCell else { return UICollectionViewCell() }
         
         let folder = folders[indexPath.item]
-        // folderCell.update(by: folder)
+        folderCell.update(by: folder)
         
         return folderCell
     }
@@ -79,7 +83,7 @@ extension FolderSelectViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let folder = folders[indexPath.item]
 
-        selectHandler?(folder)
+        selectHandler?(folder.name, folder.index)
         navigationController?.popViewController(animated: true)
     }
 }

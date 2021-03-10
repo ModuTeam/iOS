@@ -17,7 +17,7 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
     @IBOutlet private(set) weak var linkCollectionView: UICollectionView!
     
     private let linkViewModel: LinkViewModel = LinkViewModel()
-    private var links: [Link] = []
+    private var links: [FolderDetail.Link] = []
     
     weak var homeNavigationController: HomeNavigationController?
  
@@ -26,19 +26,19 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
     }
     
     var folderRemoveHandler: (() -> ())?
-    var folder: Folder?
+    var folderDetail: FolderDetail.Result?
     
     static func storyboardInstance() -> FolderDetailViewController? {
         let storyboard = UIStoryboard(name: FolderDetailViewController.storyboardName(), bundle: nil)
         return storyboard.instantiateInitialViewController()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let folder = folder {
-            linkViewModel.folderSource = folder
-        }
+//        if let folder = folder {
+//            linkViewModel.folderSource = folder
+//        }
         prepareLinkCollectionView()
         prepareAddButtonGesture()
         prepareSubHeaderView()
@@ -52,37 +52,37 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
     }
     
     private func bind() {
-        linkViewModel.outputs.links.bind { [weak self] links in
-            guard let self = self else { return }
-            self.links = links
-            self.linkCountLabel.text = String(links.count)
-            self.linkCollectionView.reloadData()
-        }
-        
-        linkViewModel.outputs.folderName.bind { [weak self] name in
-            guard let self = self else { return }
-            self.folderTitleLabel.text = name
-        }
-        
-        linkViewModel.outputs.tags.bind { [weak self] tags in
-            guard let self = self else { return }
-            self.updateTagStackView(tags: tags)
-        }
-        
-        linkViewModel.outputs.isShared.bind { [weak self] isShared in
-            guard let self = self else { return }
-            self.lockImageView.isHidden = isShared ? true : false
-        }
+//        linkViewModel.outputs.links.bind { [weak self] links in
+//            guard let self = self else { return }
+//            self.links = links
+//            self.linkCountLabel.text = String(links.count)
+//            self.linkCollectionView.reloadData()
+//        }
+//
+//        linkViewModel.outputs.folderName.bind { [weak self] name in
+//            guard let self = self else { return }
+//            self.folderTitleLabel.text = name
+//        }
+//
+//        linkViewModel.outputs.tags.bind { [weak self] tags in
+//            guard let self = self else { return }
+//            self.updateTagStackView(tags: tags)
+//        }
+//
+//        linkViewModel.outputs.isShared.bind { [weak self] isShared in
+//            guard let self = self else { return }
+//            self.lockImageView.isHidden = isShared ? true : false
+//        }
     }
     
     private func update() {
-        guard let folder = folder else { return }
+        guard let folderDetail = folderDetail else { return }
         
-        lockImageView.isHidden = folder.isShared ? true : false
-        folderTitleLabel.text = folder.name
-        links = folder.links.map { $0 }
+        lockImageView.isHidden = folderDetail.type == "private" ? false : true
+        folderTitleLabel.text = folderDetail.name
+        links = folderDetail.linkList
         linkCountLabel.text = String(links.count)
-        updateTagStackView(tags: folder.tags.map { $0.name })
+        updateTagStackView(tags: folderDetail.hashTagList.map { $0.name })
     }
     
     private func updateTagStackView(tags: [String]) {
@@ -135,7 +135,7 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
     }
     
     @objc private func folderEditButtonTapped() {
-        guard let folder = folder else { return }
+        // guard let folder = folder else { return }
         
         guard let editVC = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
         guard let editFolderVC = AddFolderViewController.storyboardInstance() else { return }
@@ -155,7 +155,7 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
             editFolderVC.modalPresentationStyle = .fullScreen
             editFolderVC.folderPresentingType = .edit
             
-            editFolderVC.folder = self.folder
+            // editFolderVC.folder = self.folder
             editFolderVC.alertSucceedViewHandler = { [weak self] in
                 guard let self = self else { return }
                 self.blurVC?.fadeInBackgroundViewAnimation()
@@ -166,14 +166,14 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
         }, { [weak self] _ in
             guard let self = self else { return }
             
-            let shareItem = folder.shareItem
-            let activityController = UIActivityViewController(activityItems: [shareItem], applicationActivities: nil)
-            activityController.excludedActivityTypes = [.saveToCameraRoll, .print, .assignToContact, .addToReadingList]
-            
-            self.present(activityController, animated: true, completion: nil)
+//            let shareItem = folder.shareItem
+//            let activityController = UIActivityViewController(activityItems: [shareItem], applicationActivities: nil)
+//            activityController.excludedActivityTypes = [.saveToCameraRoll, .print, .assignToContact, .addToReadingList]
+//
+//            self.present(activityController, animated: true, completion: nil)
         }, { [weak self] _ in // 삭제하기
             guard let self = self else { return }
-            guard let folder = self.folder else { return }
+           // guard let folder = self.folder else { return }
             
             self.blurVC?.fadeInBackgroundViewAnimation()
 //            self.alertRemoveRequestView(folder: folder,
@@ -201,7 +201,7 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
         selectNC.modalPresentationStyle = .fullScreen
         selectNC.isNavigationBarHidden = true
         
-        addLinkVC.folder = folder
+        // addLinkVC.folder = folder
         addLinkVC.alertSucceedViewHandler = { [weak self] in
             guard let self = self else { return }
             
@@ -284,7 +284,7 @@ final class FolderDetailViewController: UIViewController, CustomAlert {
         searchLinkVC.modalTransitionStyle = .crossDissolve
         searchLinkVC.modalPresentationStyle = .overCurrentContext
         
-        searchLinkVC.folder = folder
+        // searchLinkVC.folder = folder
         searchLinkVC.folderDetailViewController = self
         homeNavigationController?.present(searchLinkVC, animated: true, completion: nil)
     }

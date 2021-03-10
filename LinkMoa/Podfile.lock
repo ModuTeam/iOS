@@ -17,11 +17,13 @@ PODS:
   - GTMSessionFetcher/Core (1.5.0)
   - GTMSessionFetcher/Full (1.5.0):
     - GTMSessionFetcher/Core (= 1.5.0)
+  - Kingfisher (6.2.1)
   - lottie-ios (3.2.1)
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
+  - OpenGraph (1.2.2)
   - Realm (10.1.4):
     - Realm/Headers (= 10.1.4)
   - Realm/Headers (10.1.4)
@@ -31,8 +33,10 @@ PODS:
 
 DEPENDENCIES:
   - GoogleSignIn
+  - Kingfisher (~> 6.0)
   - lottie-ios
   - Moya (~> 14.0)
+  - OpenGraph
   - RealmSwift (= 10.1.4)
   - Toast-Swift (~> 5.0.1)
 
@@ -43,8 +47,10 @@ SPEC REPOS:
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
+    - Kingfisher
     - lottie-ios
     - Moya
+    - OpenGraph
     - Realm
     - RealmSwift
     - Toast-Swift
@@ -55,12 +61,14 @@ SPEC CHECKSUMS:
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GTMAppAuth: 197a8dabfea5d665224aa00d17f164fc2248dab9
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  Kingfisher: e71c6fac2aebb1262888cabc2cb13d313362a48f
   lottie-ios: 106e92eaf11fbed0a76590b4cdb9b5ec26123ff7
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  OpenGraph: 661adce5ccba5d3a57ba16681a9ae2b949bdcc03
   Realm: 80f4fb2971ccb9adc27a47d0955ae8e533a7030b
   RealmSwift: 0e566ca714edb377bba8ea0811eafcea0b93734e
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: b4ad9aaee3877aaa7adff650f159929b6cd5e18a
+PODFILE CHECKSUM: 76f6471ab94a7d11ec9233f4b61e1bd975f76e54
 
 COCOAPODS: 1.10.1

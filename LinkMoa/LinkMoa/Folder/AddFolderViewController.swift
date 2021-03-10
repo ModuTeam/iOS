@@ -29,8 +29,8 @@ final class AddFolderViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var tagNotificationView: UIView!
     
-    // private let folderViewModel: FolderViewModel = FolderViewModel()
     private let addFolderViewModel: AddFolderViewModel = AddFolderViewModel()
+    private let link = LinkPresentaionService()
     
     private var tags: [String] = [] {
         didSet {
@@ -63,7 +63,7 @@ final class AddFolderViewController: UIViewController {
     }
     
     var folderPresentingType: FolderPresentingType = .add
-    var folder: Folder?
+    var folder: FolderDetail.Result?
     
     var editCompletionHandler: (() -> ())? // FolderVC 리로드 할 때
     var alertSucceedViewHandler: (() -> ())? // PresetingVC 성공 Alert 보여줄 때
@@ -75,6 +75,10 @@ final class AddFolderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        link.fetchMetaDataURL(targetURLString: "https://www.daum.net", completionHandler: { result in
+            print(result)
+        })
         
         update()
         prepareSaveButtonView()
@@ -89,7 +93,7 @@ final class AddFolderViewController: UIViewController {
     private func update() {
         guard let folder = folder else { return }
         
-        isShared = folder.isShared
+        isShared = folder.type == "private" ? false : true
         
         switch folderPresentingType {
         case .add:
@@ -97,7 +101,7 @@ final class AddFolderViewController: UIViewController {
         case .edit:
             titleLabel.text = "폴더 수정"
             folderNameTextField.text = folder.name
-            tags = folder.tags.map { $0.name }
+            tags = folder.hashTagList.map { $0.name }
         }
     }
     
@@ -197,22 +201,6 @@ final class AddFolderViewController: UIViewController {
         
         switch folderPresentingType {
         case .add:
-            
-            
-            //MARK:- 폴더생성
-            //        let params: [String: Any] = ["folderName": "test",
-            //                                     "hashTagList": ["test1","test2"],
-            //                                     "categoryIdx": 1,
-            //                                     "folderType": "private"
-            //        ]
-            //
-            //        myScallopManager.addNewFolder(params: params) { result in
-            //            print("🥺test", result)
-            //        }
-            
-            // let folder = Folder(name: name, isShared: isShared, tags: tags.map { Tag(name: $0) })
-            // folderViewModel.inputs.save(target: folder)
-            
             let param: [String : Any] = ["folderName" : name,
                                          "hashTagList" : tags,
                                          "categoryIdx" : 1,
@@ -238,6 +226,18 @@ final class AddFolderViewController: UIViewController {
         case .edit:
             guard let folder = folder else { return }
             
+            let params: [String: Any] = ["folderName": name,
+                                         "hashTagList": tags,
+                                         "categoryIdx": 1, // 나중에 수정
+                                         "folderType": isShared == false ? "private" : "public"
+            ]
+            
+            
+            
+            //        myScallopManager.editFolder(folder: 8, params: params) { result in
+            //            print("🥺test", result)
+            //        }
+            
             // folderViewModel.remove(target: folder.tags)
             
 //            folderViewModel.inputs.update {
@@ -246,10 +246,10 @@ final class AddFolderViewController: UIViewController {
 //                folder.tags.append(objectsIn: self.tags.map { Tag(name: $0) })
 //            }
             
-            if let HomeNC = presentingViewController as? HomeNavigationController,
-               let folderDetailVC = HomeNC.topViewController as? FolderDetailViewController {
-                folderDetailVC.folder = folder
-            }
+//            if let HomeNC = presentingViewController as? HomeNavigationController,
+//               let folderDetailVC = HomeNC.topViewController as? FolderDetailViewController {
+//                // folderDetailVC.folder = folder
+//            }
             
             dismiss(animated: true, completion: {
                 self.alertSucceedViewHandler?()

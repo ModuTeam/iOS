@@ -76,6 +76,16 @@
 		3C4E979025DE4A0A001A5BC9 /* FolderSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4E978F25DE4A0A001A5BC9 /* FolderSelectViewController.swift */; };
 		3C4E979625DE4A1A001A5BC9 /* FolderSelect.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E979525DE4A1A001A5BC9 /* FolderSelect.storyboard */; };
 		3C4E979C25DE5075001A5BC9 /* SelectNaviagitonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4E979B25DE5075001A5BC9 /* SelectNaviagitonController.swift */; };
+		3C4FB99725F84C8F0046605B /* FolderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D004D225F5E335002743C3 /* FolderDetail.swift */; };
+		3C4FB99825F84C8F0046605B /* LikedFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D004E025F60026002743C3 /* LikedFolder.swift */; };
+		3C4FB9A825F85D280046605B /* WebMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4FB9A725F85D280046605B /* WebMetaData.swift */; };
+		3C4FB9A925F85D280046605B /* WebMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4FB9A725F85D280046605B /* WebMetaData.swift */; };
+		3C4FB9AB25F865340046605B /* FolderSelectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4FB9AA25F865340046605B /* FolderSelectViewModel.swift */; };
+		3C4FB9AC25F865340046605B /* FolderSelectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4FB9AA25F865340046605B /* FolderSelectViewModel.swift */; };
+		3C4FB9AD25F865DD0046605B /* MyScallopAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447CC25F642D9003E0A04 /* MyScallopAPI.swift */; };
+		3C4FB9AE25F865DD0046605B /* MyScallopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447D025F642EA003E0A04 /* MyScallopManager.swift */; };
+		3C4FB9B025F86C3F0046605B /* AddLinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4FB9AF25F86C3F0046605B /* AddLinkViewModel.swift */; };
+		3C4FB9B125F86C3F0046605B /* AddLinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4FB9AF25F86C3F0046605B /* AddLinkViewModel.swift */; };
 		3C540E7B25CEDBBB0013427E /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C540E7A25CEDBBB0013427E /* Observable.swift */; };
 		3C540E8025CEDCAD0013427E /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C540E7F25CEDCAD0013427E /* RealmService.swift */; };
 		3C540E8625CEDE280013427E /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C540E8525CEDE280013427E /* Folder.swift */; };
@@ -275,6 +285,9 @@
 		3C4E978F25DE4A0A001A5BC9 /* FolderSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderSelectViewController.swift; sourceTree = "<group>"; };
 		3C4E979525DE4A1A001A5BC9 /* FolderSelect.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FolderSelect.storyboard; sourceTree = "<group>"; };
 		3C4E979B25DE5075001A5BC9 /* SelectNaviagitonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectNaviagitonController.swift; sourceTree = "<group>"; };
+		3C4FB9A725F85D280046605B /* WebMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebMetaData.swift; sourceTree = "<group>"; };
+		3C4FB9AA25F865340046605B /* FolderSelectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderSelectViewModel.swift; sourceTree = "<group>"; };
+		3C4FB9AF25F86C3F0046605B /* AddLinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLinkViewModel.swift; sourceTree = "<group>"; };
 		3C540E7A25CEDBBB0013427E /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		3C540E7F25CEDCAD0013427E /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		3C540E8525CEDE280013427E /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
@@ -492,7 +505,9 @@
 			children = (
 				3C540E8C25CF8B430013427E /* FolderViewModel.swift */,
 				3C623F1225F71C5B00FD7B5D /* AddFolderViewModel.swift */,
+				3C4FB9AF25F86C3F0046605B /* AddLinkViewModel.swift */,
 				3C4BC7DA25DCEAAA00C06929 /* LinkViewModel.swift */,
+				3C4FB9AA25F865340046605B /* FolderSelectViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -504,6 +519,7 @@
 				3CFFFCD625F62045002B935A /* GoogleLogin.swift */,
 				3C540E8525CEDE280013427E /* Folder.swift */,
 				3C540E8925CEDE3F0013427E /* Link.swift */,
+				3C4FB9A725F85D280046605B /* WebMetaData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1022,8 +1038,13 @@
 				259E18B425F8766500D8FF9A /* Int+Abbreviations.swift in Sources */,
 				3C9A067225E8977B00100966 /* RealmService.swift in Sources */,
 				3C6D172C25E91A6300A7E7CA /* ShareAddFolderViewController.swift in Sources */,
+				3C4FB9A925F85D280046605B /* WebMetaData.swift in Sources */,
+				3C4FB9AD25F865DD0046605B /* MyScallopAPI.swift in Sources */,
+				3C4FB9AC25F865340046605B /* FolderSelectViewModel.swift in Sources */,
+				3C4FB9AE25F865DD0046605B /* MyScallopManager.swift in Sources */,
 				3C6D174225EA009200A7E7CA /* SaveSucceedBottomViewController.swift in Sources */,
 				3C6D175325EA389B00A7E7CA /* CustomAlert.swift in Sources */,
+				3C4FB9B125F86C3F0046605B /* AddLinkViewModel.swift in Sources */,
 				3C6D174625EA009200A7E7CA /* EditBottomSheetViewController.swift in Sources */,
 				3C623F1025F716FB00FD7B5D /* NewFolder.swift in Sources */,
 				3C9A066F25E8977700100966 /* Observable.swift in Sources */,
@@ -1041,6 +1062,7 @@
 				3C10CB4325E8B7F10083E93A /* UIColor+.swift in Sources */,
 				3C6D174025EA009200A7E7CA /* RemoveRequestBottomViewController.swift in Sources */,
 				3C10CB4125E8B7F10083E93A /* String+Regex.swift in Sources */,
+				3C4FB99725F84C8F0046605B /* FolderDetail.swift in Sources */,
 				3C9A066C25E8977400100966 /* Link.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1083,6 +1105,7 @@
 				2542747025F136B400A88F18 /* SurfingHeaderView.swift in Sources */,
 				3C4BC7CF25DCE0C400C06929 /* AddLinkViewController.swift in Sources */,
 				3CCA602225DFA3FA00DD1F50 /* LinkPresentaionService.swift in Sources */,
+				3C4FB9A825F85D280046605B /* WebMetaData.swift in Sources */,
 				3CB4598525F6F7BD0016351B /* LinkResponse.swift in Sources */,
 				259E18A025F7059600D8FF9A /* SurfingViewModels.swift in Sources */,
 				258447F425F64EE9003E0A04 /* FolderResponse.swift in Sources */,
@@ -1101,6 +1124,7 @@
 				3CD9205025E7CC08006B8CC6 /* FolderListViewController.swift in Sources */,
 				25D004D325F5E335002743C3 /* FolderDetail.swift in Sources */,
 				3CD6663025E11A820075DFE6 /* RemoveRequestBottomViewController.swift in Sources */,
+				3C4FB9B025F86C3F0046605B /* AddLinkViewModel.swift in Sources */,
 				3C4BC7CA25DCD8AD00C06929 /* UIView+RoundConer.swift in Sources */,
 				25D0049525F39B1E002743C3 /* SurfingFolderViewController.swift in Sources */,
 				3CD9202925E61C0A006B8CC6 /* SearchLinkViewModel.swift in Sources */,
@@ -1120,6 +1144,7 @@
 				3C128BE025ECDB85001B6A7B /* EditBottomSheetCell.swift in Sources */,
 				25144D0025F25CE400EC9F46 /* SurfingCategoryCell.swift in Sources */,
 				3CD6661E25E0E1710075DFE6 /* SaveSucceedBottomViewController.swift in Sources */,
+				3C4FB9AB25F865340046605B /* FolderSelectViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

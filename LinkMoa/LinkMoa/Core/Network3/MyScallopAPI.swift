@@ -26,8 +26,8 @@ extension MyScallopAPI: TargetType {
     
     var path: String {
         switch self {
-        case .myFolderList(let index):
-            return "/users/\(index)/folders"
+        case .myFolderList:
+            return "/users/folders"
         case .addFolder:
             return "/folders"
         case .editFolder(let index, _):

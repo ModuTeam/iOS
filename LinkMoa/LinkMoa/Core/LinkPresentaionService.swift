@@ -7,11 +7,13 @@
 
 import UIKit
 import LinkPresentation
+import OpenGraph
 
 public struct LinkPresentaionService {
 
     private let googleFaviconURLString: String = "https://www.google.com/s2/favicons?sz=64&domain_url="
     
+    // 사용 안함
     func fetchLinkMetaData(urlString: String, completionHandler: @escaping (UIImage?, UIImage?) -> ()) {
         guard let url = URL(string: urlString) else { return }
         
@@ -57,6 +59,7 @@ public struct LinkPresentaionService {
         })
     }
     
+    // 사용 안함
     func linkFavicon(targetURLString urlString: String, completionHandler: @escaping (UIImage?) -> ()) {
         guard let url = URL(string: googleFaviconURLString + urlString) else { return }
         
@@ -74,6 +77,7 @@ public struct LinkPresentaionService {
         }).resume()
     }
     
+    // 사용 안함
     func fetchTitle(urlString: String, completionHandler: @escaping (String?) -> ()) {
         guard let url = URL(string: urlString) else {
             completionHandler(nil)
@@ -92,5 +96,37 @@ public struct LinkPresentaionService {
             
             completionHandler(metadata?.title)
         })
+    }
+    
+    // completionHandler: (타이틀, 웹 이미지 URL, 파비콘 URL)
+    func fetchMetaDataURL(targetURLString URLString: String, completionHandler: @escaping (WebMetaData?) -> ()) {
+        guard let url = URL(string: URLString) else { return }
+        
+        var title: String? = nil
+        var image: String? = nil
+        let favicon = googleFaviconURLString + URLString
+        
+        OpenGraph.fetch(url: url) { result in
+            switch result {
+            case .success(let og):
+                if let metaDataTitle = og[.title]  {
+                    title = metaDataTitle
+                }
+                
+                if let imageURLString = og[.image] {
+                    if imageURLString.isValidHttps() {
+                        image = imageURLString
+                    } else {
+                        image = "https:" + imageURLString
+                    }
+                }
+                
+                completionHandler(WebMetaData(title: title, webPreviewURLString: image, faviconURLString: favicon))
+                
+            case .failure(let error):
+                print(error)
+                completionHandler(nil)
+            }
+        }
     }
 }
