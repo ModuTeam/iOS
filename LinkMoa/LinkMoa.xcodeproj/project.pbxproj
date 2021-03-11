@@ -24,6 +24,9 @@
 		259E18B325F8750800D8FF9A /* LikedFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D004E025F60026002743C3 /* LikedFolder.swift */; };
 		259E18B425F8766500D8FF9A /* Int+Abbreviations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E18A225F74D4400D8FF9A /* Int+Abbreviations.swift */; };
 		259E18B625F8A9BB00D8FF9A /* SearchFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E18B525F8A9BB00D8FF9A /* SearchFolder.swift */; };
+		25C666E325F9A7A6009EF04D /* SearchFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E18B525F8A9BB00D8FF9A /* SearchFolder.swift */; };
+		25C666F125F9D54F009EF04D /* SearchLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C666F025F9D54F009EF04D /* SearchLink.swift */; };
+		25C666F625F9E97A009EF04D /* SearchLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C666F025F9D54F009EF04D /* SearchLink.swift */; };
 		25D0047F25F397F6002743C3 /* CategoryDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25D0047E25F397F6002743C3 /* CategoryDetail.storyboard */; };
 		25D0048325F3980D002743C3 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D0048225F3980D002743C3 /* CategoryDetailViewController.swift */; };
 		25D0049125F39B0D002743C3 /* SurfingFolder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25D0049025F39B0D002743C3 /* SurfingFolder.storyboard */; };
@@ -78,7 +81,6 @@
 		3C4E979625DE4A1A001A5BC9 /* FolderSelect.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C4E979525DE4A1A001A5BC9 /* FolderSelect.storyboard */; };
 		3C4E979C25DE5075001A5BC9 /* SelectNaviagitonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4E979B25DE5075001A5BC9 /* SelectNaviagitonController.swift */; };
 		3C4FB99725F84C8F0046605B /* FolderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D004D225F5E335002743C3 /* FolderDetail.swift */; };
-		3C4FB99825F84C8F0046605B /* LikedFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D004E025F60026002743C3 /* LikedFolder.swift */; };
 		3C4FB9A825F85D280046605B /* WebMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4FB9A725F85D280046605B /* WebMetaData.swift */; };
 		3C4FB9A925F85D280046605B /* WebMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4FB9A725F85D280046605B /* WebMetaData.swift */; };
 		3C4FB9AB25F865340046605B /* FolderSelectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4FB9AA25F865340046605B /* FolderSelectViewModel.swift */; };
@@ -251,6 +253,7 @@
 		259E18A225F74D4400D8FF9A /* Int+Abbreviations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Abbreviations.swift"; sourceTree = "<group>"; };
 		259E18A425F8583100D8FF9A /* TopTenFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTenFolder.swift; sourceTree = "<group>"; };
 		259E18B525F8A9BB00D8FF9A /* SearchFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFolder.swift; sourceTree = "<group>"; };
+		25C666F025F9D54F009EF04D /* SearchLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLink.swift; sourceTree = "<group>"; };
 		25D0047E25F397F6002743C3 /* CategoryDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CategoryDetail.storyboard; sourceTree = "<group>"; };
 		25D0048225F3980D002743C3 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		25D0049025F39B0D002743C3 /* SurfingFolder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SurfingFolder.storyboard; sourceTree = "<group>"; };
@@ -458,6 +461,7 @@
 				25D004D225F5E335002743C3 /* FolderDetail.swift */,
 				25D004E025F60026002743C3 /* LikedFolder.swift */,
 				259E18B525F8A9BB00D8FF9A /* SearchFolder.swift */,
+				25C666F025F9D54F009EF04D /* SearchLink.swift */,
 			);
 			path = Models2;
 			sourceTree = "<group>";
@@ -692,8 +696,8 @@
 		3CD9206125E7D8FE006B8CC6 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				3CD9202825E61C0A006B8CC6 /* SearchLinkViewModel.swift */,
 				3CD9205D25E7D83B006B8CC6 /* SearchFolderViewModel.swift */,
+				3CD9202825E61C0A006B8CC6 /* SearchLinkViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1036,11 +1040,13 @@
 				3C4BC7CB25DCD8AD00C06929 /* UIView+RoundConer.swift in Sources */,
 				3C10CB8B25E8EE6C0083E93A /* FolderCell.swift in Sources */,
 				3C0C16E625F6401500D8A632 /* TokenManager.swift in Sources */,
+				25C666F625F9E97A009EF04D /* SearchLink.swift in Sources */,
 				3C128BE425ECDC47001B6A7B /* EditBottomSheetCell.swift in Sources */,
 				259E18A625F864AA00D8FF9A /* TopTenFolder.swift in Sources */,
 				259E18B425F8766500D8FF9A /* Int+Abbreviations.swift in Sources */,
 				3C9A067225E8977B00100966 /* RealmService.swift in Sources */,
 				3C6D172C25E91A6300A7E7CA /* ShareAddFolderViewController.swift in Sources */,
+				25C666E325F9A7A6009EF04D /* SearchFolder.swift in Sources */,
 				3C4FB9A925F85D280046605B /* WebMetaData.swift in Sources */,
 				3C4FB9AD25F865DD0046605B /* MyScallopAPI.swift in Sources */,
 				3C4FB9AC25F865340046605B /* FolderSelectViewModel.swift in Sources */,
@@ -1096,6 +1102,7 @@
 				3C68934F25F5CFAC001F229D /* LoginViewModel.swift in Sources */,
 				3C540EA625CFB8850013427E /* UIColor+.swift in Sources */,
 				258447CD25F642D9003E0A04 /* MyScallopAPI.swift in Sources */,
+				25C666F125F9D54F009EF04D /* SearchLink.swift in Sources */,
 				3C540E9D25CFA0100013427E /* HomeNavigationController.swift in Sources */,
 				3C44E13725CAA27E005386F4 /* FolderHeaderView.swift in Sources */,
 				3C4E979C25DE5075001A5BC9 /* SelectNaviagitonController.swift in Sources */,
@@ -1119,7 +1126,7 @@
 				3C540E8D25CF8B430013427E /* FolderViewModel.swift in Sources */,
 				259E18A525F8583100D8FF9A /* TopTenFolder.swift in Sources */,
 				3C9A066225E88D3F00100966 /* SearchMainNavigationController.swift in Sources */,
-				3C9A066225E88D3F00100966 /* SearchLinkNavigationViewController.swift in Sources */,
+				3C9A066225E88D3F00100966 /* SearchMainNavigationController.swift in Sources */,
 				254274AD25F1DC4E00A88F18 /* SurfingViewController.swift in Sources */,
 				3C8AD44A25D2CE9800197B21 /* UICustomTagButton.swift in Sources */,
 				3CF5ADE425C2891B00F1E45E /* SceneDelegate.swift in Sources */,

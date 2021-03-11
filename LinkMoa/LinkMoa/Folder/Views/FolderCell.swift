@@ -24,13 +24,16 @@ final class FolderCell: UICollectionViewCell {
     @IBOutlet private weak var webPreviewImageView: UIImageView!
     @IBOutlet private weak var lockImageView: UIImageView!
     @IBOutlet private(set) weak var editButton: UICustomTagButton!
+    @IBOutlet weak var heartStackView: UIStackView!
+    @IBOutlet weak var heartImageView: UIImageView!
+    @IBOutlet weak var likeCountLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.masksToBounds = true
         layer.cornerRadius = 10
         addGradientLayer()
-        
+        heartStackView.isHidden = true
     }
     
     override func prepareForReuse() {
@@ -42,6 +45,7 @@ final class FolderCell: UICollectionViewCell {
         lockImageView.isHidden = true
     }
     
+    //MARK:- My
     func update(by folder: FolderList.Result) {
         titleLabel.text = folder.name
         countLabel.text = String(folder.linkCount)
@@ -59,18 +63,57 @@ final class FolderCell: UICollectionViewCell {
         }
     }
 
+    //MARK:- Surfing
     func update(by folder: TopTenFolder.Result) {
+        lockImageView.isHidden = true
+        gradientLayer.isHidden = false
+        heartStackView.isHidden = false
         titleLabel.text = folder.folderName
         countLabel.text = folder.folderLinkCount.toAbbreviationString
-        lockImageView.isHidden = true
+        likeCountLabel.text = folder.likeFolderCount.toAbbreviationString
+        if folder.likeStatus == 1 {
+            heartImageView.image = UIImage(systemName: "heart.fill")
+        } else {
+            heartImageView.image = UIImage(systemName: "heart")
+        }
+        if let url = URL(string: folder.linkImageURL) {
+            webPreviewImageView.kf.setImage(with: url)
+        }
     }
     
     func update(by folder: LikedFolder.Result) {
-        titleLabel.text = folder.folderName
-//        countLabel.text = folder.
         lockImageView.isHidden = true
+        gradientLayer.isHidden = false
+        heartStackView.isHidden = false
+        titleLabel.text = folder.folderName
+        countLabel.text = folder.folderLinkCount.toAbbreviationString
+        likeCountLabel.text = folder.likeFolderCount.toAbbreviationString
+        if folder.likeStatus == 1 {
+            heartImageView.image = UIImage(systemName: "heart.fill")
+        } else {
+            heartImageView.image = UIImage(systemName: "heart")
+        }
+        if let url = URL(string: folder.linkImageURL) {
+            webPreviewImageView.kf.setImage(with: url)
+        }
     }
 
+    func update(by folder: SearchFolder.Result) {
+        lockImageView.isHidden = true
+        gradientLayer.isHidden = false
+        heartStackView.isHidden = false
+        titleLabel.text = folder.folderName
+        countLabel.text = folder.folderLinkCount.toAbbreviationString
+        likeCountLabel.text = folder.likeFolderCount.toAbbreviationString
+        if folder.likeStatus == 1 {
+            heartImageView.image = UIImage(systemName: "heart.fill")
+        } else {
+            heartImageView.image = UIImage(systemName: "heart")
+        }
+        if let url = URL(string: folder.linkImageURL) {
+            webPreviewImageView.kf.setImage(with: url)
+        }
+    }
 
     func addGradientLayer() {
         let shapeLayer: CAShapeLayer = CAShapeLayer()

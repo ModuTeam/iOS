@@ -48,8 +48,7 @@ final class SearchInFolderViewController: UIViewController, BackgroundBlur {
         prepareLinkCollectionView()
         prepareViewGesture()
         
-        searchLinkViewModel.folderSource = folder
-        searchLinkViewModel.attachObserver()
+
         bind()
         update()
     }
@@ -69,11 +68,7 @@ final class SearchInFolderViewController: UIViewController, BackgroundBlur {
     }
     
     private func bind() {
-        searchLinkViewModel.outputs.links.bind { [weak self] links in
-            guard let self = self else { return }
-            self.links = links
-            self.linkCollectionView.reloadData()
-        }
+  
     }
     
     private func alertSucceedView() {
@@ -172,7 +167,7 @@ final class SearchInFolderViewController: UIViewController, BackgroundBlur {
             guard let self = self else { return }
             // let indexPath = IndexPath(item: index, section: 0)
             
-            self.searchLinkViewModel.remove(target: link)
+//            self.searchLinkViewModel.remove(target: link)
         }]
         
         editVC.completionHandler = { [weak self] in // 동작 완료하면

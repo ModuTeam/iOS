@@ -12,8 +12,13 @@ enum SearchTarget {
     case surf
 }
 
-final class SearchMainViewController: UIViewController {
+enum SearchFor {
+    case folder
+    case link
+}
 
+final class SearchMainViewController: UIViewController {
+    
     @IBOutlet private weak var topMenuCollectionView: UICollectionView!
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var searchTextField: UITextField!
@@ -22,67 +27,18 @@ final class SearchMainViewController: UIViewController {
     private let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     
     private var pages: [UIViewController] = []
-    private var folderListViewController: SearchFolderResultViewController?
-    private var linkListViewController: SearchLinkResultViewController?
+    private var searchFolderResultVC: SearchFolderResultViewController?
+    private var searchLinkResultVC: SearchLinkResultViewController?
     
     private var selectedTopMenuView: UIView = UIView()
     private var isTopMenuSelected: Bool = false
     private var isTopMenuViewPresented: Bool = false
     
     var searchTarget: SearchTarget = .my
+    var searchFor: SearchFor = .folder
+    private var timer = Timer()
     
     
-    private let searchFolderViewModel: SearchFolderViewModel = SearchFolderViewModel()
-    
-    private var folders: [Folder] = [] {
-        didSet {
-            guard let keyword = self.searchTextField.text else { return }
-
-            if keyword.isEmpty {
-                self.filterFolders = folders
-            } else {
-                self.filterFolders = folders.filter({$0.name.hasPrefix(keyword)})
-            }
-        }
-    }
-    
-    private var filterFolders: [Folder] = [] {
-        didSet {
-            self.topMenuSectionNames[0] = "폴더(\(filterFolders.count))개"
-            self.topMenuCollectionView.reloadData()
-            self.folderListViewController?.folders = filterFolders
-            
-            if !isTopMenuViewPresented {
-                self.prepareSelectedTopMenuView()
-                self.isTopMenuViewPresented.toggle()
-            }
-        }
-    }
-    
-    private var links: [Link] = [] {
-        didSet {
-            guard let keyword = self.searchTextField.text else { return }
-
-            if keyword.isEmpty {
-                self.filterLinks = links
-            } else {
-                self.filterLinks = links.filter({$0.name.hasPrefix(keyword)})
-            }
-        }
-    }
-    
-    private var filterLinks: [Link] = [] {
-        didSet {
-            self.topMenuSectionNames[1] = "링크(\(filterLinks.count))개"
-            self.topMenuCollectionView.reloadData()
-            self.linkListViewController?.links = filterLinks
-            
-            if isTopMenuViewPresented {
-                self.prepareSelectedTopMenuView()
-                self.isTopMenuViewPresented.toggle()
-            }
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,8 +48,7 @@ final class SearchMainViewController: UIViewController {
         prepareSearchTextField()
         
         bind()
-        searchFolderViewModel.fetchFolders()
-        searchFolderViewModel.fetchLinks()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,31 +57,26 @@ final class SearchMainViewController: UIViewController {
         searchTarget = nav.searchTarget
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
+    @IBAction func backButtonTapped() {
+        dismiss(animated: true, completion: nil)
+    }
+    
     private func bind() {
-        searchFolderViewModel.outputs.folders.bind { [weak self] results in
-            guard let self = self else { return }
-            self.folders = results
-        }
         
-        searchFolderViewModel.outputs.links.bind { [weak self] results in
-            guard let self = self else { return }
-            self.links = results
-        }
     }
     
     private func preparePageViewController() {
         guard let folderListVC = SearchFolderResultViewController.storyboardInstance() else { fatalError() }
         guard let linkListVC = SearchLinkResultViewController.storyboardInstance() else { fatalError() }
         
-        folderListViewController = folderListVC
-        linkListViewController = linkListVC
-        // homeFolderVc.homeNavigationController = navigationController as? HomeNavigationController
+        searchFolderResultVC = folderListVC
+        searchLinkResultVC = linkListVC
         
         pages = [folderListVC, linkListVC]
         
@@ -196,6 +146,11 @@ final class SearchMainViewController: UIViewController {
         let direction: UIPageViewController.NavigationDirection = indexPath.item == 0 ? .reverse : .forward
         
         pageViewController.setViewControllers([pages[indexPath.item]], direction: direction, animated: true, completion: nil)
+        if indexPath.item == 0 {
+            searchFor = .folder
+        } else {
+            searchFor = .link
+        }
     }
     
     private func prepareSearchTextField() {
@@ -203,18 +158,35 @@ final class SearchMainViewController: UIViewController {
     }
     
     @objc func textFieldDidChange(_ sender: UITextField) {
-        if let keyword = sender.text, !keyword.isEmpty {
-            filterFolders = folders.filter({ $0.name.hasPrefix(keyword) })
-            filterLinks = links.filter({ $0.name.hasPrefix(keyword) })
-        } else {
-            filterFolders = folders
-            filterLinks = links
+        switch searchTarget {
+        case .my:
+            print("my")
+        case .surf:
+            timer.invalidate()
+            timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.timerFunc), userInfo: nil, repeats: true)
         }
+        
     }
     
-    @IBAction func backButtonTapped() {
-        dismiss(animated: true, completion: nil)
+    @objc func timerFunc() {
+        var text: String = ""
+        guard let searchWord = searchTextField.text else { return }
+        text = searchWord
+        if text == searchTextField.text {
+            timer.invalidate()
+        }
+        print(searchWord)
+        
+        switch searchFor {
+        case .folder:
+            searchFolderResultVC?.searchWord = searchWord
+        case .link:
+            searchLinkResultVC?.searchWord = searchWord
+        }
+        
     }
+    
+    
 }
 
 extension SearchMainViewController: UICollectionViewDataSource {
@@ -258,10 +230,10 @@ extension SearchMainViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let index = pages.firstIndex(of: viewController) else { return nil }
-
+        
         if index == 0 {
             let nextIndex = index + 1
-
+            
             return pages[nextIndex]
         }
         
@@ -273,7 +245,7 @@ extension SearchMainViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         guard let currentVC = pageViewController.viewControllers?.first else { return }
         guard let index = pages.lastIndex(of: currentVC) else { return }
-
+        
         scrollSelectedTopMenuView(scrollToIndexPath: IndexPath(item: index, section: 0))
     }
 }

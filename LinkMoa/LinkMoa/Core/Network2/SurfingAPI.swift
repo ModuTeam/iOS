@@ -13,7 +13,7 @@ enum SurfingAPI {
     case likedFolder
     case topTenFolder
     case searchFolder(params: [String: Any])
-    // case searchLink
+    case searchLink(params: [String: Any])
 }
 
 extension SurfingAPI: TargetType {
@@ -35,12 +35,14 @@ extension SurfingAPI: TargetType {
             
         case .searchFolder:
             return "/folder/search"
+        case .searchLink:
+            return "/link/search"
         }
     }
     
     var method: Method {
         switch self {
-        case .folderDetail, .likedFolder, .topTenFolder, .searchFolder:
+        case .folderDetail, .likedFolder, .topTenFolder, .searchFolder, .searchLink:
             return .get
         case .like:
             return .post
@@ -55,8 +57,8 @@ extension SurfingAPI: TargetType {
         switch self {
         case .folderDetail, .like, .likedFolder, .topTenFolder:
             return .requestPlain
-        case .searchFolder(let params):
-            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+        case .searchFolder(let params), .searchLink(let params):
+            return .requestParameters(parameters: params, encoding: URLEncoding.default)
         }
     }
     

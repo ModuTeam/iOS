@@ -219,7 +219,6 @@ extension SurfingViewController: UICollectionViewDataSource {
         switch indexPath.section {
         case 0:
             guard let folderCell = collectionView.dequeueReusableCell(withReuseIdentifier: FolderCell.cellIdentifier, for: indexPath) as? FolderCell else { fatalError() }
-            folderCell.gradientLayer.isHidden = false
             folderCell.update(by: topTenFolders.value[indexPath.row])
             return folderCell
         case 1:

@@ -8,7 +8,7 @@
 import UIKit
 
 final class HomeViewController: UIViewController {
-
+    
     @IBOutlet private weak var topMenuCollectionView: UICollectionView!
     @IBOutlet private weak var containerView: UIView!
     
@@ -22,22 +22,22 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         preparePageViewController()
         prepareTopMenuCollectionView()
         prepareSelectedTopMenuView()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-        
+    
     private func preparePageViewController() {
         guard let homeFolderVC = FolderViewController.storyboardInstance() else { fatalError() }
         
@@ -163,7 +163,7 @@ extension HomeViewController: UIPageViewControllerDataSource {
             let prevIndex = index - 1
             let nc = navigationController as? HomeNavigationController
             nc?.addButtonView.isHidden = true
-
+            
             return pages[prevIndex]
         }
         
@@ -177,6 +177,7 @@ extension HomeViewController: UIPageViewControllerDataSource {
             let nextIndex = index + 1
             let nc = navigationController as? HomeNavigationController
             nc?.addButtonView.isHidden = false
+            
             return pages[nextIndex]
         }
         
@@ -188,7 +189,8 @@ extension HomeViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         guard let currentVc = pageViewController.viewControllers?.first else { return }
         guard let index = pages.lastIndex(of: currentVc) else { return }
-
+        
         scrollSelectedTabView(scrollToIndexPath: IndexPath(item: index, section: 0))
+        setPageController(setToIndexPath: IndexPath(item: index, section: 0))
     }
 }

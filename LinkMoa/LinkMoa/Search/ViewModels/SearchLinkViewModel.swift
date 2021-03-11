@@ -6,21 +6,13 @@
 //
 
 import Foundation
-import RealmSwift
-import Realm
-
-enum SearchLinkFetchOption: String {
-    case name = "name"
-    case date = "date"
-}
 
 protocol SearchLinkViewModelOutputs {
-    var links: Observable<[Link]> { get }
+    var searchedLinks: Observable<[SearchLink.Result]> { get }
 }
 
 protocol SearchLinkViewModelInputs {
-    func attachObserver()
-    func remove(target link: Link)
+    func searchLink(word: String)
 }
 
 protocol SearchLinkViewModelType {
@@ -31,44 +23,29 @@ protocol SearchLinkViewModelType {
 class SearchLinkViewModel: SearchLinkViewModelInputs, SearchLinkViewModelOutputs, SearchLinkViewModelType {
     
     init() {
-        // self.realmService = RealmService()
+        self.surfingManager = SurfingManager()
     }
-    
-    // private let realmService: RealmService
-    private var folderToken: NotificationToken?
-    
-    var fetchOption: SearchLinkFetchOption = .date
-    var folderSource: Folder?
-    
-    let links: Observable<[Link]> = Observable([])
+    private let surfingManager: SurfingManager
+    var searchedLinks: Observable<[SearchLink.Result]> = Observable([])
     
     var inputs: SearchLinkViewModelInputs { return self }
     var outputs: SearchLinkViewModelOutputs { return self }
-    
-    func attachObserver() {
-//        folderToken = folderSource?.observe { changes in 
-//            switch changes {
-//            case .change(_, let properties):
-//                for property in properties {
-//                    switch property.name {
-//                    case "links":
-//                        if let links = property.newValue as? List<Link> {
-//                            self.links.value = links.sorted(byKeyPath: self.fetchOption.rawValue).map { $0 }
-//                        }
-//                    default:
-//                        break
-//                    }
-//                }
-//            case .deleted:
-//                print("searchLinkViewModel - deleted")
-//            case .error(let error):
-//                print(error)
-//                fatalError()
-//            }
-//        }
-    }
-    
-    func remove(target link: Link) {
-        // realmService.delete(link)
+ 
+    func searchLink(word: String) {
+        let params: [String: Any] = ["word": word]
+        print("🥺", word)
+        surfingManager.searchLink(params: params) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .failure(let error):
+                self.searchedLinks.value = []
+                print(error)
+            case .success(let response):
+                if let data = response.result {
+                    self.searchedLinks.value = data
+                    print(data)
+                }
+            }
+        }
     }
 }

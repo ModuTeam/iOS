@@ -47,4 +47,14 @@ final class LinkCell: UICollectionViewCell {
             faviconImageView.kf.setImage(with: url, placeholder: UIImage(named: "seashell"))
         }
     }
+    
+    //MARK:- Surfing
+    func update(by link: SearchLink.Result) {
+        nameLabel.text = link.name
+        urlLabel.text = link.url
+        
+        if let url = URL(string: link.faviconURL) {
+            faviconImageView.kf.setImage(with: url, placeholder: UIImage(named: "seashell"))
+        }
+    }
 }

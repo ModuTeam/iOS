@@ -9,27 +9,26 @@ import UIKit
 
 final class SearchFolderResultViewController: UIViewController {
 
-    @IBOutlet private var folderCollectionView: UICollectionView!
-    
-    var folders: [Folder] = [] {
+    @IBOutlet var folderCollectionView: UICollectionView!
+
+    var searchWord: String = "" {
         didSet {
-            guard let folderCollectionView = folderCollectionView else { return }
-            folderCollectionView.reloadData()
+            searchFolder()
         }
     }
+    var searchedFolders: Observable<[SearchFolder.Result]> = Observable([])
+    private var searchFolderViewModel: SearchFolderViewModel = SearchFolderViewModel()
     
-    
+       override func viewDidLoad() {
+        super.viewDidLoad()
+        prepareFolderCollectionView()
+    }
+   
     static func storyboardInstance() -> SearchFolderResultViewController? {
         let storyboard = UIStoryboard(name: SearchFolderResultViewController.storyboardName(), bundle: nil)
         return storyboard.instantiateInitialViewController()
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        prepareFolderCollectionView()
-        // Do any additional setup after loading the view.
-    }
-    
     private func prepareFolderCollectionView() {
         folderCollectionView.contentInset = UIEdgeInsets(top: 24, left: 15, bottom: 50, right: 15)
         folderCollectionView.register(UINib(nibName: FolderCell.cellIdentifier, bundle: nil), forCellWithReuseIdentifier: FolderCell.cellIdentifier)
@@ -38,24 +37,27 @@ final class SearchFolderResultViewController: UIViewController {
         folderCollectionView.dataSource = self
         folderCollectionView.delegate = self
     }
+    
+    func searchFolder() {
+        searchFolderViewModel.inputs.searchFolder(word: searchWord)
+        searchFolderViewModel.outputs.searchedFolders.bind { [weak self] results in
+            guard let self = self else { return }
+            self.searchedFolders.value = results
+            self.folderCollectionView.reloadData()
+        }
+    }
 
 }
 
 extension SearchFolderResultViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return folders.count
+        return searchedFolders.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let folderCell = collectionView.dequeueReusableCell(withReuseIdentifier: FolderCell.cellIdentifier, for: indexPath) as? FolderCell else { fatalError() }
         
-//      let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellEditButtonTapped(_:)))
-        let folder = folders[indexPath.item]
-        
-        // folderCell.update(by: folder)
-// folderCell.editButton.addGestureRecognizer(tapGesture)
-        // folderCell.editButton.customTag = folder.id
-        
+        folderCell.update(by: searchedFolders.value[indexPath.row])
         return folderCell
     }
 }
@@ -65,16 +67,7 @@ extension SearchFolderResultViewController: UICollectionViewDataSource {
 extension SearchFolderResultViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let folderDetailVC = FolderDetailViewController.storyboardInstance() else { fatalError() }
-        
-        let folder = folders[indexPath.item]
-        // folderDetailVC.folder = folder
-        // folderDetailVc.homeNavigationController = homeNavigationController
-        // folderDetailVc.folderViewController = self
-        folderDetailVC.folderRemoveHandler = { [weak self] in
-            guard let self = self else { return }
-            // self.alertRemoveSucceedView()
-        }
-            
+
         navigationController?.pushViewController(folderDetailVC, animated: true)
     }
 }

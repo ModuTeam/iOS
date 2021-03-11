@@ -11,7 +11,7 @@ struct SearchFolder: Codable {
     let isSuccess: Bool
     let code, userIndex: Int
     let message: String
-    let result: [Result]
+    let result: [Result]?
     
     enum CodingKeys: String, CodingKey {
         case isSuccess, code
@@ -27,6 +27,7 @@ struct SearchFolder: Codable {
         let likeFolderCount: Int
         let linkImageURL: String
         let likeStatus: Int
+        let folderUpdatedAt: String
         
         enum CodingKeys: String, CodingKey {
             case folderIndex = "folderIdx"
@@ -38,6 +39,7 @@ struct SearchFolder: Codable {
             case detailCategoryName, folderName, folderType, likeFolderCount
             case linkImageURL = "linkImageUrl"
             case likeStatus
+            case folderUpdatedAt
         }
     }
     

@@ -17,14 +17,14 @@ protocol SurfingNetworkable {
     
     func fetchFolderDetail(folder index: Int, completion: @escaping (Result<FolderDetail, Error>) -> ())
     
-
     func searchFolder(params: [String: Any], completion: @escaping (Result<SearchFolder, Error>) -> ())
 
+    func searchLink(params: [String: Any], completion: @escaping (Result<SearchLink, Error>) -> ())
     
 }
 
 struct SurfingManager: SurfingNetworkable {
-    var provider: MoyaProvider<SurfingAPI> = MoyaProvider<SurfingAPI>(plugins: [])
+    var provider: MoyaProvider<SurfingAPI> = MoyaProvider<SurfingAPI>(plugins: [NetworkLoggerPlugin()])
     
     func fetchTopTenFolder(completion: @escaping (Result<TopTenFolder, Error>) -> ()) {
         request(target: .topTenFolder, completion: completion)
@@ -37,13 +37,14 @@ struct SurfingManager: SurfingNetworkable {
     func fetchFolderDetail(folder index: Int, completion: @escaping (Result<FolderDetail, Error>) -> ()) {
         request(target: .folderDetail(index: index), completion: completion)
     }
-    
 
     func searchFolder(params: [String: Any], completion: @escaping (Result<SearchFolder, Error>) -> ()) {
         request(target: .searchFolder(params: params), completion: completion)
     }
-    
 
+    func searchLink(params: [String: Any], completion: @escaping (Result<SearchLink, Error>) -> ()) {
+        request(target: .searchLink(params: params), completion: completion)
+    }
 }
 
 private extension SurfingManager {
@@ -52,7 +53,7 @@ private extension SurfingManager {
             switch result {
             case let .success(response):
                 do {
-//                    print(String(data: response.data, encoding: .utf8))
+                    print(String(data: response.data, encoding: .utf8))
                     let results = try JSONDecoder().decode(T.self, from: response.data)
                     // for test
                     completion(.success(results))
