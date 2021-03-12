@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast_Swift
 
 final class FolderViewController: UIViewController, CustomAlert {
 
@@ -32,6 +33,7 @@ final class FolderViewController: UIViewController, CustomAlert {
         prepareAddButtonGesture()
         
         bind()
+        view.makeToastActivity(ToastPosition.center)
         folderViewModel.inputs.fetchFolders()
     }
     
@@ -43,6 +45,7 @@ final class FolderViewController: UIViewController, CustomAlert {
             self.notificationStackView.isHidden = results.count == 0 ? false : true
             self.folderHeaderView?.update(by: results.count)
             self.folderCollectionView.reloadData()
+            self.view.hideToastActivity()
         }
     }
 
@@ -111,12 +114,12 @@ final class FolderViewController: UIViewController, CustomAlert {
         editVC.actions = ["이름 순", "생성 순"]
         editVC.handlers = [{ [weak self] _ in
             guard let self = self else { return }
-            self.folderViewModel.inputs.setFetchOption(option: .name)
-            self.folderViewModel.fetchFolders()
+//            self.folderViewModel.inputs.setFetchOption(option: .name)
+//            self.folderViewModel.fetchFolders()
         }, { [weak self] _ in
             guard let self = self else { return }
-            self.folderViewModel.inputs.setFetchOption(option: .date)
-            self.folderViewModel.fetchFolders()
+//            self.folderViewModel.inputs.setFetchOption(option: .date)
+//            self.folderViewModel.fetchFolders()
         }]
         editVC.completionHandler = { [weak self] in
             guard let self = self else { return }
@@ -173,10 +176,15 @@ final class FolderViewController: UIViewController, CustomAlert {
                         editFolderVC.folderPresentingType = .edit
                         editFolderVC.modalPresentationStyle = .fullScreen
                         
-                        editFolderVC.folder = result
+                        editFolderVC.folderIndex = folder.index // 폴더 인덱스
+                        editFolderVC.folder = result // 폴더 상세
                         editFolderVC.alertSucceedViewHandler = {
                             self.blurVC?.fadeInBackgroundViewAnimation()
                             self.alertSucceedView(completeHandler: { self.blurVC?.fadeOutBackgroundViewAnimation() })
+                        }
+                        editFolderVC.editCompletionHandler = { [weak self] in // 수정하고 폴더 리로드할 때 사용
+                            guard let self = self else { return }
+                            self.folderViewModel.inputs.fetchFolders()
                         }
                         self.present(editFolderVC, animated: true, completion: nil)
                     } else {
@@ -185,21 +193,33 @@ final class FolderViewController: UIViewController, CustomAlert {
                 case .failure(let error):
                     print(error)
                 }
-                
             })
         }, { [weak self] _ in
             guard let self = self else { return }
-            // 여기 링크 정보가 없음
-//            let shareItem = folder.
-//            let activityController = UIActivityViewController(activityItems: [shareItem], applicationActivities: nil)
-//            activityController.excludedActivityTypes = [.saveToCameraRoll, .print, .assignToContact, .addToReadingList]
-//
-//            self.present(activityController, animated: true, completion: nil)
             
+            self.folderViewModel.inputs.fetchFolderDetail(folderIndex: folder.index, completionHandler: { result in
+                switch result {
+                case .success(let folderDetail):
+                    if let result = folderDetail.result, folderDetail.isSuccess {
+                        
+                        let shareItem = result.name + "\n\n" + result.linkList.map { "\($0.name)\n\($0.url)\n\n" }.joined()
+                        let activityController = UIActivityViewController(activityItems: [shareItem], applicationActivities: nil)
+                        activityController.excludedActivityTypes = [.saveToCameraRoll, .print, .assignToContact, .addToReadingList]
+                        
+                        self.present(activityController, animated: true, completion: nil)
+                    } else {
+                        print("서버 에러 발생")
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+                
+            })
         },{ [weak self] _ in // 삭제하기 클릭
             guard let self = self else { return }
+            
             self.blurVC?.fadeInBackgroundViewAnimation()
-            self.alertRemoveRequestView(folder: folder,
+            self.alertRemoveRequestView(folderName: folder.name,
                                         completeHandler: {
                                             self.blurVC?.fadeOutBackgroundViewAnimation()
                                         },
@@ -246,6 +266,7 @@ extension FolderViewController: UICollectionViewDataSource {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellEditButtonTapped(_:)))
         let folder = folders[indexPath.item]
         
+        folderCell.gradientLayer.isHidden = false // 테스트로 추가
         folderCell.update(by: folder)
         folderCell.editButton.addGestureRecognizer(tapGesture)
         folderCell.editButton.customTag = folder.index
@@ -287,21 +308,12 @@ extension FolderViewController: UICollectionViewDelegate {
             self.alertRemoveSucceedView(completeHandler: { self.blurVC?.fadeOutBackgroundViewAnimation() })
         }
         
-        folderViewModel.inputs.fetchFolderDetail(folderIndex: folder.index, completionHandler: { [weak self] result in
+        folderDetailVC.folderReloadHandler = { [weak self] in
             guard let self = self else { return }
-            
-            switch result {
-            case .success(let folderDetail):
-                if folderDetail.isSuccess {
-                    folderDetailVC.folderDetail = folderDetail.result
-                    self.homeNavigationController?.pushViewController(folderDetailVC, animated: true)
-                } else {
-                    print("서버 에러")
-                }
-            case .failure(let error):
-                print(error)
-            }
-        })
+            self.folderViewModel.fetchFolders()
+        }
+        folderDetailVC.folderIndex = folder.index
+        self.homeNavigationController?.pushViewController(folderDetailVC, animated: true)
     }
 }
 

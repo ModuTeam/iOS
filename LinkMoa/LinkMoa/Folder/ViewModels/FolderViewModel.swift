@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import RealmSwift
-import Realm
 
 protocol FolderViewModelOutputs {
     var folders: Observable<[FolderList.Result]> { get }
@@ -47,12 +45,9 @@ final class FolderViewModel: FolderViewModelInputs, FolderViewModelOutputs, Fold
                 if let folders = value.result {
                     self.folders.value = folders
                 }
-            case .success(let error):
+            case .failure(let error):
                 print(error)
-            default:
-                break
             }
-            
         })
     }
 

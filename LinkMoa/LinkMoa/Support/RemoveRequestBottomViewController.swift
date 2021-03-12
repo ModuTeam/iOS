@@ -16,7 +16,7 @@ final class RemoveRequestBottomViewController: UIViewController {
     @IBOutlet private weak var deleteButtonView: UIView!
     @IBOutlet private weak var bottomSpacingLayout: NSLayoutConstraint!
     
-    var folder: FolderList.Result?
+    var folderName: String?
     var completionHandler: (() -> ())?
     var removeHandler: (() -> ())?
     
@@ -57,8 +57,8 @@ final class RemoveRequestBottomViewController: UIViewController {
         folderNameTextField.layer.masksToBounds = true
         folderNameTextField.layer.cornerRadius = 8
         
-        if let folder = folder {
-            folderNameTextField.attributedPlaceholder = NSAttributedString(string: folder.name, attributes: [
+        if let folderName = folderName {
+            folderNameTextField.attributedPlaceholder = NSAttributedString(string: folderName, attributes: [
                 .foregroundColor: UIColor.linkMoaPlaceholderColor,
                 .font: UIFont(name: "NotoSansCJKkr-Regular", size: 16) ?? UIFont.boldSystemFont(ofSize: 16)
             ])
@@ -95,9 +95,9 @@ final class RemoveRequestBottomViewController: UIViewController {
     }
     
     @objc private func deleteButtonViewTapped() {
-        guard let folder = folder, let text = folderNameTextField.text else { return }
+        guard let folderName = folderName, let text = folderNameTextField.text else { return }
         
-        if folder.name != text {
+        if folderName != text {
             view.makeToast("올바른 폴더 이름을 입력해주세요.", position: .top)
             return
         } else {

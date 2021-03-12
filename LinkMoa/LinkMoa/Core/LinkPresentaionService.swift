@@ -7,7 +7,8 @@
 
 import UIKit
 import LinkPresentation
-import OpenGraph
+import Alamofire
+import Kanna
 
 public struct LinkPresentaionService {
 
@@ -106,27 +107,36 @@ public struct LinkPresentaionService {
         var image: String? = nil
         let favicon = googleFaviconURLString + URLString
         
-        OpenGraph.fetch(url: url) { result in
-            switch result {
-            case .success(let og):
-                if let metaDataTitle = og[.title]  {
-                    title = metaDataTitle
-                }
-                
-                if let imageURLString = og[.image] {
-                    if imageURLString.isValidHttps() {
-                        image = imageURLString
-                    } else {
-                        image = "https:" + imageURLString
+        AF.request(url).responseString(completionHandler: { response in
+            switch response.result {
+            case .success(let htmlString):
+                do {
+                    let doc = try HTML(html: htmlString, encoding: .utf8)
+
+                    for link in doc.xpath("//meta[@property='og:title']") {
+                        if let contentTitle = link["content"] {
+                            title = contentTitle
+                            break
+                        }
                     }
+                    
+                    for link in doc.xpath("//meta[@property='og:image']") {
+                        if let imageURLString = link["content"] {
+                            image = imageURLString
+                            break
+                        }
+                    }
+                    
+                    completionHandler(WebMetaData(title: title, webPreviewURLString: image, faviconURLString: favicon))
+                } catch let error {
+                    print(error)
+                    completionHandler(WebMetaData(title: nil, webPreviewURLString: nil, faviconURLString: nil))
                 }
-                
-                completionHandler(WebMetaData(title: title, webPreviewURLString: image, faviconURLString: favicon))
-                
+
             case .failure(let error):
                 print(error)
-                completionHandler(nil)
+                completionHandler(WebMetaData(title: nil, webPreviewURLString: nil, faviconURLString: nil))
             }
-        }
+        })
     }
 }

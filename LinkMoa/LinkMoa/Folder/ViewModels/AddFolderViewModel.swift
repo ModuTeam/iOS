@@ -11,6 +11,7 @@ protocol AddFolderViewModelOutputs {}
 
 protocol AddFolderViewModelInputs {
     func addFolder(folderParam param: [String : Any], completionHandler: @escaping ((Result<NewFolder, Error>) -> ()))
+    func editFolder(folder index: Int, params: [String : Any], completion: @escaping (Result<FolderResponse, Error>) -> ())
 }
 
 protocol AddFolderViewModelType {
@@ -38,6 +39,21 @@ final class AddFolderViewModel: AddFolderViewModelType, AddFolderViewModelOutput
     //        ]
     //
     //        myScallopManager.addNewFolder(params: params) { result in
+    //            print("🥺test", result)
+    //        }
+    
+    func editFolder(folder index: Int, params: [String : Any], completion: @escaping (Result<FolderResponse, Error>) -> ()) {
+        myScallopManager.editFolder(folder: index, params: params, completion: completion)
+    }
+    
+    //MARK:- 폴더수정
+    //        let params: [String: Any] = ["folderName": "edit",
+    //                                     "hashTagList": ["edit1","edit2"],
+    //                                     "categoryIdx": 1,
+    //                                     "folderType": "private"
+    //        ]
+    //
+    //        myScallopManager.editFolder(folder: 8, params: params) { result in
     //            print("🥺test", result)
     //        }
 }

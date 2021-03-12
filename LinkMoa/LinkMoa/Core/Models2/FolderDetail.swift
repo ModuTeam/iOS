@@ -39,7 +39,7 @@ struct FolderDetail: Codable {
         }
     }
     
-    struct Link: Codable {
+    struct Link: Codable, Equatable {
         let index: Int
         let name: String
         let url: String
@@ -53,6 +53,9 @@ struct FolderDetail: Codable {
             case faviconURL = "linkFaviconUrl"
             case updateDate = "linkUpdatedAt"
         }
+        
+        static func == (lhs: Link, rhs: Link) -> Bool {
+            return lhs.index == rhs.index
+        }
     }
-    
 }

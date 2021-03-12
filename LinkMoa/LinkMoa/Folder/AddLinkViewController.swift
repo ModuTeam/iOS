@@ -27,14 +27,14 @@ final class AddLinkViewController: UIViewController {
     
     public var isLinkUpdated: Bool = false
     var linkPresetingStyle: EditPresetingStyle = .add
+    var link: FolderDetail.Link?
     
-    var link: Link? // for edit
+    var sourceFolderName: String? // edit 할 때 폴더가 바뀌었는지 파악함
+    var sourceFolderIndex: Int?
     
-    private var destinationFolder: Folder?
-    private var destinationFolderName: String? // for api
-    private var destinationFolderIndex: Int?
+    var destinationFolderName: String? // 사용자가 저장하려는 폴더
+    var destinationFolderIndex: Int?
     
-    var folder: Folder?
     var updateReloadHander: (() -> ())? // 추가하고 홈 폴더 리로드 할 때
     var alertSucceedViewHandler: (() -> ())? // test
     
@@ -48,7 +48,6 @@ final class AddLinkViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        destinationFolder = folder
         update()
         prepareFolderSelectionView() // 메인에서 클릭했을 떄에만
         prepareViewGesture()
@@ -59,10 +58,23 @@ final class AddLinkViewController: UIViewController {
     
     private func update() {
         guard let destinationFolderName = destinationFolderName else { return }
+        guard let destinationFolderIndex = destinationFolderIndex else { return }
         
         folderSelectionLabel.text = destinationFolderName
         folderSelectionLabel.isHidden = false
         folderPlaceHolderLabel.isHidden = true
+        
+        switch linkPresetingStyle {
+        case .edit:
+            guard let link = link else { return }
+            self.linkTitleTextField.text = link.name
+            self.linkURLTextField.text = link.url
+            
+            self.sourceFolderName = destinationFolderName
+            self.sourceFolderIndex = destinationFolderIndex
+        default:
+            break
+        }
     }
     
     private func prepareFolderSelectionView() {
@@ -161,7 +173,7 @@ final class AddLinkViewController: UIViewController {
             return
         }
         
-        guard let _ = destinationFolderName, let folderIndex = destinationFolderIndex else {
+        guard let destinationFolderName = destinationFolderName, let destinationFolderIndex = destinationFolderIndex else {
             view.makeToast("저장할 폴더를 선택해주세요.", position: .top)
             return
         }
@@ -191,7 +203,7 @@ final class AddLinkViewController: UIViewController {
                     params["linkImageUrl"] = image
                 }
                 
-                self.addLinkViewModel.inputs.addLink(folder: folderIndex, params: params, completionHandler: { result in
+                self.addLinkViewModel.inputs.addLink(folder: destinationFolderIndex, params: params, completionHandler: { result in
                     switch result {
                     case .success(let linkResponse):
                         if linkResponse.isSuccess {
@@ -205,11 +217,120 @@ final class AddLinkViewController: UIViewController {
                     case .failure(let error):
                         print(error)
                     }
-                    
                 })
             })
         case .edit:
-            print("edit")
+            guard let sourceFolderIndex = sourceFolderIndex, let sourceFolderName = sourceFolderName else {
+                return
+            }
+            
+            guard let link = link else { return }
+            
+            // 같은 폴더에서 링크 수정
+            if sourceFolderIndex == destinationFolderIndex, sourceFolderName == destinationFolderName {
+                
+                //MARK:- 링크수정
+                //        let params: [String: Any] = ["folderIdx": 8,
+                //                                     "linkName": "editTestLInk",
+                //                                     "linkUrl": "https://velopert.com/2389"
+                //        ]
+                //
+                //        myScallopManager.editLink(link: 1, params: params) { result in
+                //            print("🥺test", result)
+                //        }
+                
+                view.makeToastActivity(ToastPosition.center)
+                
+                linkPresentaionService.fetchMetaDataURL(targetURLString: url, completionHandler: { [weak self] webMetaData in
+                    guard let self = self else { return }
+                    guard let webMetaData = webMetaData else {
+                        print("서버 에러")
+                        return
+                    }
+                    
+                    let params: [String : Any] = ["folderIdx": sourceFolderIndex,
+                                                  "linkName" : name,
+                                                  "linkUrl" : url,
+                                                  "linkFaviconUrl" : webMetaData.faviconURLString ?? "-1",
+                                                  "linkImageUrl" : webMetaData.webPreviewURLString ?? "-1"
+                    ]
+                    
+                    DispatchQueue.main.async {
+                        self.addLinkViewModel.editLink(link: link.index, params: params, completionHandler: { result in
+                            switch result {
+                            case .success(let linkResponse):
+                                if linkResponse.isSuccess {
+                                    self.view.hideToastActivity()
+                                    
+                                    self.updateReloadHander?()
+                                    self.dismiss(animated: true, completion: {
+                                        self.alertSucceedViewHandler?()
+                                    })
+                                } else {
+                                    print("서버 에러")
+                                }
+                            case .failure(let error):
+                                print(error)
+                            }
+                        })
+                    }
+                })
+            } else { // 다른 폴더에서 링크 수정 -> 자신 폴더에서 링크 삭제 후, 다른 폴더에 링크 추가
+                view.makeToastActivity(ToastPosition.center)
+                
+                addLinkViewModel.deleteLink(link: link.index, completionHandler: { [weak self] result in
+                    guard let self = self else { return }
+                    
+                    switch result {
+                    case .success(let linkResponse):
+                        if linkResponse.isSuccess {
+                            self.linkPresentaionService.fetchMetaDataURL(targetURLString: url, completionHandler: { [weak self] webMetaData in
+                                guard let self = self else { return }
+                                guard let webMetaData = webMetaData else {
+                                    print("서버 에러")
+                                    return
+                                }
+                                
+                                var params: [String : Any] = ["linkName" : name,
+                                                              "linkUrl" : url,
+                                ]
+                                
+                                if let favicon = webMetaData.faviconURLString {
+                                    params["linkFaviconUrl"] = favicon
+                                }
+                                
+                                if let image = webMetaData.webPreviewURLString {
+                                    params["linkImageUrl"] = image
+                                }
+                                
+                                print("params")
+                                print(params)
+                                
+                                self.addLinkViewModel.inputs.addLink(folder: destinationFolderIndex, params: params, completionHandler: { result in
+                                    switch result {
+                                    case .success(let linkResponse):
+                                        if linkResponse.isSuccess {
+                                            self.updateReloadHander?()
+                                            self.dismiss(animated: true, completion: {
+                                                self.alertSucceedViewHandler?()
+                                            })
+                                        } else {
+                                            print("서버 에러")
+                                        }
+                                    case .failure(let error):
+                                        print(error)
+                                    }
+                                })
+                            })
+                        } else {
+                            print("서버 에러 발생")
+                        }
+                    case .failure(let error):
+                        print(error)
+                    }
+                    
+                })
+            }
         }
     }
     

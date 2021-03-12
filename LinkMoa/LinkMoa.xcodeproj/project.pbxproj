@@ -138,6 +138,7 @@
 		3C9A066F25E8977700100966 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C540E7A25CEDBBB0013427E /* Observable.swift */; };
 		3C9A067225E8977B00100966 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C540E7F25CEDCAD0013427E /* RealmService.swift */; };
 		3C9A067525E8977E00100966 /* LinkPresentaionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA602125DFA3FA00DD1F50 /* LinkPresentaionService.swift */; };
+		3CAC041525F9F4330059F826 /* FolderDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC041425F9F4330059F826 /* FolderDetailViewModel.swift */; };
 		3CAEC18425C692DD009248D6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAEC18325C692DD009248D6 /* HomeViewController.swift */; };
 		3CAEC18725C692E6009248D6 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CAEC18625C692E6009248D6 /* Home.storyboard */; };
 		3CAEC18A25C696D8009248D6 /* Folder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CAEC18925C696D8009248D6 /* Folder.storyboard */; };
@@ -323,6 +324,7 @@
 		3C8AD46225D3A3D000197B21 /* LinkMoa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LinkMoa.entitlements; sourceTree = "<group>"; };
 		3C9A066125E88D3F00100966 /* SearchMainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainNavigationController.swift; sourceTree = "<group>"; };
 		3C9A068025E89B2B00100966 /* LinkMoaShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LinkMoaShareExtension.entitlements; sourceTree = "<group>"; };
+		3CAC041425F9F4330059F826 /* FolderDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailViewModel.swift; sourceTree = "<group>"; };
 		3CAEC18325C692DD009248D6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3CAEC18625C692E6009248D6 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		3CAEC18925C696D8009248D6 /* Folder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Folder.storyboard; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 			isa = PBXGroup;
 			children = (
 				3C540E8C25CF8B430013427E /* FolderViewModel.swift */,
+				3CAC041425F9F4330059F826 /* FolderDetailViewModel.swift */,
 				3C623F1225F71C5B00FD7B5D /* AddFolderViewModel.swift */,
 				3C4FB9AF25F86C3F0046605B /* AddLinkViewModel.swift */,
 				3C4BC7DA25DCEAAA00C06929 /* LinkViewModel.swift */,
@@ -1142,6 +1145,7 @@
 				3CD9202925E61C0A006B8CC6 /* SearchLinkViewModel.swift in Sources */,
 				3C540E8A25CEDE3F0013427E /* Link.swift in Sources */,
 				25D0049E25F39DCE002743C3 /* SurfingFolderDetailViewController.swift in Sources */,
+				3CAC041525F9F4330059F826 /* FolderDetailViewModel.swift in Sources */,
 				3C04655F25E4A287007B61E3 /* SearchInFolderViewController.swift in Sources */,
 				3CD9203425E63962006B8CC6 /* BackgroundBlur.swift in Sources */,
 				25D0048325F3980D002743C3 /* CategoryDetailViewController.swift in Sources */,

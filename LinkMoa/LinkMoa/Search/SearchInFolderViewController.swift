@@ -137,8 +137,8 @@ final class SearchInFolderViewController: UIViewController, BackgroundBlur {
             guard let addLinkVC = AddLinkViewController.storyboardInstance() else { return }
             
             addLinkVC.linkPresetingStyle = .edit
-            addLinkVC.link = link
-            addLinkVC.folder = folder
+            // addLinkVC.link = link
+            // addLinkVC.folder = folder
             addLinkVC.alertSucceedViewHandler = { [weak self] in
                 guard let self = self else { return }
                 self.alertSucceedView()

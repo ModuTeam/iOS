@@ -75,7 +75,7 @@ extension MyScallopAPI: TargetType {
         guard let jwtToken = TokenManager().jwtToken else { fatalError() }
 
         return ["Content-Type" : "application/json",
-                "x-access-token" : testToken]
+                "x-access-token" : jwtToken]
     }
 }
 

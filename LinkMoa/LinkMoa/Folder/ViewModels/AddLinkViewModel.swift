@@ -11,6 +11,8 @@ protocol AddLinkViewModelOutputs {}
 
 protocol AddLinkViewModelInputs {
     func addLink(folder index: Int, params: [String : Any], completionHandler: @escaping (Result<LinkResponse, Error>) -> ())
+    func editLink(link index: Int, params: [String: Any], completionHandler: @escaping (Result<LinkResponse, Error>) -> ())
+    func deleteLink(link index: Int, completionHandler: @escaping (Result<LinkResponse, Error>) -> ())
 }
 
 protocol AddLinkViewModelType {
@@ -20,7 +22,7 @@ protocol AddLinkViewModelType {
 
 
 final class AddLinkViewModel: AddLinkViewModelOutputs, AddLinkViewModelInputs, AddLinkViewModelType {
-    
+
     private let myScallopManager = MyScallopManager()
 
     var inputs: AddLinkViewModelInputs { return self }
@@ -38,4 +40,12 @@ final class AddLinkViewModel: AddLinkViewModelOutputs, AddLinkViewModelInputs, A
     //        myScallopManager.addLink(folder: 8, params: params) { result in
     //            print("🥺test", result)
     //        })
+    
+    func editLink(link index: Int, params: [String : Any], completionHandler: @escaping (Result<LinkResponse, Error>) -> ()) {
+        myScallopManager.editLink(link: index, params: params, completion: completionHandler)
+    }
+    
+    func deleteLink(link index: Int, completionHandler: @escaping (Result<LinkResponse, Error>) -> ()) {
+        myScallopManager.deleteLInk(link: index, completion: completionHandler)
+    }
 }

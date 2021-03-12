@@ -8,7 +8,7 @@ target 'LinkMoa' do
   pod 'Toast-Swift', '~> 5.0.1'
   pod 'lottie-ios'
   pod 'Moya', '~> 14.0'
-  pod 'OpenGraph'
+  pod 'Kanna', '~> 5.2.2'
   pod 'Kingfisher', '~> 6.0'
   # Include all other configurations except `Debug-M1`
   pod 'GoogleSignIn', :configurations => ['Debug', 'Release']
@@ -21,7 +21,7 @@ target 'LinkMoaShareExtension' do
   pod 'RealmSwift', '=10.1.4'
   pod 'Toast-Swift', '~> 5.0.1'
   pod 'Moya', '~> 14.0'
+  pod 'Kanna', '~> 5.2.2'
   pod 'Kingfisher', '~> 6.0'
-  pod 'OpenGraph'
 end
 
