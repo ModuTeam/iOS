@@ -1,29 +1,29 @@
 //
-//  SurfingViewModels.swift
+//  SurfingFolderViewModel.swift
 //  LinkMoa
 //
-//  Created by Beomcheol Kwon on 2021/03/09.
+//  Created by Beomcheol Kwon on 2021/03/11.
 //
 
 import Foundation
 
-protocol SurfingViewModelOutputs {
+protocol SurfingFolderViewModelOutputs {
     var likedFolders: Observable<[LikedFolder.Result]> { get }
     var topTenFolders: Observable<[TopTenFolder.Result]> { get }
 }
 
-protocol SurfingViewModelInputs {
+protocol SurfingFolderViewModelInputs {
     func fetchTopTenFolder()
     func fetchLikedFolders()
     
 }
 
-protocol SurfingViewModelType {
-    var inputs: SurfingViewModelInputs { get }
-    var outputs: SurfingViewModelOutputs { get }
+protocol SurfingFolderViewModelType {
+    var inputs: SurfingFolderViewModelInputs { get }
+    var outputs: SurfingFolderViewModelOutputs { get }
 }
 
-final class SurfingViewModel: SurfingViewModelOutputs, SurfingViewModelInputs, SurfingViewModelType {
+final class SurfingFolderViewModel: SurfingFolderViewModelOutputs, SurfingFolderViewModelInputs, SurfingFolderViewModelType {
     
     init() {
         self.surfingManager = SurfingManager()
@@ -31,8 +31,8 @@ final class SurfingViewModel: SurfingViewModelOutputs, SurfingViewModelInputs, S
     
     private let surfingManager: SurfingManager
     
-    var inputs: SurfingViewModelInputs { return self }
-    var outputs: SurfingViewModelOutputs { return self }
+    var inputs: SurfingFolderViewModelInputs { return self }
+    var outputs: SurfingFolderViewModelOutputs { return self }
     
     var topTenFolders: Observable<[TopTenFolder.Result]> = Observable([])
     var likedFolders: Observable<[LikedFolder.Result]> = Observable([])
@@ -64,3 +64,4 @@ final class SurfingViewModel: SurfingViewModelOutputs, SurfingViewModelInputs, S
         }
     }
 }
+

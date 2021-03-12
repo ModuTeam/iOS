@@ -27,6 +27,9 @@
 		25C666E325F9A7A6009EF04D /* SearchFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E18B525F8A9BB00D8FF9A /* SearchFolder.swift */; };
 		25C666F125F9D54F009EF04D /* SearchLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C666F025F9D54F009EF04D /* SearchLink.swift */; };
 		25C666F625F9E97A009EF04D /* SearchLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C666F025F9D54F009EF04D /* SearchLink.swift */; };
+		25C666F825F9F9DC009EF04D /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C666F725F9F9DC009EF04D /* CategoryViewModel.swift */; };
+		25C666FA25F9F9EB009EF04D /* SurfingFolderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C666F925F9F9EB009EF04D /* SurfingFolderViewModel.swift */; };
+		25C666FC25F9F9FC009EF04D /* SurfingFolderDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C666FB25F9F9FC009EF04D /* SurfingFolderDetailViewModel.swift */; };
 		25D0047F25F397F6002743C3 /* CategoryDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25D0047E25F397F6002743C3 /* CategoryDetail.storyboard */; };
 		25D0048325F3980D002743C3 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D0048225F3980D002743C3 /* CategoryDetailViewController.swift */; };
 		25D0049125F39B0D002743C3 /* SurfingFolder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25D0049025F39B0D002743C3 /* SurfingFolder.storyboard */; };
@@ -255,6 +258,9 @@
 		259E18A425F8583100D8FF9A /* TopTenFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTenFolder.swift; sourceTree = "<group>"; };
 		259E18B525F8A9BB00D8FF9A /* SearchFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFolder.swift; sourceTree = "<group>"; };
 		25C666F025F9D54F009EF04D /* SearchLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLink.swift; sourceTree = "<group>"; };
+		25C666F725F9F9DC009EF04D /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		25C666F925F9F9EB009EF04D /* SurfingFolderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfingFolderViewModel.swift; sourceTree = "<group>"; };
+		25C666FB25F9F9FC009EF04D /* SurfingFolderDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfingFolderDetailViewModel.swift; sourceTree = "<group>"; };
 		25D0047E25F397F6002743C3 /* CategoryDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CategoryDetail.storyboard; sourceTree = "<group>"; };
 		25D0048225F3980D002743C3 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		25D0049025F39B0D002743C3 /* SurfingFolder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SurfingFolder.storyboard; sourceTree = "<group>"; };
@@ -432,6 +438,9 @@
 			isa = PBXGroup;
 			children = (
 				259E189F25F7059600D8FF9A /* SurfingViewModels.swift */,
+				25C666F925F9F9EB009EF04D /* SurfingFolderViewModel.swift */,
+				25C666FB25F9F9FC009EF04D /* SurfingFolderDetailViewModel.swift */,
+				25C666F725F9F9DC009EF04D /* CategoryViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -710,12 +719,12 @@
 			children = (
 				254274AC25F1DC4E00A88F18 /* SurfingViewController.swift */,
 				254274A625F1DC2800A88F18 /* Surfing.storyboard */,
-				25D0048225F3980D002743C3 /* CategoryDetailViewController.swift */,
-				25D0047E25F397F6002743C3 /* CategoryDetail.storyboard */,
 				25D0049425F39B1E002743C3 /* SurfingFolderViewController.swift */,
 				25D0049025F39B0D002743C3 /* SurfingFolder.storyboard */,
 				25D0049D25F39DCE002743C3 /* SurfingFolderDetailViewController.swift */,
 				25D004A125F39DDC002743C3 /* SurfingFolderDetail.storyboard */,
+				25D0048225F3980D002743C3 /* CategoryDetailViewController.swift */,
+				25D0047E25F397F6002743C3 /* CategoryDetail.storyboard */,
 				259E18A125F72E0500D8FF9A /* Views */,
 				259E189E25F7058300D8FF9A /* ViewModels */,
 			);
@@ -1097,6 +1106,7 @@
 				3C0C16E525F6401500D8A632 /* TokenManager.swift in Sources */,
 				3CD9205E25E7D83B006B8CC6 /* SearchFolderViewModel.swift in Sources */,
 				3C68933A25F5C7F7001F229D /* LoginAPI.swift in Sources */,
+				25C666FC25F9F9FC009EF04D /* SurfingFolderDetailViewModel.swift in Sources */,
 				3CF5ADE625C2891B00F1E45E /* ViewController.swift in Sources */,
 				25D004CA25F5DFE0002743C3 /* SurfingAPI.swift in Sources */,
 				3CD6665325E210D20075DFE6 /* UIImage+Grey.swift in Sources */,
@@ -1105,6 +1115,7 @@
 				3C68934F25F5CFAC001F229D /* LoginViewModel.swift in Sources */,
 				3C540EA625CFB8850013427E /* UIColor+.swift in Sources */,
 				258447CD25F642D9003E0A04 /* MyScallopAPI.swift in Sources */,
+				25C666F825F9F9DC009EF04D /* CategoryViewModel.swift in Sources */,
 				25C666F125F9D54F009EF04D /* SearchLink.swift in Sources */,
 				3C540E9D25CFA0100013427E /* HomeNavigationController.swift in Sources */,
 				3C44E13725CAA27E005386F4 /* FolderHeaderView.swift in Sources */,
@@ -1139,6 +1150,7 @@
 				3CD9205025E7CC08006B8CC6 /* SearchFolderResultViewController.swift in Sources */,
 				25D004D325F5E335002743C3 /* FolderDetail.swift in Sources */,
 				3CD6663025E11A820075DFE6 /* RemoveRequestBottomViewController.swift in Sources */,
+				25C666FA25F9F9EB009EF04D /* SurfingFolderViewModel.swift in Sources */,
 				3C4FB9B025F86C3F0046605B /* AddLinkViewModel.swift in Sources */,
 				3C4BC7CA25DCD8AD00C06929 /* UIView+RoundConer.swift in Sources */,
 				25D0049525F39B1E002743C3 /* SurfingFolderViewController.swift in Sources */,

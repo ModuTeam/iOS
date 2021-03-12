@@ -240,23 +240,23 @@ extension SurfingViewController: UICollectionViewDataSource {
 extension SurfingViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.section {
-        case 0, 2:
+        case 0:
             guard let surfingFolderDetailVC = SurfingFolderDetailViewController.storyboardInstance() else { fatalError() }
             surfingFolderDetailVC.homeNavigationController = homeNavigationController
+            
             homeNavigationController?.pushViewController(surfingFolderDetailVC, animated: true)
         case 1:
             guard let categoryDetailVC = CategoryDetailViewController.storyboardInstance() else { fatalError() }
             categoryDetailVC.homeNavigationController = homeNavigationController
             homeNavigationController?.pushViewController(categoryDetailVC, animated: true)
-            
+        case 2:
+            guard let surfingFolderDetailVC = SurfingFolderDetailViewController.storyboardInstance() else { fatalError() }
+            surfingFolderDetailVC.homeNavigationController = homeNavigationController
+            homeNavigationController?.pushViewController(surfingFolderDetailVC, animated: true)
         default:
             print("default")
         }
-        
-        
     }
-    
-    
 }
 
 extension SurfingViewController: UICollectionViewDelegateFlowLayout {
@@ -282,15 +282,23 @@ extension SurfingViewController: UICollectionViewDelegateFlowLayout {
     
     @objc private func headerViewTapped(_ sender: UIGestureRecognizer) {
         switch sender.view?.tag {
+        case 0:
+            guard let surfingFolderVC = SurfingFolderViewController.storyboardInstance() else { fatalError() }
+            surfingFolderVC.homeNavigationController = homeNavigationController
+            surfingFolderVC.surfingFolerType = .topTen
+            homeNavigationController?.pushViewController(surfingFolderVC, animated: true)
+        case 1:
+            guard let categoryDetailVC = CategoryDetailViewController.storyboardInstance() else { fatalError() }
+            categoryDetailVC.homeNavigationController = homeNavigationController
+            homeNavigationController?.pushViewController(categoryDetailVC, animated: true)
         case 2:
-            print("2")
-            guard let savedFolderVC = SurfingFolderViewController.storyboardInstance() else { fatalError() }
-            savedFolderVC.homeNavigationController = homeNavigationController
-            homeNavigationController?.pushViewController(savedFolderVC, animated: true)
+            guard let surfingFolderVC = SurfingFolderViewController.storyboardInstance() else { fatalError() }
+            surfingFolderVC.homeNavigationController = homeNavigationController
+            surfingFolderVC.surfingFolerType = .liked
+            homeNavigationController?.pushViewController(surfingFolderVC, animated: true)
         default:
             print(sender.view?.tag ?? "?" )
         }
-        
     }
 }
 
