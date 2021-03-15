@@ -4,7 +4,6 @@
 target 'LinkMoa' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  pod 'RealmSwift', '=10.1.4'
   pod 'Toast-Swift', '~> 5.0.1'
   pod 'lottie-ios'
   pod 'Moya', '~> 14.0'
@@ -18,7 +17,6 @@ end
 target 'LinkMoaShareExtension' do
    # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  pod 'RealmSwift', '=10.1.4'
   pod 'Toast-Swift', '~> 5.0.1'
   pod 'Moya', '~> 14.0'
   pod 'Kanna', '~> 5.2.2'

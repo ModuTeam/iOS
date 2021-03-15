@@ -13,10 +13,8 @@ protocol FolderViewModelOutputs {
 
 protocol FolderViewModelInputs {
     func fetchFolders()
-    func setFetchOption(option fetchOption: FolderFetchOption)
     func fetchFolderDetail(folderIndex index: Int, completionHandler: @escaping (Result<FolderDetail, Error>) -> ())
     func removeFolder(folderIndex index: Int, completionHandler: @escaping ((Result<FolderResponse, Error>) -> ()))
-    var fetchOption: FolderFetchOption { get }
 }
 
 protocol FolderViewModelType {
@@ -29,15 +27,11 @@ final class FolderViewModel: FolderViewModelInputs, FolderViewModelOutputs, Fold
     private let myScallopManager = MyScallopManager()
     private let surfingManager = SurfingManager()
     
-    private(set) var fetchOption: FolderFetchOption = .date
-
     var folders: Observable<[FolderList.Result]> = Observable([])
     
     var inputs: FolderViewModelInputs { return self }
     var outputs: FolderViewModelOutputs { return self }
-    
-    // var foldersToken: NotificationToken?
-    
+        
     func fetchFolders() {
         myScallopManager.fetchMyFolderList(completion: { result in
             switch result {
@@ -57,9 +51,5 @@ final class FolderViewModel: FolderViewModelInputs, FolderViewModelOutputs, Fold
     
     func fetchFolderDetail(folderIndex index: Int, completionHandler: @escaping (Result<FolderDetail, Error>) -> ()) {
         surfingManager.fetchFolderDetail(folder: index, completion: completionHandler)
-    }
-    
-    func setFetchOption(option fetchOption: FolderFetchOption) {
-        self.fetchOption = fetchOption
     }
 }

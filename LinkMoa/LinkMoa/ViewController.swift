@@ -27,11 +27,5 @@ class ViewController: UIViewController {
         loginVc.modalPresentationStyle = .fullScreen
         present(loginVc, animated: true)
     }
-    
-    @IBAction func test() {
-        guard let testVc = UIStoryboard(name: "Test", bundle: nil).instantiateInitialViewController() as? TestViewController else { return }
-        
-        present(testVc, animated: true)
-    }
 }
 

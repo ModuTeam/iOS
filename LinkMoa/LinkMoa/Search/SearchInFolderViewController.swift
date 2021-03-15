@@ -15,26 +15,10 @@ final class SearchInFolderViewController: UIViewController, BackgroundBlur {
     @IBOutlet private weak var underLineWidthConstraint: NSLayoutConstraint!
 
     private let searchLinkViewModel = SearchLinkViewModel()
-    private var filterLinks: [Link] = [] {
-        didSet {
-            subTitleLabel.text = "링크(\(filterLinks.count))개"
-        }
-    }
-    private var links: [Link] = [] {
-        didSet {
-            if let keyword = self.searchTextField.text, !keyword.isEmpty {
-                self.filterLinks = links.filter({ $0.name.hasPrefix(keyword) })
-            } else {
-                self.filterLinks = links
-            }
-        }
-    }
     
     weak var folderDetailViewController: FolderDetailViewController?
     var removeBackgroundHandler: (() -> ())?
     
-    var folder: Folder?
-
     static func storyboardInstance() -> SearchInFolderViewController? {
         let storyboard = UIStoryboard(name: SearchInFolderViewController.storyboardName(), bundle: nil)
         return storyboard.instantiateInitialViewController()
@@ -47,24 +31,11 @@ final class SearchInFolderViewController: UIViewController, BackgroundBlur {
         prepareSearchTextField()
         prepareLinkCollectionView()
         prepareViewGesture()
-        
-
-        bind()
-        update()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         searchTextField.becomeFirstResponder()
-    }
-    
-    private func update() {
-        guard let folder = folder else { return }
-
-        links = folder.links.map { $0 }
-        filterLinks = links
-        subTitleLabel.text = "링크(\(links.count))개"
-        underLineWidthConstraint.constant = subTitleLabel.frame.width
     }
     
     private func bind() {
@@ -110,20 +81,12 @@ final class SearchInFolderViewController: UIViewController, BackgroundBlur {
     }
     
     @objc func textFieldDidChange(_ sender: UITextField) {
-        if let keyword = sender.text, !keyword.isEmpty {
-            filterLinks = links.filter({ $0.name.hasPrefix(keyword)})
-        } else {
-            filterLinks = links
-        }
-        
         linkCollectionView.reloadData()
     }
     
     @objc private func cellEditButtonTapped(_ sender: UIGestureRecognizer) { // edit 버튼 클릭됬을 때
         guard let button = sender.view as? UICustomTagButton else { return }
         // guard let link = filterLinks.filter({$0.id == button.customTag}).first else { return }
-        guard let folder = folder else { return }
-        guard let link = filterLinks.first else { return } // for error handler
         guard let editVC = EditBottomSheetViewController.storyboardInstance() else { fatalError() }
         
         editVC.modalPresentationStyle = .overCurrentContext
@@ -158,10 +121,6 @@ final class SearchInFolderViewController: UIViewController, BackgroundBlur {
             
         }, { [weak self] _ in // URL 공유하기
             guard let self = self else { return }
-            
-            let activityController = UIActivityViewController(activityItems: ["\(link.name)\n\(link.url)"], applicationActivities: nil)
-            activityController.excludedActivityTypes = [.saveToCameraRoll, .print, .assignToContact, .addToReadingList]
-            self.present(activityController, animated: true, completion: nil)
             
         }, { [weak self] _ in // 삭제하기
             guard let self = self else { return }
@@ -204,25 +163,18 @@ final class SearchInFolderViewController: UIViewController, BackgroundBlur {
     
     @IBAction func removeButtonTapped() {
         searchTextField.text = ""
-        filterLinks = links
         linkCollectionView.reloadData()
     }
 }
 
 extension SearchInFolderViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filterLinks.count
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let linkCell = collectionView.dequeueReusableCell(withReuseIdentifier: LinkCell.cellIdentifier, for: indexPath) as? LinkCell else { return UICollectionViewCell() }
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellEditButtonTapped(_:)))
-        let link = filterLinks[indexPath.item]
-        
-        linkCell.update(by: link)
-         linkCell.editButton.addGestureRecognizer(tapGesture)
-        // linkCell.editButton.customTag = link.id
+                
         
         return linkCell
     }
@@ -237,12 +189,5 @@ extension SearchInFolderViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension SearchInFolderViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let link = filterLinks[indexPath.item]
-        
-        //사파리로 링크열기
-        if let url = URL(string: link.url) {
-            UIApplication.shared.open(url, options: [:])
-        }
-    }
+
 }

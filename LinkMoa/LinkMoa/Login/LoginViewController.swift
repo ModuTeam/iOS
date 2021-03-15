@@ -22,7 +22,7 @@ final class LoginViewController: UIViewController {
     @IBOutlet private weak var useRuleLabel: UILabel!
     
     private lazy var animationView: AnimationView = {
-        let animationView = AnimationView(name: "edit_garibi")
+        let animationView = AnimationView(name: "garibi")
         animationView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 375)
         animationView.loopMode = .loop
         return animationView

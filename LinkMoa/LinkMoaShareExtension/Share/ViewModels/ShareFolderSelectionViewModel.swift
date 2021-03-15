@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import RealmSwift
-import Realm
 
 protocol ShareFolderSelectionViewModelOutputs {
     var folders: Observable<[FolderList.Result]> { get }

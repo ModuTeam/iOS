@@ -27,17 +27,6 @@ final class LinkCell: UICollectionViewCell {
         layer.shadowOpacity = 0.05
         layer.shadowRadius = 20
     }
-
-    func update(by link: Link) {
-        nameLabel.text = link.name
-        urlLabel.text = link.url
-        
-        if let faviconData = link.favicon, let faviconImage = UIImage(data: faviconData) {
-            faviconImageView.image = faviconImage
-        } else {
-            faviconImageView.image = UIImage(named: "seashell")
-        }
-    }
     
     func update(by link: FolderDetail.Link) {
         nameLabel.text = link.name

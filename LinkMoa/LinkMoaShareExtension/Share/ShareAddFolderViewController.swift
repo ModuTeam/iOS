@@ -167,7 +167,6 @@ class ShareAddFolderViewController: UIViewController {
             return
         }
         
-        let folder = Folder(name: name, isShared: isShared, tags: tags.map { Tag(name: $0) })
         // shareViewModel.inputs.save(target: folder)
         
         dismiss(animated: true, completion: {
