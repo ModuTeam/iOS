@@ -47,6 +47,8 @@ final class SearchFolderViewModel: SearchFolderViewModelOutputs, SearchFolderVie
                 if let data = response.result {
                     self.searchedFolders.value = data
                     print(data)
+                } else {
+                    self.searchedFolders.value = []
                 }
             }
         }
@@ -65,6 +67,8 @@ final class SearchFolderViewModel: SearchFolderViewModelOutputs, SearchFolderVie
                 if let data = response.result {
                     self.searchedLinks.value = data
                     print(data)
+                } else {
+                    self.searchedLinks.value = []
                 }
             }
         }

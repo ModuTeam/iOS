@@ -9,9 +9,10 @@ import UIKit
 
 final class SearchLinkResultViewController: UIViewController {
 
-    @IBOutlet private weak var linkCollectionView: UICollectionView!
+    @IBOutlet weak var linkCollectionView: UICollectionView!
  
     var searchedLinks: Observable<[SearchLink.Result]> = Observable([])
+    var searchTarget: SearchTarget = .my
     
     override func viewDidLoad() {
         super.viewDidLoad()

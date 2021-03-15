@@ -97,6 +97,7 @@ class SurfingFolderDetailViewController: UIViewController {
     }
     
     private func prepareNavigationBar() {
+        navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.barStyle = .black
     }

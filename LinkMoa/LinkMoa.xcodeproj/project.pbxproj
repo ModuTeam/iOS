@@ -17,6 +17,8 @@
 		258447D125F642EA003E0A04 /* MyScallopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447D025F642EA003E0A04 /* MyScallopManager.swift */; };
 		258447EC25F64A1C003E0A04 /* FolderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447EB25F64A1C003E0A04 /* FolderList.swift */; };
 		258447F425F64EE9003E0A04 /* FolderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447F325F64EE9003E0A04 /* FolderResponse.swift */; };
+		25857FF125FF53DA00496D7E /* LinkMoaLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25857FF025FF53DA00496D7E /* LinkMoaLog.swift */; };
+		25857FF225FF540300496D7E /* LinkMoaLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25857FF025FF53DA00496D7E /* LinkMoaLog.swift */; };
 		259E18A025F7059600D8FF9A /* SurfingViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E189F25F7059600D8FF9A /* SurfingViewModels.swift */; };
 		259E18A325F74D4400D8FF9A /* Int+Abbreviations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E18A225F74D4400D8FF9A /* Int+Abbreviations.swift */; };
 		259E18A525F8583100D8FF9A /* TopTenFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E18A425F8583100D8FF9A /* TopTenFolder.swift */; };
@@ -243,6 +245,7 @@
 		258447EB25F64A1C003E0A04 /* FolderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderList.swift; sourceTree = "<group>"; };
 		258447F325F64EE9003E0A04 /* FolderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResponse.swift; sourceTree = "<group>"; };
 		258447F725F64F3E003E0A04 /* NewFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFolder.swift; sourceTree = "<group>"; };
+		25857FF025FF53DA00496D7E /* LinkMoaLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkMoaLog.swift; sourceTree = "<group>"; };
 		259E189F25F7059600D8FF9A /* SurfingViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfingViewModels.swift; sourceTree = "<group>"; };
 		259E18A225F74D4400D8FF9A /* Int+Abbreviations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Abbreviations.swift"; sourceTree = "<group>"; };
 		259E18A425F8583100D8FF9A /* TopTenFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTenFolder.swift; sourceTree = "<group>"; };
@@ -743,6 +746,7 @@
 		3CF5ADE025C2891B00F1E45E /* LinkMoa */ = {
 			isa = PBXGroup;
 			children = (
+				25857FF025FF53DA00496D7E /* LinkMoaLog.swift */,
 				3C8AD46225D3A3D000197B21 /* LinkMoa.entitlements */,
 				3C68938225F61638001F229D /* GoogleService-Info.plist */,
 				3CF5ADE125C2891B00F1E45E /* AppDelegate.swift */,
@@ -1031,6 +1035,7 @@
 				259E18A625F864AA00D8FF9A /* TopTenFolder.swift in Sources */,
 				259E18B425F8766500D8FF9A /* Int+Abbreviations.swift in Sources */,
 				3C6D172C25E91A6300A7E7CA /* ShareAddFolderViewController.swift in Sources */,
+				25857FF225FF540300496D7E /* LinkMoaLog.swift in Sources */,
 				25C666E325F9A7A6009EF04D /* SearchFolder.swift in Sources */,
 				3C4FB9A925F85D280046605B /* WebMetaData.swift in Sources */,
 				3C4FB9AD25F865DD0046605B /* MyScallopAPI.swift in Sources */,
@@ -1065,6 +1070,7 @@
 			files = (
 				3C4BC7C125DCAC5F00C06929 /* TagCell.swift in Sources */,
 				3C4BC7E325DCF1F700C06929 /* LinkCell.swift in Sources */,
+				25857FF125FF53DA00496D7E /* LinkMoaLog.swift in Sources */,
 				3CEA39FE25D1667B006B0579 /* LoginViewController.swift in Sources */,
 				3C6D174D25EA30A600A7E7CA /* CustomAlert.swift in Sources */,
 				258447D125F642EA003E0A04 /* MyScallopManager.swift in Sources */,

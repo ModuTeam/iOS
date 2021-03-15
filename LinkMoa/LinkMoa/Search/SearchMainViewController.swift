@@ -22,8 +22,9 @@ final class SearchMainViewController: UIViewController {
     private var searchedFolders: Observable<[SearchFolder.Result]> = Observable([])
     private var searchedLinks: Observable<[SearchLink.Result]> = Observable([])
     private var searchWord: String = ""
+    private var currentPage: Int = 0
     
-    private lazy var topMenuSectionNames: [String] = ["폴더(\(folderCount)개)", "링크(\(linkCount)개)"]
+    private lazy var topMenuSectionNames: [String] = ["폴더(0개)", "링크(0개)"]
     private var folderCount: Int = 0
     private var linkCount: Int = 0
     private let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -42,16 +43,18 @@ final class SearchMainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareSearchTarget()
         prepareTopMenuCollectionView()
         preparePageViewController()
         prepareSearchTextField()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let nav = navigationController as? SearchMainNavigationController else { fatalError() }
-        searchTarget = nav.searchTarget
-        navigationController?.setNavigationBarHidden(true, animated: animated)
+        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.barStyle = .default
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,24 +74,33 @@ final class SearchMainViewController: UIViewController {
             guard let self = self else { return }
             self.searchedFolders.value = results
             self.folderCount = results.count
+            self.topMenuSectionNames[0] = "폴더(\(results.count.toAbbreviationString))개"
             self.topMenuCollectionView.reloadData()
+            self.reload(index: self.currentPage)
         }
         searchFolderViewModel.outputs.searchedLinks.bind { [weak self] results in
             guard let self = self else { return }
             print(results)
             self.searchedLinks.value = results
             self.linkCount = results.count
+            self.topMenuSectionNames[1] = "링크(\(results.count.toAbbreviationString))개"
             self.topMenuCollectionView.reloadData()
+            self.reload(index: self.currentPage)
         }
+    }
+    
+    private func prepareSearchTarget() {
+        guard let nav = navigationController as? SearchMainNavigationController else { fatalError() }
+        searchTarget = nav.searchTarget
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     private func preparePageViewController() {
         guard let folderListVC = SearchFolderResultViewController.storyboardInstance() else { fatalError() }
         guard let linkListVC = SearchLinkResultViewController.storyboardInstance() else { fatalError() }
         
-        folderListVC.searchedFolders = searchedFolders
+        folderListVC.searchTarget = searchTarget
         searchFolderResultVC = folderListVC
-        linkListVC.searchedLinks = searchedLinks
         searchLinkResultVC = linkListVC
         
         pages = [folderListVC, linkListVC]
@@ -159,11 +171,7 @@ final class SearchMainViewController: UIViewController {
         let direction: UIPageViewController.NavigationDirection = indexPath.item == 0 ? .reverse : .forward
         
         pageViewController.setViewControllers([pages[indexPath.item]], direction: direction, animated: true, completion: nil)
-//        if indexPath.item == 0 {
-//            searchFor = .folder
-//        } else {
-//            searchFor = .link
-//        }
+
     }
     
     private func prepareSearchTextField() {
@@ -173,12 +181,11 @@ final class SearchMainViewController: UIViewController {
     @objc func textFieldDidChange(_ sender: UITextField) {
         switch searchTarget {
         case .my:
-            print("my")
+            DEBUG_LOG(searchTarget)
         case .surf:
             timer.invalidate()
             timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.timerFunc), userInfo: nil, repeats: true)
         }
-        
     }
     
     @objc func timerFunc() {
@@ -187,8 +194,20 @@ final class SearchMainViewController: UIViewController {
         if searchWord == searchTextField.text {
             timer.invalidate()
         }
-        print(word)
         bind()
+    }
+    
+    private func reload(index: Int) {
+        switch index {
+        case 0:
+            searchFolderResultVC?.searchedFolders = searchedFolders
+            searchFolderResultVC?.folderCollectionView.reloadData()
+        case 1:
+            searchLinkResultVC?.searchedLinks = searchedLinks
+            searchLinkResultVC?.linkCollectionView.reloadData()
+        default:
+            return
+        }
     }
     
 }
@@ -206,7 +225,7 @@ extension SearchMainViewController: UICollectionViewDataSource {
             titleCell.titleLabel.textColor = .linkMoaBlackColor
             isTopMenuSelected.toggle()
         }
-        //MARK:- TopMenuName
+
         titleCell.titleLabel.text = topMenuSectionNames[indexPath.item]
         return titleCell
     }
@@ -216,6 +235,8 @@ extension SearchMainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         scrollSelectedTopMenuView(scrollToIndexPath: indexPath)
         setPageController(setToIndexPath: indexPath)
+        currentPage = indexPath.item
+        reload(index: currentPage)
     }
 }
 
@@ -225,7 +246,6 @@ extension SearchMainViewController: UIPageViewControllerDataSource {
         
         if index == 1 {
             let prevIndex = index - 1
-            
             return pages[prevIndex]
         }
         
@@ -237,7 +257,6 @@ extension SearchMainViewController: UIPageViewControllerDataSource {
         
         if index == 0 {
             let nextIndex = index + 1
-            
             return pages[nextIndex]
         }
         
@@ -251,5 +270,8 @@ extension SearchMainViewController: UIPageViewControllerDelegate {
         guard let index = pages.lastIndex(of: currentVC) else { return }
         
         scrollSelectedTopMenuView(scrollToIndexPath: IndexPath(item: index, section: 0))
+        currentPage = index
+        reload(index: currentPage)
+        
     }
 }

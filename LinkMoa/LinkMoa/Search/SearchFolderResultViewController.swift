@@ -12,7 +12,7 @@ final class SearchFolderResultViewController: UIViewController {
     @IBOutlet var folderCollectionView: UICollectionView!
 
     var searchedFolders: Observable<[SearchFolder.Result]> = Observable([])
-    
+    var searchTarget: SearchTarget = .my
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareFolderCollectionView()
@@ -42,17 +42,24 @@ extension SearchFolderResultViewController: UICollectionViewDataSource {
         guard let folderCell = collectionView.dequeueReusableCell(withReuseIdentifier: FolderCell.cellIdentifier, for: indexPath) as? FolderCell else { fatalError() }
         
         folderCell.update(by: searchedFolders.value[indexPath.row])
+        
+        DEBUG_LOG(searchTarget)
         return folderCell
     }
 }
 
-
-
 extension SearchFolderResultViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let folderDetailVC = FolderDetailViewController.storyboardInstance() else { fatalError() }
-
-        navigationController?.pushViewController(folderDetailVC, animated: true)
+        DEBUG_LOG(searchTarget)
+        switch searchTarget {
+        case .my:
+            guard let folderDetailVC = FolderDetailViewController.storyboardInstance() else { fatalError() }
+            navigationController?.pushViewController(folderDetailVC, animated: true)
+        case .surf:
+            guard let folderDetailVC = SurfingFolderDetailViewController.storyboardInstance() else { fatalError() }
+            
+            navigationController?.pushViewController(folderDetailVC, animated: true)
+        }   
     }
 }
 

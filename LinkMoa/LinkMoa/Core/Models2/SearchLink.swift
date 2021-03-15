@@ -17,8 +17,8 @@ struct SearchLink: Codable {
         let linkIndex, folderIndex, userIndex: Int
         let name: String
         let url: String
-        let imageURL: String?
-        let faviconURL: String?
+        let imageURL: String
+        let faviconURL: String
         let folderUpdatedAt: String
 
         enum CodingKeys: String, CodingKey {

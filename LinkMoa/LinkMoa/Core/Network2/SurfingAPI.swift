@@ -31,12 +31,12 @@ extension SurfingAPI: TargetType {
         case .likedFolder:
             return "/users/like"
         case .topTenFolder:
-            return "/folder/top"
+            return "/folders/top"
             
         case .searchFolder:
-            return "/folder/search"
+            return "/folders/search"
         case .searchLink:
-            return "/link/search"
+            return "/links/search"
         }
     }
     

@@ -7,6 +7,8 @@
 
 import Foundation
 
+//MARK:- 폐기
+
 protocol SearchLinkViewModelOutputs {
     var searchedLinks: Observable<[SearchLink.Result]> { get }
 }

@@ -23,13 +23,14 @@ final class SurfingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareCollectionView()
-        test()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.inputs.fetchTopTenFolder()
         viewModel.inputs.fetchLikedFolders()
         
         bind()
-        
-        print("🥺test", 100.toAbbreviationString, 1011.toAbbreviationString, 1100.toAbbreviationString, 10100.toAbbreviationString, 11111.toAbbreviationString, 12345678.toAbbreviationString, 123456789.toAbbreviationString)
     }
     
     static func storyboardInstance() -> SurfingViewController? {
@@ -53,77 +54,7 @@ final class SurfingViewController: UIViewController {
         }
     }
     
-    func test() {
-        
-        //MARK:- 폴더상세조회
-        //        surfingManager.fetchFolderDetail(folder: 2) { result in
-        //            print("🥺test", result)
-        //        }
-        
-        //MARK:- 저장한가리비폴더조회
-        //        surfingManager.fetchLikedFolder { result in
-        //            print("🥺test", result)
-        //        }
-        
-        //MARK:- 폴더리스트조회
-        //        myScallopManager.fetchMyFolderList(user: 1) { result in
-        //            print("🥺test", result)
-        //        }
-        //
-        //MARK:- 폴더생성
-        //        let params: [String: Any] = ["folderName": "test",
-        //                                     "hashTagList": ["test1","test2"],
-        //                                     "categoryIdx": 1,
-        //                                     "folderType": "private"
-        //        ]
-        //
-        //        myScallopManager.addNewFolder(params: params) { result in
-        //            print("🥺test", result)
-        //        }
-        
-        //MARK:- 폴더수정
-        //        let params: [String: Any] = ["folderName": "edit",
-        //                                     "hashTagList": ["edit1","edit2"],
-        //                                     "categoryIdx": 1,
-        //                                     "folderType": "private"
-        //        ]
-        //
-        //        myScallopManager.editFolder(folder: 8, params: params) { result in
-        //            print("🥺test", result)
-        //        }
-        //MARK:- 폴더삭제
-        //        myScallopManager.deleteFolder(folder: 9) { result in
-        //            print("🥺test", result)
-        //        }
-        
-        //MARK:- 링크추가
-        //        let params: [String: Any] = ["linkName": "testLInk",
-        //                                     "linkUrl": "https://velopert.com/2389"
-        //        ]
-        //
-        //        myScallopManager.addLink(folder: 8, params: params) { result in
-        //            print("🥺test", result)
-        //        }
-        //MARK:- 링크수정
-//        let params: [String: Any] = ["folderIdx": 8,
-//                                     "linkName": "editTestLInk",
-//                                     "linkUrl": "https://velopert.com/2389"
-//        ]
-//
-//        myScallopManager.editLink(link: 1, params: params) { result in
-//            print("🥺test", result)
-//        }
-        //MARK:- 링크수정
-//        myScallopManager.deleteLInk(link: 1) { result in
-//            print("🥺test", result)
-//        }
-        //MARK:- topten
-//        surfingManager.fetchTopTenFolder { result in
-//            print("🥺test", result)
-//        }
-        
-        
-    }
+   
     
     private func prepareCollectionView() {
         surfingCollectionView.collectionViewLayout = createSectionLayout()
@@ -243,7 +174,7 @@ extension SurfingViewController: UICollectionViewDelegate {
         case 0:
             guard let surfingFolderDetailVC = SurfingFolderDetailViewController.storyboardInstance() else { fatalError() }
             surfingFolderDetailVC.homeNavigationController = homeNavigationController
-            
+            surfingFolderDetailVC.folderIndex = topTenFolders.value[indexPath.item].folderIndex
             homeNavigationController?.pushViewController(surfingFolderDetailVC, animated: true)
         case 1:
             guard let categoryDetailVC = CategoryDetailViewController.storyboardInstance() else { fatalError() }
@@ -252,6 +183,7 @@ extension SurfingViewController: UICollectionViewDelegate {
         case 2:
             guard let surfingFolderDetailVC = SurfingFolderDetailViewController.storyboardInstance() else { fatalError() }
             surfingFolderDetailVC.homeNavigationController = homeNavigationController
+            surfingFolderDetailVC.folderIndex = likedFolders.value[indexPath.item].folderIndex
             homeNavigationController?.pushViewController(surfingFolderDetailVC, animated: true)
         default:
             print("default")
