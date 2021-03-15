@@ -25,7 +25,7 @@ struct TopTenFolder: Codable {
         let detailCategoryIndex: Int
         let detailCategoryName, folderName, folderType: String
         let folderLinkCount, likeFolderCount: Int
-        let linkImageURL: String
+        let linkImageURL: String?
         let likeStatus: Int
 
         enum CodingKeys: String, CodingKey {

@@ -53,7 +53,7 @@ final class LinkCell: UICollectionViewCell {
         nameLabel.text = link.name
         urlLabel.text = link.url
         
-        if let url = URL(string: link.faviconURL) {
+        if let faviconURL = link.faviconURL, let url = URL(string: faviconURL) {
             faviconImageView.kf.setImage(with: url, placeholder: UIImage(named: "seashell"))
         }
     }

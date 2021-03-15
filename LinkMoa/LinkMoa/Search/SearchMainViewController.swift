@@ -12,18 +12,20 @@ enum SearchTarget {
     case surf
 }
 
-enum SearchFor {
-    case folder
-    case link
-}
-
 final class SearchMainViewController: UIViewController {
     
     @IBOutlet private weak var topMenuCollectionView: UICollectionView!
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var searchTextField: UITextField!
+
+    private var searchFolderViewModel: SearchFolderViewModel = SearchFolderViewModel()
+    private var searchedFolders: Observable<[SearchFolder.Result]> = Observable([])
+    private var searchedLinks: Observable<[SearchLink.Result]> = Observable([])
+    private var searchWord: String = ""
     
-    private var topMenuSectionNames: [String] = ["폴더(6개)", "링크(2개)"]
+    private lazy var topMenuSectionNames: [String] = ["폴더(\(folderCount)개)", "링크(\(linkCount)개)"]
+    private var folderCount: Int = 0
+    private var linkCount: Int = 0
     private let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     
     private var pages: [UIViewController] = []
@@ -35,20 +37,14 @@ final class SearchMainViewController: UIViewController {
     private var isTopMenuViewPresented: Bool = false
     
     var searchTarget: SearchTarget = .my
-    var searchFor: SearchFor = .folder
+
     private var timer = Timer()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         prepareTopMenuCollectionView()
         preparePageViewController()
         prepareSearchTextField()
-        
-        bind()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,14 +64,31 @@ final class SearchMainViewController: UIViewController {
     }
     
     private func bind() {
+        searchFolderViewModel.inputs.searchFolder(word: searchWord)
+        searchFolderViewModel.inputs.searchLink(word: searchWord)
         
+        searchFolderViewModel.outputs.searchedFolders.bind { [weak self] results in
+            guard let self = self else { return }
+            self.searchedFolders.value = results
+            self.folderCount = results.count
+            self.topMenuCollectionView.reloadData()
+        }
+        searchFolderViewModel.outputs.searchedLinks.bind { [weak self] results in
+            guard let self = self else { return }
+            print(results)
+            self.searchedLinks.value = results
+            self.linkCount = results.count
+            self.topMenuCollectionView.reloadData()
+        }
     }
     
     private func preparePageViewController() {
         guard let folderListVC = SearchFolderResultViewController.storyboardInstance() else { fatalError() }
         guard let linkListVC = SearchLinkResultViewController.storyboardInstance() else { fatalError() }
         
+        folderListVC.searchedFolders = searchedFolders
         searchFolderResultVC = folderListVC
+        linkListVC.searchedLinks = searchedLinks
         searchLinkResultVC = linkListVC
         
         pages = [folderListVC, linkListVC]
@@ -146,11 +159,11 @@ final class SearchMainViewController: UIViewController {
         let direction: UIPageViewController.NavigationDirection = indexPath.item == 0 ? .reverse : .forward
         
         pageViewController.setViewControllers([pages[indexPath.item]], direction: direction, animated: true, completion: nil)
-        if indexPath.item == 0 {
-            searchFor = .folder
-        } else {
-            searchFor = .link
-        }
+//        if indexPath.item == 0 {
+//            searchFor = .folder
+//        } else {
+//            searchFor = .link
+//        }
     }
     
     private func prepareSearchTextField() {
@@ -169,23 +182,14 @@ final class SearchMainViewController: UIViewController {
     }
     
     @objc func timerFunc() {
-        var text: String = ""
-        guard let searchWord = searchTextField.text else { return }
-        text = searchWord
-        if text == searchTextField.text {
+        guard let word = searchTextField.text else { return }
+        searchWord = word
+        if searchWord == searchTextField.text {
             timer.invalidate()
         }
-        print(searchWord)
-        
-        switch searchFor {
-        case .folder:
-            searchFolderResultVC?.searchWord = searchWord
-        case .link:
-            searchLinkResultVC?.searchWord = searchWord
-        }
-        
+        print(word)
+        bind()
     }
-    
     
 }
 
@@ -202,7 +206,7 @@ extension SearchMainViewController: UICollectionViewDataSource {
             titleCell.titleLabel.textColor = .linkMoaBlackColor
             isTopMenuSelected.toggle()
         }
-        
+        //MARK:- TopMenuName
         titleCell.titleLabel.text = topMenuSectionNames[indexPath.item]
         return titleCell
     }

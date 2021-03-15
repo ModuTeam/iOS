@@ -11,19 +11,13 @@ final class SearchFolderResultViewController: UIViewController {
 
     @IBOutlet var folderCollectionView: UICollectionView!
 
-    var searchWord: String = "" {
-        didSet {
-            searchFolder()
-        }
-    }
     var searchedFolders: Observable<[SearchFolder.Result]> = Observable([])
-    private var searchFolderViewModel: SearchFolderViewModel = SearchFolderViewModel()
     
-       override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         prepareFolderCollectionView()
     }
-   
+    
     static func storyboardInstance() -> SearchFolderResultViewController? {
         let storyboard = UIStoryboard(name: SearchFolderResultViewController.storyboardName(), bundle: nil)
         return storyboard.instantiateInitialViewController()
@@ -37,16 +31,6 @@ final class SearchFolderResultViewController: UIViewController {
         folderCollectionView.dataSource = self
         folderCollectionView.delegate = self
     }
-    
-    func searchFolder() {
-        searchFolderViewModel.inputs.searchFolder(word: searchWord)
-        searchFolderViewModel.outputs.searchedFolders.bind { [weak self] results in
-            guard let self = self else { return }
-            self.searchedFolders.value = results
-            self.folderCollectionView.reloadData()
-        }
-    }
-
 }
 
 extension SearchFolderResultViewController: UICollectionViewDataSource {

@@ -9,10 +9,12 @@ import Foundation
 
 protocol SearchFolderViewModelOutputs {
     var searchedFolders: Observable<[SearchFolder.Result]> { get }
+    var searchedLinks: Observable<[SearchLink.Result]> { get }
 }
 
 protocol SearchFolderViewModelInputs {
     func searchFolder(word: String)
+    func searchLink(word: String)
 }
 
 protocol SearchFolderViewModelViewModelType {
@@ -27,6 +29,7 @@ final class SearchFolderViewModel: SearchFolderViewModelOutputs, SearchFolderVie
     }
     private let surfingManager: SurfingManager
     var searchedFolders: Observable<[SearchFolder.Result]> = Observable([])
+    var searchedLinks: Observable<[SearchLink.Result]> = Observable([])
     
     var inputs: SearchFolderViewModelInputs { return self }
     var outputs: SearchFolderViewModelOutputs { return self }
@@ -48,5 +51,23 @@ final class SearchFolderViewModel: SearchFolderViewModelOutputs, SearchFolderVie
             }
         }
     }
-   
+    
+    func searchLink(word: String) {
+        let params: [String: Any] = ["word": word]
+        print("🥺", word)
+        surfingManager.searchLink(params: params) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .failure(let error):
+                self.searchedLinks.value = []
+                print(error)
+            case .success(let response):
+                if let data = response.result {
+                    self.searchedLinks.value = data
+                    print(data)
+                }
+            }
+        }
+    }
+
 }

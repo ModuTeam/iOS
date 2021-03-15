@@ -76,7 +76,8 @@ final class FolderCell: UICollectionViewCell {
         } else {
             heartImageView.image = UIImage(systemName: "heart")
         }
-        if let url = URL(string: folder.linkImageURL) {
+        
+        if let linkImageURL = folder.linkImageURL, let url = URL(string: linkImageURL) {
             print(url)
             webPreviewImageView.kf.setImage(with: url)
         }

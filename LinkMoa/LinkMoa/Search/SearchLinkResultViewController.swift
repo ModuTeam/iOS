@@ -10,19 +10,12 @@ import UIKit
 final class SearchLinkResultViewController: UIViewController {
 
     @IBOutlet private weak var linkCollectionView: UICollectionView!
-    
-    var searchWord: String = "" {
-        didSet {
-            searchLink()
-        }
-    }
+ 
     var searchedLinks: Observable<[SearchLink.Result]> = Observable([])
-    private var searchLinkViewModel: SearchLinkViewModel = SearchLinkViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareLinkCollectionView()
-        
     }
     
     static func storyboardInstance() -> SearchLinkResultViewController? {
@@ -36,16 +29,6 @@ final class SearchLinkResultViewController: UIViewController {
         linkCollectionView.delegate = self
     }
 
-    func searchLink() {
-        searchLinkViewModel.inputs.searchLink(word: searchWord)
-        searchLinkViewModel.outputs.searchedLinks.bind { [weak self] results in
-            guard let self = self else { return }
-            print(results)
-            self.searchedLinks.value = results
-            self.linkCollectionView.reloadData()
-        }
-    }
-
 }
 
 extension SearchLinkResultViewController: UICollectionViewDataSource {
@@ -57,9 +40,7 @@ extension SearchLinkResultViewController: UICollectionViewDataSource {
         guard let linkCell = collectionView.dequeueReusableCell(withReuseIdentifier: LinkCell.cellIdentifier, for: indexPath) as? LinkCell else { return UICollectionViewCell() }
         linkCell.update(by: searchedLinks.value[indexPath.row])
         return linkCell
-    }
-    
-    
+    } 
 }
 
 extension SearchLinkResultViewController: UICollectionViewDelegateFlowLayout {

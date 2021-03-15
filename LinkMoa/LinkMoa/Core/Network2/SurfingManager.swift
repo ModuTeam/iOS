@@ -17,6 +17,8 @@ protocol SurfingNetworkable {
     
     func fetchFolderDetail(folder index: Int, completion: @escaping (Result<FolderDetail, Error>) -> ())
     
+    func likeFolder(folder index: Int, completion: @escaping (Result<LinkResponse, Error>) -> ())
+    
     func searchFolder(params: [String: Any], completion: @escaping (Result<SearchFolder, Error>) -> ())
 
     func searchLink(params: [String: Any], completion: @escaping (Result<SearchLink, Error>) -> ())
@@ -36,6 +38,10 @@ struct SurfingManager: SurfingNetworkable {
     
     func fetchFolderDetail(folder index: Int, completion: @escaping (Result<FolderDetail, Error>) -> ()) {
         request(target: .folderDetail(index: index), completion: completion)
+    }
+    
+    func likeFolder(folder index: Int, completion: @escaping (Result<LinkResponse, Error>) -> ()) {
+        request(target: .like(index: index), completion: completion)
     }
 
     func searchFolder(params: [String: Any], completion: @escaping (Result<SearchFolder, Error>) -> ()) {

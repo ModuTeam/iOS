@@ -35,7 +35,29 @@ class SurfingFolderViewController: UIViewController {
         prepareNavigationBar()
         prepareNavigationItem()
         prepareHeader()
-        fetchFolder()
+        bind()
+    }
+    
+    func bind() {
+        switch surfingFolerType {
+        case .topTen:
+            viewModel.inputs.fetchTopTenFolder()
+            viewModel.outputs.topTenFolders.bind { [weak self] results  in
+                guard let self = self else { return }
+                print("topTenFolders", results)
+                self.topTenFolders.value = results
+                self.folderCollectionView.reloadData()
+            }
+        case .liked :
+            viewModel.inputs.fetchLikedFolders()
+            viewModel.outputs.likedFolders.bind { [weak self] results  in
+                guard let self = self else { return }
+                print("likedFolders", results)
+                self.likedFolders.value = results
+                self.countLabel.text = "\(results.map{$0.folderLinkCount}.reduce(0, +).toAbbreviationString)개"
+                self.folderCollectionView.reloadData()
+            }
+        }
     }
     
     static func storyboardInstance() -> SurfingFolderViewController? {
@@ -93,27 +115,7 @@ class SurfingFolderViewController: UIViewController {
         folderCollectionView.delegate = self
     }
     
-    func fetchFolder() {
-        switch surfingFolerType {
-        case .topTen:
-            viewModel.inputs.fetchTopTenFolder()
-            viewModel.outputs.topTenFolders.bind { [weak self] results  in
-                guard let self = self else { return }
-                print("topTenFolders", results)
-                self.topTenFolders.value = results
-                self.folderCollectionView.reloadData()
-            }
-        case .liked :
-            viewModel.inputs.fetchLikedFolders()
-            viewModel.outputs.likedFolders.bind { [weak self] results  in
-                guard let self = self else { return }
-                print("likedFolders", results)
-                self.likedFolders.value = results
-                self.countLabel.text = "\(results.map{$0.folderLinkCount}.reduce(0, +).toAbbreviationString)개"
-                self.folderCollectionView.reloadData()
-            }
-        }
-    }
+    
 }
 
 
@@ -146,6 +148,12 @@ extension SurfingFolderViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let folderDetailVC = SurfingFolderDetailViewController.storyboardInstance() else { fatalError() }
         folderDetailVC.homeNavigationController = homeNavigationController
+        switch surfingFolerType {
+        case .topTen:
+            folderDetailVC.folderIndex = topTenFolders.value[indexPath.row].folderIndex   
+        case .liked :
+            folderDetailVC.folderIndex = likedFolders.value[indexPath.row].folderIndex
+        }
         homeNavigationController?.pushViewController(folderDetailVC, animated: true)
     }
 }

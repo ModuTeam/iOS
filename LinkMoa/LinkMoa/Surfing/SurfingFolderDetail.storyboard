@@ -94,6 +94,12 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uyd-WL-6oj">
+                                        <rect key="frame" x="339.5" y="222" width="49.5" height="18"/>
+                                        <connections>
+                                            <action selector="likeButtonTapped:" destination="TfD-Md-G4Q" eventType="touchUpInside" id="btO-uB-i3S"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.2564307153" green="0.30606234069999999" blue="0.57495892049999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -102,10 +108,14 @@
                                     <constraint firstItem="rku-y7-7WP" firstAttribute="leading" secondItem="9Jh-30-hkh" secondAttribute="trailing" constant="8" id="9e1-WE-gLY"/>
                                     <constraint firstItem="l7j-xg-Xoi" firstAttribute="centerY" secondItem="aij-Ej-wFj" secondAttribute="centerY" id="Aav-ua-8eA"/>
                                     <constraint firstItem="9Jh-30-hkh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GUc-aA-ZUU" secondAttribute="trailing" constant="20" id="B8a-Sb-3oY"/>
+                                    <constraint firstItem="uyd-WL-6oj" firstAttribute="bottom" secondItem="aij-Ej-wFj" secondAttribute="bottom" id="DJG-d6-y4d"/>
                                     <constraint firstItem="JPJ-mB-gyg" firstAttribute="leading" secondItem="iSY-dN-QA1" secondAttribute="leading" constant="18" id="FMN-16-pf4"/>
+                                    <constraint firstItem="uyd-WL-6oj" firstAttribute="trailing" secondItem="l7j-xg-Xoi" secondAttribute="trailing" id="GET-cj-T3T"/>
+                                    <constraint firstItem="uyd-WL-6oj" firstAttribute="top" secondItem="aij-Ej-wFj" secondAttribute="top" id="IJ0-3N-6Jh"/>
                                     <constraint firstAttribute="height" constant="260" id="Ibz-cg-9tK"/>
                                     <constraint firstItem="GUc-aA-ZUU" firstAttribute="leading" secondItem="iSY-dN-QA1" secondAttribute="leading" constant="18" id="KfI-Mw-VHN"/>
                                     <constraint firstAttribute="bottom" secondItem="GUc-aA-ZUU" secondAttribute="bottom" constant="21" id="M8S-m7-wH6"/>
+                                    <constraint firstItem="uyd-WL-6oj" firstAttribute="leading" secondItem="aij-Ej-wFj" secondAttribute="leading" id="N2C-ih-BtM"/>
                                     <constraint firstItem="aij-Ej-wFj" firstAttribute="leading" secondItem="rku-y7-7WP" secondAttribute="trailing" constant="16" id="PA4-U8-ZQN"/>
                                     <constraint firstItem="8kP-y6-cRd" firstAttribute="leading" secondItem="JPJ-mB-gyg" secondAttribute="leading" id="Pdq-a7-pM3"/>
                                     <constraint firstItem="l7j-xg-Xoi" firstAttribute="leading" secondItem="aij-Ej-wFj" secondAttribute="trailing" constant="8" id="Vhm-rZ-ioK"/>
@@ -133,6 +143,7 @@
                         <outlet property="likeCountLabel" destination="l7j-xg-Xoi" id="hz3-f3-PkP"/>
                         <outlet property="linkCollectionView" destination="hSw-Qg-dbb" id="6N1-P5-07b"/>
                         <outlet property="linkCountLabel" destination="rku-y7-7WP" id="a9r-8k-WIn"/>
+                        <outlet property="nickNameLabel" destination="GUc-aA-ZUU" id="BOf-Jr-OHZ"/>
                         <outlet property="tagStackView" destination="8kP-y6-cRd" id="b7u-1r-7Up"/>
                         <outlet property="userNameLabel" destination="GUc-aA-ZUU" id="nVa-Ej-p9t"/>
                     </connections>

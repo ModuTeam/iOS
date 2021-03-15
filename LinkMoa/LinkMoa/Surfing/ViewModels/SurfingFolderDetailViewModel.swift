@@ -8,11 +8,12 @@
 import Foundation
 
 protocol SurfingFolderDetailViewModelOutputs {
-    var folderDetail: Observable<FolderDetail.Result>? { get }
+    var folderDetail: Observable<FolderDetail.Result> { get }
 }
 
 protocol SurfingFolderDetailViewModelInputs {
     func fetchFolderDetail(folder: Int)
+    func likeFolder(folder: Int)
 }
 
 protocol SurfingFolderDetailViewModelType {
@@ -31,18 +32,31 @@ final class SurfingFolderDetailViewModel: SurfingFolderDetailViewModelOutputs, S
     var inputs: SurfingFolderDetailViewModelInputs { return self }
     var outputs: SurfingFolderDetailViewModelOutputs { return self }
     
-    var folderDetail: Observable<FolderDetail.Result>?
+    var folderDetail: Observable<FolderDetail.Result> = Observable(FolderDetail.Result(userIndex: 0, folderIndex: 0, name: "", type: "", likeCount: 0, linkCount: 0, folderUpdatedAt: "", hashTagList: [], linkList: []))
    
     func fetchFolderDetail(folder: Int) {
-        surfingManager.fetchFolderDetail(folder: 0) { [weak self] result in
+        surfingManager.fetchFolderDetail(folder: folder) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .failure(let error):
                 print(error)
             case .success(let response):
                 if let data = response.result {
-                    self.folderDetail?.value = data
+                    self.folderDetail.value = data
                 }
+            }
+        }
+    }
+    
+    func likeFolder(folder: Int) {
+        surfingManager.likeFolder(folder: folder) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let response):
+                print(response.message)
+                self.fetchFolderDetail(folder: folder)
             }
         }
     }
