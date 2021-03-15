@@ -9,25 +9,28 @@ import Foundation
 
 ///폴더상세조회
 struct FolderDetail: Codable {
+    
     let isSuccess: Bool
     let code: Int
     let message: String
     let result: Result?
     
     struct Result: Codable {
-        let userIndex: Int
+        let userIndex, folderIndex: Int
         let name, type: String
-        let linkCount: Int
+        let likeCount, linkCount: Int
+        let folderUpdatedAt: String
         let hashTagList: [HashTag]
         let linkList: [Link]
         
         enum CodingKeys: String, CodingKey {
             case userIndex = "userIdx"
+            case folderIndex = "folderIdx"
             case name = "folderName"
             case type = "folderType"
+            case likeCount = "folderLikeCount"
             case linkCount = "folderLinkCount"
-            case hashTagList
-            case linkList
+            case folderUpdatedAt, hashTagList, linkList
         }
     }
     

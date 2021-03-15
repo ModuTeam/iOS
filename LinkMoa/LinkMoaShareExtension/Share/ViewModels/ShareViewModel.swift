@@ -9,8 +9,7 @@ import Foundation
 
 protocol ShareViewModelOutputs {}
 protocol ShareViewModelInputs {
-    func save(target folder: Folder)
-    func update(handler updateHandler: @escaping () -> ())
+    func addLink(folder index: Int, params: [String : Any], completionHandler: @escaping (Result<LinkResponse, Error>) -> ())
 }
 
 protocol ShareViewModelType {
@@ -20,22 +19,12 @@ protocol ShareViewModelType {
 
 final class ShareViewModel: ShareViewModelOutputs, ShareViewModelInputs, ShareViewModelType {
     
-//    init() {
-//        self.realmService = RealmService()
-//    }
-    
-    // private let realmService: RealmService
-    
+    private let myScallopManager = MyScallopManager()
+
     var inputs: ShareViewModelInputs { return self }
     var outputs: ShareViewModelOutputs { return self }
     
-    func save(target folder: Folder) {
-        // realmService.add(folder)
-    }
-    
-    func update(handler updateHandler: @escaping () -> ()) {
-//        realmService.update {
-//            updateHandler()
-//        }
+    func addLink(folder index: Int, params: [String : Any], completionHandler: @escaping (Result<LinkResponse, Error>) -> ()) {
+        myScallopManager.addLink(folder: index, params: params, completion: completionHandler)
     }
 }

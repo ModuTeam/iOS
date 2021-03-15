@@ -31,7 +31,7 @@ final class FolderDetailViewModel: FolderDetailViewModelOutputs, FolderDetailVie
     private let myScallopManager = MyScallopManager()
     private let surfingManager = SurfingManager()
 
-    var folderDetail: Observable<FolderDetail.Result> = Observable(FolderDetail.Result(userIndex: -1, name: "-1", type: "-1", linkCount: 0, hashTagList: [], linkList: []))
+    var folderDetail: Observable<FolderDetail.Result> = Observable(FolderDetail.Result(userIndex: 0, folderIndex: 0, name: "", type: "", likeCount: 0, linkCount: 0, folderUpdatedAt: "", hashTagList: [], linkList: []))
     var links: Observable<[FolderDetail.Link]> = Observable([])
     var tags: Observable<[FolderDetail.HashTag]> = Observable([])
     var folderName: Observable<String> = Observable("")

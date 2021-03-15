@@ -10,7 +10,7 @@ import Social
 import MobileCoreServices
 import Toast_Swift
 
-class ShareViewController: UIViewController, CustomAlert {
+class ShareViewController: UIViewController, CustomAlert, BackgroundBlur {
 
     @IBOutlet private weak var linkTitleTextField: UITextField! // tag 1
     @IBOutlet private weak var linkURLTextField: UITextField! // tag 2
@@ -19,9 +19,9 @@ class ShareViewController: UIViewController, CustomAlert {
     @IBOutlet private weak var folderSelectionLabel: UILabel!
     @IBOutlet private weak var saveButtonView: UIView!
 
-    private let linkPresentaionService = LinkPresentaionService()
-    private let shareViewModel = ShareViewModel()
-    
+    private let linkPresentaionService: LinkPresentaionService = LinkPresentaionService()
+    private let shareViewModel: ShareViewModel = ShareViewModel()
+
     private var blurVC: BackgroundBlur? {
         return navigationController as? BackgroundBlur
     }
@@ -39,7 +39,8 @@ class ShareViewController: UIViewController, CustomAlert {
     }
     
     private var isButtonClicked: Bool = false
-    private var destinationFolder: Folder?
+    private var destinationFolderName: String? // 사용자가 저장하려는 폴더
+    private var destinationFolderIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,13 +79,9 @@ class ShareViewController: UIViewController, CustomAlert {
         }
     }
     
-    private func update() {
-        guard let destinationFolder = destinationFolder else { return }
-        
-        folderSelectionLabel.text = destinationFolder.name
-        folderSelectionLabel.isHidden = false
-        folderPlaceHolderLabel.isHidden = true
-    }
+//    private func update() {
+//
+//    }
     
     private func prepareViewGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
@@ -158,10 +155,14 @@ class ShareViewController: UIViewController, CustomAlert {
     @objc private func folderSelectionViewTapped() {
         guard let folderSelectVc = ShareFolderSelectionViewController.storyboardInstance() else { return }
 
-        folderSelectVc.selectHandler = { [weak self] folder in
+        folderSelectVc.selectHandler = { [weak self] (folderName, folderIndex) in
             guard let self = self else { return }
-            self.destinationFolder = folder
-            self.update()
+            self.destinationFolderName = folderName
+            self.destinationFolderIndex = folderIndex
+            
+            self.folderSelectionLabel.text = folderName
+            self.folderSelectionLabel.isHidden = false
+            self.folderPlaceHolderLabel.isHidden = true
         }
         
         navigationController?.pushViewController(folderSelectVc, animated: true)
@@ -189,7 +190,7 @@ class ShareViewController: UIViewController, CustomAlert {
             return
         }
         
-        guard let destinationFolder = destinationFolder else {
+        guard let destinationFolderName = destinationFolderName, let destinationFolderIndex = destinationFolderIndex else {
             view.makeToast("저장할 폴더를 선택해주세요.", position: .top)
             return
         }
@@ -197,26 +198,42 @@ class ShareViewController: UIViewController, CustomAlert {
         isButtonClicked.toggle()
         view.makeToastActivity(ToastPosition.center)
         
-        linkPresentaionService.fetchLinkMetaData(urlString: url, completionHandler: { [weak self] web, favicon in
+        linkPresentaionService.fetchMetaDataURL(targetURLString: url, completionHandler: { [weak self] webMetaData in
             guard let self = self else { return }
-            
-            let addLink = Link(name: name, url: url, webPreview: web?.pngData() ?? nil, favicon: favicon?.pngData() ?? nil)
-            
-            DispatchQueue.main.async {
-                self.shareViewModel.update {
-                    destinationFolder.links.append(addLink)
-                }
-                
-                self.view.hideToastActivity()
-                
-                self.blurVC?.fadeInBackgroundViewAnimation()
-                self.alertSucceedView(completeHandler: {
-                    self.blurVC?.fadeOutBackgroundViewAnimation()
-                    self.hideExtensionWithCompletionHandler(completionHandler: {
-                        self.extensionContext!.completeRequest(returningItems: nil, completionHandler: nil)
-                    })
-                })
+            guard let webMetaData = webMetaData else {
+                print("서버 에러")
+                return
             }
+            
+            var params: [String : Any] = ["linkName" : name,
+                                          "linkUrl" : url,
+            ]
+            
+            if let favicon = webMetaData.faviconURLString {
+                params["linkFaviconUrl"] = favicon
+            }
+            
+            if let image = webMetaData.webPreviewURLString {
+                params["linkImageUrl"] = image
+            }
+            
+            self.shareViewModel.inputs.addLink(folder: destinationFolderIndex, params: params, completionHandler: { result in
+                switch result {
+                case .success(let linkResponse):
+                    if linkResponse.isSuccess {
+                        self.view.hideToastActivity()
+                        self.blurVC?.fadeInBackgroundViewAnimation()
+                        self.alertSucceedView(completeHandler: { [weak self] in
+                            guard let self = self else { return }
+                            self.extensionContext!.completeRequest(returningItems: nil, completionHandler: nil)
+                        })
+                    } else {
+                        print("서버 에러")
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            })
         })
     }
     

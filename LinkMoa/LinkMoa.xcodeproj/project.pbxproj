@@ -77,7 +77,6 @@
 		3C4BC7CB25DCD8AD00C06929 /* UIView+RoundConer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BC7C925DCD8AD00C06929 /* UIView+RoundConer.swift */; };
 		3C4BC7CF25DCE0C400C06929 /* AddLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BC7CE25DCE0C400C06929 /* AddLinkViewController.swift */; };
 		3C4BC7D225DCE0D000C06929 /* AddLink.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C4BC7D125DCE0D000C06929 /* AddLink.storyboard */; };
-		3C4BC7DB25DCEAAA00C06929 /* LinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BC7DA25DCEAAA00C06929 /* LinkViewModel.swift */; };
 		3C4BC7E325DCF1F700C06929 /* LinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BC7E125DCF1F700C06929 /* LinkCell.swift */; };
 		3C4BC7E425DCF1F700C06929 /* LinkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C4BC7E225DCF1F700C06929 /* LinkCell.xib */; };
 		3C4E979025DE4A0A001A5BC9 /* FolderSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4E978F25DE4A0A001A5BC9 /* FolderSelectViewController.swift */; };
@@ -291,7 +290,6 @@
 		3C4BC7C925DCD8AD00C06929 /* UIView+RoundConer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RoundConer.swift"; sourceTree = "<group>"; };
 		3C4BC7CE25DCE0C400C06929 /* AddLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLinkViewController.swift; sourceTree = "<group>"; };
 		3C4BC7D125DCE0D000C06929 /* AddLink.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddLink.storyboard; sourceTree = "<group>"; };
-		3C4BC7DA25DCEAAA00C06929 /* LinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkViewModel.swift; sourceTree = "<group>"; };
 		3C4BC7E125DCF1F700C06929 /* LinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkCell.swift; sourceTree = "<group>"; };
 		3C4BC7E225DCF1F700C06929 /* LinkCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LinkCell.xib; sourceTree = "<group>"; };
 		3C4E978F25DE4A0A001A5BC9 /* FolderSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderSelectViewController.swift; sourceTree = "<group>"; };
@@ -487,18 +485,18 @@
 				3C10CB7825E8E6370083E93A /* ShareFolderSelectionViewController.swift */,
 				3C6D173925E91E8800A7E7CA /* ShareAddFolder.storyboard */,
 				3C6D172B25E91A6300A7E7CA /* ShareAddFolderViewController.swift */,
-				3C10CB7525E8DD6C0083E93A /* Model */,
+				3C10CB7525E8DD6C0083E93A /* ViewModels */,
 			);
 			path = Share;
 			sourceTree = "<group>";
 		};
-		3C10CB7525E8DD6C0083E93A /* Model */ = {
+		3C10CB7525E8DD6C0083E93A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				3C10CB7125E8DD690083E93A /* ShareViewModel.swift */,
 				3C6D172725E8EFB700A7E7CA /* ShareFolderSelectionViewModel.swift */,
 			);
-			path = Model;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		3C540E7925CEDBA10013427E /* Core */ = {
@@ -525,7 +523,6 @@
 				3CAC041425F9F4330059F826 /* FolderDetailViewModel.swift */,
 				3C623F1225F71C5B00FD7B5D /* AddFolderViewModel.swift */,
 				3C4FB9AF25F86C3F0046605B /* AddLinkViewModel.swift */,
-				3C4BC7DA25DCEAAA00C06929 /* LinkViewModel.swift */,
 				3C4FB9AA25F865340046605B /* FolderSelectViewModel.swift */,
 			);
 			path = ViewModels;
@@ -1126,7 +1123,6 @@
 				3C04656925E5F0C6007B61E3 /* NSObject+StoryboardName.swift in Sources */,
 				3CDCFCF025CAF51A00B0F6E0 /* AddFolderViewController.swift in Sources */,
 				258447EC25F64A1C003E0A04 /* FolderList.swift in Sources */,
-				3C4BC7DB25DCEAAA00C06929 /* LinkViewModel.swift in Sources */,
 				2542747025F136B400A88F18 /* SurfingHeaderView.swift in Sources */,
 				3C4BC7CF25DCE0C400C06929 /* AddLinkViewController.swift in Sources */,
 				3CCA602225DFA3FA00DD1F50 /* LinkPresentaionService.swift in Sources */,

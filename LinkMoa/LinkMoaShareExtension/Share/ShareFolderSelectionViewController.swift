@@ -12,8 +12,9 @@ class ShareFolderSelectionViewController: UIViewController, CustomAlert {
     @IBOutlet private weak var folderSelectCollectionView: UICollectionView!
     
     private let shareFolderSelectionViewModel = ShareFolderSelectionViewModel()
-    private var folders: [Folder] = []
-    var selectHandler: ((Folder) -> ())?
+    private var folders: [FolderList.Result] = []
+    
+    var selectHandler: ((String, Int) -> ())? // 폴더 이름, 폴더 인덱스
     
     private var blurVC: BackgroundBlur? {
         return navigationController as? BackgroundBlur
@@ -49,22 +50,8 @@ class ShareFolderSelectionViewController: UIViewController, CustomAlert {
         }
     }
     
-//    private func alertSucceedView() {
-//        guard let saveSucceedBottomVc = SaveSucceedBottomViewController.storyboardInstance() else { return }
-//
-//        saveSucceedBottomVc.modalPresentationStyle = .overCurrentContext
-//        saveSucceedBottomVc.modalTransitionStyle = .coverVertical
-//        saveSucceedBottomVc.completeHandler = { [weak self] in
-//            self?.blurVc?.stopBackGroundView()
-//        }
-//
-//        // self.homeNavigationController?.animateBackGroundView()
-//        blurVc?.startBackGroundView()
-//        self.present(saveSucceedBottomVc, animated: true, completion: nil)
-//    }
-    
     private func prepareNavigationBar() {
-        let rightButtonTiem = UIBarButtonItem(image: UIImage(named: "createFolder"), style: .plain, target: self, action: #selector(addFolderButtonTapped))
+        let rightButtonTiem = UIBarButtonItem(image: UIImage(named: "createFolder"), style: .plain, target: self, action: nil)
         rightButtonTiem.tintColor = UIColor(rgb: 0x5c5c5c)
         navigationItem.rightBarButtonItem = rightButtonTiem
     }
@@ -101,7 +88,7 @@ extension ShareFolderSelectionViewController: UICollectionViewDataSource {
         guard let folderCell = collectionView.dequeueReusableCell(withReuseIdentifier: FolderCell.cellIdentifier, for: indexPath) as? FolderCell else { return UICollectionViewCell() }
         
         let folder = folders[indexPath.item]
-        // folderCell.update(by: folder)
+        folderCell.update(by: folder)
         
         return folderCell
     }
@@ -111,7 +98,7 @@ extension ShareFolderSelectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let folder = folders[indexPath.item]
 
-        selectHandler?(folder)
+        selectHandler?(folder.name, folder.index)
         navigationController?.popViewController(animated: true)
     }
 }

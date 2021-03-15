@@ -25,7 +25,7 @@ class ShareAddFolderViewController: UIViewController {
     
     var saveHandler: (() -> ())?
     
-    private let shareViewModel = ShareViewModel()
+    // private let shareViewModel = ShareViewModel()
     private var tags: [String] = [] {
         didSet {
             if tags.count == 0 {
@@ -168,7 +168,7 @@ class ShareAddFolderViewController: UIViewController {
         }
         
         let folder = Folder(name: name, isShared: isShared, tags: tags.map { Tag(name: $0) })
-        shareViewModel.inputs.save(target: folder)
+        // shareViewModel.inputs.save(target: folder)
         
         dismiss(animated: true, completion: {
             self.saveHandler?()

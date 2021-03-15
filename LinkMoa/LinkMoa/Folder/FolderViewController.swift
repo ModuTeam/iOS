@@ -27,6 +27,10 @@ final class FolderViewController: UIViewController, CustomAlert {
         return storyboard.instantiateInitialViewController()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareFolderCollectionView()
@@ -35,6 +39,8 @@ final class FolderViewController: UIViewController, CustomAlert {
         bind()
         view.makeToastActivity(ToastPosition.center)
         folderViewModel.inputs.fetchFolders()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadFolder), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     private func bind() {
@@ -101,6 +107,10 @@ final class FolderViewController: UIViewController, CustomAlert {
         selectNC.isNavigationBarHidden = true
         
         present(selectNC, animated: true, completion: nil)
+    }
+    
+    @objc private func reloadFolder() {
+        folderViewModel.inputs.fetchFolders()
     }
     
     @objc private func headerSortButtonTapped() {
