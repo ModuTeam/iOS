@@ -61,6 +61,8 @@
             <size key="customSize" width="438" height="83"/>
             <connections>
                 <outlet property="categoryImageView" destination="w22-r5-0jN" id="xE8-9H-ItO"/>
+                <outlet property="subTitleLabel" destination="gdh-mf-AJJ" id="xla-gb-xvl"/>
+                <outlet property="titleLabel" destination="B8D-9L-bXF" id="nOZ-l4-DVb"/>
             </connections>
             <point key="canvasLocation" x="310.14492753623193" y="90.736607142857139"/>
         </collectionViewCell>

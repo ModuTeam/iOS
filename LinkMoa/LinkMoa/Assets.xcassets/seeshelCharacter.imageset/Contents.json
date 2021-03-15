@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "저장ㄴ 1.png",
+      "filename" : "seeshelCharacter.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "저장ㄴ 1@2x.png",
+      "filename" : "seeshelCharacter@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "저장ㄴ 1@3x.png",
+      "filename" : "seeshelCharacter@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

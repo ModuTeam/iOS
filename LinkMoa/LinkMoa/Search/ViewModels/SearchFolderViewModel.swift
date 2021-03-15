@@ -36,7 +36,7 @@ final class SearchFolderViewModel: SearchFolderViewModelOutputs, SearchFolderVie
     
     func searchFolder(word: String) {
         let params: [String: Any] = ["word": word]
-        print("🥺", word)
+        DEBUG_LOG(word)
         surfingManager.searchFolder(params: params) { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -56,7 +56,7 @@ final class SearchFolderViewModel: SearchFolderViewModelOutputs, SearchFolderVie
     
     func searchLink(word: String) {
         let params: [String: Any] = ["word": word]
-        print("🥺", word)
+        DEBUG_LOG(word)
         surfingManager.searchLink(params: params) { [weak self] result in
             guard let self = self else { return }
             switch result {

@@ -20,6 +20,7 @@ struct FolderDetail: Codable {
         let name, type: String
         let likeCount, linkCount: Int
         let folderUpdatedAt: String
+        let likeStatus: Int
         let hashTagList: [HashTag]
         let linkList: [Link]
         
@@ -30,7 +31,7 @@ struct FolderDetail: Codable {
             case type = "folderType"
             case likeCount = "folderLikeCount"
             case linkCount = "folderLinkCount"
-            case folderUpdatedAt, hashTagList, linkList
+            case folderUpdatedAt, likeStatus, hashTagList, linkList
         }
     }
     

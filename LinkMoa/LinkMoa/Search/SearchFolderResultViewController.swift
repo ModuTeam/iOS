@@ -11,6 +11,7 @@ final class SearchFolderResultViewController: UIViewController {
 
     @IBOutlet var folderCollectionView: UICollectionView!
 
+    private var searchFolderViewModel: SearchFolderViewModel = SearchFolderViewModel()
     var searchedFolders: Observable<[SearchFolder.Result]> = Observable([])
     var searchTarget: SearchTarget = .my
     override func viewDidLoad() {

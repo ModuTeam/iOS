@@ -32,7 +32,7 @@ final class SurfingFolderDetailViewModel: SurfingFolderDetailViewModelOutputs, S
     var inputs: SurfingFolderDetailViewModelInputs { return self }
     var outputs: SurfingFolderDetailViewModelOutputs { return self }
     
-    var folderDetail: Observable<FolderDetail.Result> = Observable(FolderDetail.Result(userIndex: 0, folderIndex: 0, name: "", type: "", likeCount: 0, linkCount: 0, folderUpdatedAt: "", hashTagList: [], linkList: []))
+    var folderDetail: Observable<FolderDetail.Result> = Observable(FolderDetail.Result(userIndex: 0, folderIndex: 0, name: "", type: "", likeCount: 0, linkCount: 0, folderUpdatedAt: "", likeStatus: 0, hashTagList: [], linkList: []))
    
     func fetchFolderDetail(folder: Int) {
         surfingManager.fetchFolderDetail(folder: folder) { [weak self] result in

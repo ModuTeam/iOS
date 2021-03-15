@@ -16,14 +16,14 @@ class SurfingFolderDetailViewController: UIViewController {
     @IBOutlet weak var linkCollectionView: UICollectionView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var nickNameLabel: UILabel!
+    @IBOutlet weak var heartImageView: UIImageView!
     
     var folderIndex = 1
     weak var homeNavigationController: HomeNavigationController?
     
     private let viewModel: SurfingFolderDetailViewModel = SurfingFolderDetailViewModel()
     
-    var folderDetail: Observable<FolderDetail.Result> = Observable(FolderDetail.Result(userIndex: 0, folderIndex: 0, name: "", type: "", likeCount: 0, linkCount: 0, folderUpdatedAt: "", hashTagList: [], linkList: []))
-    
+    var folderDetail: Observable<FolderDetail.Result> = Observable(FolderDetail.Result(userIndex: 0, folderIndex: 0, name: "", type: "", likeCount: 0, linkCount: 0, folderUpdatedAt: "", likeStatus: 0, hashTagList: [], linkList: []))
     
     private var blurVC: BackgroundBlur? {
         return navigationController as? BackgroundBlur
@@ -73,6 +73,11 @@ class SurfingFolderDetailViewController: UIViewController {
         self.likeCountLabel.text = folderDetail.likeCount.toAbbreviationString
         let tags: [String] = folderDetail.hashTagList.map {$0.name}
         updateTagStackView(tags: tags)
+        if folderDetail.likeStatus == 1 {
+            heartImageView.image = UIImage(systemName: "heart.fill")
+        } else {
+            heartImageView.image = UIImage(systemName: "heart")
+        }
     }
     
     private func updateTagStackView(tags: [String]) {

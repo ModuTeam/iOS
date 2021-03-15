@@ -94,7 +94,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="categoryImageView" destination="d0w-aJ-yQt" id="iQN-Mx-rgo"/>
+                        <outlet property="countLabel" destination="T1w-GH-G1j" id="3Fi-Yf-bVn"/>
                         <outlet property="folderCollectionView" destination="9H7-ov-EAa" id="HSz-2z-xIq"/>
+                        <outlet property="subTitleLabel" destination="py6-ox-UeV" id="EMe-Ev-KDg"/>
+                        <outlet property="titleLabel" destination="YFM-re-AwE" id="JGV-qJ-h2T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gg2-IR-538" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

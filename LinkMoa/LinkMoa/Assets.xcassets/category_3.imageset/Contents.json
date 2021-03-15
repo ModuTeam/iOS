@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "garibi.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "garibi@2x.png",
+      "filename" : "category_3.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "garibi@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

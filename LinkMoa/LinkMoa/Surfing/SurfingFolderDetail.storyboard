@@ -140,6 +140,7 @@
                     </view>
                     <connections>
                         <outlet property="folderTitleLabel" destination="JPJ-mB-gyg" id="WOd-Ea-RVr"/>
+                        <outlet property="heartImageView" destination="aij-Ej-wFj" id="cT4-DU-fNA"/>
                         <outlet property="likeCountLabel" destination="l7j-xg-Xoi" id="hz3-f3-PkP"/>
                         <outlet property="linkCollectionView" destination="hSw-Qg-dbb" id="6N1-P5-07b"/>
                         <outlet property="linkCountLabel" destination="rku-y7-7WP" id="a9r-8k-WIn"/>

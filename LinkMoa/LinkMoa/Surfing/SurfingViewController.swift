@@ -19,7 +19,10 @@ final class SurfingViewController: UIViewController {
     
     var topTenFolders: Observable<[TopTenFolder.Result]> = Observable([])
     var likedFolders: Observable<[LikedFolder.Result]> = Observable([])
-        
+   
+    let categoryMain: [String] = ["개발", "디자인", "마케팅/광고", "기획", "기타"]
+    let categorySub: [String] = ["개발과 관련된 가리비 모음", "디자인과 관련된 가리비 모음", "마케팅/광고와 관련된 가리비 모음", "기획과 관련된 가리비 모음", "기타 가리비 모음"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareCollectionView()
@@ -154,6 +157,9 @@ extension SurfingViewController: UICollectionViewDataSource {
             return folderCell
         case 1:
             guard let surfingCategoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: SurfingCategoryCell.cellIdentifier, for: indexPath) as? SurfingCategoryCell else { fatalError() }
+            surfingCategoryCell.categoryImageView.image = UIImage(named: "category_\(indexPath.item)")
+            surfingCategoryCell.titleLabel.text = categoryMain[indexPath.item]
+            surfingCategoryCell.subTitleLabel.text = categorySub[indexPath.item]
             
             return surfingCategoryCell
         case 2:
@@ -179,6 +185,7 @@ extension SurfingViewController: UICollectionViewDelegate {
         case 1:
             guard let categoryDetailVC = CategoryDetailViewController.storyboardInstance() else { fatalError() }
             categoryDetailVC.homeNavigationController = homeNavigationController
+            categoryDetailVC.index = indexPath.item
             homeNavigationController?.pushViewController(categoryDetailVC, animated: true)
         case 2:
             guard let surfingFolderDetailVC = SurfingFolderDetailViewController.storyboardInstance() else { fatalError() }
