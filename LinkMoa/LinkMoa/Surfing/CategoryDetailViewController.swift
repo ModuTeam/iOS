@@ -18,10 +18,6 @@ class CategoryDetailViewController: UIViewController {
 
     
     weak var homeNavigationController: HomeNavigationController?
-    let categoryMain: [String] = ["개발", "디자인", "마케팅/광고", "기획", "기타"]
-    let categorySub: [String] = ["개발과 관련된 가리비 모음", "디자인과 관련된 가리비 모음", "마케팅/광고와 관련된 가리비 모음", "기획과 관련된 가리비 모음", "기타 가리비 모음"]
-    var index: Int = 0
-    
     private let viewModel: CategoryViewModel = CategoryViewModel()
     private var categoryFolders: Observable<[CategoryFolder.FolderList]> = Observable([])
     
@@ -128,6 +124,7 @@ extension CategoryDetailViewController: UICollectionViewDelegate {
         guard let folderDetailVC = SurfingFolderDetailViewController.storyboardInstance() else { fatalError() }
         folderDetailVC.homeNavigationController = homeNavigationController
         folderDetailVC.folderIndex = categoryFolders.value[indexPath.item].index
+        
         homeNavigationController?.pushViewController(folderDetailVC, animated: true)
     }
 }

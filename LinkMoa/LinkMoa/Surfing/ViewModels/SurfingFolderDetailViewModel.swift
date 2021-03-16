@@ -14,6 +14,7 @@ protocol SurfingFolderDetailViewModelOutputs {
 protocol SurfingFolderDetailViewModelInputs {
     func fetchFolderDetail(folder: Int)
     func likeFolder(folder: Int)
+    func reportFolder(folder: Int)
 }
 
 protocol SurfingFolderDetailViewModelType {
@@ -57,6 +58,18 @@ final class SurfingFolderDetailViewModel: SurfingFolderDetailViewModelOutputs, S
             case .success(let response):
                 print(response.message)
                 self.fetchFolderDetail(folder: folder)
+            }
+        }
+    }
+    
+    func reportFolder(folder: Int) {
+        let params: [String: Any] = ["folderIdx" : folder]
+        surfingManager.reportFolder(params: params) { result in
+            switch result {
+            case .failure(let error):
+                DEBUG_LOG(error)
+            case .success(let response):
+                DEBUG_LOG(response)
             }
         }
     }

@@ -25,10 +25,11 @@ protocol SurfingNetworkable {
 
     func searchLink(params: [String: Any], completion: @escaping (Result<SearchLink, Error>) -> ())
     
+    func reportFolder(params: [String: Any], completion: @escaping (Result<ReportResponse, Error>) -> ())
 }
 
 struct SurfingManager: SurfingNetworkable {
-     
+
 //    var provider: MoyaProvider<SurfingAPI> = MoyaProvider<SurfingAPI>(plugins: [NetworkLoggerPlugin()])
     var provider: MoyaProvider<SurfingAPI> = MoyaProvider<SurfingAPI>(plugins: [])
     
@@ -59,6 +60,12 @@ struct SurfingManager: SurfingNetworkable {
     func searchLink(params: [String: Any], completion: @escaping (Result<SearchLink, Error>) -> ()) {
         request(target: .searchLink(params: params), completion: completion)
     }
+    
+    func reportFolder(params: [String : Any], completion: @escaping (Result<ReportResponse, Error>) -> ()) {
+        request(target: .report(params: params), completion: completion)
+    }
+    
+     
 }
 
 private extension SurfingManager {
@@ -67,7 +74,7 @@ private extension SurfingManager {
             switch result {
             case let .success(response):
                 do {
-//                    print(String(data: response.data, encoding: .utf8))
+                    DEBUG_LOG(String(data: response.data, encoding: .utf8))
                     let results = try JSONDecoder().decode(T.self, from: response.data)
                     // for test
                     completion(.success(results))

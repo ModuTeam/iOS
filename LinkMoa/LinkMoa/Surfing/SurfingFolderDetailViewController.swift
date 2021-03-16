@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SurfingFolderDetailViewController: UIViewController {
+class SurfingFolderDetailViewController: UIViewController, CustomAlert {
     
     @IBOutlet weak var folderTitleLabel: UILabel!
     @IBOutlet weak var tagStackView: UIStackView!
@@ -142,8 +142,13 @@ class SurfingFolderDetailViewController: UIViewController {
             },
             { [weak self] _ in // 삭제하기
                 guard let self = self else { return }
-
-            print("신고하기")
+                self.blurVC?.fadeInBackgroundViewAnimation()
+                self.alertReportSucceedView() {
+                    DEBUG_LOG("신고하기")
+                    self.blurVC?.fadeOutBackgroundViewAnimation()
+                    self.viewModel.inputs.reportFolder(folder: self.folderIndex)
+                }
+            
             }
         ]
         

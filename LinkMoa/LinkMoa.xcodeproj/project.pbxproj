@@ -21,6 +21,12 @@
 		25857FF225FF540300496D7E /* LinkMoaLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25857FF025FF53DA00496D7E /* LinkMoaLog.swift */; };
 		2585801025FFA00E00496D7E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2585800F25FFA00E00496D7E /* Category.swift */; };
 		2585801125FFCEF100496D7E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2585800F25FFA00E00496D7E /* Category.swift */; };
+		2585801F260085B200496D7E /* ReportBottom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2585801E260085B200496D7E /* ReportBottom.storyboard */; };
+		25858021260085CC00496D7E /* ReportBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25858020260085CC00496D7E /* ReportBottomViewController.swift */; };
+		2585802226008D7300496D7E /* ReportBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25858020260085CC00496D7E /* ReportBottomViewController.swift */; };
+		2585802326008D7A00496D7E /* ReportBottom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2585801E260085B200496D7E /* ReportBottom.storyboard */; };
+		2585802526008F7700496D7E /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2585802426008F7700496D7E /* Report.swift */; };
+		2585802626008FB600496D7E /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2585802426008F7700496D7E /* Report.swift */; };
 		259E18A025F7059600D8FF9A /* SurfingViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E189F25F7059600D8FF9A /* SurfingViewModels.swift */; };
 		259E18A325F74D4400D8FF9A /* Int+Abbreviations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E18A225F74D4400D8FF9A /* Int+Abbreviations.swift */; };
 		259E18A525F8583100D8FF9A /* TopTenFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E18A425F8583100D8FF9A /* TopTenFolder.swift */; };
@@ -249,6 +255,9 @@
 		258447F725F64F3E003E0A04 /* NewFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFolder.swift; sourceTree = "<group>"; };
 		25857FF025FF53DA00496D7E /* LinkMoaLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkMoaLog.swift; sourceTree = "<group>"; };
 		2585800F25FFA00E00496D7E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		2585801E260085B200496D7E /* ReportBottom.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReportBottom.storyboard; sourceTree = "<group>"; };
+		25858020260085CC00496D7E /* ReportBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportBottomViewController.swift; sourceTree = "<group>"; };
+		2585802426008F7700496D7E /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		259E189F25F7059600D8FF9A /* SurfingViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfingViewModels.swift; sourceTree = "<group>"; };
 		259E18A225F74D4400D8FF9A /* Int+Abbreviations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Abbreviations.swift"; sourceTree = "<group>"; };
 		259E18A425F8583100D8FF9A /* TopTenFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTenFolder.swift; sourceTree = "<group>"; };
@@ -463,6 +472,7 @@
 				259E18B525F8A9BB00D8FF9A /* SearchFolder.swift */,
 				25C666F025F9D54F009EF04D /* SearchLink.swift */,
 				2585800F25FFA00E00496D7E /* Category.swift */,
+				2585802426008F7700496D7E /* Report.swift */,
 			);
 			path = Models2;
 			sourceTree = "<group>";
@@ -540,6 +550,8 @@
 				3C540EB325CFCAF40013427E /* EditBottomSheet.storyboard */,
 				3CD6662F25E11A810075DFE6 /* RemoveRequestBottomViewController.swift */,
 				3CD6663525E11A960075DFE6 /* RemoveRequestBottom.storyboard */,
+				25858020260085CC00496D7E /* ReportBottomViewController.swift */,
+				2585801E260085B200496D7E /* ReportBottom.storyboard */,
 				3C540EA825CFC9AF0013427E /* Views */,
 				3C540EA325CFB8700013427E /* Extensions */,
 				3C6D174925EA302300A7E7CA /* Protocols */,
@@ -887,6 +899,7 @@
 				3C6D174425EA009200A7E7CA /* EditBottomSheet.storyboard in Resources */,
 				3C10CB8D25E8EE6C0083E93A /* LinkCell.xib in Resources */,
 				3C6D173F25EA009200A7E7CA /* SaveSucceedBottom.storyboard in Resources */,
+				2585802326008D7A00496D7E /* ReportBottom.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -908,6 +921,7 @@
 				3CAEC1A425C699B2009248D6 /* NotoSansKR-Bold.otf in Resources */,
 				25D0047F25F397F6002743C3 /* CategoryDetail.storyboard in Resources */,
 				3CD6663625E11A960075DFE6 /* RemoveRequestBottom.storyboard in Resources */,
+				2585801F260085B200496D7E /* ReportBottom.storyboard in Resources */,
 				3C4BC7D225DCE0D000C06929 /* AddLink.storyboard in Resources */,
 				3CAEC1A525C699B2009248D6 /* NotoSansKR-Medium.otf in Resources */,
 				3CEA39FA25D15A43006B0579 /* Login.storyboard in Resources */,
@@ -1025,6 +1039,7 @@
 			files = (
 				3C10CB8325E8EDE20083E93A /* ShareNavigationViewController.swift in Sources */,
 				3C9A067525E8977E00100966 /* LinkPresentaionService.swift in Sources */,
+				2585802226008D7300496D7E /* ReportBottomViewController.swift in Sources */,
 				3C10CB7925E8E6370083E93A /* ShareFolderSelectionViewController.swift in Sources */,
 				3C6D172825E8EFB700A7E7CA /* ShareFolderSelectionViewModel.swift in Sources */,
 				259E18B325F8750800D8FF9A /* LikedFolder.swift in Sources */,
@@ -1063,6 +1078,7 @@
 				3C6D172425E8EF1100A7E7CA /* UICustomTagButton.swift in Sources */,
 				3C10CB4325E8B7F10083E93A /* UIColor+.swift in Sources */,
 				3C6D174025EA009200A7E7CA /* RemoveRequestBottomViewController.swift in Sources */,
+				2585802626008FB600496D7E /* Report.swift in Sources */,
 				3C10CB4125E8B7F10083E93A /* String+Regex.swift in Sources */,
 				3C4FB99725F84C8F0046605B /* FolderDetail.swift in Sources */,
 				2585801125FFCEF100496D7E /* Category.swift in Sources */,
@@ -1113,6 +1129,7 @@
 				3C4BC7CF25DCE0C400C06929 /* AddLinkViewController.swift in Sources */,
 				3CCA602225DFA3FA00DD1F50 /* LinkPresentaionService.swift in Sources */,
 				3C4FB9A825F85D280046605B /* WebMetaData.swift in Sources */,
+				25858021260085CC00496D7E /* ReportBottomViewController.swift in Sources */,
 				3CB4598525F6F7BD0016351B /* LinkResponse.swift in Sources */,
 				259E18A025F7059600D8FF9A /* SurfingViewModels.swift in Sources */,
 				258447F425F64EE9003E0A04 /* FolderResponse.swift in Sources */,
@@ -1123,6 +1140,7 @@
 				3C9A066225E88D3F00100966 /* SearchMainNavigationController.swift in Sources */,
 				3C9A066225E88D3F00100966 /* SearchMainNavigationController.swift in Sources */,
 				254274AD25F1DC4E00A88F18 /* SurfingViewController.swift in Sources */,
+				2585802526008F7700496D7E /* Report.swift in Sources */,
 				3C8AD44A25D2CE9800197B21 /* UICustomTagButton.swift in Sources */,
 				3CF5ADE425C2891B00F1E45E /* SceneDelegate.swift in Sources */,
 				3CCA601E25DF9EAA00DD1F50 /* String+Regex.swift in Sources */,

@@ -41,4 +41,14 @@ extension CustomAlert where Self: UIViewController {
         
         self.present(removeRequestVC, animated: true, completion: nil)
     }
+    
+    func alertReportSucceedView(completeHandler: (() -> ())?) {
+        guard let reportBottomVC = ReportBottomViewController.storyboardInstance() else { return }
+        
+        reportBottomVC.modalPresentationStyle = .overCurrentContext
+        reportBottomVC.modalTransitionStyle = .coverVertical
+        reportBottomVC.completionHandler = completeHandler
+
+        self.present(reportBottomVC, animated: true, completion: nil)
+    }
 }
