@@ -35,7 +35,7 @@ final class FolderViewController: UIViewController, CustomAlert {
         super.viewDidLoad()
         prepareFolderCollectionView()
         prepareAddButtonGesture()
-        
+
         bind()
         view.makeToastActivity(ToastPosition.center)
         folderViewModel.inputs.fetchFolders()

@@ -11,8 +11,14 @@ final class SearchFolderResultViewController: UIViewController {
 
     @IBOutlet var folderCollectionView: UICollectionView!
 
-    var searchedFolders: Observable<[SearchFolder.Result]> = Observable([])
+    var searchedFolders: [SearchFolder.Result] = []
+    var searchWord: String = "" {
+        didSet {
+            print(searchWord)
+        }
+    }
     var searchTarget: SearchTarget = .my
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareFolderCollectionView()
@@ -35,13 +41,13 @@ final class SearchFolderResultViewController: UIViewController {
 
 extension SearchFolderResultViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return searchedFolders.value.count
+        return searchedFolders.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let folderCell = collectionView.dequeueReusableCell(withReuseIdentifier: FolderCell.cellIdentifier, for: indexPath) as? FolderCell else { fatalError() }
         
-        folderCell.update(by: searchedFolders.value[indexPath.row])
+        folderCell.update(by: searchedFolders[indexPath.row])
         
         DEBUG_LOG(searchTarget)
         return folderCell

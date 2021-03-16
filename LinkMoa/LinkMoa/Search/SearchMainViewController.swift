@@ -18,13 +18,21 @@ final class SearchMainViewController: UIViewController {
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var searchTextField: UITextField!
 
-    private var searchFolderViewModel: SearchFolderViewModel = SearchFolderViewModel()
-    private var searchedFolders: Observable<[SearchFolder.Result]> = Observable([])
-    private var searchedLinks: Observable<[SearchLink.Result]> = Observable([])
-    private var searchWord: String = ""
+    // private var searchFolderViewModel: SearchFolderViewModel = SearchFolderViewModel()
+    // private var searchedFolders: Observable<[SearchFolder.Result]> = Observable([])
+    // private var searchedLinks: Observable<[SearchLink.Result]> = Observable([])
+    private var searchWord: String = "" {
+        didSet {
+            self.searchLinkResultVC?.searchWord = searchWord
+        }
+    }
     private var currentPage: Int = 0
     
-    private lazy var topMenuSectionNames: [String] = ["폴더(0개)", "링크(0개)"]
+    private lazy var topMenuSectionNames: [String] = ["폴더(0개)", "링크(0개)"] {
+        didSet {
+            self.topMenuCollectionView.reloadData()
+        }
+    }
     private var folderCount: Int = 0
     private var linkCount: Int = 0
     private let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -67,26 +75,26 @@ final class SearchMainViewController: UIViewController {
     }
     
     private func bind() {
-        searchFolderViewModel.inputs.searchFolder(word: searchWord)
-        searchFolderViewModel.inputs.searchLink(word: searchWord)
-        
-        searchFolderViewModel.outputs.searchedFolders.bind { [weak self] results in
-            guard let self = self else { return }
-            self.searchedFolders.value = results
-            self.folderCount = results.count
-            self.topMenuSectionNames[0] = "폴더(\(results.count.toAbbreviationString))개"
-            self.topMenuCollectionView.reloadData()
-            self.reload(index: self.currentPage)
-        }
-        searchFolderViewModel.outputs.searchedLinks.bind { [weak self] results in
-            guard let self = self else { return }
-            print(results)
-            self.searchedLinks.value = results
-            self.linkCount = results.count
-            self.topMenuSectionNames[1] = "링크(\(results.count.toAbbreviationString))개"
-            self.topMenuCollectionView.reloadData()
-            self.reload(index: self.currentPage)
-        }
+//        searchFolderViewModel.inputs.searchFolder(word: searchWord)
+//        searchFolderViewModel.inputs.searchLink(word: searchWord)
+//
+//        searchFolderViewModel.outputs.searchedFolders.bind { [weak self] results in
+//            guard let self = self else { return }
+//            self.searchedFolders.value = results
+//            self.folderCount = results.count
+//            self.topMenuSectionNames[0] = "폴더(\(results.count.toAbbreviationString))개"
+//            self.topMenuCollectionView.reloadData()
+//            self.reload(index: self.currentPage)
+//        }
+//        searchFolderViewModel.outputs.searchedLinks.bind { [weak self] results in
+//            guard let self = self else { return }
+//            print(results)
+//            self.searchedLinks.value = results
+//            self.linkCount = results.count
+//            self.topMenuSectionNames[1] = "링크(\(results.count.toAbbreviationString))개"
+//            self.topMenuCollectionView.reloadData()
+//            self.reload(index: self.currentPage)
+//        }
     }
     
     private func prepareSearchTarget() {
@@ -100,13 +108,17 @@ final class SearchMainViewController: UIViewController {
         guard let linkListVC = SearchLinkResultViewController.storyboardInstance() else { fatalError() }
         
         folderListVC.searchTarget = searchTarget
+        
         searchFolderResultVC = folderListVC
+        
         searchLinkResultVC = linkListVC
+        searchLinkResultVC?.searchMainVC = self
         
         pages = [folderListVC, linkListVC]
         
         pageViewController.delegate = self
         pageViewController.dataSource = self
+        pageViewController.setViewControllers([linkListVC], direction: .forward, animated: true, completion: nil)
         pageViewController.setViewControllers([folderListVC], direction: .forward, animated: true, completion: nil)
         
         addChild(pageViewController)
@@ -197,18 +209,18 @@ final class SearchMainViewController: UIViewController {
         bind()
     }
     
-    private func reload(index: Int) {
-        switch index {
-        case 0:
-            searchFolderResultVC?.searchedFolders = searchedFolders
-            searchFolderResultVC?.folderCollectionView.reloadData()
-        case 1:
-            searchLinkResultVC?.searchedLinks = searchedLinks
-            searchLinkResultVC?.linkCollectionView.reloadData()
-        default:
-            return
-        }
-    }
+//    private func reload(index: Int) {
+//        switch index {
+//        case 0:
+//            searchFolderResultVC?.searchedFolders = searchedFolders
+//            searchFolderResultVC?.folderCollectionView.reloadData()
+//        case 1:
+//            searchLinkResultVC?.searchedLinks = searchedLinks
+//            searchLinkResultVC?.linkCollectionView.reloadData()
+//        default:
+//            return
+//        }
+//    }
     
 }
 
@@ -236,7 +248,7 @@ extension SearchMainViewController: UICollectionViewDelegateFlowLayout {
         scrollSelectedTopMenuView(scrollToIndexPath: indexPath)
         setPageController(setToIndexPath: indexPath)
         currentPage = indexPath.item
-        reload(index: currentPage)
+        // reload(index: currentPage)
     }
 }
 
@@ -271,7 +283,7 @@ extension SearchMainViewController: UIPageViewControllerDelegate {
         
         scrollSelectedTopMenuView(scrollToIndexPath: IndexPath(item: index, section: 0))
         currentPage = index
-        reload(index: currentPage)
+        // reload(index: currentPage)
         
     }
 }

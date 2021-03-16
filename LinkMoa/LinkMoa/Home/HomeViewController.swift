@@ -50,6 +50,7 @@ final class HomeViewController: UIViewController {
         
         pageViewController.delegate = self
         pageViewController.dataSource = self
+        pageViewController.setViewControllers([surfingVC], direction: .forward, animated: true, completion: nil)
         pageViewController.setViewControllers([homeFolderVC], direction: .forward, animated: true, completion: nil)
         
         addChild(pageViewController)

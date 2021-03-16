@@ -11,17 +11,37 @@ final class SearchLinkResultViewController: UIViewController {
 
     @IBOutlet weak var linkCollectionView: UICollectionView!
  
-    var searchedLinks: Observable<[SearchLink.Result]> = Observable([])
+    private let searchLinkViewModel: SearchLinkViewModel = SearchLinkViewModel()
+    
+    weak var searchMainVC: SearchMainViewController?
+    var searchedLinks: [SearchLink.Result] = []
     var searchTarget: SearchTarget = .my
+    
+    var searchWord: String = "" {
+        didSet {
+            print(searchWord)
+            searchLinkViewModel.searchLink(word: searchWord)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         prepareLinkCollectionView()
+        bind()
     }
     
     static func storyboardInstance() -> SearchLinkResultViewController? {
         let storyboard = UIStoryboard(name: SearchLinkResultViewController.storyboardName(), bundle: nil)
         return storyboard.instantiateInitialViewController()
+    }
+    
+    private func bind() {
+        searchLinkViewModel.outputs.searchedLinks.bind { [weak self] result in
+            guard let self = self else { return }
+            self.searchedLinks = result
+            self.linkCollectionView.reloadData()
+        }
     }
     
     private func prepareLinkCollectionView() {
@@ -34,12 +54,12 @@ final class SearchLinkResultViewController: UIViewController {
 
 extension SearchLinkResultViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return searchedLinks.value.count
+        return searchedLinks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let linkCell = collectionView.dequeueReusableCell(withReuseIdentifier: LinkCell.cellIdentifier, for: indexPath) as? LinkCell else { return UICollectionViewCell() }
-        linkCell.update(by: searchedLinks.value[indexPath.row])
+        linkCell.update(by: searchedLinks[indexPath.row])
         return linkCell
     } 
 }

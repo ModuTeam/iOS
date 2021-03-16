@@ -23,14 +23,15 @@ final class SurfingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareCollectionView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         viewModel.inputs.fetchTopTenFolder()
         viewModel.inputs.fetchLikedFolders()
         
         bind()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
     }
     
     static func storyboardInstance() -> SurfingViewController? {
