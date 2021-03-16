@@ -53,6 +53,9 @@
                                             <constraint firstAttribute="height" constant="26" id="zkP-lN-dq5"/>
                                         </constraints>
                                         <state key="normal" image="person"/>
+                                        <connections>
+                                            <action selector="myPageButtonTapped:" destination="gus-TT-2Lm" eventType="touchUpInside" id="Fy5-0G-Yet"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>

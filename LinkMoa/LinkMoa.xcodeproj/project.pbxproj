@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		25144D0025F25CE400EC9F46 /* SurfingCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25144CFE25F25CE400EC9F46 /* SurfingCategoryCell.swift */; };
 		25144D0125F25CE400EC9F46 /* SurfingCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25144CFF25F25CE400EC9F46 /* SurfingCategoryCell.xib */; };
+		2522D8D52600E892009C5F6A /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2522D8D42600E892009C5F6A /* MyPageViewController.swift */; };
+		2522D8D72600E89E009C5F6A /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2522D8D62600E89E009C5F6A /* MyPage.storyboard */; };
+		2522D8DD2600EB5D009C5F6A /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2522D8DB2600EB5D009C5F6A /* MyPageCell.swift */; };
+		2522D8DE2600EB5D009C5F6A /* MyPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2522D8DC2600EB5D009C5F6A /* MyPageCell.xib */; };
 		2542747025F136B400A88F18 /* SurfingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2542746E25F136B400A88F18 /* SurfingHeaderView.swift */; };
 		2542747125F136B400A88F18 /* SurfingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2542746F25F136B400A88F18 /* SurfingHeaderView.xib */; };
 		254274A725F1DC2800A88F18 /* Surfing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 254274A625F1DC2800A88F18 /* Surfing.storyboard */; };
@@ -243,6 +247,10 @@
 		24047C72D6202B37B908B41C /* Pods-LinkMoa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinkMoa.release.xcconfig"; path = "Target Support Files/Pods-LinkMoa/Pods-LinkMoa.release.xcconfig"; sourceTree = "<group>"; };
 		25144CFE25F25CE400EC9F46 /* SurfingCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfingCategoryCell.swift; sourceTree = "<group>"; };
 		25144CFF25F25CE400EC9F46 /* SurfingCategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SurfingCategoryCell.xib; sourceTree = "<group>"; };
+		2522D8D42600E892009C5F6A /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		2522D8D62600E89E009C5F6A /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
+		2522D8DB2600EB5D009C5F6A /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
+		2522D8DC2600EB5D009C5F6A /* MyPageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPageCell.xib; sourceTree = "<group>"; };
 		2542746E25F136B400A88F18 /* SurfingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfingHeaderView.swift; sourceTree = "<group>"; };
 		2542746F25F136B400A88F18 /* SurfingHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SurfingHeaderView.xib; sourceTree = "<group>"; };
 		254274A625F1DC2800A88F18 /* Surfing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Surfing.storyboard; sourceTree = "<group>"; };
@@ -410,6 +418,25 @@
 				9F2771E65C4772960AB5566E /* Pods_LinkMoaShareExtension.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2522D8D32600E870009C5F6A /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				2522D8D82600EB26009C5F6A /* Views */,
+				2522D8D42600E892009C5F6A /* MyPageViewController.swift */,
+				2522D8D62600E89E009C5F6A /* MyPage.storyboard */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		2522D8D82600EB26009C5F6A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2522D8DB2600EB5D009C5F6A /* MyPageCell.swift */,
+				2522D8DC2600EB5D009C5F6A /* MyPageCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		258447CB25F6424C003E0A04 /* Network3 */ = {
@@ -776,6 +803,7 @@
 				3CC67C7F25C9A867004F914E /* Folder */,
 				3CD9203E25E79A3C006B8CC6 /* Search */,
 				3CE0853225CA36880094A07B /* Surfing */,
+				2522D8D32600E870009C5F6A /* MyPage */,
 				3C540E7925CEDBA10013427E /* Core */,
 				3C540EA025CFB8540013427E /* Support */,
 				3CF5ADEA25C2891D00F1E45E /* Assets.xcassets */,
@@ -913,11 +941,13 @@
 				2542747125F136B400A88F18 /* SurfingHeaderView.xib in Resources */,
 				3CAEC1A225C699B2009248D6 /* NotoSansKR-Light.otf in Resources */,
 				3CD9204C25E7CBFC006B8CC6 /* SearchFolderResult.storyboard in Resources */,
+				2522D8DE2600EB5D009C5F6A /* MyPageCell.xib in Resources */,
 				3C4BC7E425DCF1F700C06929 /* LinkCell.xib in Resources */,
 				3CDCFCF325CAF52200B0F6E0 /* AddFolder.storyboard in Resources */,
 				3CF5ADEE25C2891D00F1E45E /* LaunchScreen.storyboard in Resources */,
 				3C04656325E4A29B007B61E3 /* SearchInFolder.storyboard in Resources */,
 				254274A725F1DC2800A88F18 /* Surfing.storyboard in Resources */,
+				2522D8D72600E89E009C5F6A /* MyPage.storyboard in Resources */,
 				3CAEC1A425C699B2009248D6 /* NotoSansKR-Bold.otf in Resources */,
 				25D0047F25F397F6002743C3 /* CategoryDetail.storyboard in Resources */,
 				3CD6663625E11A960075DFE6 /* RemoveRequestBottom.storyboard in Resources */,
@@ -1129,6 +1159,9 @@
 				3C4BC7CF25DCE0C400C06929 /* AddLinkViewController.swift in Sources */,
 				3CCA602225DFA3FA00DD1F50 /* LinkPresentaionService.swift in Sources */,
 				3C4FB9A825F85D280046605B /* WebMetaData.swift in Sources */,
+
+				2522D8DD2600EB5D009C5F6A /* MyPageCell.swift in Sources */,
+
 				25858021260085CC00496D7E /* ReportBottomViewController.swift in Sources */,
 				3CB4598525F6F7BD0016351B /* LinkResponse.swift in Sources */,
 				259E18A025F7059600D8FF9A /* SurfingViewModels.swift in Sources */,
@@ -1153,6 +1186,7 @@
 				3C4FB9B025F86C3F0046605B /* AddLinkViewModel.swift in Sources */,
 				3C4BC7CA25DCD8AD00C06929 /* UIView+RoundConer.swift in Sources */,
 				25D0049525F39B1E002743C3 /* SurfingFolderViewController.swift in Sources */,
+				2522D8D52600E892009C5F6A /* MyPageViewController.swift in Sources */,
 				3CD9202925E61C0A006B8CC6 /* SearchLinkViewModel.swift in Sources */,
 				25D0049E25F39DCE002743C3 /* SurfingFolderDetailViewController.swift in Sources */,
 				3CAC041525F9F4330059F826 /* FolderDetailViewModel.swift in Sources */,

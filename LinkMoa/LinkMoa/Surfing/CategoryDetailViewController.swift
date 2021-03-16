@@ -28,7 +28,7 @@ class CategoryDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareNavigationBar()
-        prepareNavigationItem()
+//        prepareNavigationItem()
         prepareFolderCollectionView()
     }
     

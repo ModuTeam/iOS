@@ -66,6 +66,11 @@ final class SearchMainViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    static func storyboardInstance() -> SearchMainViewController? {
+        let storyboard = UIStoryboard(name: SearchMainViewController.storyboardName(), bundle: nil)
+        return storyboard.instantiateInitialViewController()
+    }
+    
     private func bind() {
         searchFolderViewModel.inputs.searchFolder(word: searchWord, page: 0)
         searchFolderViewModel.inputs.searchLink(word: searchWord, page: 0)

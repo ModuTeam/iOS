@@ -128,6 +128,15 @@ final class HomeViewController: UIViewController {
         searchFolderNC.searchTarget = searchTarget
         present(searchFolderNC, animated: true, completion: nil)
     }
+    
+    @IBAction func myPageButtonTapped(_ sender: Any) {
+        guard let myPageVC = MyPageViewController.storyboardInstance() else { return }
+        
+        myPageVC.modalTransitionStyle = .crossDissolve
+        myPageVC.modalPresentationStyle = .fullScreen
+        present(myPageVC, animated: true, completion: nil)
+    }
+    
 }
 
 extension HomeViewController: UICollectionViewDataSource {

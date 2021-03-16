@@ -110,11 +110,11 @@ class SurfingFolderDetailViewController: UIViewController, CustomAlert {
         shareBarButtonItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
         shareBarButtonItem.tintColor = .white
         
-        let searchBarButtonItem = UIBarButtonItem(image: UIImage(named: "search"), style: .plain, target: self, action: #selector(searchButtonTapped))
-        searchBarButtonItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
-        searchBarButtonItem.tintColor = .white
+//        let searchBarButtonItem = UIBarButtonItem(image: UIImage(named: "search"), style: .plain, target: self, action: #selector(searchButtonTapped))
+//        searchBarButtonItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
+//        searchBarButtonItem.tintColor = .white
         
-        navigationItem.rightBarButtonItems = [shareBarButtonItem, searchBarButtonItem]
+        navigationItem.rightBarButtonItems = [shareBarButtonItem]
     }
     
     @objc private func menuButtonTapped() {
@@ -156,13 +156,13 @@ class SurfingFolderDetailViewController: UIViewController, CustomAlert {
         navigationController?.present(editVC, animated: true)
     }
     
-    @objc private func searchButtonTapped() {
-        guard let searchLinkVC = SearchInFolderViewController.storyboardInstance() else { return }
-        searchLinkVC.modalTransitionStyle = .crossDissolve
-        searchLinkVC.modalPresentationStyle = .overCurrentContext
-        
-        homeNavigationController?.present(searchLinkVC, animated: true, completion: nil)
-    }
+//    @objc private func searchButtonTapped() {
+//        guard let searchLinkVC = SearchInFolderViewController.storyboardInstance() else { return }
+//        searchLinkVC.modalTransitionStyle = .crossDissolve
+//        searchLinkVC.modalPresentationStyle = .overCurrentContext
+//        
+//        homeNavigationController?.present(searchLinkVC, animated: true, completion: nil)
+//    }
     
     
 }

@@ -69,15 +69,13 @@ class SurfingFolderViewController: UIViewController {
     }
     
     private func prepareNavigationItem() {
-        let shareBarButtonItem = UIBarButtonItem(image: UIImage(named: "editDot"), style: .plain, target: self, action: #selector(folderShareButtonTapped))
-        shareBarButtonItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
-        shareBarButtonItem.tintColor = .black
-        
+
         let searchBarButtonItem = UIBarButtonItem(image: UIImage(named: "search"), style: .plain, target: self, action: #selector(searchButtonTapped))
         searchBarButtonItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 15)
         searchBarButtonItem.tintColor = .black
-        
-        navigationItem.rightBarButtonItems = [shareBarButtonItem, searchBarButtonItem]
+        if surfingFolerType == .liked {
+        navigationItem.rightBarButtonItems = [searchBarButtonItem]
+        }
     }
     
     private func prepareHeader() {
@@ -90,12 +88,9 @@ class SurfingFolderViewController: UIViewController {
         }
         
     }
-    @objc private func folderShareButtonTapped() {
-        
-    }
     
     @objc private func searchButtonTapped() {
-        guard let searchLinkVC = SearchInFolderViewController.storyboardInstance() else { return }
+        guard let searchLinkVC = SearchMainViewController.storyboardInstance() else { return }
         
         searchLinkVC.modalTransitionStyle = .crossDissolve
         searchLinkVC.modalPresentationStyle = .overCurrentContext

@@ -45,6 +45,7 @@
                 <constraint firstAttribute="trailing" secondItem="hFi-ZL-9lG" secondAttribute="trailing" constant="18" id="gmj-Xe-lOm"/>
             </constraints>
             <connections>
+                <outlet property="moreButton" destination="hFi-ZL-9lG" id="bY9-UW-w7Z"/>
                 <outlet property="titleLabel" destination="fx4-j9-pEY" id="ACd-B2-iYp"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="130.58035714285714"/>

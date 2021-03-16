@@ -69,7 +69,10 @@ extension SurfingAPI: TargetType {
         switch self {
         case .folderDetail, .like, .topTenFolder:
             return .requestPlain
-        case .category(_, let params), .likedFolder(let params), .searchFolder(let params), .searchLink(let params), .report(params: let params):
+
+        case .category(_, let params), .likedFolder(let params), .searchFolder(let params), .searchLink(let params):
+            return .requestParameters(parameters: params, encoding: URLEncoding.default)
+        case  .report(params: let params):
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
         }
     }

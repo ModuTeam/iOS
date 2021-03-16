@@ -159,6 +159,7 @@ extension SurfingViewController: UICollectionViewDataSource {
         case 1:
             guard let surfingCategoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: SurfingCategoryCell.cellIdentifier, for: indexPath) as? SurfingCategoryCell else { fatalError() }
 
+            //MARK:- 속도 이슈
 //            surfingCategoryCell.categoryImageView.image = UIImage(named: "category_\(indexPath.item)")
 
             surfingCategoryCell.titleLabel.text = categoryMain[indexPath.item]
@@ -214,6 +215,12 @@ extension SurfingViewController: UICollectionViewDelegateFlowLayout {
             headerView.gestureRecognizers?.forEach {headerView.removeGestureRecognizer($0)}
             headerView.addGestureRecognizer(tapGesture)
             headerView.titleLabel.text = headerTitle[indexPath.section]
+            
+            if headerView.tag == 1 {
+                headerView.moreButton.isHidden = true
+            } else {
+                headerView.moreButton.isHidden = false
+            }
             return headerView
         default:
             fatalError()
@@ -230,9 +237,11 @@ extension SurfingViewController: UICollectionViewDelegateFlowLayout {
             surfingFolderVC.surfingFolerType = .topTen
             homeNavigationController?.pushViewController(surfingFolderVC, animated: true)
         case 1:
-            guard let categoryDetailVC = CategoryDetailViewController.storyboardInstance() else { fatalError() }
-            categoryDetailVC.homeNavigationController = homeNavigationController
-            homeNavigationController?.pushViewController(categoryDetailVC, animated: true)
+            print("카테고리는 아무것도 안함")
+            
+//            guard let categoryDetailVC = CategoryDetailViewController.storyboardInstance() else { fatalError() }
+//            categoryDetailVC.homeNavigationController = homeNavigationController
+//            homeNavigationController?.pushViewController(categoryDetailVC, animated: true)
         case 2:
             guard let surfingFolderVC = SurfingFolderViewController.storyboardInstance() else { fatalError() }
             surfingFolderVC.homeNavigationController = homeNavigationController
