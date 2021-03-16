@@ -10,8 +10,11 @@ import Moya
 enum SurfingAPI {
     case folderDetail(index: Int)
     case like(index: Int)
-    case likedFolder
+    
     case topTenFolder
+    case category(index: Int, params: [String: Any])
+    case likedFolder(params: [String: Any])
+    
     case searchFolder(params: [String: Any])
     case searchLink(params: [String: Any])
 }
@@ -28,10 +31,14 @@ extension SurfingAPI: TargetType {
             return "/folders/\(index)"
         case .like(let index):
             return "/folders/\(index)/like"
-        case .likedFolder:
-            return "/users/like"
+        
+        
         case .topTenFolder:
             return "/folders/top"
+        case .category(let index, _):
+            return "/categories/\(index)/folders"
+        case .likedFolder:
+            return "/users/like"
             
         case .searchFolder:
             return "/folders/search"
@@ -42,7 +49,7 @@ extension SurfingAPI: TargetType {
     
     var method: Method {
         switch self {
-        case .folderDetail, .likedFolder, .topTenFolder, .searchFolder, .searchLink:
+        case .folderDetail, .topTenFolder, .category, .likedFolder, .searchFolder, .searchLink:
             return .get
         case .like:
             return .post
@@ -55,9 +62,9 @@ extension SurfingAPI: TargetType {
     
     var task: Task {
         switch self {
-        case .folderDetail, .like, .likedFolder, .topTenFolder:
+        case .folderDetail, .like, .topTenFolder:
             return .requestPlain
-        case .searchFolder(let params), .searchLink(let params):
+        case .category(_, let params), .likedFolder(let params), .searchFolder(let params), .searchLink(let params):
             return .requestParameters(parameters: params, encoding: URLEncoding.default)
         }
     }

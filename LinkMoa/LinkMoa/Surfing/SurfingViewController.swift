@@ -26,14 +26,16 @@ final class SurfingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareCollectionView()
+        
+        DEBUG_LOG("")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.inputs.fetchTopTenFolder()
-        viewModel.inputs.fetchLikedFolders()
-        
+        viewModel.inputs.fetchLikedFolders(word: nil, page: 0)
         bind()
+        DEBUG_LOG("")
     }
     
     static func storyboardInstance() -> SurfingViewController? {
@@ -44,14 +46,12 @@ final class SurfingViewController: UIViewController {
     private func bind() {
         viewModel.outputs.topTenFolders.bind { [weak self] results  in
             guard let self = self else { return }
-            print("topTenFolders", results)
             self.topTenFolders.value = results
             self.surfingCollectionView.reloadData()
         }
         
         viewModel.outputs.likedFolders.bind { [weak self] results  in
             guard let self = self else { return }
-            print("likedFolders", results)
             self.likedFolders.value = results
             self.surfingCollectionView.reloadData()
         }
@@ -132,6 +132,7 @@ final class SurfingViewController: UIViewController {
 }
 
 extension SurfingViewController: UICollectionViewDataSource {
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
     }
@@ -157,7 +158,9 @@ extension SurfingViewController: UICollectionViewDataSource {
             return folderCell
         case 1:
             guard let surfingCategoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: SurfingCategoryCell.cellIdentifier, for: indexPath) as? SurfingCategoryCell else { fatalError() }
-            surfingCategoryCell.categoryImageView.image = UIImage(named: "category_\(indexPath.item)")
+
+//            surfingCategoryCell.categoryImageView.image = UIImage(named: "category_\(indexPath.item)")
+
             surfingCategoryCell.titleLabel.text = categoryMain[indexPath.item]
             surfingCategoryCell.subTitleLabel.text = categorySub[indexPath.item]
             

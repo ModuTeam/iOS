@@ -50,6 +50,7 @@ final class HomeViewController: UIViewController {
         
         pageViewController.delegate = self
         pageViewController.dataSource = self
+        pageViewController.setViewControllers([surfingVC], direction: .forward, animated: true, completion: nil)
         pageViewController.setViewControllers([homeFolderVC], direction: .forward, animated: true, completion: nil)
         
         addChild(pageViewController)
@@ -187,10 +188,12 @@ extension HomeViewController: UIPageViewControllerDataSource {
 
 extension HomeViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        guard let currentVc = pageViewController.viewControllers?.first else { return }
-        guard let index = pages.lastIndex(of: currentVc) else { return }
+        guard let currentVC = pageViewController.viewControllers?.first else { return }
+        guard let index = pages.lastIndex(of: currentVC) else { return }
         
         scrollSelectedTabView(scrollToIndexPath: IndexPath(item: index, section: 0))
         setPageController(setToIndexPath: IndexPath(item: index, section: 0))
     }
+    
+    
 }

@@ -42,17 +42,15 @@ class SurfingFolderViewController: UIViewController {
         switch surfingFolerType {
         case .topTen:
             viewModel.inputs.fetchTopTenFolder()
-            viewModel.outputs.topTenFolders.bind { [weak self] results  in
+            viewModel.outputs.topTenFolders.bind { [weak self] results in
                 guard let self = self else { return }
-                print("topTenFolders", results)
                 self.topTenFolders.value = results
                 self.folderCollectionView.reloadData()
             }
         case .liked :
-            viewModel.inputs.fetchLikedFolders()
-            viewModel.outputs.likedFolders.bind { [weak self] results  in
+            viewModel.inputs.fetchLikedFolders(word: nil, page: 0)
+            viewModel.outputs.likedFolders.bind { [weak self] results in
                 guard let self = self else { return }
-                print("likedFolders", results)
                 self.likedFolders.value = results
                 self.countLabel.text = "\(results.map{$0.folderLinkCount}.reduce(0, +).toAbbreviationString)개"
                 self.folderCollectionView.reloadData()

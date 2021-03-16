@@ -44,7 +44,6 @@ class SurfingFolderDetailViewController: UIViewController {
         viewModel.inputs.likeFolder(folder: folderIndex)
         viewModel.outputs.folderDetail.bind { [weak self] results  in
             guard let self = self else { return }
-            print("topTenFolders", results)
             self.folderDetail.value = results
             self.linkCollectionView.reloadData()
             self.updateUI(folderDetail: results)
@@ -59,7 +58,6 @@ class SurfingFolderDetailViewController: UIViewController {
         viewModel.inputs.fetchFolderDetail(folder: folderIndex)
         viewModel.outputs.folderDetail.bind { [weak self] results  in
             guard let self = self else { return }
-            print("topTenFolders", results)
             self.folderDetail.value = results
             self.linkCollectionView.reloadData()
             self.updateUI(folderDetail: results)

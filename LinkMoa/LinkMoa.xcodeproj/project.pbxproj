@@ -19,6 +19,8 @@
 		258447F425F64EE9003E0A04 /* FolderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258447F325F64EE9003E0A04 /* FolderResponse.swift */; };
 		25857FF125FF53DA00496D7E /* LinkMoaLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25857FF025FF53DA00496D7E /* LinkMoaLog.swift */; };
 		25857FF225FF540300496D7E /* LinkMoaLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25857FF025FF53DA00496D7E /* LinkMoaLog.swift */; };
+		2585801025FFA00E00496D7E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2585800F25FFA00E00496D7E /* Category.swift */; };
+		2585801125FFCEF100496D7E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2585800F25FFA00E00496D7E /* Category.swift */; };
 		259E18A025F7059600D8FF9A /* SurfingViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E189F25F7059600D8FF9A /* SurfingViewModels.swift */; };
 		259E18A325F74D4400D8FF9A /* Int+Abbreviations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E18A225F74D4400D8FF9A /* Int+Abbreviations.swift */; };
 		259E18A525F8583100D8FF9A /* TopTenFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E18A425F8583100D8FF9A /* TopTenFolder.swift */; };
@@ -246,6 +248,7 @@
 		258447F325F64EE9003E0A04 /* FolderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResponse.swift; sourceTree = "<group>"; };
 		258447F725F64F3E003E0A04 /* NewFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFolder.swift; sourceTree = "<group>"; };
 		25857FF025FF53DA00496D7E /* LinkMoaLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkMoaLog.swift; sourceTree = "<group>"; };
+		2585800F25FFA00E00496D7E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		259E189F25F7059600D8FF9A /* SurfingViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfingViewModels.swift; sourceTree = "<group>"; };
 		259E18A225F74D4400D8FF9A /* Int+Abbreviations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Abbreviations.swift"; sourceTree = "<group>"; };
 		259E18A425F8583100D8FF9A /* TopTenFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTenFolder.swift; sourceTree = "<group>"; };
@@ -459,6 +462,7 @@
 				25D004E025F60026002743C3 /* LikedFolder.swift */,
 				259E18B525F8A9BB00D8FF9A /* SearchFolder.swift */,
 				25C666F025F9D54F009EF04D /* SearchLink.swift */,
+				2585800F25FFA00E00496D7E /* Category.swift */,
 			);
 			path = Models2;
 			sourceTree = "<group>";
@@ -1061,6 +1065,7 @@
 				3C6D174025EA009200A7E7CA /* RemoveRequestBottomViewController.swift in Sources */,
 				3C10CB4125E8B7F10083E93A /* String+Regex.swift in Sources */,
 				3C4FB99725F84C8F0046605B /* FolderDetail.swift in Sources */,
+				2585801125FFCEF100496D7E /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1103,6 +1108,7 @@
 				3C04656925E5F0C6007B61E3 /* NSObject+StoryboardName.swift in Sources */,
 				3CDCFCF025CAF51A00B0F6E0 /* AddFolderViewController.swift in Sources */,
 				258447EC25F64A1C003E0A04 /* FolderList.swift in Sources */,
+				2585801025FFA00E00496D7E /* Category.swift in Sources */,
 				2542747025F136B400A88F18 /* SurfingHeaderView.swift in Sources */,
 				3C4BC7CF25DCE0C400C06929 /* AddLinkViewController.swift in Sources */,
 				3CCA602225DFA3FA00DD1F50 /* LinkPresentaionService.swift in Sources */,

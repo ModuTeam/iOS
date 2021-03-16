@@ -13,8 +13,8 @@ protocol SearchFolderViewModelOutputs {
 }
 
 protocol SearchFolderViewModelInputs {
-    func searchFolder(word: String)
-    func searchLink(word: String)
+    func searchFolder(word: String, page: Int)
+    func searchLink(word: String, page: Int)
 }
 
 protocol SearchFolderViewModelViewModelType {
@@ -34,19 +34,23 @@ final class SearchFolderViewModel: SearchFolderViewModelOutputs, SearchFolderVie
     var inputs: SearchFolderViewModelInputs { return self }
     var outputs: SearchFolderViewModelOutputs { return self }
     
-    func searchFolder(word: String) {
-        let params: [String: Any] = ["word": word]
+
+    func searchFolder(word: String, page: Int) {
+        let params: [String: Any] = ["word" : word,
+                                     "page" : page,
+                                     "limit" : 30
+        ]
+
         DEBUG_LOG(word)
         surfingManager.searchFolder(params: params) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .failure(let error):
                 self.searchedFolders.value = []
-                print(error)
+                DEBUG_LOG(error)
             case .success(let response):
                 if let data = response.result {
                     self.searchedFolders.value = data
-                    print(data)
                 } else {
                     self.searchedFolders.value = []
                 }
@@ -54,19 +58,23 @@ final class SearchFolderViewModel: SearchFolderViewModelOutputs, SearchFolderVie
         }
     }
     
-    func searchLink(word: String) {
-        let params: [String: Any] = ["word": word]
+
+    func searchLink(word: String, page: Int) {
+        let params: [String: Any] = ["word" : word,
+                                     "page" : page,
+                                     "limit" : 30
+        ]
+
         DEBUG_LOG(word)
         surfingManager.searchLink(params: params) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .failure(let error):
                 self.searchedLinks.value = []
-                print(error)
+                DEBUG_LOG(error)
             case .success(let response):
                 if let data = response.result {
                     self.searchedLinks.value = data
-                    print(data)
                 } else {
                     self.searchedLinks.value = []
                 }

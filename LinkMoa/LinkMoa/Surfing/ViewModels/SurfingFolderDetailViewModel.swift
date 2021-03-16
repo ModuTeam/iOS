@@ -39,7 +39,7 @@ final class SurfingFolderDetailViewModel: SurfingFolderDetailViewModelOutputs, S
             guard let self = self else { return }
             switch result {
             case .failure(let error):
-                print(error)
+                DEBUG_LOG(error)
             case .success(let response):
                 if let data = response.result {
                     self.folderDetail.value = data
@@ -53,7 +53,7 @@ final class SurfingFolderDetailViewModel: SurfingFolderDetailViewModelOutputs, S
             guard let self = self else { return }
             switch result {
             case .failure(let error):
-                print(error)
+                DEBUG_LOG(error)
             case .success(let response):
                 print(response.message)
                 self.fetchFolderDetail(folder: folder)

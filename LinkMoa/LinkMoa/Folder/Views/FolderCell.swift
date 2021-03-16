@@ -58,7 +58,7 @@ final class FolderCell: UICollectionViewCell {
             lockImageView.isHidden = false
         }
         
-        if let url = URL(string: folder.imageURL) {
+        if let url = URL(string: folder.imageURL), folder.imageURL != "-1" {
             webPreviewImageView.kf.setImage(with: url)
         }
     }
@@ -77,8 +77,7 @@ final class FolderCell: UICollectionViewCell {
             heartImageView.image = UIImage(systemName: "heart")
         }
         
-        if let linkImageURL = folder.linkImageURL, let url = URL(string: linkImageURL) {
-            print(url)
+        if let linkImageURL = folder.linkImageURL, let url = URL(string: linkImageURL), linkImageURL != "-1"  {
             webPreviewImageView.kf.setImage(with: url)
         }
     }
@@ -95,7 +94,7 @@ final class FolderCell: UICollectionViewCell {
         } else {
             heartImageView.image = UIImage(systemName: "heart")
         }
-        if let url = URL(string: folder.linkImageURL) {
+        if let url = URL(string: folder.linkImageURL), folder.linkImageURL != "-1"  {
             webPreviewImageView.kf.setImage(with: url)
         }
     }
@@ -117,6 +116,23 @@ final class FolderCell: UICollectionViewCell {
         }
     }
 
+    func update(by folder: CategoryFolder.FolderList) {
+        lockImageView.isHidden = true
+        gradientLayer.isHidden = false
+        heartStackView.isHidden = false
+        titleLabel.text = folder.name
+        countLabel.text = folder.linkCount.toAbbreviationString
+        likeCountLabel.text = folder.likeCount.toAbbreviationString
+        if folder.likeStatus == 1 {
+            heartImageView.image = UIImage(systemName: "heart.fill")
+        } else {
+            heartImageView.image = UIImage(systemName: "heart")
+        }
+        if let url = URL(string: folder.linkImageURL), folder.linkImageURL != "-1" {
+            webPreviewImageView.kf.setImage(with: url)
+        }
+    }
+    
     func addGradientLayer() {
         let shapeLayer: CAShapeLayer = CAShapeLayer()
         let screenSize: CGFloat = UIScreen.main.bounds.width

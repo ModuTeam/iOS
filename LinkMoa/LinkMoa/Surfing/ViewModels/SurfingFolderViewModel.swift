@@ -14,7 +14,7 @@ protocol SurfingFolderViewModelOutputs {
 
 protocol SurfingFolderViewModelInputs {
     func fetchTopTenFolder()
-    func fetchLikedFolders()
+    func fetchLikedFolders(word: String?, page: Int)
     
 }
 
@@ -42,7 +42,7 @@ final class SurfingFolderViewModel: SurfingFolderViewModelOutputs, SurfingFolder
             guard let self = self else { return }
             switch result {
             case .failure(let error):
-                print(error)
+                DEBUG_LOG(error)
             case .success(let response):
                 let data = response.result
                 self.topTenFolders.value = data
@@ -50,12 +50,20 @@ final class SurfingFolderViewModel: SurfingFolderViewModelOutputs, SurfingFolder
         }
     }
     
-    func fetchLikedFolders() {
-        surfingManager.fetchLikedFolders { [weak self] result in
+    func fetchLikedFolders(word: String?, page: Int) {
+        var params: [String: Any] = ["page" : page,
+                                     "limit" : 30
+        ]
+        
+        if let word = word {
+            params["word"] = word
+        }
+        
+        surfingManager.fetchLikedFolders(params: params) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .failure(let error):
-                print(error)
+                DEBUG_LOG(error)
             case .success(let response):
                 if let data = response.result {
                     self.likedFolders.value = data

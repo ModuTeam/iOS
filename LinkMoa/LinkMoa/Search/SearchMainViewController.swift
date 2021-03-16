@@ -67,8 +67,8 @@ final class SearchMainViewController: UIViewController {
     }
     
     private func bind() {
-        searchFolderViewModel.inputs.searchFolder(word: searchWord)
-        searchFolderViewModel.inputs.searchLink(word: searchWord)
+        searchFolderViewModel.inputs.searchFolder(word: searchWord, page: 0)
+        searchFolderViewModel.inputs.searchLink(word: searchWord, page: 0)
         
         searchFolderViewModel.outputs.searchedFolders.bind { [weak self] results in
             guard let self = self else { return }

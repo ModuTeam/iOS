@@ -14,7 +14,7 @@ protocol SearchLinkViewModelOutputs {
 }
 
 protocol SearchLinkViewModelInputs {
-    func searchLink(word: String)
+    func searchLink(word: String, page: Int)
 }
 
 protocol SearchLinkViewModelType {
@@ -33,19 +33,20 @@ class SearchLinkViewModel: SearchLinkViewModelInputs, SearchLinkViewModelOutputs
     var inputs: SearchLinkViewModelInputs { return self }
     var outputs: SearchLinkViewModelOutputs { return self }
  
-    func searchLink(word: String) {
-        let params: [String: Any] = ["word": word]
-        print("🥺", word)
+    func searchLink(word: String, page: Int) {
+        let params: [String: Any] = ["word" : word,
+                                     "page" : page,
+                                     "limit" : 30
+        ]
         surfingManager.searchLink(params: params) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .failure(let error):
                 self.searchedLinks.value = []
-                print(error)
+                DEBUG_LOG(error)
             case .success(let response):
                 if let data = response.result {
                     self.searchedLinks.value = data
-                    print(data)
                 }
             }
         }
